@@ -5,6 +5,7 @@ import {viteBundler} from '@vuepress/bundler-vite';
 import fs from 'fs';
 import path from 'path';
 import {searchPlugin} from '@vuepress/plugin-search'
+import { markdownHintPlugin } from '@vuepress/plugin-markdown-hint'
 
 function getSidebarFromDir(dirPath) {
     // 检查目录是否存在，不存在返回空数组
@@ -60,6 +61,7 @@ export default defineUserConfig({
             {text: '高并发', link: '/parallel/1.md'},
             {text: '分布式', link: '/distribute/1.md'},
             {text: '设计模式', link: '/design/1.md'},
+            {text: '场景题', link: '/scene/1.md'},
             {text: 'Netty', link: '/netty/1.md'},
             {text: '算法', link: '/algorithm/1.md'},
             {text: '容器', link: '/container/1.md'},
@@ -77,6 +79,7 @@ export default defineUserConfig({
             '/parallel/': getSidebarFromDir(path.resolve(__dirname, '../parallel')),
             '/distribute/': getSidebarFromDir(path.resolve(__dirname, '../distribute')),
             '/design/': getSidebarFromDir(path.resolve(__dirname, '../design')),
+            '/scene/': getSidebarFromDir(path.resolve(__dirname, '../scene')),
             '/netty/': getSidebarFromDir(path.resolve(__dirname, '../netty')),
             '/algorithm/': getSidebarFromDir(path.resolve(__dirname, '../algorithm')),
             '/container/': getSidebarFromDir(path.resolve(__dirname, '../container')),
@@ -93,6 +96,12 @@ export default defineUserConfig({
             },
             maxSuggestions: 10, // 最大显示条目数
             isSearchable: (page) => page.path !== '/', // 排除首页
+        }),
+        markdownHintPlugin({
+            // 启用提示容器，默认启用
+            hint: true,
+            // 启用 GFM 警告
+            alert: true,
         }),
     ],
 });
