@@ -8,5 +8,3 @@ docs/.vuepress/dist
 .idea
 
 node_modules
-
-package-lock.json
