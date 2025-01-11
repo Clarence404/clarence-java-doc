@@ -46,7 +46,8 @@ export default defineUserConfig({
     description: '实践是检验真理的唯一标准',
     bundler: viteBundler(),
     theme: defaultTheme({
-        logo: '/assets/hero.png',
+        // 只将图标放在public下，其他图片放在assets下，这样编写md文件就能看到图片了
+        logo: '/images/hero.png',
         navbar: [  // 顶部导航栏配置
             {text: '开发总结', link: '/interview/1_cache'},
             {text: 'Java', link: '/java/1.md'},

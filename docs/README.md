@@ -1,7 +1,8 @@
 ---
 home: true
 title: 首页
-heroImage: /assets/hero.png
+#只将图标放在public下，其他图片放在assets下，这样编写md文件就能看到图片了
+heroImage: /images/hero.png
 actions:
   - text: 快速上手
     link: /interview/1_cache
@@ -12,7 +13,7 @@ features:
     details: 面试问题归类整理，先理论再实践。
 
   - title: 实践
-    details: 实践是程序员必备的技能。
+    details: 实践才是程序员必备的技能。
 
   - title: 项目
     details: 理论与实践带入项目，发挥真正价值。
