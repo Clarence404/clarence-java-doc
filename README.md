@@ -1,5 +1,5 @@
 # clarence-doc
-personal development summary,and technology aummary
+personal development summary,and technology summary
 
 > reference：https://it-blog-cn.com , click to see more
 >
