@@ -30,6 +30,11 @@ function getSidebarFromDir(dirPath) {
             .replace(/\\/g, '/')  // 替换反斜杠为正斜杠
             .replace('.md', '');   // 移除文件扩展名 .md
 
+        // 打印侧边栏的生成值
+        console.log({
+            text: firstHeading,
+            link: `/${relativeLink}`,
+        });
         // 返回侧边栏项
         return {
             text: firstHeading,

@@ -6,8 +6,87 @@
 
 **【解决办法】**：<br>
 - 可采用更新前后双删除缓存策略；<br>
+> 参考链接：[延迟双删如此好用，为何大厂从来不用](https://mp.weixin.qq.com/s/CR7e6pjKd5cPdVnkq5mqbw)
 
-- 可以通过“串行化”解决，保证同一个数据的读写落在同一个后端服务上；
+```java
+import java.util.concurrent.TimeUnit;
+
+public class CacheService {
+
+    // 缓存客户端，比如 Redis
+    private CacheClient cacheClient;
+    // 数据库服务接口
+    private DatabaseService databaseService;
+    
+    public CacheService(CacheClient cacheClient, DatabaseService databaseService) {
+        this.cacheClient = cacheClient;
+        this.databaseService = databaseService;
+    }
+
+    public void updateDataWithCache(String key, String value) {
+        // 1. 第一次删除缓存
+        cacheClient.delete(key);
+
+        // 2. 更新数据库
+        databaseService.update(key, value);
+
+        // 3. 延迟删除缓存
+        new Thread(() -> {
+            try {
+                // 延迟一段时间（具体时间根据业务实际情况设定，通常是事务提交所需时间）
+                TimeUnit.SECONDS.sleep(1);
+                cacheClient.delete(key);
+            } catch (InterruptedException e) {
+                Thread.currentThread().interrupt();
+                System.out.println("延迟双删任务被中断：" + e.getMessage());
+            }
+        }).start();
+    }
+}
+
+```
+
+- 可以通过“串行化”解决，保证同一个数据的读写落在同一个后端服务上:
+
+  - 核心思路：
+  
+    通过<span style="color: red;">**哈希一致性或分布式锁，确保对同一个 key 的读写请求串行执行**</span>，从而避免并发冲突。
+
+```java
+import java.util.concurrent.locks.ReentrantLock;
+
+public class CacheServiceWithSerialization {
+    
+    private CacheClient cacheClient; // 缓存客户端
+    private DatabaseService databaseService; // 数据库服务接口
+    
+    private static final ReentrantLock lock = new ReentrantLock(); // 本地锁示例
+    
+    public void updateDataWithSerialization(String key, String value) {
+        // 获取分布式锁，确保同一时刻只有一个线程操作 key
+        boolean lockAcquired = DistributedLock.tryLock(key, 5, TimeUnit.SECONDS);
+        if (!lockAcquired) {
+            System.out.println("未能获得锁，操作已被其他线程占用");
+            return;
+        }
+
+        try {
+            // 1. 写缓存
+            cacheClient.set(key, value);
+
+            // 2. 更新数据库
+            databaseService.update(key, value);
+
+            // 3. 删除缓存
+            cacheClient.delete(key);
+
+        } finally {
+            DistributedLock.release(key); // 释放分布式锁
+        }
+    }
+}
+
+```
 
 **【场景二】** 先操作数据库，再清除缓存。如果删缓存失败了，就会出现数据不一致问题。
 
@@ -53,7 +132,9 @@
 Redis 是一个基于内存的数据库，所有数据都存储在内存中。当内存用完时，Redis 的行为取决于配置，可能包括：
 
 - 默认情况下，新写入操作会失败，Redis 返回错误。
+
 - 如果设置了 maxmemory 和 maxmemory-policy，Redis 会根据指定策略回收内存，比如淘汰最少使用的键（LRU 算法）或即将过期的键。
+
 - **如果没有合理配置，内存压力可能导致操作系统触发 OOM（Out of Memory）机制，将 Redis 进程终止**。
 
 ## 三、常见的缓存淘汰策略有哪些
@@ -177,9 +258,13 @@ Redis 是一个基于内存的数据库，所有数据都存储在内存中。�
 
 ## 六、本地缓存与分布式缓存区别
 
-本地缓存的优势是没有网络开销，在大并发量时用好本地缓存很重要；分布式缓存比如Redis 优势是能够无限扩容量和多个系统公用缓存数据，结合这个去在业务中使用缓存是很重要的。
+**本地缓存的优势**是没有网络开销，在大并发量时用好本地缓存很重要；
 
-本地缓存的缺点是会占用堆内存，影响垃圾回收、影响系统性能。分布式缓存两大开销（网络延迟和对象序列化）会导致其慢于本地缓存，同时也需要搭建分布式缓存系统。
+**分布式缓存**比如Redis 优势是能够无限扩容量和多个系统公用缓存数据，结合这个去在业务中使用缓存是很重要的。
+
+**本地缓存的缺点**是会占用堆内存，影响垃圾回收、影响系统性能;
+
+**分布式缓存**两大开销（网络延迟和对象序列化）会导致其慢于本地缓存，同时也需要搭建分布式缓存系统。
 
 **建议**：
 
@@ -208,19 +293,23 @@ todo
 
 todo
 
-## 十一、缓存预热
+## 十一、什么是缓存预热？
 
 新的缓存系统没有任何数据，在缓存重建数据的过程中，系统性能和数据负载都不太好，所以最好在系统上线之前就把缓存的热点数据加载到缓存中，这种缓存预加载手段就是缓存预热。
 
-## 十二、缓存热备
+## 十二、什么是缓存热备？
 
 缓存热备既当一个缓存服务器不可用时能实时切换到备用缓存服务器，不影响缓存使用。集群模式下，每个主节点都会有一个或多个从节点备用，一旦主节点挂掉，从节点会被哨兵提升为主节点使用。
 
 
-## 十三、Redis集群
+## 十三、Redis集群问题总结
 
+### 1、Redis集群如何搭建？
 
-todo
+主从模式如下所示：
+
+[三台Centos7.9中Docker部署Redis集群](https://blog.csdn.net/weixin_43108539/article/details/145098017)
+
 
 ## 十四、Redis 集群同步数据
 
@@ -234,4 +323,14 @@ todo
 
 ## 十六、知道哪些 Redis 的优化操作
 
+
 ## 十七、怎么使用 Redis 实现消息队列？
+
+
+## 十八、Redis的热Key问题如何解决?
+
+
+## 十九、Redis的大Key问题如何解决?
+
+
+## 二十、Redis 6.x版本为什么要引入多线程?
