@@ -306,7 +306,7 @@ todo
 
 ### 1、Redis集群如何搭建？
 
-主从模式如下所示：
+集群模式如下所示：
 
 [三台Centos7.9中Docker部署Redis集群](https://blog.csdn.net/weixin_43108539/article/details/145098017)
 
@@ -333,4 +333,4 @@ todo
 ## 十九、Redis的大Key问题如何解决?
 
 
-## 二十、Redis 6.x版本为什么要引入多线程?
+## 二十、Redis 6.x为什么要引入多线程?
