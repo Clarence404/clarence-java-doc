@@ -304,11 +304,15 @@ todo
 
 ## 十三、Redis集群问题总结
 
-### 1、Redis集群如何搭建？
+### 1、Redis集群分类
 
-集群模式如下所示：
+### 2、Redis集群如何搭建？
 
-[三台Centos7.9中Docker部署Redis集群](https://blog.csdn.net/weixin_43108539/article/details/145098017)
+- 主从模式方案：
+
+- 哨兵模式方案：
+
+- 集群模式方案：[三台Centos7.9中Docker部署Redis集群](https://blog.csdn.net/weixin_43108539/article/details/145098017)
 
 
 ## 十四、Redis 集群同步数据
