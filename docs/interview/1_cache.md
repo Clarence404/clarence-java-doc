@@ -322,7 +322,7 @@ todo
 
 ![img.png](../assets/interview/sentinel.png)
 
-- 部署实测：todo
+- 部署实测：[三台 Centos7.9 中 Docker 部署 Redis 哨兵模式](https://blog.csdn.net/weixin_43108539/article/details/145148482)
 
 #### 集群模式方案：
 
