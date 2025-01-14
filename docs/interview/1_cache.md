@@ -308,13 +308,27 @@ todo
 
 ### 1、Redis 集群分类
 
+![img.png](../assets/interview/cluster-diff.png)
+
 ### 2、Redis 集群如何搭建？
 
-- 主从模式方案：
+#### 主从模式方案
 
-- 哨兵模式方案：1
+![img.png](../assets/interview/master-slave.png)
 
-- 集群模式方案：[三台 Centos7.9 中 Docker 部署 Redis 集群](https://blog.csdn.net/weixin_43108539/article/details/145098017)
+- 部署实测：todo
+
+#### 哨兵模式方案：
+
+![img.png](../assets/interview/sentinel.png)
+
+- 部署实测：todo
+
+#### 集群模式方案：
+
+![img.png](../assets/interview/redis-cluster.png)
+
+- 部署实测：[三台 Centos7.9 中 Docker 部署 Redis 集群模式](https://blog.csdn.net/weixin_43108539/article/details/145098017)
 
 ## 十四、Redis 集群同步数据
 
@@ -330,7 +344,7 @@ todo
 
 ## 十八、Redis 的热 Key 问题如何解决?
 
-> 参考代码：[https://gitee.com/jd-platform-opensource/hotkey]{https://gitee.com/jd-platform-opensource/hotkey}
+> 参考代码：[https://gitee.com/jd-platform-opensource/hotkey](https://gitee.com/jd-platform-opensource/hotkey)
 
 ## 十九、Redis 的大 Key 问题如何解决?
 
