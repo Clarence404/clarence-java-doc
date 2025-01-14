@@ -312,7 +312,7 @@ todo
 
 - 主从模式方案：
 
-- 哨兵模式方案：
+- 哨兵模式方案：1
 
 - 集群模式方案：[三台 Centos7.9 中 Docker 部署 Redis 集群](https://blog.csdn.net/weixin_43108539/article/details/145098017)
 
