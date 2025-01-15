@@ -62,7 +62,7 @@ export default defineUserConfig({
             {text: 'Jvm', link: '/jvm/1'},
             {text: 'Spring', link: '/spring/1'},
             {text: '微服务', link: '/springCloud/1'},
-            {text: '消息队列', link: '/mq/1_mq-chose'},
+            {text: '消息队列', link: '/mq/1_mq'},
             {text: '高并发', link: '/parallel/1'},
             {text: '分布式', link: '/distribute/1'},
             {text: '设计模式', link: '/design/1'},
