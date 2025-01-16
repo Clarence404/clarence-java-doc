@@ -46,7 +46,7 @@ function getSidebarFromDir(dirPath) {
 
 // VuePress 用户配置
 export default defineUserConfig({
-    base:'/clarence-doc',
+    base:'/clarence-doc/',
     lang: 'en-US',
     title: 'ClarenceDoc',
     description: '实践是检验真理的唯一标准',
@@ -58,12 +58,12 @@ export default defineUserConfig({
             {text: '开发总结', link: '/interview/1_cache'},
             {text: 'Java', link: '/java/1_java_base.md'},
             {text: '数据库', link: '/database/1'},
-            {text: '缓存', link: '/cache/data_structure'},
-            {text: 'Jvm', link: '/jvm/1'},
+            {text: '缓存', link: '/cache/1_data_structure'},
+            {text: 'Jvm虚拟机', link: '/jvm/1'},
             {text: 'Spring', link: '/spring/1'},
-            {text: '微服务', link: '/springCloud/1'},
+            {text: '微服务', link: '/springcloud/1'},
             {text: '消息队列', link: '/mq/1_mq'},
-            {text: '高并发', link: '/parallel/1'},
+            {text: '高并发', link: '/parallel/1_java_currency'},
             {text: '分布式', link: '/distribute/1'},
             {text: '设计模式', link: '/design/1'},
             {text: '场景题', link: '/scene/1'},
