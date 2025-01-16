@@ -89,10 +89,15 @@ todo
 
 ## 六、MQ如何保证消息的高效读写
 
+todo
+
 ## 七、MQ如何保证分布式事务的最终一致性
+
+todo
 
 ## 八、如何设计一个MQ？
 
+todo
 
 ## 九、RocketMQ常见面试题：
 
@@ -106,3 +111,9 @@ todo
 以下内容待实践后调整：
 
 > 参考资料：[Kafka常见面试题](https://javabetter.cn/interview/kafka-40.html)
+
+## 十一、RocketMQ与Kafka有何不同？
+
+> [RocketMQ与Kafka有何不同(上)](https://mp.weixin.qq.com/s/P40GLfVa7oFq0c0JgolvIQ)
+> 
+> [RocketMQ与Kafka有何不同(下)](https://mp.weixin.qq.com/s/ioIr3nTBX5AMm3r8f49Mjw)
