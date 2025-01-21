@@ -381,3 +381,7 @@ todo
 ## 十九、Redis 的大 Key 问题如何解决?
 
 ## 二十、Redis 6.x 为什么要引入多线程?
+
+## 二十一、Redis 说说分布式锁？
+
+- 点击查看  <RouteLink to="/cache/3_distributed_lock.md">分布式锁</RouteLink>

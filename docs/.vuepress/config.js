@@ -5,7 +5,7 @@ import {viteBundler} from '@vuepress/bundler-vite';
 import fs from 'fs';
 import path from 'path';
 import {searchPlugin} from '@vuepress/plugin-search'
-import { markdownHintPlugin } from '@vuepress/plugin-markdown-hint'
+import {markdownHintPlugin} from '@vuepress/plugin-markdown-hint'
 
 function getSidebarFromDir(dirPath) {
     // 检查目录是否存在，不存在返回空数组
@@ -46,8 +46,9 @@ function getSidebarFromDir(dirPath) {
 
 // VuePress 用户配置
 export default defineUserConfig({
-    base:'/clarence-doc/',
+    base: '/clarence-doc/',
     lang: 'en-US',
+    port: 1000,
     title: 'ClarenceDoc',
     description: '实践是检验真理的唯一标准',
     bundler: viteBundler(),
