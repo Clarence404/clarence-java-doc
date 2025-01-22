@@ -116,9 +116,9 @@ Kafka：
 
 ### 1、单队列单消费者
 
-将相关联的消息发送到同一条队列中。
+- 生产者：将相关联的消息发送到同一条队列中。
 
-设置单个消费者依次处理消息，确保消费顺序。
+- 消费者：设置单个消费者依次处理消息，确保消费顺序。
 :::tip
 优点：
 实现简单，天然保持顺序性。
@@ -127,6 +127,56 @@ Kafka：
 缺点：
 队列吞吐量有限，性能受单消费者影响。
 :::
+例如,RocketMQ提供了如下方案：
+```java
+//顺序消息发送。
+MessageBuilder messageBuilder = new MessageBuilderImpl();;
+Message message = messageBuilder.setTopic("topic")
+        //设置消息索引键，可根据关键字精确查找某条消息。
+        .setKeys("messageKey")
+        //设置消息Tag，用于消费端根据指定Tag过滤消息。
+        .setTag("messageTag")
+        //设置顺序消息的排序分组，该分组尽量保持离散，避免热点排序分组。
+        .setMessageGroup("fifoGroup001")
+        //消息体。
+        .setBody("messageBody".getBytes())
+        .build();
+try {
+    //发送消息，需要关注发送结果，并捕获失败等异常
+    SendReceipt sendReceipt = producer.send(message);
+    System.out.println(sendReceipt.getMessageId());
+} catch (ClientException e) {
+    e.printStackTrace();
+}
+//消费顺序消息时，需要确保当前消费者分组是顺序投递模式，否则仍然按并发乱序投递。
+//消费示例一：使用PushConsumer消费顺序消息，只需要在消费监听器处理即可。
+MessageListener messageListener = new MessageListener() {
+    @Override
+    public ConsumeResult consume(MessageView messageView) {
+        System.out.println(messageView);
+        //根据消费结果返回状态。
+        return ConsumeResult.SUCCESS;
+    }
+};
+//消费示例二：使用SimpleConsumer消费顺序消息，主动获取消息进行消费处理并提交消费结果。
+//需要注意的是，同一个MessageGroup的消息，如果前序消息没有消费完成，再次调用Receive是获取不到后续消息的。
+List<MessageView> messageViewList = null;
+try {
+    messageViewList = simpleConsumer.receive(10, Duration.ofSeconds(30));
+    messageViewList.forEach(messageView -> {
+        System.out.println(messageView);
+        //消费处理完成后，需要主动调用ACK提交消费结果。
+        try {
+            simpleConsumer.ack(messageView);
+        } catch (ClientException e) {
+            e.printStackTrace();
+        }
+    });
+} catch (ClientException e) {
+    //如果遇到系统流控等原因造成拉取失败，需要重新发起获取消息请求。
+    e.printStackTrace();
+}
+```
 
 ### 2、按分区或分片管理
 使用消息队列的分区机制（如 Kafka 的分区，RocketMQ 的队列）。
@@ -134,14 +184,14 @@ Kafka：
 对某种业务键（如订单号、用户 ID 等）进行哈希计算，将同一键的消息路由到同一个分区。
 消费者按分区逐条消费，保证分区内的消息顺序。
 
-实现方式：
-
-消息路由时分区： 生产者发送消息时，根据业务键计算分区：
+- 发送消息时路由分区： 生产者发送消息时，根据业务键计算分区：
 ```java
 int partition = businessKey.hashCode() % numPartitions;
 producer.send(new ProducerRecord<>("topic", partition, key, value));
 ```
-分区消费时单线程： 消费者为每个分区分配单独的线程，按顺序拉取和处理消息。
+分区消费处理方案： 
+- 单线程，消费者为每个分区分配单独的线程，按顺序拉取和处理消息。
+- 使用分布式锁，实现按顺序拉取和处理消息。
 :::tip
 优点：
 可以并行处理不同分区，性能更高。
@@ -153,9 +203,9 @@ producer.send(new ProducerRecord<>("topic", partition, key, value));
 分区配置复杂度增加。
 :::
 
-:::danger
-to be continue
-:::
+### 3、手动定制消息顺序
+
+如果在RabbitMQ或者Kafka中，就需要自行设计顺序消费逻辑；
 
 ## 六、MQ如何保证消息的高效读写
 
@@ -182,8 +232,21 @@ todo
 
 > 参考资料：[Kafka常见面试题](https://javabetter.cn/interview/kafka-40.html)
 
-## 十一、RocketMQ与Kafka有何不同？
+## 十一、RocketMQ与Kafka对比？
 
-> [RocketMQ与Kafka有何不同(上)](https://mp.weixin.qq.com/s/P40GLfVa7oFq0c0JgolvIQ)
-> 
-> [RocketMQ与Kafka有何不同(下)](https://mp.weixin.qq.com/s/ioIr3nTBX5AMm3r8f49Mjw)
+### 1、RocketMQ架构图
+
+> 参考地址：[https://blog.csdn.net/weixin_45304503/article/details/140248110](https://blog.csdn.net/weixin_45304503/article/details/140248110)
+
+![img.png](../assets/interview/RocketMQ_structure.png)
+
+### 2、Kafka架构图
+
+> 参考地址：[https://blog.csdn.net/weixin_45304503/article/details/140088911](https://blog.csdn.net/weixin_45304503/article/details/140088911)
+
+
+![img_1.png](../assets/interview/Kafka_structure.png)
+
+> RocketMQ与Kafka有何不同(上): [https://mp.weixin.qq.com/s/P40GLfVa7oFq0c0JgolvIQ](https://mp.weixin.qq.com/s/P40GLfVa7oFq0c0JgolvIQ)
+
+> RocketMQ与Kafka有何不同(下): [https://mp.weixin.qq.com/s/ioIr3nTBX5AMm3r8f49Mjw](https://mp.weixin.qq.com/s/ioIr3nTBX5AMm3r8f49Mjw)
