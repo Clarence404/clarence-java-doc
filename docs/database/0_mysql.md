@@ -1,4 +1,4 @@
-# 数据库综合
+# Mysql
 
 参考的数据库教程: [https://dunwu.github.io/db-tutorial/](https://dunwu.github.io/db-tutorial/)
 
@@ -66,3 +66,11 @@
 学生表：学生ID -> 班级ID
 
 班级表：班级ID -> 班级名称。
+:::
+
+## 二、Mysql的锁分类
+
+todo：完成自己的理解书写
+
+https://mp.weixin.qq.com/s/gAJFm3q5510PfRBe4F11PQ
+
