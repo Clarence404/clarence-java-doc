@@ -14,6 +14,16 @@ serializable read
 MySQL 默认的隔离级别：Repeatable Read（可重读）级别。<br>
 Oracle 默认的隔离级别：Read Committed（读取已提交的）级别。
 :::
+## 讲一讲MySql的索引？
+
+### 1、索引原理
+### 2、索引的类型
+### 3、如何创建合理的索引？
+### 4、索引如何优化？
+
+## 二、聚集索引和非聚集索引的区别？
+
+## 回表了解吗？
 
 ## 二、索引失效的场景有哪些？
 
@@ -104,22 +114,31 @@ Oracle 默认的隔离级别：Read Committed（读取已提交的）级别。
 
 ## 四、Mysql的几种锁对比？ 
 
-更多详情请查看 <RouteLink to="/cache/3_distributed_lock.md">Mysql锁</RouteLink>
+更多详情请查看 <RouteLink to="/database/1_mysql.md">Mysql锁</RouteLink>
 
 ### 1、共享锁（S锁）
 
 ### 2、排他锁（X锁）
 
-## 五、MVCC原理、Mysql是如何解决幻读的？
+## 四、Mysql的几种锁对比？
+
+## 五、说一下MVCC？
+
+### 1、MVCC原理
+### 2、Mysql是如何解决幻读的？
 
 ## 六、Mysql的几种日志？  
 
-## 七、简述Mysql的主从同步？  
+## 七、Mysql集群分类？
+
+## 八、Mysql的主从同步原理？  
 
 ### 1、Mysql 5.7之前：
 
 ### 2、Mysql 5.7之后：
 
 ## Mysql的执行流程？    
+
+## 高并发下，如何做到安全的修改同一行数据
 
 ## 几个常见的影响MYSQL性能的案例？
