@@ -6,6 +6,7 @@ import fs from 'fs';
 import path from 'path';
 import {searchPlugin} from '@vuepress/plugin-search'
 import {markdownHintPlugin} from '@vuepress/plugin-markdown-hint'
+import { copyCodePlugin } from '@vuepress/plugin-copy-code'
 
 function getSidebarFromDir(dirPath) {
     // 检查目录是否存在，不存在返回空数组
@@ -108,6 +109,10 @@ export default defineUserConfig({
             hint: true,
             // 启用 GFM 警告
             alert: true,
+        }),
+        copyCodePlugin({
+            // options
+            showInMobile: true
         }),
     ],
 });

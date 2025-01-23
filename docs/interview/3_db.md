@@ -104,6 +104,8 @@ Oracle 默认的隔离级别：Read Committed（读取已提交的）级别。
 
 ## 四、Mysql的几种锁对比？ 
 
+更多详情请查看 <RouteLink to="/cache/3_distributed_lock.md">Mysql锁</RouteLink>
+
 ### 1、共享锁（S锁）
 
 ### 2、排他锁（X锁）
