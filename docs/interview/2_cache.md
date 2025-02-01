@@ -260,6 +260,8 @@ Redis 是一个基于内存的数据库，所有数据都存储在内存中。�
 - Sorted Set 多了一个权重参数 Score，集合中的元素能够按 Score 进行排列。可以做排行榜应用，
   取 TOP(N) 操作。Sorted Set 可以用来做延时任务。
 
+**更多类型**： <RouteLink to="/cache/1_data_structure.md">Redis数据结构</RouteLink>
+
 ## 六、本地缓存与分布式缓存区别
 
 **本地缓存的优势**是没有网络开销，在大并发量时用好本地缓存很重要；

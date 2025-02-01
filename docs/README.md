@@ -5,7 +5,7 @@ title: 首页
 heroImage: /images/hero.png
 actions:
   - text: 快速上手
-    link: /interview/1_cache
+    link: /interview/0_java
     type: primary
 
 features:

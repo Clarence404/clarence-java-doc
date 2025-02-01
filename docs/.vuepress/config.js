@@ -57,10 +57,10 @@ export default defineUserConfig({
         // 只将图标放在public下，其他图片放在assets下，这样编写md文件就能看到图片了
         logo: '/images/hero.png',
         navbar: [  // 顶部导航栏配置
-            {text: '开发总结', link: '/interview/1_cache'},
+            {text: '开发总结', link: '/interview/0_java'},
             {text: 'Java', link: '/java/1_base'},
             {text: '数据库', link: '/database/0_mysql'},
-            {text: '缓存', link: '/cache/1_data_structure'},
+            {text: '缓存', link: '/cache/1_redis'},
             {text: 'Jvm', link: '/jvm/1'},
             {text: 'Spring', link: '/spring/1_spring'},
             {text: '微服务', link: '/springcloud/1'},
