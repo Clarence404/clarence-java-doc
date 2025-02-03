@@ -23,18 +23,89 @@ Java语言中一共提供了8种原始的数据类型（byte，short，int，lon
 不可以，因为 String类有 final修饰符，而 final修饰的类是不能被继承的，实现细节也不允许改变。
 
 ## 三、讲讲类的实例化顺序
-类加载器实例化时进行的操作步骤：
 
-（加载【查找并加载类的二进制数据】—>
+当 Java 虚拟机（JVM）遇到一个类的引用时，它会按照 “**加载 -> 连接 -> 初始化**” 这三个步骤来加载类：
 
-链接【1、验证：确保被加载的类的正确性。2、准备：为类的静态变量分配内存，并将其初始化为默认值】—>
+### 1、加载（Loading）
 
-解析【把类中的符号引用转换为直接引用】 —>
+- 通过类加载器（ClassLoader）找到 .class 文件，并加载进内存。
+- 生成 java.lang.Class 对象（即类的元数据）。
 
-初始化【为类的静态变量赋予正确的初始值】）。所有的 Java虚拟机实例必须在每个类或接口被 Java程序“首次主动使用”时才初始化它们。
+### 2、连接（Linking） 
 
-执行顺序：父类静态变量、父类静态代码块、子类静态变量、子类静态代码块、父类非静态变量（父类实例成员变量）、父类构造函数、子类非静态变量（子类实例成员变量）、子类构造函数。
-    
+连接又包括以下 3 个子阶段：
+
+- 验证（Verify）：确保类的字节码符合 JVM 规范（如格式检查、安全检查）。
+- 准备（Prepare）：为静态变量分配内存，并初始化默认值（不会执行赋值语句）。
+- 解析（Resolve）：解析符号引用，将其替换为直接引用。
+
+### 3、初始化（Initialization）
+
+- 执行类的 静态变量 和 静态代码块，按它们在代码中的顺序执行。
+
+- 只有在类真正被使用时才会触发初始化，例如：
+    - 创建类的实例时 new 类()
+    - 调用类的静态方法或访问静态变量
+    - 反射调用 Class.forName("类名")
+    - 作为父类时，子类初始化会触发父类的初始化
+
+::: important 执行顺序
+父类静态变量、父类静态代码块、子类静态变量、子类静态代码块、父类非静态变量（父类实例成员变量）、父类构造函数、子类非静态变量（子类实例成员变量）、子类构造函数。
+:::
+```java
+class Parent {
+    static String staticVar = initStaticVar(); // 1. 静态变量
+
+    static {
+        System.out.println("1. 父类的静态代码块");
+    }
+
+    String instanceVar = initInstanceVar(); // 3. 实例变量
+
+    {
+        System.out.println("3. 父类的实例代码块");
+    }
+
+    Parent() {
+        System.out.println("4. 父类的构造方法");
+    }
+
+    static String initStaticVar() {
+        System.out.println("0. 父类的静态变量初始化");
+        return "staticVar";
+    }
+
+    String initInstanceVar() {
+        System.out.println("2. 父类的实例变量初始化");
+        return "instanceVar";
+    }
+}
+
+class Child extends Parent {
+    static {
+        System.out.println("5. 子类的静态代码块");
+    }
+
+    {
+        System.out.println("7. 子类的实例代码块");
+    }
+
+    Child() {
+        System.out.println("8. 子类的构造方法");
+    }
+}
+
+public class ClassLoadOrder {
+    public static void main(String[] args) {
+        new Child(); // 创建子类对象
+    }
+}
+
+```
+## 说说 Synchronized 和 ReentrantLock
+
+详情见: <RouteLink to="/java/2_advanced.md">Java锁</RouteLink>
+
 ## 七、Java8 的 ConcurrentHashMap 为什么放弃了分段锁
 
 ## 八、抽象类和接口的区别
@@ -45,13 +116,7 @@ Java语言中一共提供了8种原始的数据类型（byte，short，int，lon
 
 ## 十一、IO模型的理解
 
-### 1、讲讲你理解的 NIO
-
-### 2、NIO和 BIO，AIO的区别
-
-### 3、谈谈 Reactor模型
-
-更多详情查看Netty章节
+详情见: <RouteLink to="/netty/1.md">Netty</RouteLink>
 
 ## 十二、反射的原理
 
