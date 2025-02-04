@@ -71,8 +71,8 @@ export default defineUserConfig({
             {text: '场景题', link: '/scene/scene'},
             {text: 'Netty', link: '/netty/0_stick_split'},
             {text: '容器', link: '/container/1_linux'},
-            {text: '算法', link: '/algorithm/1'},
-            {text: '架构师', link: '/performance/1'},
+            {text: '算法', link: '/algorithm/0_base'},
+            {text: '架构师', link: '/performance/0_structure'},
         ],
         sidebar: {
             '/interview/': getSidebarFromDir(path.resolve(__dirname, '../interview')),

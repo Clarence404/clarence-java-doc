@@ -102,23 +102,44 @@ public class ClassLoadOrder {
 }
 
 ```
-## 说说 Synchronized 和 ReentrantLock
+## 四、说说 Synchronized 和 ReentrantLock
 
-详情见: <RouteLink to="/java/2_advanced.md">Java锁</RouteLink>
+详情见: <RouteLink to="/java/2_advanced.md">Java高级特性-Java锁</RouteLink>
 
-## 七、Java8 的 ConcurrentHashMap 为什么放弃了分段锁
+## 五、ConcurrentHashMap 为何放弃了分段锁？
 
-## 八、抽象类和接口的区别
+详情见: <RouteLink to="/java/1_base.md#_2、currenthashmap为何放弃分段锁">Java基础-HashMap和CurrentHashMap</RouteLink>
 
-## 十、继承和聚合的区别在哪
+## 六、抽象类和接口的区别
 
-## 十一、说说Java的IO类
+### 1、定义和用法
+ | 特性	    | 抽象类（Abstract Class）                             | 	接口（Interface）                               |
+ |--------|-------------------------------------------------|----------------------------------------------|
+ | 关键字	   | abstract class                                  | 	interface                                   |
+ | 方法	    | 既可以有抽象方法（无方法体），也可以有普通方法（有方法体）                   | 	只能有抽象方法（Java 8 之后可以有 default 方法和 static 方法） |
+ | 变量	    | 可以定义变量（实例变量、常量），可以有 private/protected/public 修饰 | 	只能定义 public static final 常量                 |
+ | 继承关系	  | 只能继承 一个 抽象类（单继承）	                               | 可以实现 多个 接口（多继承）                              |
+ | 构造方法	  | 可以有构造方法	                                        | 不能有构造方法                                      |
+ | 访问修饰符	 | 可以有 public、protected、private 方法	                | 方法默认 public abstract，不能 private 或 protected  |
+ | 适用场景	  | 适用于 父类和子类之间有 is-a 关系，代码复用性较强	                   | 适用于 不同类之间有相同的行为，更注重规范                        |
 
-## 十一、IO模型的理解
+### 2、什么时候用抽象类或接口？
+| 适用场景  | 	选择抽象类	                | 选择接口                    |
+|-------|------------------------|-------------------------|
+| 代码复用  | 	适用于有共享代码的情况（比如提供默认实现） | 	不能提供成员变量和普通方法，所以代码复用性低 |
+| 继承限制	 | 适用于需要强制单继承的情况          | 	适用于希望支持多继承的情况          |
+| 规范化	  | 适用于相似类型（有 is-a 关系）的类	  | 适用于不同类的通用行为，has a 关系    |
+| 复杂度   | 	适用于复杂的类层次结构           | 	适用于简单的、行为驱动的设计         |
 
-详情见: <RouteLink to="/netty/1.md">Netty</RouteLink>
+## 七、继承和聚合的区别在哪
 
-## 十二、反射的原理
+## 说说Java的IO类
+
+## IO模型的理解
+
+详情见: <RouteLink to="/netty/1_io_model">Netty</RouteLink>
+
+## 、反射的原理
 
 ## 写出三种单例模式实现
 
