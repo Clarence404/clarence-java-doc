@@ -12,14 +12,14 @@ HashMap 是基于哈希表实现的，哈希表的基本思想是通过将数据
  HashMap 使用哈希函数将键（key）映射到数组的索引位置。哈希函数的目的是通过计算一个值，将不同的键映射到哈希表中的位置。
 
 - 数组：
-哈希表内部使用一个数组来存储数据。数组中的每个元素存储一个链表（或者在 Java 8 后是红黑树），用于处理哈希冲突。
+哈希表内部使用一个数组来存储数据。数组中的每个元素存储一个链表（或者在 Java 8 后是 <RouteLink to="/algorithm/0_base#红黑树-balanced-binary-search-tree-bbst">红黑树</RouteLink>），用于处理哈希冲突。
 
 ### 2. 哈希冲突
 由于哈希函数不可能做到完全唯一的映射，不同的键可能会被映射到相同的索引，这种情况称为哈希冲突。HashMap 通过以下方式解决哈希冲突：
 
-- 链表法（链式哈希）： 在发生冲突的情况下，HashMap 会将冲突的键值对存储到一个链表中（或者红黑树）。当多个元素映射到同一个索引位置时，它们会形成一个链表。
+- 链表法（链式哈希）： 在发生冲突的情况下，HashMap 会将冲突的键值对存储到一个链表中（或者 <RouteLink to="/algorithm/0_base#红黑树-balanced-binary-search-tree-bbst">红黑树</RouteLink>）。当多个元素映射到同一个索引位置时，它们会形成一个链表。
 
-- 红黑树法：在 Java 8 及以后的版本中，如果链表的长度超过一定阈值（默认为 8），HashMap 会将链表转化为红黑树，以提高查询效率。
+-  <RouteLink to="/algorithm/0_base#红黑树-balanced-binary-search-tree-bbst">红黑树</RouteLink>法：在 Java 8 及以后的版本中，如果链表的长度超过一定阈值（默认为 8），HashMap 会将链表转化为 <RouteLink to="/algorithm/0_base#红黑树-balanced-binary-search-tree-bbst">红黑树</RouteLink>，以提高查询效率。
 
 ### 3. 扩容机制
 
@@ -31,7 +31,7 @@ HashMap 是基于哈希表实现的，哈希表的基本思想是通过将数据
 
 - 查找、插入、删除操作的时间复杂度：
 
-在理想情况下，哈希表的查找、插入和删除操作的时间复杂度为 O(1)。但是，如果发生哈希冲突，性能会退化到 O(n)（链表长度为 n 时）。使用红黑树优化后，最坏情况下时间复杂度为 O(log n)。
+在理想情况下，哈希表的查找、插入和删除操作的时间复杂度为 O(1)。但是，如果发生哈希冲突，性能会退化到 O(n)（链表长度为 n 时）。使用 <RouteLink to="/algorithm/0_base#红黑树-balanced-binary-search-tree-bbst">红黑树</RouteLink>优化后，最坏情况下时间复杂度为 O(log n)。
 
 - 扩容操作的时间复杂度：
 
@@ -42,17 +42,78 @@ HashMap 是基于哈希表实现的，哈希表的基本思想是通过将数据
 - 允许 null 键和 null 值：HashMap 允许一个 null 键和多个 null 值。 
 - 元素顺序不保证：HashMap 不保证键值对的顺序，因为它是基于哈希函数计算索引的，顺序是无序的。如果需要顺序，可以使用 LinkedHashMap
 
-## 二、TreeMap基本原理
+## 二、TreeMap分析
 
-## HashMap和HashTable的区别
+### 1、源码分析
 
-## HashMap和ConcurrentHashMap的区别
+- TreeMap 的核心特点
+
+| 特性              | 	说明                                                 |
+|-----------------|-----------------------------------------------------|
+| 底层实现            | 	 <RouteLink to="/algorithm/0_base#红黑树-balanced-binary-search-tree-bbst">红黑树</RouteLink>（Red-Black Tree），是一种自平衡二叉搜索树（BST）               |
+| 排序方式            | 	默认按 key 的 自然顺序（Comparable） 排序，也可以传入 自定义 Comparator |
+| 时间复杂度           | 	O(log n)（增、删、查）                                    |
+| 是否允许 null key   | 	❌ 不允许 null key（会抛 NullPointerException）            |
+| 是否允许 null value | 	✅ 允许 null value                                    |
+| 是否线程安全          | 	❌ 非线程安全（需要 Collections.synchronizedMap() 保护）       |
+
+- 类关联图如下所示：
+
+![image.png](../assets/java/TreeMap.png)
+
+::: important 使用途径
+适用于需要 "**自动排序**" 和 "**范围查询**" 的场景。
+:::
+
+
+1、适用场景：数据存储时要求按照 key 进行排序，方便后续查询和展示
+```java
+TreeMap<Integer, String> productMap = new TreeMap<>();
+productMap.put(102, "iPhone");
+productMap.put(101, "Samsung");
+productMap.put(103, "Huawei");
+
+// 遍历时 key 是按顺序排序的（101, 102, 103）
+for (Map.Entry<Integer, String> entry : productMap.entrySet()) {
+    System.out.println(entry.getKey() + " -> " + entry.getValue());
+}
+```
+2、需要 "范围查询" 或 "区间搜索"
+```java
+TreeMap<Long, String> transactionMap = new TreeMap<>();
+transactionMap.put(1707052800000L, "订单 A");  // 2024-02-05 00:00:00
+transactionMap.put(1707139200000L, "订单 B");  // 2024-02-06 00:00:00
+transactionMap.put(1707225600000L, "订单 C");  // 2024-02-07 00:00:00
+
+// 获取 2 月 5 日到 2 月 6 日之间的交易
+Map<Long, String> result = transactionMap.subMap(1707052800000L, 1707139200000L);
+System.out.println(result);
+```
+
+### 2、相关类对比
+
+| 对比项              | TreeMap                      | HashMap                          | LinkedHashMap                 | ConcurrentSkipListMap         |
+|----------------------|-----------------------------|----------------------------------|--------------------------------|-------------------------------|
+| **底层数据结构**     |  <RouteLink to="/algorithm/0_base#红黑树-balanced-binary-search-tree-bbst">红黑树</RouteLink>（Red-Black Tree）    | 哈希表（数组 + 链表/ <RouteLink to="/algorithm/0_base#红黑树-balanced-binary-search-tree-bbst">红黑树</RouteLink>）      | 哈希表 + 双向链表             | 跳表（Skip List）            |
+| **key 是否有序**    | ✅ 有序（按 key 排序）       | ❌ 无序                          | ✅ 按插入顺序排序             | ✅ 有序（按 key 排序）        |
+| **时间复杂度**      | O(log n)                    | O(1) 平均，O(n) 最坏              | O(1) 平均，O(n) 最坏          | O(log n)                     |
+| **是否允许 null key** | ❌ 不允许                     | ✅ 允许                          | ✅ 允许                        | ❌ 不允许                      |
+| **是否允许 null value** | ✅ 允许                      | ✅ 允许                          | ✅ 允许                        | ✅ 允许                        |
+| **线程安全**        | ❌ 非线程安全                 | ❌ 非线程安全                     | ❌ 非线程安全                  | ✅ 线程安全                    |
+| **适用场景**        | 需要排序、范围查询、导航结构  | 快速查找、无序存储、大量数据       | 需要按插入顺序遍历的场景       | 并发环境下的有序映射          |
+| **主要应用**        | 排名、日志存储、区间查找      | 缓存、映射查找、对象存储          | LRU 缓存、访问顺序存储        | 线程安全的排序映射结构        |
+
+
+
+## 三、HashMap和HashTable的区别
+
+## 四、HashMap和ConcurrentHashMap的区别
 
 ### 1、两者区别
 
 ### 2、CurrentHashMap为何放弃分段锁？
 
-## ThreadLocal
+## 五、ThreadLocal
 
 ### 1、原理及其应用
 
