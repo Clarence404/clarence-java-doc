@@ -71,7 +71,7 @@ export default defineUserConfig({
             {text: '场景题', link: '/scene/scene'},
             {text: 'Netty', link: '/netty/0_stick_split'},
             {text: '容器', link: '/container/1_linux'},
-            {text: '算法', link: '/algorithm/0_base'},
+            {text: '算法', link: '/algorithm/0_base_0_complexity'},
             {text: '架构师', link: '/performance/0_structure'},
         ],
         sidebar: {
