@@ -5,8 +5,3 @@
 ### 1、Synchronized
 
 ### 2、ReentrantLock
-
-## 多线程
-
-
-## 线程池
