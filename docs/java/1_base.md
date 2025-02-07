@@ -236,6 +236,32 @@ System.out.println(result);
 - ConcurrentHashMap 在 **高并发 场景下比 Hashtable 性能更优（局部加锁，甚至无锁）**。
 :::
 
+## 六、Java 泛型
+
+常见问题，见：Java总结-Java
+### 1、泛型类与泛型方法
+### 2、通配符（? extends T vs ? super T）
+### 3、类型擦除
+
+## Lambda 表达式与函数式编程
+### 1、Lambda 语法
+### 2、Functional Interface（函数式接口）
+### 3、方法引用（Method Reference）
+### 4、Stream API 基础
+
+## Java 输入/输出（I/O 流）
+### 1、字节流（InputStream, OutputStream）
+### 2、字符流（Reader, Writer）
+### 3、文件操作（File 类）
+### 4、序列化与反序列化
+
+## 并发基础
+### 1、线程的创建（Thread vs Runnable）
+### 2、synchronized 关键字（方法同步、代码块同步）
+### 3、volatile 关键字
+### 4、wait() / notify() / notifyAll()
+### 5、线程池基础（Executors 工具类）
+
 ## 六、ThreadLocal
 
 ### 1、原理及其应用

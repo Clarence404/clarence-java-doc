@@ -567,7 +567,7 @@ Function、Predicate、Consumer 等，这些接口都是函数式接口，广泛
 
 ## 十九、常见算法的复杂度是多少
 
-更多详情，请查看<RouteLink to="algorithm/0_base_8_sort">算法-排序</RouteLink>
+更多详情，请查看: <RouteLink to="/algorithm/0_base_8_sort">算法-排序</RouteLink>
 
 ## 二十、Servlet 的生命周期
 - 加载和实例化（Loading and Instantiation）
@@ -602,9 +602,11 @@ Map<String, Integer> map = new HashMap<>();
         map.put("Banana", 2);
         map.put("Orange", 3);
         map.put("Grapes", 4);
-        map.put("Banana", 5); // 发生哈希冲突，替换原有值
-
-        System.out.println(map);  // 输出: {Apple=1, Banana=5, Orange=3, Grapes=4}
+        // 发生哈希冲突，替换原有值
+        map.put("Banana", 5);
+        
+        // 输出: {Apple=1, Banana=5, Orange=3, Grapes=4}
+        System.out.println(map);  
     }
 }
 ```
