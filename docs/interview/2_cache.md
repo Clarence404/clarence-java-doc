@@ -59,11 +59,12 @@ public class CacheService {
 import java.util.concurrent.locks.ReentrantLock;
 
 public class CacheServiceWithSerialization {
-
-    private CacheClient cacheClient; // 缓存客户端
-    private DatabaseService databaseService; // 数据库服务接口
-
-    private static final ReentrantLock lock = new ReentrantLock(); // 本地锁示例
+     // 缓存客户端
+    private CacheClient cacheClient;
+     // 数据库服务接口
+    private DatabaseService databaseService;
+     // 本地锁示例
+    private static final ReentrantLock lock = new ReentrantLock();
 
     public void updateDataWithSerialization(String key, String value) {
         // 获取分布式锁，确保同一时刻只有一个线程操作 key
