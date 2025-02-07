@@ -1,3 +1,3 @@
-# Java总结-Java
+# Java总结-JVM
 
-<RouteLink to="/interview/4_jvm">Jva总结-JVM</RouteLink>
+<RouteLink to="/interview/4_jvm_interview">Jva总结-JVM</RouteLink>
