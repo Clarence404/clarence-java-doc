@@ -387,4 +387,4 @@ todo
 
 ## 二十一、Redis 说说分布式锁？
 
-- 点击查看  <RouteLink to="/cache/3_distributed_lock.md">分布式锁</RouteLink>
+- 点击查看  <RouteLink to="/cache/1_redis#redis分布式锁">分布式锁</RouteLink>
