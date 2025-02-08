@@ -4,30 +4,42 @@
 
 HashMap 是一种基于哈希表的数据结构，它实现了 Map 接口，用于存储键值对 (key-value)。其基本原理如下：
 
-### 1. 哈希表（Hash Table）
+### 1、 哈希表（Hash Table）
 
 HashMap 是基于哈希表实现的，哈希表的基本思想是通过将数据的键值对映射到一个数组的索引位置上来提高数据查找的效率。具体流程如下：
 
 - 哈希函数：
+
  HashMap 使用哈希函数将键（key）映射到数组的索引位置。哈希函数的目的是通过计算一个值，将不同的键映射到哈希表中的位置。
 
 - 数组：
-哈希表内部使用一个数组来存储数据。数组中的每个元素存储一个链表（或者在 Java 8 后是 <RouteLink to="/algorithm/0_base_4_tree#红黑树-balanced-binary-search-tree-bbst">红黑树</RouteLink>），用于处理哈希冲突。
 
-### 2. 哈希冲突
+哈希表内部使用一个数组来存储数据。数组中的每个元素存储一个链表（或者在 Java 8 后是 
+<RouteLink to="/algorithm/0_base_4_tree#红黑树-balanced-binary-search-tree-bbst">红黑树</RouteLink>），用于处理哈希冲突。
+
+### 2、 哈希冲突
 由于哈希函数不可能做到完全唯一的映射，不同的键可能会被映射到相同的索引，这种情况称为哈希冲突。HashMap 通过以下方式解决哈希冲突：
 
-- 链表法（链式哈希）： 在发生冲突的情况下，HashMap 会将冲突的键值对存储到一个链表中（或者 <RouteLink to="/algorithm/0_base_4_tree#红黑树-balanced-binary-search-tree-bbst">红黑树</RouteLink>）。当多个元素映射到同一个索引位置时，它们会形成一个链表。
+- 链表法（链式哈希）： 
 
--  <RouteLink to="/algorithm/0_base_4_tree#红黑树-balanced-binary-search-tree-bbst">红黑树</RouteLink>法：在 Java 8 及以后的版本中，如果链表的长度超过一定阈值（默认为 8），HashMap 会将链表转化为 <RouteLink to="/algorithm/0_base_4_tree#红黑树-balanced-binary-search-tree-bbst">红黑树</RouteLink>，以提高查询效率。
+- 在发生冲突的情况下，HashMap 会将冲突的键值对存储到一个链表中
+（或者 <RouteLink to="/algorithm/0_base_4_tree#红黑树-balanced-binary-search-tree-bbst">红黑树</RouteLink>）。
+当多个元素映射到同一个索引位置时，它们会形成一个链表。
 
-### 3. 扩容机制
+-  <RouteLink to="/algorithm/0_base_4_tree#红黑树-balanced-binary-search-tree-bbst">红黑树</RouteLink>法：
+
+在 Java 8 及以后的版本中，如果链表的长度超过一定阈值（默认为 8），HashMap 会将链表转化为 
+<RouteLink to="/algorithm/0_base_4_tree#红黑树-balanced-binary-search-tree-bbst">红黑树</RouteLink>，以提高查询效率。
+
+![img.png](../assets/java/hashmap_hash_conflict.png)
+
+### 3、  扩容机制
 
 当 HashMap 中的元素过多时，哈希表的负载因子（load factor）可能会达到阈值，导致哈希表的存储效率降低。默认情况下，负载因子为 0.75。**当元素个数超过当前容量 * 负载因子时，HashMap 会进行扩容**（通常是原数组大小的 2 倍）。
 
 扩容过程中，所有元素的哈希值会被重新计算，并重新放置到新的数组位置。这是因为**哈希表的大小发生变化，导致原先的索引位置不再适用**。
 
-### 4. 时间复杂度
+### 4、 时间复杂度
 
 - 查找、插入、删除操作的时间复杂度：
 
@@ -37,7 +49,7 @@ HashMap 是基于哈希表实现的，哈希表的基本思想是通过将数据
 
 扩容是一个相对耗时的操作，时间复杂度为 O(n)，但扩容操作是按需进行的，不是频繁发生，因此平均而言，HashMap 的操作仍然是 O(1)。
 
-### 5. 关键特点
+### 5、 关键特点
 - 非线程安全：HashMap 不是线程安全的，如果在多线程环境下使用，需要考虑同步问题。 
 - 允许 null 键和 null 值：HashMap 允许一个 null 键和多个 null 值。 
 - 元素顺序不保证：HashMap 不保证键值对的顺序，因为它是基于哈希函数计算索引的，顺序是无序的。如果需要顺序，可以使用 LinkedHashMap
@@ -71,9 +83,9 @@ HashMap 是基于哈希表实现的，哈希表的基本思想是通过将数据
 
 - 更多细节，如基本结构，及其方法，研究后再写；
 
-## 四、JDK1.8后，ConcurrentHashMap为什么放弃分段锁？
+## 四、ConcurrentHashMap为什么放弃分段锁？
 
-### 1. 分段锁的弊端
+### 1、 分段锁的弊端
 
 #### 🔴 1.1 扩容性能低
 
@@ -96,7 +108,7 @@ int segmentIndex = (hash >>> segmentShift) & segmentMask;
 int bucketIndex = (hash & (segment.table.length - 1));
 ```
 
-### 2. JDK 1.8 采用的新方案
+### 2、 JDK 1.8 后新方案
 
 JDK 1.8 直接去掉 Segment，采用 **数组 + 链表 + 红黑树** 结构，结合 CAS + synchronized 局部锁，实现更高效的并发控制：
 
@@ -238,7 +250,8 @@ System.out.println(result);
 
 ## 六、Java 泛型
 
-常见问题，见：Java总结-Java
+常见问题，见：<RouteLink to="/interview/0_base#六、java-泛型">Java总结-Java泛型</RouteLink>
+
 ### 1、泛型类与泛型方法
 ### 2、通配符（? extends T vs ? super T）
 ### 3、类型擦除

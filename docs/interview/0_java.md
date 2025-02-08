@@ -253,9 +253,10 @@ Java 反射是动态代理（JDK 动态代理和 CGLIB 代理）的基础，如 
 | Javassist  | 	否	      | 更快	 | 需要更高性能代理 | 	代码复杂，维护难    |
 | ASM        | 	否       | 	最高 | 	框架底层优化  | 	代码复杂，难维护    |
 
-## 十二、写出三种单例模式实现
+## 十二、写出几种单例模式实现
 
-### 1. 懒汉式（线程不安全）
+### 1、 懒汉式（线程不安全）
+
 - 特点： 延迟初始化，调用 getInstance() 时才创建实例，但线程不安全。
 ```java
 public class SingletonLazy {
@@ -275,7 +276,8 @@ public class SingletonLazy {
 ```
 - 缺点： 多线程环境下，可能会出现多个线程同时进入 if (instance == null)，导致创建多个实例，线程不安全。
 
-### 2. 饿汉式（线程安全）
+### 2、饿汉式（线程安全）
+
 - 特点： 类加载时就创建实例，线程安全，但可能造成资源浪费。
 ```java
 public class SingletonEager {
@@ -293,6 +295,7 @@ public class SingletonEager {
 - 缺点： 类加载时即创建实例，即使从未使用，也会占用内存。
 
 ### 3. 双重检查锁（DCL，推荐）
+
 - 特点： 线程安全，且避免了资源浪费，是常见的最佳实践。
 ```java
 public class SingletonDCL {
@@ -350,7 +353,7 @@ public class SingletonDCL {
 
 
 ## 十四、说说泛型
-### 1、定义
+### 1、泛型定义
 泛型的本质是参数化类型，也就是说所操作的数据类型被指定为一个参数，能够解决代码复用的问题。
 
 常见的一种情况是，你有一个函数，它带有一个参数，参数类型是A，然而当参数类型改变成 B的时候，你不得不复制这个函数。
@@ -579,9 +582,8 @@ Function、Predicate、Consumer 等，这些接口都是函数式接口，广泛
 ## 二十一、如何解决哈希冲突？
 
 - 定义：哈希冲突是指在哈希表中，两个或多个元素被映射到了同一个位置的情况。
-### 1、解决哈希冲突
 
-#### 1.1、 链式哈希法（Separate Chaining）
+### 1、 链式哈希法（Separate Chaining）
 
 链式哈希是最常见的哈希冲突解决方法之一，它的基本思想是：每个哈希桶存储一个链表（或其他数据结构），如果多个元素有相同的哈希值，它们就会被存储在同一个链表中。
 
@@ -612,7 +614,7 @@ Map<String, Integer> map = new HashMap<>();
 ```
 在这个例子中，HashMap 可能会将 Apple 和 Banana 存储在相同的桶中，但它们会通过链表的形式来存储。
 
-#### 1.2、 开放地址法（Open Addressing）
+### 2、 开放地址法（Open Addressing）
 
 开放地址法解决哈希冲突的方式是，当发生冲突时，系统会寻找其他空闲位置来存储元素。开放地址法通过探测方式找到合适的槽位置，它包括线性探测、二次探测和双重哈希等方法。
 
@@ -640,9 +642,4 @@ public class OpenAddressingExample {
 }
 ```
 
-### 2、HashMap 如何解决哈希冲突？
-
-在 Java 中，HashMap 使用的是链地址法解决哈希冲突的，对于存在冲突的 key，HashMap 会把这些 key 组成一个单向链表，之后使用尾插法把这个 key 保存到链表尾部。
-
-![img.png](../assets/interview/hashmap_hash_conflict.png)
 
