@@ -250,7 +250,7 @@ System.out.println(result);
 
 ## 六、Java 泛型
 
-常见问题，见：<RouteLink to="/interview/0_base#六、java-泛型">Java总结-Java泛型</RouteLink>
+常见问题，见：<RouteLink to="/interview/0_java#六、java-泛型">Java总结-Java泛型</RouteLink>
 
 ### 1、泛型类与泛型方法
 ### 2、通配符（? extends T vs ? super T）
@@ -275,8 +275,8 @@ System.out.println(result);
 ### 4、wait() / notify() / notifyAll()
 ### 5、线程池基础（Executors 工具类）
 
-## 六、ThreadLocal
+### 6、ThreadLocal
 
-### 1、原理及其应用
+#### 1、原理及其应用
 
-### 2、Transmittable ThreadLocal
+#### 2、Transmittable ThreadLocal
