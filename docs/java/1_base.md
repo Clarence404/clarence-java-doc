@@ -248,35 +248,85 @@ System.out.println(result);
 - ConcurrentHashMap 在 **高并发 场景下比 Hashtable 性能更优（局部加锁，甚至无锁）**。
 :::
 
-## 六、Java 泛型
+## 五、Java 泛型
 
-常见问题，见：<RouteLink to="/interview/0_java#六、java-泛型">Java总结-Java泛型</RouteLink>
+常见问题，见：<RouteLink to="/interview/0_java#十四、说说你对泛型的理解">Java总结-Java泛型</RouteLink>
 
-### 1、泛型类与泛型方法
-### 2、通配符（? extends T vs ? super T）
-### 3、类型擦除
+### 1、类型擦除
 
-## Lambda 表达式与函数式编程
-### 1、Lambda 语法
-### 2、Functional Interface（函数式接口）
-### 3、方法引用（Method Reference）
-### 4、Stream API 基础
+## 六、线程的创建（Thread vs Runnable）
 
-## Java 输入/输出（I/O 流）
-### 1、字节流（InputStream, OutputStream）
-### 2、字符流（Reader, Writer）
-### 3、文件操作（File 类）
-### 4、序列化与反序列化
+### 1、继承 Thread 类
 
-## 并发基础
-### 1、线程的创建（Thread vs Runnable）
-### 2、synchronized 关键字（方法同步、代码块同步）
-### 3、volatile 关键字
-### 4、wait() / notify() / notifyAll()
-### 5、线程池基础（Executors 工具类）
+这种方法需要创建一个自定义的线程类，继承 Thread 类，并重写 run() 方法。
+```java
+class MyThread extends Thread {
+    @Override
+    public void run() {
+        System.out.println(Thread.currentThread().getName() + ": Hello from thread!");
+    }
 
-### 6、ThreadLocal
+    public static void main(String[] args) {
+        MyThread thread = new MyThread();
+        // 启动线程
+        thread.start();
+    }
+}
+```
+- 优点：简单直观，适合只有一个任务的情况。
+- 缺点：如果需要继承其他类，无法再继承 Thread 类（Java 是单继承）。
 
-#### 1、原理及其应用
+### 2、实现 Runnable 接口
 
-#### 2、Transmittable ThreadLocal
+这种方法更灵活，创建一个实现 Runnable 接口的类，并将其作为参数传递给 Thread 构造函数。
+```java
+class MyRunnable implements Runnable {
+    @Override
+    public void run() {
+        System.out.println(Thread.currentThread().getName() + ": Hello from Runnable!");
+    }
+
+    public static void main(String[] args) {
+        MyRunnable task = new MyRunnable();
+        Thread thread = new Thread(task);  // 将任务传递给线程
+        thread.start();  // 启动线程
+    }
+}
+```
+- 优点：允许实现多个接口，提供更多的灵活性和可扩展性。
+- 缺点：比继承 Thread 类稍微复杂一些，但通常更加推荐。
+
+## 七、volatile 关键字
+
+
+
+## 八、wait() / notify() / notifyAll()
+
+
+
+## 九、线程池基础（Executors 工具类）
+
+
+
+## 十、ThreadLocal
+
+### 1、基础原理
+
+ThreadLocal 是 Java 提供的一个类，用于为**每个线程提供独立的变量副本**。每个线程访问自己的副本，不会与其他线程共享数据，常用于处理线程安全的问题。
+- 业务使用示意图
+
+![img_5.png](../assets/java/threadlocal_usage.png)
+
+- 内部结构示意图：
+
+![img_5.png](../assets/java/threadlocal_structure.png)
+
+### 2、应用场景
+
+- **数据库连接**：如低代码系统中的数据源管理；
+
+为每个线程提供独立的数据库连接或事务对象，避免多个线程同时操作同一个连接，提升性能和安全性。
+
+- **用户会话信息**：如单体服务的用户会话信息管理；
+
+在 Web 应用中，可以使用 ThreadLocal 存储每个请求的用户会话信息，使每个线程能够独立地访问相关的会话数据。

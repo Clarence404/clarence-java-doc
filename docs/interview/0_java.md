@@ -198,10 +198,6 @@ class Car {
 ### 1、Java的IO流
 ![img.png](../assets/java/io.png)
 
-### 2、更高级的IO
-
-见下一标题：<RouteLink to="/interview/0_java#九、io模型的理解">io模型的理解</RouteLink>
-
 ## 九、IO模型的理解
 
 详情见: <RouteLink to="/netty/1_io_model">Netty-IO模型</RouteLink>
@@ -294,7 +290,7 @@ public class SingletonEager {
 ```
 - 缺点： 类加载时即创建实例，即使从未使用，也会占用内存。
 
-### 3. 双重检查锁（DCL，推荐）
+### 3、 双重检查锁（DCL，推荐）
 
 - 特点： 线程安全，且避免了资源浪费，是常见的最佳实践。
 ```java
@@ -322,7 +318,7 @@ public class SingletonDCL {
 - 优点：
     - 线程安全，只在第一次创建实例时加锁，提高性能。
     - 使用 volatile 防止指令重排，确保 instance 被正确初始化。
-### 2、单例实现对比总结
+### 4、单例的几种实现对比总结
 
 | 方式         | 	线程安全 | 	是否懒加载 | 	性能	             | 适用场景      |
 |------------|-------|--------|------------------|-----------|
@@ -338,8 +334,11 @@ public class SingletonDCL {
 >参考链接：[https://javaguide.cn/java/jvm/classloader.html#%E7%B1%BB%E5%8A%A0%E8%BD%BD%E5%99%A8](https://javaguide.cn/java/jvm/classloader.html#%E7%B1%BB%E5%8A%A0%E8%BD%BD%E5%99%A8)
 
 ### 1、类加载器
+
 ![img.png](../assets/java/class_load.png)
+
 ### 2、双亲委派模型
+
 上图展示的**各种类加载器之间的层次关系被称为类加载器的**“**双亲委派模型(Parents Delegation Model)**”。
 
 双亲委派模型保证了 Java 程序的稳定运行:
@@ -350,10 +349,10 @@ public class SingletonDCL {
 - 比如我们编写一个称为 java.lang.Object 类的话，那么程序运行的时候，系统就会出现两个不同的 Object 类。 双亲委派模型可以保证加载的是 JRE 里的那个 Object 类，而不是你写的 Object 类。
 - 这是因为 AppClassLoader 在加载你的 Object 类时，会委托给 ExtClassLoader 去加载，而 ExtClassLoader 又会委托给 BootstrapClassLoader，BootstrapClassLoader 发现自己已经加载过了 Object 类，会直接返回，不会去加载你写的 Object 类。
 
+## 十四、说说你对泛型的理解？
 
-
-## 十四、说说泛型
 ### 1、泛型定义
+
 泛型的本质是参数化类型，也就是说所操作的数据类型被指定为一个参数，能够解决代码复用的问题。
 
 常见的一种情况是，你有一个函数，它带有一个参数，参数类型是A，然而当参数类型改变成 B的时候，你不得不复制这个函数。
@@ -386,14 +385,8 @@ Stack<string> b = new Stack<string>(100);
       b.Push("8888");
       string y = b.Pop();
 ```
-### 2、泛型中的 T、E、K、V、?等等，究竟是什么？
+### 2、T、E、K、V、? 是什么？
 
-- 泛型中通配符
-  - 常用的 T，E，K，V，？
-  - ？无界通配符
-  - 上界通配符 < ? extends E>
-  - 下界通配符 < ? super E>
-  - ？和 T 的区别
 #### 2.1、T - Type
 含义：T 通常用于表示一个 类型，在泛型类、泛型接口和泛型方法中作为类型参数使用。它是 "Type" 的缩写，表示该位置可以被替换为任何具体的类型。
 
@@ -476,7 +469,7 @@ public void printList(List<?> list) {
 ```
 这里的 List<?> 表示可以接受任意类型的 List，但无法修改该 List，只能读取其中的元素。
 
-其他通配符的用法：
+#### 2.6、其他通配符的用法：
 
 ? extends T：表示某个类型是 T 的子类（包括 T 本身）。
 
@@ -494,13 +487,13 @@ public void addIntegerToList(List<? super Integer> list) {
     list.add(42);  // 可以添加 Integer 或其父类类型的元素
 }
 ```
-
-总结：
+::: tip 总结
 - T：表示一个类型，通常用于泛型类和方法的类型参数。
 - E：表示元素类型，常用于表示集合中的元素类型。
 - K：表示键类型，常用于表示 Map 中的键。
 - V：表示值类型，常用于表示 Map 中的值。
 - ?：表示通配符，表示不确定的类型，常用于方法参数、集合类型的限制等。
+:::
 
 - Class&lt;T&gt; 和 Class&lt;?&gt;的区别
   - Class&lt;T&gt; 是你已经知道的具体类型。
@@ -546,13 +539,66 @@ Function、Predicate、Consumer 等，这些接口都是函数式接口，广泛
 - 匿名内部类重写的抽象方法，会调用上一步的静态方法，从而实现 Lambda 代码的执行。所以，
 > 综合来说，Lambda 表达式其实是匿名内部类的语法糖，这个语法糖在程序执行时会进行兑现，也就是生成匿名内部类并进行任务执行。
 
-## 十六、Java8的Stream
+## 十六、说说Java的Stream
 
-### 1、普通Stream
+### 1、Stream
 
-常用的API百度即可搜到，不做赘述
+- **Stream** 是 Java 8 引入的一个抽象，它允许你对集合（如 List、Set 等）进行声明式的操作。
+- Stream 支持多种操作，包括 **中间操作**（如 filter、map、sorted）和 **终端操作**（如 collect、reduce、forEach）。
+- 它不会修改原始数据，而是通过流水线式的方式进行转换，延迟执行（懒加载）。
+```java
+List<Integer> numbers = Arrays.asList(1, 2, 3, 4, 5);
+List<Integer> evenNumbers = numbers.stream()
+                                    .filter(n -> n % 2 == 0)
+                                    .collect(Collectors.toList());
+```
 
-### 2、并行Stream
+> 常用的API百度即可搜到，不做赘述
+
+### 2、Optional
+
+Optional 是 Java 8 引入的一个类，用来表示一个可能为 null 的值，它的设计目的是帮助我们避免使用 null，从而减少 
+NullPointerException 的发生。：
+
+创建 Optional的方式：
+- Optional.of()：用于创建一个非空的 Optional 对象。如果传入的值为 null，会抛出 NullPointerException。
+- Optional.ofNullable()：用于创建一个可为空的 Optional 对象。如果传入的值为 null，则返回一个空的 Optional。
+- Optional.empty()：创建一个空的 Optional 对象。
+
+**一个例子展示Optional的用法：**
+```java
+Dept dept = new Dept("dept");
+User user = new User(id:1,name:"Tom",dept);
+```
+::: warning 未使用Optional
+```java
+if (user != null) {
+    if (user.getDept() != null) {
+        String deptName = user.getDept().getName();
+        if (StrUtil.isBlank(deptName)) {
+            System.out.println("未指定部门");
+        } else {
+            System.out.println(deptName);
+        }
+        else{
+            System.out.println("未指定部门");
+        }
+    }
+}
+```
+:::
+
+::: tip 使用Optional
+```java
+String deptName = Optional.ofNullable(user)        // 创建
+        .map(User::getDept).map(Dept::getName)      //操作
+        .filter(StrUtil::isNotBlank)                //操作
+        .orElse(other:"未指定部门");                 //终结
+System.out.println(deptName);
+```
+:::
+
+### 3、Parallel Stream
 
 - 并行流的启动
 通过 parallel() 方法：通过调用 Stream 接口的 parallel() 方法，可以将一个顺序流转换为并行流
@@ -562,24 +608,25 @@ Function、Predicate、Consumer 等，这些接口都是函数式接口，广泛
   - 归约（Reduction）：当所有子任务完成后，它们的结果需要被合并。在并行流中，归约操作是通过 分治法（divide-and-conquer）来实现的。每个子任务的结果会被合并成最终的结果。
   - 在执行并行流时，每个线程都会计算一部分结果，然后通过合并这些部分结果来得到最终结果。
   - 并行流的终止操作（如 reduce()、collect()）会执行归约操作。例如，在 collect() 中，流会根据所使用的收集器将结果合并。
+  
+- 底层原理：详细原理见：<RouteLink to="/parallel/0_currency#fork-join-框架">Fork/Join框架</RouteLink>
 
-## 十七、Java8的Optional
-
-## 十八、sort() 底层使用的是什么算法
+    
+## 十七、sort()底层使用的是什么算法
 ![img.png](../assets/java/sort_algorithm.png)
 
-## 十九、常见算法的复杂度是多少
+## 十八、常见算法的复杂度是多少
 
 更多详情，请查看: <RouteLink to="/algorithm/0_base_8_sort">算法-排序</RouteLink>
 
-## 二十、Servlet 的生命周期
+## 十九、Servlet 的生命周期
 - 加载和实例化（Loading and Instantiation）
 - 初始化（Initialization）
 - 请求处理（Service）
 - 销毁（Destruction）
 ![img.png](../assets/java/servlet_cycle.png)
 
-## 二十一、如何解决哈希冲突？
+## 二十、如何解决哈希冲突？
 
 - 定义：哈希冲突是指在哈希表中，两个或多个元素被映射到了同一个位置的情况。
 
