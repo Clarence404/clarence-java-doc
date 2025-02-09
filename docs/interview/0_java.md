@@ -111,7 +111,7 @@ public class ClassLoadOrder {
 ```
 ## 四、说说 Synchronized 和 ReentrantLock
 
-详情见: <RouteLink to="/java/2_advanced.md">Java高级特性-Java锁</RouteLink>
+详情见: <RouteLink to="/java/2_advanced.md#java锁">Java高级特性-Java锁</RouteLink>
 
 ## 五、ConcurrentHashMap 为何放弃了分段锁？
 

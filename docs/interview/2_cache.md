@@ -337,7 +337,7 @@ todo
 
 todo
 
-## 十五、Reids 的主从复制机制原理
+## 十五、Redis 的主从复制机制原理
 
 todo
 
@@ -345,7 +345,7 @@ todo
 
 ## 十七、怎么使用 Redis 实现消息队列？
 
-## 十八、Redis 的热 Key 问题如何解决?
+## 十八、Redis 热 Key 问题如何解决?
 
 热key问题是指某些键因高频访问导致Redis性能瓶颈或集群压力过高。
 
@@ -381,7 +381,7 @@ todo
 
 > 参考代码：[https://gitee.com/jd-platform-opensource/hotkey](https://gitee.com/jd-platform-opensource/hotkey)
 
-## 十九、Redis 的大 Key 问题如何解决?
+## 十九、Redis大 Key 问题如何解决?
 
 ## 二十、Redis 6.x 为什么要引入多线程?
 

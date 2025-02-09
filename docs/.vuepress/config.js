@@ -68,7 +68,7 @@ export default defineUserConfig({
             {text: '消息队列', link: '/mq/1_mq'},
             {text: '高并发', link: '/parallel/0_currency'},
             {text: '设计模式', link: '/design/0_design'},
-            {text: '场景题', link: '/scene/scene'},
+            {text: '场景题', link: '/scene/0_scene'},
             {text: 'Netty', link: '/netty/0_stick_split'},
             {text: '容器', link: '/container/1_linux'},
             {text: '算法', link: '/algorithm/0_base_0_complexity'},
