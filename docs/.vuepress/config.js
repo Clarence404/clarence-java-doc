@@ -47,6 +47,12 @@ function getSidebarFromDir(dirPath) {
 
 // VuePress 用户配置
 export default defineUserConfig({
+    head: [
+        [
+            'link', // 设置 favicon.ico，注意图片放在 public 文件夹下
+            { rel: 'icon', href: 'images/logo.png' }
+        ]
+    ],
     base: '/clarence-doc/',
     lang: 'en-US',
     port: 1000,
@@ -55,7 +61,7 @@ export default defineUserConfig({
     bundler: viteBundler(),
     theme: defaultTheme({
         // 只将图标放在public下，其他图片放在assets下，这样编写md文件就能看到图片了
-        logo: '/images/hero.png',
+        logo: '/images/logo.png',
         navbar: [  // 顶部导航栏配置
             {text: '开发总结', link: '/interview/0_java'},
             {text: 'Java', link: '/java/1_base'},

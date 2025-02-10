@@ -2,7 +2,7 @@
 home: true
 title: 首页
 #只将图标放在public下，其他图片放在assets下，这样编写md文件就能看到图片了
-heroImage: /images/hero.png
+heroImage: /images/logo.png
 actions:
   - text: 快速上手
     link: /interview/0_java
