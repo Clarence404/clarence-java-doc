@@ -101,16 +101,15 @@ ON DUPLICATE KEY UPDATE updated_at = NOW();
 
 一些高级消息中间件（如 RocketMQ、Kafka）提供了重复消费控制的机制。
 
-RocketMQ：
+**RocketMQ：唯一标识及其事务**
 
 - 使用消息的 msgId 或 unique key 。
 - 配合事务消息进行两阶段提交（prepare 和 confirm 阶段）。
 
-Kafka：
+**Kafka： 消费组结合 offset 提交**
 
-- 消费组结合 offset 提交：
-    - 通过消费者维护 offset，避免重复拉取消息。
-    - 手动控制 offset 提交时机，仅在成功处理消息后更新。
+- 通过消费者维护 offset，避免重复拉取消息。
+- 手动控制 offset 提交时机，仅在成功处理消息后更新。
 
 ## 五、Mq如何保证消息顺序消费？
 

@@ -254,6 +254,48 @@ System.out.println(result);
 
 ### 1、类型擦除
 
+#### 1.1、什么是类型擦除？
+
+Java 泛型是编译时的特性，在运行时，Java 会移除（擦除）泛型的类型信息，这称为 类型擦除（Type Erasure）。
+
+**原因**：
+
+Java 的泛型是为了**向后兼容**（Generics 是 JDK 1.5 引入的，而 Java 需要兼容早期版本）。
+**JVM 并不支持真正的泛型**，所有泛型信息在编译阶段就被擦除，JVM 看到的只有原始类型（Raw Type）。
+
+**示例（泛型擦除前 vs. 擦除后）：**
+```java
+// 泛型代码
+public class Box<T> {
+    private T value;
+
+    public void setValue(T value) {
+        this.value = value;
+    }
+
+    public T getValue() {
+        return value;
+    }
+}
+```
+**编译后（擦除后的字节码）：**
+
+```java
+// 擦除泛型后的代码
+public class Box {
+    // 泛型 T 变成 Object
+    private Object value;
+
+    public void setValue(Object value) {
+        this.value = value;
+    }
+
+    public Object getValue() {
+        return value;
+    }
+}
+```
+
 ## 六、线程的创建（Thread vs Runnable）
 
 ### 1、继承 Thread 类
