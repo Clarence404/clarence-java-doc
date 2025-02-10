@@ -2,16 +2,29 @@
 
 ## 一、数据库的隔离级别？
 
-uncommited read
+### 1、 Uncommitted（读未提交）
 
-commited read
+- 事务可以读取其他事务未提交的数据（脏读）。
+- 可能会出现**脏读（Dirty Read）、不可重复读（Non-repeatable Read）和幻读（Phantom Read）**。
+- 并发性能高，但数据一致性差。
+### 2、Read Committed（读已提交）
 
-repeatable read
+- 事务只能读取已经提交的数据。
+- **避免脏读**，但仍然可能出现**不可重复读和幻读**。
+- 提高数据一致性，但可能影响性能。
+### 3、Repeatable Read（可重复读）
 
-serializable read
+- 事务在执行期间，多次读取相同的数据时，保证读取结果一致。
+- 避免脏读和不可重复读，但可能仍然会有幻读。
+- MySQL InnoDB 通过 **MVCC + Gap Lock** 解决幻读问题。
+
+### 4、Serializable（可串行化）
+
+- 最高隔离级别，相当于事务**串行执行**，避免所有并发问题（脏读、不可重复读、幻读）。
+- **通过行级锁或表级锁实现**，并发性能最差，适用于高数据一致性要求的场景。
 
 ::: tip
-MySQL 默认的隔离级别：Repeatable Read（可重读）级别。<br>
+SQL Server、Oracle 默认的隔离级别：Repeatable Read（可重读）级别。<br>
 Oracle 默认的隔离级别：Read Committed（读取已提交的）级别。
 :::
 ### 1、脏读和幻读的区别
@@ -34,10 +47,6 @@ Oracle 默认的隔离级别：Read Committed（读取已提交的）级别。
 
 - 联合索引不满足最左匹配原则
 
-- 索引列参与运算
-
-- 索引列参使用了函数
-
 - 错误的like查询使用
 
 ::: tip
@@ -45,6 +54,9 @@ Oracle 默认的隔离级别：Read Committed（读取已提交的）级别。
 
 模糊查询时（like语句），模糊匹配的占位符位于条件的首部。
 :::
+
+
+- 索引列 参与运算 或 使用函数
 
 - 类型隐式转换
 ::: tip

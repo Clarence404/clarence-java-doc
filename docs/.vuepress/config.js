@@ -56,7 +56,7 @@ export default defineUserConfig({
     base: '/clarence-doc/',
     lang: 'en-US',
     port: 1000,
-    title: 'ClarenceDoc',
+    title: 'Clarence Doc',
     description: '实践是检验真理的唯一标准',
     bundler: viteBundler(),
     theme: defaultTheme({
