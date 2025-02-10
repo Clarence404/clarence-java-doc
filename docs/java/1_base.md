@@ -298,6 +298,9 @@ class MyRunnable implements Runnable {
 
 ## 七、volatile 关键字
 
+### 1、线程可见性
+
+### 2、防止指令重排
 
 
 ## 八、wait() / notify() / notifyAll()

@@ -73,6 +73,7 @@ export default defineUserConfig({
             {text: '容器', link: '/container/1_linux'},
             {text: '算法', link: '/algorithm/0_base_0_complexity'},
             {text: '架构师', link: '/performance/0_structure'},
+            {text: 'AI', link: '/ai/0_ai'},
         ],
         sidebar: {
             '/interview/': getSidebarFromDir(path.resolve(__dirname, '../interview')),
@@ -91,6 +92,7 @@ export default defineUserConfig({
             '/container/': getSidebarFromDir(path.resolve(__dirname, '../container')),
             '/algorithm/': getSidebarFromDir(path.resolve(__dirname, '../algorithm')),
             '/performance/': getSidebarFromDir(path.resolve(__dirname, '../performance')),
+            '/ai/': getSidebarFromDir(path.resolve(__dirname, '../ai')),
         },
     }),
     plugins: [
