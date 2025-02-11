@@ -380,12 +380,16 @@ public class SingletonDCL {
 - 可以**避免类的重复加载**（JVM 区分不同类的方式不仅仅根据类名，相同的类文件被不同的类加载器加载产生的是两个不同的类）
 - 也保证了 **Java 的核心 API 不被篡改**。
 
+::: tip 
+
 如果没有使用双亲委派模型，而是每个类加载器加载自己的话就会出现一些问题:
 
 - 比如我们编写一个称为 java.lang.Object 类的话，那么程序运行的时候，系统就会出现两个不同的 Object 类。 双亲委派模型可以保证加载的是
   JRE 里的那个 Object 类，而不是你写的 Object 类。
+
 - 这是因为 AppClassLoader 在加载你的 Object 类时，会委托给 ExtClassLoader 去加载，而 ExtClassLoader 又会委托给
   BootstrapClassLoader，BootstrapClassLoader 发现自己已经加载过了 Object 类，会直接返回，不会去加载你写的 Object 类。
+:::
 
 ## 十四、说说你对泛型的理解？
 

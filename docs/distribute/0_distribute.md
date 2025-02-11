@@ -1,6 +1,11 @@
-# 分布式架构的发展
+# 分布式架构
+
+参考链接：[https://gitee.com/Doocs/advanced-java](https://gitee.com/Doocs/advanced-java#分布式系统)
+
 ## 一、单体架构
 
 ## 二、集群架构
 
 ## 三、分布式架构
+
+## 三、SOA架构
