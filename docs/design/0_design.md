@@ -11,7 +11,7 @@
 - 数据库连接池（HikariCP、Druid）
 - Redis、线程池、日志管理（Logback）
 
-> 参考代码：<RouteLink to="/interview/0_java#十二、写出三种单例模式实现">单例模式的几种实现</RouteLink>
+> 参考代码：<RouteLink to="/interview/0_java#十二、写出几种单例模式实现">单例模式的几种实现</RouteLink>
 
 ## 二、工厂模式
 
