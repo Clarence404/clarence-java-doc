@@ -1,10 +1,14 @@
 # Redis相关
 
-这是关于数据结构的内容...
+## Redis数据结构
+
+这是关于高级数据结构的内容...
 
 ## Redis线程模型
 
 介绍线程模型的内容...
+
+## 布隆过滤器
 
 ## Redis分布式锁
 
@@ -43,7 +47,7 @@ redissonLock.release("redisson");
 注意：正常这个看门狗线程是不启动的，还有就是这个看门狗启动后对整体性能也会有一定影响，所以**不建议开启看门狗**。
 :::
 
-### 3、Redis luna脚本
+### 3、Redis lua脚本
 
 ::: warning
 todo: to be continue...
@@ -59,4 +63,6 @@ todo: to be continue...
 ### 2、断点续传
 
 ![img_1.png](../assets/cache/continue_copy.png)
+
+## Redis性能优化
 

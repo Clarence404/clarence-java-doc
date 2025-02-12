@@ -130,3 +130,7 @@ public class test {
     }
 }
 ```
+
+## 六、如何设计一个高并发系统？
+
+详情查看：<RouteLink to="/highConcurrency/4_high_concurrency_sys">高并发-如何设计一个高并发系统？</RouteLink>
