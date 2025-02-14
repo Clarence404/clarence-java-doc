@@ -1,6 +1,6 @@
 # 核心组件
 
-此处仅讨论目前流行方案：[Spring Cloud Alibaba](https://sca.aliyun.com/)
+主要讨论目前流行方案：[Spring Cloud Alibaba](https://sca.aliyun.com/)
 
 ## 一、Nacos
 

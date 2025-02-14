@@ -1,4 +1,4 @@
-# 解决方案选型
+# 方案选型
 
 ## 一、SpringCloud Alibaba
 
