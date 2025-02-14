@@ -1,4 +1,4 @@
-# Redis相关
+# Redis
 
 ## Redis数据结构
 
