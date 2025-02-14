@@ -67,7 +67,7 @@ export default defineUserConfig({
             {text: 'Java', link: '/java/1_base'},
             {text: '数据库', link: '/database/0_mysql'},
             {text: '缓存', link: '/cache/1_redis'},
-            {text: 'Jvm', link: '/jvm/jvm'},
+            {text: 'JVM', link: '/jvm/jvm'},
             {text: 'Spring', link: '/spring/1_spring'},
             {text: '微服务', link: '/springCloud/1_base'},
             {text: '分布式', link: '/distributed/0_distributed'},
