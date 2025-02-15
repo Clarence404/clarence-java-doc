@@ -52,6 +52,7 @@ Java语言中一共提供了8种原始的数据类型（byte，short，int，lon
 
    - 所有修改操作（如 `substring`、`concat`）都会返回一个新的 `String` 对象，而不是修改原对象。
 
+## 三、讲讲类的加载机制
 
 ![img.png](../assets/interview/class_init.png)
 
