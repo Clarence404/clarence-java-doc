@@ -7,7 +7,7 @@
 
 > 微服务概念起源：[Microservices](https://martinfowler.com/articles/microservices.html)
 
-## 二、微服务之间是如何独立通讯的
+## 二、微服务之间的通讯方案
 
 ### 1、同步方案：HTTP/RPC
 
@@ -326,9 +326,4 @@ RPC 和 HTTP 主要区别在于**通信方式、使用场景、性能、协议�
 
 如果你的业务是 **微服务内部通信**，可以考虑 RPC（如 gRPC）；如果是 **对外提供 API**，HTTP（REST API）会更合适。
 
-## 三、单体架构 vs 微服务架构
-
-
-
-## 四、微服务的优势与挑战
 

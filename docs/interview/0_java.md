@@ -146,7 +146,7 @@ public class ClassLoadOrder {
 | 规范化	  | 适用于相似类型（有 is-a 关系）的类	  | 适用于不同类（没有 is-a 关系）的通用行为(can do 关系) |
 | 复杂度   | 	适用于复杂的类层次结构           | 	适用于简单的、行为驱动的设计                    |
 
-## 七、继承和聚合的区别在哪
+## 七、继承和聚合的区别？
 
 ### 1、定义
 
@@ -669,29 +669,19 @@ User user = new User(id:1,name:"Tom",dept);
 ::: warning 未使用Optional
 
 ```java
-if(user !=null){
-        if(user.
-
-getDept() !=null){
-String deptName = user.getDept().getName();
-        if(StrUtil.
-
-isBlank(deptName)){
-        System.out.
-
-println("未指定部门");
-        }else{
-                System.out.
-
-println(deptName);
-        }
-                else{
-                System.out.
-
-println("未指定部门");
-        }
-                }
-                }
+if (user != null) {
+  if (user.getDept() != null) {
+    String deptName = user.getDept().getName();
+    if (StrUtil.isBlank(deptName)) {
+      System.out.println("未指定部门");
+    } else {
+      System.out.println(deptName);
+    }
+    else {
+      System.out.println("未指定部门");
+    }
+  }
+}
 ```
 
 :::
