@@ -27,11 +27,31 @@ Java语言中一共提供了8种原始的数据类型（byte，short，int，lon
 - 处理不当的数据类型转换（如 int 转 short）也可能导致异常。
   :::
 
-## 二、String 类能被继承吗
+## 二、String 类能被继承吗，为何不可变？
 
-不可以，因为 String类有 final修饰符，而 final修饰的类是不能被继承的，实现细节也不允许改变。
+### **1. String 类不能被继承**
+- **原因**: `String` 类被声明为 `final`，即：
+  ```java
+  public final class String { ... }
+  ```
+  - `final` 修饰的类不能被继承。
+  
+  - 这是为了确保 `String` 的不可变性和安全性，防止子类修改其行为。
 
-## 三、讲讲类的实例化顺序
+### **2. String 类的不可变性**
+`String` 类的不可变性是通过以下设计实现的：
+
+1. **字符数组被声明为 `final`**:
+   ```java
+   private final byte[] value;
+   ``` 
+    - `final` 修饰的 `byte[]` 表示引用不可变（即不能指向其他数组），但数组内容本身是可以修改的。
+  
+2. **数组内容的保护**:
+   - `String` 类没有提供任何方法修改 `value` 数组的内容。
+
+   - 所有修改操作（如 `substring`、`concat`）都会返回一个新的 `String` 对象，而不是修改原对象。
+
 
 ![img.png](../assets/interview/class_init.png)
 
@@ -228,15 +248,15 @@ class Car {
 
 Java 反射的核心依赖于 **Class** 类。JVM 在加载类时，会为每个类创建一个 **Class** 类型的对象，该对象包含该类的完整信息，包括：
 
-- 类的名称、包路径
+- **类的名称、包路径**
 
-- 类的字段（属性）、方法、构造方法
+- **类的字段（属性）、方法、构造方法**
 
-- 访问修饰符（public、private 等）
+- **访问修饰符（public、private 等）**
 
-- 注解信息
+- **注解信息**
 
-- 父类、接口信息等
+- **父类、接口信息等**
 
 通过 **Class** 对象，我们可以在运行时动态地执行以下操作：
 
@@ -251,12 +271,13 @@ Java 反射的核心依赖于 **Class** 类。JVM 在加载类时，会为每个
 - **访问或修改字段的值**：通过 Field 对象的 get() 和 set() 方法读取或修改字段的值。
 
 ::: tip 补充说明
+
 - 动态性：反射机制允许程序在运行时动态地获取类的信息并操作类的成员，而不需要在编译时确定这些信息。这使得反射非常灵活，但也带来了性能开销。
 
 - 安全性：反射可以绕过访问控制检查，例如访问 private 成员。因此，使用反射时需要谨慎，确保不会破坏封装性。
 
 - 应用场景：反射常用于框架开发（如 Spring）、动态代理、注解处理等场景。
-:::
+  :::
 
 ### 3、应用场景
 
@@ -382,7 +403,7 @@ public class SingletonDCL {
 
 ## 十三、类加载器机制
 
->参考链接：[类加载器详解](https://javaguide.cn/java/jvm/classloader.html#%E7%B1%BB%E5%8A%A0%E8%BD%BD%E5%99%A8)
+> 参考链接：[类加载器详解](https://javaguide.cn/java/jvm/classloader.html#%E7%B1%BB%E5%8A%A0%E8%BD%BD%E5%99%A8)
 
 ### 1、类加载器
 
@@ -397,7 +418,7 @@ public class SingletonDCL {
 - 可以**避免类的重复加载**（JVM 区分不同类的方式不仅仅根据类名，相同的类文件被不同的类加载器加载产生的是两个不同的类）
 - 也保证了 **Java 的核心 API 不被篡改**。
 
-::: tip 
+::: tip
 
 如果没有使用双亲委派模型，而是每个类加载器加载自己的话就会出现一些问题:
 
@@ -406,7 +427,7 @@ public class SingletonDCL {
 
 - 这是因为 AppClassLoader 在加载你的 Object 类时，会委托给 ExtClassLoader 去加载，而 ExtClassLoader 又会委托给
   BootstrapClassLoader，BootstrapClassLoader 发现自己已经加载过了 Object 类，会直接返回，不会去加载你写的 Object 类。
-:::
+  :::
 
 ## 十四、说说你对泛型的理解？
 
@@ -669,19 +690,29 @@ User user = new User(id:1,name:"Tom",dept);
 ::: warning 未使用Optional
 
 ```java
-if (user != null) {
-  if (user.getDept() != null) {
-    String deptName = user.getDept().getName();
-    if (StrUtil.isBlank(deptName)) {
-      System.out.println("未指定部门");
-    } else {
-      System.out.println(deptName);
+if(user !=null){
+        if(user.
+
+getDept() !=null){
+String deptName = user.getDept().getName();
+    if(StrUtil.
+
+isBlank(deptName)){
+        System.out.
+
+println("未指定部门");
+    }else{
+            System.out.
+
+println(deptName);
     }
-    else {
-      System.out.println("未指定部门");
+            else{
+            System.out.
+
+println("未指定部门");
     }
-  }
-}
+            }
+            }
 ```
 
 :::
