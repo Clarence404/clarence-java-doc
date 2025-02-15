@@ -12,6 +12,6 @@
 
 ## 五、Spring Cloud Gateway
 
-## 六、Sky Working
+## 六、Sky Walking
 
 ## 七、OpenSergo（新）
