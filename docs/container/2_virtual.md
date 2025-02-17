@@ -10,6 +10,8 @@
 
 #### 设置固定IP
 
+[https://zahui.fan/posts/6f952944/](https://zahui.fan/posts/6f952944/)
+
 #### 支持与宿主机复制粘贴
 
 ### 2、VMware
