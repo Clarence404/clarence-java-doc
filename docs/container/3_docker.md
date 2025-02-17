@@ -3,7 +3,7 @@
 ## 一、Docker国内镜像无法 pull 的问题
 
 ::: tip
-本次发现问题是2025年2月16日开始，本地测试在使用 Vm-ware 的 Centos 7.9 系统，设置 daemon.json，仍然无法拉取镜像的问题
+2024年6月开始，国内的常用 daemon.json 地址失效
 :::
 
 ### 1、阿里云服务器设置 daemon.json 正常
