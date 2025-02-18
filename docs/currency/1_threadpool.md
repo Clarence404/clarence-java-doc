@@ -3,6 +3,11 @@
 关于Executor的介绍，在 <RouteLink to="/java/1_base#九、线程池基础-executors">Java基础-线程池基础（Executors）</RouteLink> 
 已经讲述过，此处只着重介绍 ThreadPoolExecutor相关的处理方案
 
+参考文章：
+>[https://mp.weixin.qq.com/s/xWbSPHJG_TztJpM4Pv9knw](https://mp.weixin.qq.com/s/xWbSPHJG_TztJpM4Pv9knw)
+> 
+> [https://mp.weixin.qq.com/s/7ub5RhxfuklzYsa84tGAzQ](https://mp.weixin.qq.com/s/7ub5RhxfuklzYsa84tGAzQ)
+
 ## 一、什么是线程池？
 
 说到 **线程池**，其实我们要先聊到 **池化技术**。
