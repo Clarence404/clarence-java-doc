@@ -260,13 +260,9 @@ System.out.println(result);
 
 ### 1、类型擦除
 
-#### 1.1、什么是类型擦除？
-
 Java 泛型是编译时的特性，在运行时，Java 会移除（擦除）泛型的类型信息，这称为 类型擦除（Type Erasure）。
 
-**原因**：
-
-Java 的泛型是为了**向后兼容**（Generics 是 JDK 1.5 引入的，而 Java 需要兼容早期版本）。
+**原因**： Java 的泛型是为了**向后兼容**（Generics 是 JDK 1.5 引入的，而 Java 需要兼容早期版本）。
 **JVM 并不支持真正的泛型**，所有泛型信息在编译阶段就被擦除，JVM 看到的只有原始类型（Raw Type）。
 
 **示例（泛型擦除前 vs. 擦除后）：**
@@ -355,9 +351,80 @@ class MyRunnable implements Runnable {
 
 
 
-## 九、线程池基础（Executors 工具类）
+## 九、线程池基础（Executors）
 
+### 1、Executors工具类
 
+`Executors` 是 Java 中用于管理线程池的一个工具类，它是 `java.util.concurrent` 包的一部分。通过 `Executors`，
+我们可以轻松地创建和管理线程池，避免手动管理线程的创建和销毁，提高程序的性能和可维护性。
+
+### 2、 `Executors` 的创建方式
+
+```java
+//创建一个固定大小的线程池，该线程池可以容纳固定数量的线程。它适用于负载较为稳定的场景，线程数固定。
+ExecutorService executor = Executors.newFixedThreadPool(5);
+
+//创建一个可缓存的线程池。该线程池会根据需要创建新线程，如果某个线程长时间没有被使用，它会被回收。
+ExecutorService executor = Executors.newCachedThreadPool();
+
+//创建一个单线程的线程池，所有任务会按照提交的顺序依次执行。
+ExecutorService executor = Executors.newSingleThreadExecutor();
+
+//创建一个定时任务线程池，支持任务的延迟执行和定期执行。
+ScheduledExecutorService executor = Executors.newScheduledThreadPool(5);
+
+//创建一个工作窃取线程池，线程池会自动调整线程的数量，适用于有多个任务需要并发执行的场景。
+ExecutorService executor = Executors.newWorkStealingPool();
+```
+
+### 3、 `invokeAll()` 和 `invokeAny()`
+这两个方法用于执行任务：
+
+- **`invokeAll()`**：将一组任务提交给线程池并等待所有任务执行完成。返回一个 `List<Future>`，表示每个任务的执行结果。
+
+  ```java
+  List<Callable<Integer>> tasks = new ArrayList<>();
+  tasks.add(() -> { return 1; });
+  tasks.add(() -> { return 2; });
+  List<Future<Integer>> results = executor.invokeAll(tasks);
+  ```
+
+- **`invokeAny()`**：将一组任务提交给线程池，并等待其中任意一个任务完成。返回第一个完成任务的结果。
+
+  ```java
+  Integer result = executor.invokeAny(tasks);
+  ```
+
+### 4、使用 `Future` 和 `Callable`
+当需要获取任务执行结果时，通常会使用 `Future` 和 `Callable`：
+
+- **`Future`**：表示一个异步计算的结果，可以通过 `get()` 方法获取任务执行结果。
+- **`Callable`**：类似于 `Runnable`，但是可以返回结果，并且可以抛出异常。
+
+```java
+ExecutorService executor = Executors.newFixedThreadPool(2);
+
+Callable<Integer> task = () -> {
+    // 执行任务
+    return 1 + 1;
+};
+
+Future<Integer> future = executor.submit(task);
+Integer result = future.get(); // 获取任务执行结果
+```
+
+### 5、Executors 总结
+`Executors` 类提供了多种类型的线程池，可以根据任务的需求选择不同类型的线程池。合理使用线程池可以提高并发程序的性能，
+并且避免了手动管理线程的复杂性，避免了线程创建和销毁的开销。
+
+### 6、为何不建议使用 Executors？
+Executors 返回的线程池对象的弊端如下:
+
+**FixedThreadPool** 和 **SingleThreadPool**: 允许的请求队列（**LinkedBlockingQueue**）长度为 **Integer.MAX VALUE**，可能会堆积大量的请求，从而导致 OOM。
+
+**CachedThreadPool**: 允许的创建线程数量为 **LinkedBlockingQueue**，可能会创建大量的线程，从而导致 OOM。
+
+综上，为了手动控制线程池，建议自己使用 <RouteLink to="/currency/1_threadpool">ThreadPoolExecutor</RouteLink> 来创建线程池
 
 ## 十、ThreadLocal
 

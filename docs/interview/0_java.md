@@ -490,7 +490,7 @@ Push("8888");
 string y = b.Pop();
 ```
 
-### 2、T、E、K、V、? 是什么？
+### 2、T、E、K、V、?
 
 #### 2.1、T - Type
 
@@ -621,7 +621,7 @@ public void addIntegerToList(List<? super Integer> list) {
     - **Class&lt;?&gt;** 是一个未知的类型，用于处理不确定的类型信息。
 
 ```java
-    //正确的定义泛型方法
+//正确的定义泛型方法
 public static class MyObject<T> {
     private T value;
 }
