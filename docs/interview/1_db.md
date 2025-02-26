@@ -27,7 +27,7 @@
 SQL Server、Oracle 默认的隔离级别：Repeatable Read（可重读）级别。<br>
 Oracle 默认的隔离级别：Read Committed（读取已提交的）级别。
 :::
-### 1、脏读和幻读的区别
+### 5、脏读和幻读的区别
 
 
 ## 二、讲一讲MySql的索引？
