@@ -756,7 +756,7 @@ println(deptName);
 
 - 底层原理：详细原理见：<RouteLink to="/parallel/0_currency#fork-join-框架">Fork/Join框架</RouteLink>
 
-## 十七、sort()底层使用的是什么算法
+## 十七、sort() 的底层算法
 
 ![img.png](../assets/java/sort_algorithm.png)
 
