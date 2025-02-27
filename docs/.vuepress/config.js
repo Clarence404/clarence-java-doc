@@ -80,6 +80,7 @@ export default defineUserConfig({
             {text: '算法', link: '/algorithm/0_base_0_complexity'},
             {text: '架构师', link: '/architecture/0_structure'},
             {text: 'Protocol', link: '/protocol/0'},
+            {text: 'IOT', link: '/iot/0'},
             {text: 'AI', link: '/ai/0_ai'},
         ],
         sidebar: {
@@ -100,6 +101,7 @@ export default defineUserConfig({
             '/algorithm/': getSidebarFromDir(path.resolve(__dirname, '../algorithm')),
             '/architecture/': getSidebarFromDir(path.resolve(__dirname, '../architecture')),
             '/protocol/': getSidebarFromDir(path.resolve(__dirname, '../protocol')),
+            '/iot/': getSidebarFromDir(path.resolve(__dirname, '../iot')),
             '/ai/': getSidebarFromDir(path.resolve(__dirname, '../ai')),
         },
     }),
