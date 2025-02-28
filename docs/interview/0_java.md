@@ -2,8 +2,8 @@
 
 ## 一、JAVA中的几种基本数据类型
 
-Java语言中一共提供了8种原始的数据类型（byte，short，int，long，float，double，char，boolean），这些数据类型不是对象，
-而是Java语言中不同于类的特殊类型，这些基本类型的数据变量在声明之后就会立刻在栈上被分配内存空间。
+Java语言中一共提供了8种原始的数据类型（**byte，short，int，long，float，double，char，boolean**），这些数据类型不是对象，
+而是Java语言中不同于类的特殊类型，这些基本类型的数据变量在声明之后就会立刻**在栈上被分配内存空间**。
 
 除了这8种基本的数据类型外， 其他类型都是引用类型（例如类、接口、数组等），引用类型类似于C++中的引用或指针的概念，它以特殊的方式指向对象实体，
 此类变量在声明时不会被分配内存空间，只是存储了一个内存地址而已。
@@ -34,15 +34,17 @@ Java语言中一共提供了8种原始的数据类型（byte，short，int，lon
 ## 二、String 类能被继承吗，为何不可变？
 
 ### **1. String 类不能被继承**
+
 - **原因**: `String` 类被声明为 `final`，即：
   ```java
   public final class String { ... }
   ```
-  - `final` 修饰的类不能被继承。
-  
-  - 这是为了确保 `String` 的不可变性和安全性，防止子类修改其行为。
+    - `final` 修饰的类不能被继承。
+
+    - 这是为了确保 `String` 的不可变性和安全性，防止子类修改其行为。
 
 ### **2. String 类的不可变性**
+
 `String` 类的不可变性是通过以下设计实现的：
 
 1. **字符数组被声明为 `final`**:
@@ -50,11 +52,11 @@ Java语言中一共提供了8种原始的数据类型（byte，short，int，lon
    private final byte[] value;
    ``` 
     - `final` 修饰的 `byte[]` 表示引用不可变（即不能指向其他数组），但数组内容本身是可以修改的。
-  
-2. **数组内容的保护**:
-   - `String` 类没有提供任何方法修改 `value` 数组的内容。
 
-   - 所有修改操作（如 `substring`、`concat`）都会返回一个新的 `String` 对象，而不是修改原对象。
+2. **数组内容的保护**:
+    - `String` 类没有提供任何方法修改 `value` 数组的内容。
+
+    - 所有修改操作（如 `substring`、`concat`）都会返回一个新的 `String` 对象，而不是修改原对象。
 
 ## 三、讲讲类的加载机制
 
@@ -84,11 +86,11 @@ Java语言中一共提供了8种原始的数据类型（byte，short，int，lon
 - 只有在类真正被使用时才会触发初始化，例如：
 
     - 创建类的实例时 new 类()
-  
+
     - 调用类的静态方法或访问静态变量
-  
+
     - 反射调用 Class.forName("类名")
-  
+
     - 作为父类时，子类初始化会触发父类的初始化
 
 ::: important 执行顺序
@@ -242,6 +244,36 @@ class Car {
 
 ![img.png](../assets/java/io.png)
 
+### 2、为什么要进行序列化？
+
+- **对象序列化可以实现分布式对象**。
+
+主要应用例如：RMI(即远程调用Remote Method Invocation)要利用对象序列化运行远程主机上的服务，就像在本地机上运行对象时一样。
+
+- **java对象序列化不仅保留一个对象的数据，而且递归保存对象引用的每个对象的数据**。
+
+可以将整个对象层次写入字节流中，可以保存在文件中或在网络连接上传递。利用对象序列化可以进行对象的"深复制"，即复制对象本身及引用的对象本身。序列化一个对象可能得到整个对象序列。
+
+- **序列化可以将内存中的类写入文件或数据库中**。
+
+比如：将某个类序列化后存为文件，下次读取时只需将文件中的数据反序列化就可以将原先的类还原到内存中。也可以将类序列化为流数据进行传输。
+
+总的来说就是将一个已经实例化的类转成文件存储，下次需要实例化的时候只要反序列化即可将类实例化到内存中并保留序列化时类中的所有变量和状态。
+
+- **对象、文件、数据，有许多不同的格式，很难统一传输和保存**。
+
+序列化以后就都是字节流了，无论原来是什么东西，都能变成一样的东西，就可以进行通用的格式传输或保存，传输结束以后，要再次使用，就进行反序列化还原，这样对象还是对象，文件还是文件。
+
+### 3、serialVersionUID的作用？
+
+serialVersionUID 是一个 private static final long 型 ID, 当它被印在对象上时, 它通常是对象的哈希码,你可以使用 serialver 这个 
+JDK 工具来查看序列化对象的 serialVersionUID。
+
+SerialVerionUID 用于对象的版本控制。也可以在类文件中指定 serialVersionUID。不指定 serialVersionUID的后果是,
+当你添加或修改类中的任何字段时, 则已序列化类将无法恢复, 因为为新类和旧序列化对象生成的 serialVersionUID 将有所不同。
+
+Java 序列化过程依赖于正确的序列化对象恢复状态的, ,并在序列化对象序列版本不匹配的情况下引发 java.io.InvalidClassException 无效类异常。
+
 ## 九、IO模型的理解
 
 详情见: <RouteLink to="/netty/1_io_model">Netty-IO模型</RouteLink>
@@ -292,19 +324,19 @@ Java 反射的核心依赖于 **Class** 类。JVM 在加载类时，会为每个
 
 ### 3、应用场景
 
-- 框架设计
+- **框架设计**
 
 Spring、MyBatis、Hibernate 等框架大量使用反射，动态创建对象、调用方法、注入依赖。
 
-- 动态加载类
+- **动态加载类**
 
 Java 反射允许程序在运行时动态加载类，例如 JDBC 通过 Class.forName() 加载数据库驱动。
 
-- 通用工具类
+- **通用工具类**
 
 如 JSON 解析库（Gson、Jackson）、序列化库等，都利用了反射来动态解析对象。
 
-- 代理（动态代理）
+- **代理（动态代理）**
 
 Java 反射是动态代理（JDK 动态代理和 CGLIB 代理）的基础，如 AOP（面向切面编程）。
 
@@ -467,30 +499,33 @@ public class Stack<T> {
 类的写法不变，只是引入了通用数据类型T就可以适用于任何数据类型，并且类型安全的。这个类的调用方法：
 
 ```java
-//实例化只能保存int类型的类
-Stack<int> a = new Stack<int>(100);
-      a.
+public void test() {
 
-Push(10);
-      a.
+    //实例化只能保存int类型的类
+    Stack<int> a = new Stack<int>(100);
 
-Push("8888"); //这一行编译不通过，因为类a只接收int类型的数据
+    a.Push(10);
 
-int x = a.Pop();
+    //这一行编译不通过，因为类a只接收int类型的数据
+    a.Push("8888");
 
-//实例化只能保存string类型的类
-Stack<string> b = new Stack<string>(100);
-      b.
+    int x = a.Pop();
 
-Push(10);    //这一行编译不通过，因为类b只接收string类型的数据
-      b.
+    //实例化只能保存string类型的类
+    Stack<string> b = new Stack<string>(100);
 
-Push("8888");
+    //这一行编译不通过，因为类b只接收string类型的数据
+    b.Push(10);
 
-string y = b.Pop();
+
+    b.Push("8888");
+
+    string y = b.Pop();
+
+}
 ```
 
-### 2、T、E、K、V、?
+### 2、T、E、K、V、? 的含义
 
 #### 2.1、T - Type
 
@@ -587,7 +622,7 @@ public void printList(List<?> list) {
 
 这里的 List<?> 表示可以接受任意类型的 List，但无法修改该 List，只能读取其中的元素。
 
-#### 2.6、其他通配符的用法：
+### 3、其他通配符的用法
 
 **? extends T**：表示某个类型是 T 的子类（包括 T 本身）。
 
@@ -616,9 +651,11 @@ public void addIntegerToList(List<? super Integer> list) {
 - ?：表示通配符，表示不确定的类型，常用于方法参数、集合类型的限制等。
   :::
 
-- **Class&lt;T&gt;** 和 **Class&lt;?&gt;** 的区别
-    - **Class&lt;T&gt;** 是你已经知道的具体类型。
-    - **Class&lt;?&gt;** 是一个未知的类型，用于处理不确定的类型信息。
+### 4、 **Class&lt;T&gt;** 和 **Class&lt;?&gt;** 的区别
+
+- **Class&lt;T&gt;** 是你已经知道的具体类型。
+
+- **Class&lt;?&gt;** 是一个未知的类型，用于处理不确定的类型信息。
 
 ```java
 //正确的定义泛型方法
@@ -667,7 +704,7 @@ Function、Predicate、Consumer 等，这些接口都是函数式接口，广泛
 
 ## 十六、说说Java的Stream
 
-### 1、Stream
+### 1、Stream流
 
 - **Stream** 是 Java 8 引入的一个抽象，它允许你对集合（如 List、Set 等）进行声明式的操作。
 - Stream 支持多种操作，包括 **中间操作**（如 filter、map、sorted）和 **终端操作**（如 collect、reduce、forEach）。
@@ -700,35 +737,29 @@ User user = new User(id:1,name:"Tom",dept);
 
 ::: warning 未使用Optional
 
-```java
-if(user !=null){
-        if(user.
-
-getDept() !=null){
-String deptName = user.getDept().getName();
-    if(StrUtil.
-
-isBlank(deptName)){
-        System.out.
-
-println("未指定部门");
-    }else{
-            System.out.
-
-println(deptName);
-    }
-            else{
-            System.out.
-
-println("未指定部门");
-    }
-            }
-            }
-```
-
 :::
 
+```java
+public void test() {
+    if (user != null) {
+        if (user.getDept() != null) {
+            String deptName = user.getDept().getName();
+            if (StrUtil.isBlank(deptName)) {
+                System.out.println("未指定部门");
+            } else {
+                System.out.println(deptName);
+            }
+      else{
+                System.out.println("未指定部门");
+            }
+        }
+    }
+}
+```
+
 ::: tip 使用Optional
+
+:::
 
 ```java
 String deptName = Optional.ofNullable(user)        // 创建
@@ -739,8 +770,6 @@ String deptName = Optional.ofNullable(user)        // 创建
 
 println(deptName);
 ```
-
-:::
 
 ### 3、Parallel Stream
 
@@ -760,7 +789,7 @@ println(deptName);
 
 ![img.png](../assets/java/sort_algorithm.png)
 
-## 十八、常见算法的复杂度是多少
+## 十八、常见算法的复杂度是多少？
 
 更多详情，请查看: <RouteLink to="/algorithm/0_base_8_sort">算法-排序</RouteLink>
 

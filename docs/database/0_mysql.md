@@ -66,17 +66,17 @@
 **`班级表`**：班级ID -> 班级名称。
 :::
 
-## MySQL 视图详解
+## 二、MySQL 视图
 
-## MySQL 存储过程
+## 三、MySQL 存储过程
 
-## MySQL 索引的分类和优化
+## 四、MySQL 索引的分类和优化
 
-## MySQL 事务
+## 五、MySQL 事务
 
-## MySQL 一致性视图（MVCC）
+## 六、MySQL 一致性视图（MVCC）
 
-## MySQL 锁
+## 七、MySQL 锁
 
 ### 1、读写锁（共享锁 vs 排他锁）
 ### 2、表锁 vs 行锁 vs 页面锁
@@ -89,7 +89,7 @@ todo：完成自己的理解书写
 
 https://mp.weixin.qq.com/s/gAJFm3q5510PfRBe4F11PQ
 
-## Mysql性能优化-高级篇
+## 八、Mysql性能优化-高级篇
 
 - **查询优化**
     - EXPLAIN 详解（每个字段的意义）
@@ -102,7 +102,7 @@ https://mp.weixin.qq.com/s/gAJFm3q5510PfRBe4F11PQ
     - 避免 NOT IN / NOT EXISTS 导致的全表扫描
     - 分析执行计划（EXPLAIN / PROFILE）
 
-## 深度分页介绍及优化建议
+## 九、深度分页介绍及优化
 
 - LIMIT offset 大时的优化策略（比如 `ORDER BY id LIMIT 100000, 10` 的优化）
 - **优化方法**：
@@ -110,7 +110,7 @@ https://mp.weixin.qq.com/s/gAJFm3q5510PfRBe4F11PQ
     - 子查询优化
     - 使用延迟关联（先查主键，再关联其他字段）
 
-## 数据库安全问题
+## 十、数据库安全问题
 
 - **SQL 注入防范**
     - 预编译 SQL 语句（PreparedStatement）
@@ -124,7 +124,7 @@ https://mp.weixin.qq.com/s/gAJFm3q5510PfRBe4F11PQ
     - MySQL 用户管理和加密传输
 
 
-## MySQL 运维
+## 十一、MySQL 运维
 
 - **主从复制**（主从同步延迟、半同步复制、GTID 复制）
 - **读写分离**
