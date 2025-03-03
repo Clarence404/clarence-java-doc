@@ -1,1 +1,1 @@
-# SSE
+# SSE(Server-Sent Events)
