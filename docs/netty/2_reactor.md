@@ -1,4 +1,4 @@
-# **二、Reactor 模型**
+# Reactor 模型
 
 ::: warning todo 理解后优化
 :::
