@@ -4,7 +4,7 @@
 
 详情见：<RouteLink to="/interview/0_java#十六、说说java的stream">Stream</RouteLink>
 
-## 二、AQS原理剖析
+## 二、AQS原理
 
 
 ## 三、Java中的锁
