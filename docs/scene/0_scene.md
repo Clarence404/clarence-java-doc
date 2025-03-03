@@ -133,4 +133,8 @@ public class test {
 
 ## 六、如何设计一个高并发系统？
 
-详情查看：<RouteLink to="/currency/4_high_concurrency_sys">高并发-如何设计一个高并发系统？</RouteLink>
+解答：<RouteLink to="/currency/4_high_concurrency_sys">高并发-如何设计一个高并发系统？</RouteLink>
+
+## 七、分布式场景下是否适用 synchronized 加锁机制？
+
+解答：[分布式场景下是否适用 synchronized 加锁机制？](https://mp.weixin.qq.com/s/IGS_8pIc2wSKN88eMEJmSg)
