@@ -80,7 +80,7 @@ export default defineUserConfig({
             {text: '容器', link: '/container/1_linux'},
             {text: '算法', link: '/algorithm/0_base_0_complexity'},
             {text: '架构师', link: '/architecture/0_structure'},
-            {text: 'IOT', link: '/iot/0'},
+            {text: 'IOT', link: '/iot/0_base'},
             {text: 'AI', link: '/ai/0_ai'},
         ],
         sidebar: {
