@@ -24,7 +24,7 @@ UUID="322d6eca-eb3d-410d-b397-a70256094860"
 DEVICE="ens33"
 # 这是默认的，务必注释
 #BOOTPROTO="dhcp"
-BOOTPOTO="static"
+BOOTPROTO="static"
 #表示 系统启动时自动启用该网络接口
 ONBOOT="yes"
 # 本机设置的IP
@@ -35,5 +35,5 @@ GATEWAY=192.168.15.1
 3、重启网络设置
 
 ```shell
-systemctm restart network
+systemctl restart network
 ```
