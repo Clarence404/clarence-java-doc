@@ -12,6 +12,8 @@ vi /etc/sysconfig/network-scripts/ifcfg-ens33
 TYPE="Ethernet"
 PROXY_METHOD="none"
 BROWSER_ONLY="no"
+# Note: Comments are required here.
+#BOOTPROTO="dhcp"
 DEFROUTE="yes"
 IPV4_FAILURE_FATAL="no"
 IPV6INIT="yes"
@@ -22,15 +24,16 @@ IPV6_ADDR_GEN_MODE="stable-privacy"
 NAME="ens33"
 UUID="322d6eca-eb3d-410d-b397-a70256094860"
 DEVICE="ens33"
-# 这是默认的，务必注释
-#BOOTPROTO="dhcp"
-BOOTPROTO="static"
-#表示 系统启动时自动启用该网络接口
 ONBOOT="yes"
-# 本机设置的IP
-IPADDR=192.168.15.2
-# 本机的网关地址
-GATEWAY=192.168.15.1
+
+# static ip
+BOOTPROTO="static"
+IPADDR="192.168.2.3"
+PREFIX="24"
+GATEWAY="192.168.2.2"
+# if require net,use it
+DNS1="192.168.2.2"
+
 ```
 3、重启网络设置
 
