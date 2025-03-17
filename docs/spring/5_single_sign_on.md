@@ -2,6 +2,7 @@
 
 ## 一、LDAP
 
+[Spring LDAP Authentication](https://docs.spring.io/spring-security/reference/servlet/authentication/passwords/ldap.html#servlet-authentication-ldap-embedded)
 
 ## 二、CAS
 
@@ -26,5 +27,3 @@ Cas核心包：
 ## 五、Max-key
 
 [https://maxkey.top/zh/ppts.html](https://maxkey.top/zh/ppts.html)
-
-tobe continue ......
