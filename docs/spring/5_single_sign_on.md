@@ -1,6 +1,9 @@
 # 单点登录（SSO）
 
-## 一、CAS
+## 一、LDAP
+
+
+## 二、CAS
 
 Cas核心包：
 
@@ -11,10 +14,17 @@ Cas核心包：
 [https://github.com/apereo/cas-overlay-template](https://github.com/apereo/cas-overlay-template)
 
 
-## 二、Max-key
+## 三、SAML2
+
+[SpringSecurity-Saml2](https://docs.spring.io/spring-security/reference/servlet/saml2/index.html)
+
+## 四、OAuth2
+
+[SpringSecurity-Oauth2](https://docs.spring.io/spring-security/reference/servlet/oauth2/index.html)
+
+
+## 五、Max-key
 
 [https://maxkey.top/zh/ppts.html](https://maxkey.top/zh/ppts.html)
-
-## 三、OAuth2
 
 tobe continue ......
