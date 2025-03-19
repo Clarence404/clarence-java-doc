@@ -56,6 +56,8 @@ sudo systemctl restart docker
 
 #### 2.3、基于基线环境重新导入
 
+文如其意，直接使用正式环境中已经存在的镜像，随后将 docker image 导出，再次导入即可；
+
 #### 2.3、魔法代理方式直接下载
 
 - VMware 中的Docker使用魔法方式
