@@ -35,7 +35,7 @@
 Vmware使用NAT模式，保证主机和虚拟机在一个局域网下
 :::
 
-Clash的配置如下：
+[Clash](https://clashcn.com/) 的配置如下：
 
 ![img.png](../assets/container/clash_config.png)
 
