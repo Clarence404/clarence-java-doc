@@ -319,19 +319,19 @@ key 堆积在内存里，导致 Redis 内存块耗尽了，咋整？
 
 ## 八、Redis 的线程模型
 
-todo
+Todo
 
 ## 九、Redis 的并发竞争问题如何解决
 
-todo
+Todo
 
 ## 十、了解 Redis 的事务吗？
 
-todo
+Todo
 
 ## 十一、Redis 的选举算法和流程是怎样的
 
-todo
+Todo
 
 ## 十二、Redis 的持久化的机制
 
@@ -359,7 +359,7 @@ todo
 
 ![img.png](../assets/interview/master-slave.png)
 
-- 部署实测：todo
+- 部署实测：Todo
 
 #### 哨兵模式方案：
 
@@ -377,11 +377,11 @@ todo
 
 ## 十六、Redis 集群同步数据
 
-todo
+Todo
 
 ## 十七、Redis 的主从复制原理
 
-todo
+Todo
 
 ## 十八、知道哪些 Redis 的优化操作
 

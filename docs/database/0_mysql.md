@@ -85,7 +85,7 @@
 ### 5、死锁检测和解决方案
 ### 6、锁的优化建议
 
-todo：完成自己的理解书写
+Todo：完成自己的理解书写
 
 https://mp.weixin.qq.com/s/gAJFm3q5510PfRBe4F11PQ
 

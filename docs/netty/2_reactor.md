@@ -1,6 +1,6 @@
 # Reactor 模型
 
-::: warning todo 理解后优化
+::: warning Todo 理解后优化
 :::
 
 Reactor 模型是 **基于 IO 多路复用的一种事件驱动模型**，用于处理高并发网络请求。

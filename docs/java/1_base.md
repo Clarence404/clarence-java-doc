@@ -61,7 +61,7 @@ LinkedHashMap可以说是HashMap和LinkedList的集合体，**既使用了HashMa
 
 ### 2、基本原理
 
-todo 彻底精通后完成。。。
+Todo 彻底精通后完成。。。
 
 ## 三、ConcurrentHashMap分析
 
