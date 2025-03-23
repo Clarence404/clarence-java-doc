@@ -704,40 +704,40 @@ Function、Predicate、Consumer 等，这些接口都是函数式接口，广泛
 
 ## 十六、说说Java的Stream
 
-### 1、Stream流
+### 1、Stream 流
 
-- **Stream** 是 Java 8 引入的一个抽象，它允许你对集合（如 List、Set 等）进行声明式的操作。
-- Stream 支持多种操作，包括 **中间操作**（如 filter、map、sorted）和 **终端操作**（如 collect、reduce、forEach）。
-- 它不会修改原始数据，而是通过流水线式的方式进行转换，延迟执行（懒加载）。
+- **Stream** 是 Java 8 引入的一个抽象，用于**声明式地操作集合**（如 `List`、`Set` 等）。
+- **特点**：
+  - 支持 **中间操作**（`filter()`、`map()`、`sorted()` 等）。
+  - 支持 **终端操作**（`collect()`、`reduce()`、`forEach()` 等）。
+  - **不会修改原始数据**，而是通过**流水线式转换**，且 **延迟执行**（懒加载）。
+
+👉 **示例**：
 
 ```java
 List<Integer> numbers = Arrays.asList(1, 2, 3, 4, 5);
-List<Integer> evenNumbers = numbers.stream().filter(n -> n % 2 == 0).collect(Collectors.toList());
+
+List<Integer> evenNumbers = numbers.stream()
+        .filter(n -> n % 2 == 0)
+        .collect(Collectors.toList());
+
+System.out.println(evenNumbers); // 输出 [2, 4]
 ```
 
-> 常用的API百度即可搜到，不做赘述
+---
 
 ### 2、Optional
 
-Optional 是 Java 8 引入的一个类，用来表示一个可能为 null 的值，它的设计目的是帮助我们避免使用 null，从而减少
-NullPointerException 的发生。：
+`Optional` 是 Java 8 引入的类，**用来避免 `NullPointerException`**。
 
-创建 Optional的方式：
+**创建方式**：
+- `Optional.of()`：创建非空对象（`null` 会抛异常）。
+- `Optional.ofNullable()`：创建可为空对象（`null` 返回空 Optional）。
+- `Optional.empty()`：创建一个空 Optional。
 
-- Optional.of()：用于创建一个非空的 Optional 对象。如果传入的值为 null，会抛出 NullPointerException。
-- Optional.ofNullable()：用于创建一个可为空的 Optional 对象。如果传入的值为 null，则返回一个空的 Optional。
-- Optional.empty()：创建一个空的 Optional 对象。
+---
 
-**一个例子展示Optional的用法：**
-
-```java
-Dept dept = new Dept("dept");
-User user = new User(id:1,name:"Tom",dept);
-```
-
-::: warning 未使用Optional
-
-:::
+#### ⚠️ **未使用 Optional（嵌套 if 判断）**
 
 ```java
 public void test() {
@@ -749,41 +749,69 @@ public void test() {
             } else {
                 System.out.println(deptName);
             }
-      else{
-                System.out.println("未指定部门");
-            }
+        } else {
+            System.out.println("未指定部门");
         }
     }
 }
 ```
 
-::: tip 使用Optional
-
-:::
+#### ✅ **使用 Optional（优雅流式写法）**
 
 ```java
-String deptName = Optional.ofNullable(user)        // 创建
-        .map(User::getDept).map(Dept::getName)      //操作
-        .filter(StrUtil::isNotBlank)                //操作
-        .orElse(other:"未指定部门");                 //终结
-        System.out.
+String deptName = Optional.ofNullable(user)           // 创建 Optional
+        .map(User::getDept)                            // 提取 Dept
+        .map(Dept::getName)                             // 提取 Dept 的名字
+        .filter(StrUtil::isNotBlank)                   // 判断是否为空
+        .orElse("未指定部门");                          // 终结操作（默认值）
 
-println(deptName);
+System.out.println(deptName);
 ```
 
 ### 3、Parallel Stream
 
-- 并行流的启动
-  通过 parallel() 方法：通过调用 Stream 接口的 parallel() 方法，可以将一个顺序流转换为并行流
-- 数据的分割
-  数据拆分：在并行流中，数据会被自动拆分成多个子集合，每个子集合可以独立处理。这个过程是由 ForkJoinPool 完成的。
-- 并行流的合并结果
-    - 归约（Reduction）：当所有子任务完成后，它们的结果需要被合并。在并行流中，归约操作是通过
-      分治法（divide-and-conquer）来实现的。每个子任务的结果会被合并成最终的结果。
-    - 在执行并行流时，每个线程都会计算一部分结果，然后通过合并这些部分结果来得到最终结果。
-    - 并行流的终止操作（如 reduce()、collect()）会执行归约操作。例如，在 collect() 中，流会根据所使用的收集器将结果合并。
+#### **3.1 并行流的启动**
 
-- 底层原理：详细原理见：<RouteLink to="/parallel/0_currency#fork-join-框架">Fork/Join框架</RouteLink>
+- **`parallel()` 方法**：将**顺序流**转换成**并行流**。
+
+```java
+List<Integer> numbers = Arrays.asList(1, 2, 3, 4, 5);
+
+numbers.parallelStream()
+        .forEach(n -> System.out.println(n + " - " + Thread.currentThread().getName()));
+```
+
+#### **3.2 并行流的底层原理**
+
+- **数据分割**：  
+
+通过 **`ForkJoinPool`**（分叉-合并框架）拆分成多个子任务，每个线程处理一部分数据。
+
+- **结果合并**：  
+
+归约（Reduction）采用**"分治法"**，最终将各线程的部分结果合并成最终结果。
+
+
+- **终止操作**（`reduce()`、`collect()`）会触发 **归约合并**。
+
+
+- **底层原理**：详细原理见：<RouteLink to="/currency/0_currency#fork-join-框架">Fork/Join框架</RouteLink>
+
+
+### **4、并行流 vs 顺序流**
+
+| 特点              | 顺序流 (Stream) | 并行流 (ParallelStream) |
+|------------------|-----------------|------------------------|
+| 执行方式          | 单线程依次执行   | 多线程并行执行          |
+| 性能              | 数据量大时性能低 | 数据量大时性能提升明显  |
+| 线程安全          | 线程安全         | 需考虑线程安全问题      |
+| 底层实现          | 普通迭代器        | ForkJoinPool 分治合并    |
+
+::: tip
+- 并行流虽然性能提升，但**不适合所有场景**，比如**需要有序输出**的情况就不推荐使用。
+
+- 多线程带来的开销（线程创建、上下文切换等）在小数据集上反而会变慢。
+:::
 
 ## 十七、sort() 的底层算法
 

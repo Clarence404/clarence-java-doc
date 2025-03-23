@@ -2,7 +2,7 @@
 
 ## 一、Stream流
 
-详情见：<RouteLink to="/interview/0_java#十六、说说java的stream">Stream</RouteLink>
+详情见：<RouteLink to="/interview/0_java#十六、说说java的stream">说说java的stream</RouteLink>
 
 ## 二、AQS原理
 
