@@ -237,6 +237,8 @@ System.out.println(result);
 
 ## 四、HashMap和HashTable对比
 
+### 1、经典对比
+
 | 对比项	           | HashMap	                    | Hashtable                  |
 |----------------|-----------------------------|----------------------------|
 | **线程安全**	      | ❌ 非线程安全                     | 	✅ 线程安全（方法加锁 synchronized） |
@@ -247,6 +249,8 @@ System.out.println(result);
 | **扩容方式**	      | 容量翻倍（2^n 结构优化）              | 	容量翻倍 + 1                  |
 | **遍历方式**	      | 迭代器 Iterator（fail-fast 机制）	 | Enumeration（旧版方式）          |
 | **适用场景**	      | 适用于 单线程、高性能场景	              | 适用于 历史遗留代码、并发场景（已被淘汰）      |
+
+### 2、推荐 ConcurrentHashMap
 
 ::: tip
 ✅ 用 HashMap
@@ -421,11 +425,11 @@ Integer result = future.get(); // 获取任务执行结果
 并且避免了手动管理线程的复杂性，避免了线程创建和销毁的开销。
 
 ### 6、为何不建议使用 Executors？
-Executors 返回的线程池对象的弊端如下:
+**Executors** 返回的线程池对象的弊端如下:
 
-**FixedThreadPool** 和 **SingleThreadPool**: 允许的请求队列（**LinkedBlockingQueue**）长度为 **Integer.MAX VALUE**，可能会堆积大量的请求，从而导致 OOM。
+- **FixedThreadPool** 和 **SingleThreadPool**: 允许的请求队列（**LinkedBlockingQueue**）长度为 **Integer.MAX VALUE**，可能会堆积大量的请求，从而导致 OOM。
 
-**CachedThreadPool**: 允许的创建线程数量为 **LinkedBlockingQueue**，可能会创建大量的线程，从而导致 OOM。
+- **CachedThreadPool**: 允许的创建线程数量为 **LinkedBlockingQueue**，可能会创建大量的线程，从而导致 OOM。
 
 综上，为了手动控制线程池，建议自己使用 <RouteLink to="/currency/1_threadpool">ThreadPoolExecutor</RouteLink> 来创建线程池
 
