@@ -842,7 +842,7 @@ System.out.println(deptName);
 
 ### 3、Parallel Stream
 
-#### **3.1 并行流的启动**
+#### **3.1、并行流的启动**
 
 - **`parallel()` 方法**：将**顺序流**转换成**并行流**。
 
@@ -850,10 +850,12 @@ System.out.println(deptName);
 List<Integer> numbers = Arrays.asList(1, 2, 3, 4, 5);
 
 numbers.parallelStream()
-        .forEach(n -> System.out.println(n + " - " + Thread.currentThread().getName()));
+       .forEach(n -> {
+            System.out.println(n + " - " + Thread.currentThread().getName());
+});
 ```
 
-#### **3.2 并行流的底层原理**
+#### **3.2、并行流的底层原理**
 
 - **数据分割**：  
 
@@ -861,7 +863,7 @@ numbers.parallelStream()
 
 - **结果合并**：  
 
-归约（Reduction）采用**"分治法"**，最终将各线程的部分结果合并成最终结果。
+归约（Reduction）采用 **分治法**，最终将各线程的部分结果合并成最终结果。
 
 
 - **终止操作**（`reduce()`、`collect()`）会触发 **归约合并**。
@@ -895,11 +897,30 @@ numbers.parallelStream()
 
 ## 十九、Servlet 的生命周期
 
-- 加载和实例化（Loading and Instantiation）
-- 初始化（Initialization）
-- 请求处理（Service）
-- 销毁（Destruction）
-  ![img.png](../assets/java/servlet_cycle.png)
+
+### 1、加载和实例化（Loading and Instantiation）
+
+- 在这个阶段，类被加载到内存中并实例化。对于 Spring 容器来说，它会通过配置文件或注解扫描来加载和实例化 bean。
+- Spring 容器会根据定义的 bean 配置（如 XML 或 Java Config）来创建对象实例。
+
+### 2、初始化（Initialization）
+
+- 在实例化之后，Spring 会处理初始化步骤，这通常包括依赖注入（DI）和 bean 的属性设置。
+- 如果 bean 实现了 `InitializingBean` 接口或者在配置中定义了 `@PostConstruct` 注解的方法，Spring 会在初始化期间调用这些方法。
+
+### 3、请求处理（Service）
+
+- 这个阶段是对象发挥其主要功能的阶段，通常是处理业务逻辑或者响应外部请求。
+- 对于 Web 应用来说，这个阶段通常与请求的处理和响应的生成有关。Spring MVC 中的控制器（controller）会处理 HTTP 请求，执行业务操作，并返回相应的视图或数据。
+
+### 4、销毁（Destruction）
+
+- 当容器关闭或 bean 被销毁时，销毁方法会被调用。这通常是清理资源、关闭连接等操作的阶段。
+- 如果 bean 实现了 `DisposableBean` 接口，或者通过 `@PreDestroy` 注解标记了销毁方法，Spring 会在销毁时调用这些方法。
+
+### 5、图解生命周期
+
+![img.png](../assets/java/servlet_cycle.png)
 
 ## 二十、如何解决哈希冲突？
 
