@@ -71,7 +71,6 @@ export default defineUserConfig({
             {text: 'Spring', link: '/spring/1_spring'},
             {text: '微服务', link: '/springcloud/1_base'},
             {text: '分布式', link: '/distributed/0_distributed'},
-            {text: 'Protocol', link: '/protocol/0'},
             {text: '消息队列', link: '/mq/1_mq'},
             {text: '高并发', link: '/currency/0_currency'},
             {text: '设计模式', link: '/design/0_design'},
@@ -80,8 +79,9 @@ export default defineUserConfig({
             {text: '容器', link: '/container/1_linux'},
             {text: '算法', link: '/algorithm/0_base_0_complexity'},
             {text: '架构师', link: '/architecture/0_structure'},
+            {text: 'Protocol', link: '/protocol/0'},
             {text: 'IOT', link: '/iot/0_base'},
-            {text: 'AI', link: '/ai/0_ai'},
+            {text: '人工智能', link: '/ai/0_ai'},
         ],
         sidebar: {
             '/interview/': getSidebarFromDir(path.resolve(__dirname, '../interview')),
