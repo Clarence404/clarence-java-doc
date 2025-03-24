@@ -4,20 +4,30 @@
 以下只是基础大纲，后续需要持续增加内容
 :::
 
+结构参考地址：[深入理解Spring源码知识-小傅哥](https://bugstack.cn/md/spring/develop-spring/2021-05-16-%E7%AC%AC1%E7%AB%A0%EF%BC%9A%E5%BC%80%E7%AF%87%E4%BB%8B%E7%BB%8D%EF%BC%8C%E6%89%8B%E5%86%99Spring%E8%83%BD%E7%BB%99%E4%BD%A0%E5%B8%A6%E6%9D%A5%E4%BB%80%E4%B9%88%EF%BC%9F.html)
+
 ## 一、Spring IOC - 控制反转与依赖注入
 
 ### 1、 Spring 容器初始化流程
 
 - **Spring 容器概述**
-    - `BeanFactory` vs `ApplicationContext` 区别与应用场景
+  - `BeanFactory` vs `ApplicationContext` 区别与应用场景
 
 - **核心初始化方法解析**
-    - `refresh()` 全流程解析
-        - `prepareRefresh()` —— 容器启动准备
-        - `obtainFreshBeanFactory()` —— 创建 BeanFactory
-        - `registerBeanPostProcessors()` —— 注册扩展处理器
-        - `finishBeanFactoryInitialization()` —— 初始化单例 Bean
-        - `finishRefresh()` —— 发布事件
+  - `refresh()` 全流程解析
+    - `prepareRefresh()` —— 容器启动准备
+    - `obtainFreshBeanFactory()` —— 创建 BeanFactory
+    - `registerBeanPostProcessors()` —— 注册扩展处理器
+    - `finishBeanFactoryInitialization()` —— 初始化单例 Bean
+    - `finishRefresh()` —— 发布事件
+
+- **Spring 和 Spring Boot 中加载的入口**
+  - **Spring**：`ClassPathXmlApplicationContext` / `AnnotationConfigApplicationContext`
+    - 通过 `new` 创建 ApplicationContext，手动指定配置类或 XML 文件，调用 `refresh()` 启动容器。
+
+  - **Spring Boot**：`SpringApplication.run()`
+    - 封装了创建上下文、自动加载配置、刷新容器等一系列步骤，最终也是调用 `context.refresh()` 完成启动。
+    - 支持 Web、Reactive、Servlet 等不同上下文类型，开箱即用的自动配置能力让启动更加简单。
 
 ### 2、 Bean 的生命周期解析
 
