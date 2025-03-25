@@ -138,3 +138,7 @@ public class test {
 ## 七、分布式场景下是否适用 synchronized 加锁机制？
 
 解答：[分布式场景下是否适用 synchronized 加锁机制？](https://mp.weixin.qq.com/s/IGS_8pIc2wSKN88eMEJmSg)
+
+## 八、100 亿分库分表 如何设计？
+
+解答：[携程面试：100 亿分库分表 如何设计？](https://mp.weixin.qq.com/s/xQtKtaLG8xRMbK-8b3Rzuw)
