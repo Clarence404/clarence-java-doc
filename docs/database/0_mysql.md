@@ -87,7 +87,9 @@
 
 Todo：完成自己的理解书写
 
-https://mp.weixin.qq.com/s/gAJFm3q5510PfRBe4F11PQ
+[什么是MySQL锁？有哪些锁类型？](https://mp.weixin.qq.com/s/gAJFm3q5510PfRBe4F11PQ)
+
+[MySQL锁机制详解：从原理到实战，Java开发者必知的高并发基石](https://mp.weixin.qq.com/s/A-aVFJLpCnNtAg8ZZN6-YQ)
 
 ## 八、Mysql性能优化-高级篇
 
