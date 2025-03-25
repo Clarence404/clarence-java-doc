@@ -9,11 +9,7 @@
 
 ## 三、Java中的锁
 
-### 1、Synchronized
-
-### 2、ReentrantLock
-
-### 3、未完待续
+详情见: <RouteLink to="/currency/0_currency#concurrent-lock">Java并发-LOCK</RouteLink>
 
 ## 四、深入理解 Java 并发
 ### 并发模型（线程 vs 进程）

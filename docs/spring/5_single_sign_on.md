@@ -1,4 +1,4 @@
-# 单点登录（SSO）
+# 单点登录（Single Sign On）
 
 ## 一、LDAP
 
