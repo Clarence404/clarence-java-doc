@@ -53,6 +53,9 @@ CREATE DATABASE mydb
 # 查看数据库
 SHOW DATABASES
 
+# 查看数据库-数据表
+SHOW MEASUREMENTS
+
 # 使用指定数据库
 USE mydb
 
