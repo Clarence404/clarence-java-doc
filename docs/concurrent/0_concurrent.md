@@ -1,8 +1,8 @@
 # Java并发
 
-## Concurrent - Atomic
+## JUC - Atomic
 
-## Concurrent - LOCK
+## JUC - LOCK
 
 ### ReentrantLock（可重入锁）
 
@@ -15,14 +15,14 @@
 ### ConcurrentHashMap 并发容器
 
 
-## Concurrent - Fork/Join
+## JUC - Fork/Join
 
 ### Fork/Join 工作窃取算法
 
 ### 任务拆分与合并
 
 
-## Concurrent - CompletableFuture 与异步编程
+## JUC - CompletableFuture 与异步编程
 
 ### Future vs CompletableFuture
 
