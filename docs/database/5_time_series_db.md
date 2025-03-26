@@ -84,7 +84,7 @@ InfluxDB Studio 是一个开源的图形化管理工具，支持 Windows，可�
 
 ---
 
-### 4、2.x 安装
+### 5、2.x 安装
 
 ```dockerfile
 services:
@@ -101,9 +101,9 @@ services:
     restart: always
 ```
 
-### 5、2.x 使用
+### 6、2.x 使用
 
-#### 5.1、初始化配置
+#### 6.1、初始化配置
 
 访问 `http://localhost:8087`，会进入初始化界面，创建组织、Bucket、Token。
 
@@ -115,7 +115,7 @@ services:
 4TnxeZiruEm9pjlI3BIXTH8XYgIwMgr_ghy9Phj_YoXpJSABig_FhEkOVKWTaKPMeHPjAcVWx5UqviEGs1BZxg==
 ```
 
-#### 5.2、数据写入
+#### 6.2、数据写入
 
 2.x 支持多种方式写入数据，最常见的是 `CLI` 和 `API`。
 
@@ -138,7 +138,7 @@ curl -X POST "http://localhost:8087/api/v2/write?org=my-org&bucket=my-bucket&pre
   --data-raw "sensor,location=room1 temperature=25.3,humidity=60"
 ```
 
-#### 5.3、数据查询
+#### 6.3、数据查询
 
 2.x 默认使用 Flux 语言查询数据，示例：
 
@@ -149,21 +149,21 @@ from(bucket: "my-bucket")
   |> filter(fn: (r) => r.location == "room1")
 ```
 
-### 6、总结
+### 7、总结
 
-| 特性         | InfluxDB 1.x | InfluxDB 2.x |
-|--------------|-------------|-------------|
-| **查询语言** | InfluxQL    | Flux        |
-| **管理方式** | CLI         | Web UI      |
-| **权限管理** | 基础权限     | 支持多用户多组织 |
-| **索引方式** | tsi1        | 更高效的索引 |
-| **数据写入** | HTTP API    | CLI / API   |
+| 特性       | InfluxDB 1.x | InfluxDB 2.x |
+|----------|--------------|--------------|
+| **查询语言** | InfluxQL     | Flux         |
+| **管理方式** | CLI          | Web UI       |
+| **权限管理** | 基础权限         | 支持多用户多组织     |
+| **索引方式** | tsi1         | 更高效的索引       |
+| **数据写入** | HTTP API     | CLI / API    |
 
 **建议**：
 - **1.x 版本**适合老项目迁移、轻量级应用
 - **2.x 版本**适合新项目，功能更强大，尤其是多组织、多用户支持
 
 
-## 二、Tdengine
+## 二、TDengine
 
 ### 1、背景介绍
