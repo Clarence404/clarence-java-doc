@@ -29,23 +29,27 @@
 
 > 参考地址：[https://blog.csdn.net/m0_73381672/article/details/133690633](https://blog.csdn.net/m0_73381672/article/details/133690633)
 
+核心方法代码：
 ```java
-//实现阻塞队列
-class myBlockingQueue{
- 
+/**
+ * 手动阻塞队列
+ * 
+ */
+class MyBlockingQueue{
+
     //锁对象
     private Object object = new Object();
- 
+
     //队列采用循环队列  数组
     private String[] data = new String[1000];
- 
+
     //头指针 加volatile防止内存可见性问题
     private volatile int head = 0;
     //尾指针
     private volatile int tail = 0;
     //有效长度
     private volatile int size = 0;
- 
+
     //带有阻塞性质的入队操作put
     public void put(String str) throws InterruptedException {
         synchronized(object) {
@@ -59,15 +63,15 @@ class myBlockingQueue{
             tail++;
             size++;
             object.notify();
- 
+
             //由于数组循环使用 也防止索引出界
             if(tail==data.length) {
                 tail = 0;
             }
         }
- 
+
     }
- 
+
     //带有阻塞性质的出队列操作
     public String take() throws InterruptedException {
         synchronized(object) {
@@ -87,39 +91,43 @@ class myBlockingQueue{
             object.notify();
             return tmp;
         }
- 
+
     }
 }
- 
- 
- 
-//借助阻塞队列 实现生产者消费者模型
-public class test {
+```
+测试代码：
+```java
+/**
+ * 借助阻塞队列 实现生产者消费者模型
+ * */
+public class Test {
     public static void main(String[] args) {
         MyBlockingQueue queue = new MyBlockingQueue();
- 
+
         //生产者模型
         Thread t1 = new Thread(()->{
             int num = 1;
             while(true) {
                 try {
-                    queue.put(num);
+                    queue.put(String.valueOf(num));
                     System.out.println("生产者生产"+num);
                     num++;
-                    //Thread.sleep(1000);     //生产者有节奏生产
+                    //生产者有节奏生产
+                    Thread.sleep(1000);
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
             }
         });
- 
+
         //消费者模型
         Thread t2  =new Thread(()->{
             while(true) {
                 try {
-                    int tmp = queue.take();
+                    int tmp = Integer.parseInt(queue.take());
                     System.out.println("消费者消费"+tmp);
-                    Thread.sleep(1000);     //消费者有节奏消费
+                    //消费者有节奏消费
+                    Thread.sleep(1000);
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
