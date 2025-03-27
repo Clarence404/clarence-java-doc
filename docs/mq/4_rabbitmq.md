@@ -4,7 +4,7 @@
 
 ## 一、 安装RabbitMQ
 
-1、Docker安装
+### 1、Docker单机安装
 
 ```dockerfile
 services:
