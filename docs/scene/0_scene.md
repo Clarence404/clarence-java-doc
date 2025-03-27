@@ -35,7 +35,7 @@
  * 手动阻塞队列
  * 
  */
-class MyBlockingQueue{
+public class MyBlockingQueue {
 
     //锁对象
     private Object object = new Object();
@@ -52,9 +52,9 @@ class MyBlockingQueue{
 
     //带有阻塞性质的入队操作put
     public void put(String str) throws InterruptedException {
-        synchronized(object) {
+        synchronized (object) {
             //队列满时
-            while (size==data.length) {
+            while (size == data.length) {
                 //阻塞等待 等待另一个线程调用notify方法唤醒
                 object.wait();
             }
@@ -65,25 +65,24 @@ class MyBlockingQueue{
             object.notify();
 
             //由于数组循环使用 也防止索引出界
-            if(tail==data.length) {
+            if (tail == data.length) {
                 tail = 0;
             }
         }
-
     }
 
     //带有阻塞性质的出队列操作
     public String take() throws InterruptedException {
-        synchronized(object) {
+        synchronized (object) {
             //队列为空
-            while (size==0) {
+            while (size == 0) {
                 //阻塞等待
                 object.wait();
             }
             //队列不为空
             String tmp = data[head];
             head++;
-            if(head==data.length) {
+            if (head == data.length) {
                 head = 0;
             }
             size--;
@@ -91,7 +90,6 @@ class MyBlockingQueue{
             object.notify();
             return tmp;
         }
-
     }
 }
 ```
@@ -105,12 +103,12 @@ public class Test {
         MyBlockingQueue queue = new MyBlockingQueue();
 
         //生产者模型
-        Thread t1 = new Thread(()->{
+        Thread t1 = new Thread(() -> {
             int num = 1;
-            while(true) {
+            while (true) {
                 try {
                     queue.put(String.valueOf(num));
-                    System.out.println("生产者生产"+num);
+                    System.out.println("生产者生产" + num);
                     num++;
                     //生产者有节奏生产
                     Thread.sleep(1000);
@@ -121,11 +119,11 @@ public class Test {
         });
 
         //消费者模型
-        Thread t2  =new Thread(()->{
-            while(true) {
+        Thread t2 = new Thread(() -> {
+            while (true) {
                 try {
                     int tmp = Integer.parseInt(queue.take());
-                    System.out.println("消费者消费"+tmp);
+                    System.out.println("消费者消费" + tmp);
                     //消费者有节奏消费
                     Thread.sleep(1000);
                 } catch (InterruptedException e) {
