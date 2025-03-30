@@ -1,5 +1,7 @@
 # Java并发
 
+参考链接：[https://gitee.com/Doocs/advanced-java](https://gitee.com/Doocs/advanced-java#分布式系统)
+
 ## JUC - Atomic
 
 ## JUC - LOCK
