@@ -18,10 +18,11 @@
 
 ## 三、如何实现自动登录功能？
 
+[https://docs.pingcode.com/baike/2210471](https://docs.pingcode.com/baike/2210471)
 
 ## 四、对外的Api安全问题如何保证？
 
-完成自己的实现后，继续写完
+Todo 按照自己的理解实现：
 
 [Spring Cloud微服务，如何保证对外接口的安全？](https://mp.weixin.qq.com/s/kZZMQcAQh4XLF8sgsxT__g)
 
@@ -35,7 +36,7 @@
 
 测试运行代码：
 
-[Test.java](https://gitee.com/hello0709/clarence-java/raw/master/basic/src/main/java/com/dora/basic/juc/blockqueue/Test.java)
+[MyBlockingQueue.Test](https://gitee.com/hello0709/clarence-java/raw/master/basic/src/main/java/com/dora/basic/juc/blockqueue/Test.java)
 
 ## 六、如何设计一个高并发系统？
 
