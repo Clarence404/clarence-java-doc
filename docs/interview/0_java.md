@@ -496,38 +496,25 @@ public class Stack<T> {
 }
 ```
 
-类的写法不变，只是引入了通用数据类型T就可以适用于任何数据类型，并且类型安全的。这个类的调用方法：
+类的写法不变，只是引入了通用数据类型T就可以适用于任何数据类型，并且类型安全的。如下这个类的调用方法：
 
 ```java
 public void test() {
-
+    
     //实例化只能保存int类型的类
     Stack<int> a = new Stack<int>(100);
-
+    
     a.Push(10);
-
+    
     //这一行编译不通过，因为类a只接收int类型的数据
     a.Push("8888");
-
-    int x = a.Pop();
-
-    //实例化只能保存string类型的类
-    Stack<string> b = new Stack<string>(100);
-
-    //这一行编译不通过，因为类b只接收string类型的数据
-    b.Push(10);
-
-
-    b.Push("8888");
-
-    string y = b.Pop();
-
+    ...
 }
 ```
 
-### 2、T、E、K、V、? 的含义
+### 2、`T、E、K、V、? `的含义
 
-#### 2.1、T - Type
+#### 2.1、`T - Type`
 
 **含义**：T 通常用于表示一个 类型，在泛型类、泛型接口和泛型方法中作为类型参数使用。它是 "Type" 的缩写，表示该位置可以被替换为任何具体的类型。
 
@@ -549,7 +536,7 @@ public class Box<T> {
 
 在这个例子中，T 可以是任何类型，创建 Box 时会指定具体类型。
 
-#### 2.2、E - Element
+#### 2.2、`E - Element`
 
 **含义**：E 通常用于表示一个 元素类型，尤其是在集合类（如 List、Set、Map）中，表示集合的元素类型。E 是 "Element" 的缩写。
 
@@ -571,7 +558,7 @@ public class ListWrapper<E> {
 
 在这个例子中，E 代表集合 List 中的元素类型。
 
-#### 2.3、 K - Key
+#### 2.3、 `K - Key`
 
 **含义**：K 通常用于表示 键类型，尤其是在 Map 中，表示键的类型。K 是 "Key" 的缩写。
 
@@ -593,7 +580,7 @@ public class MyMap<K, V> {
 
 在这个例子中，K 代表键的类型，V 代表值的类型。
 
-#### 2.4、 V - Value
+#### 2.4、 `V - Value`
 
 **含义**：V 通常用于表示 值类型，特别是在 Map 这样的集合类中，表示值的类型。V 是 "Value" 的缩写。
 
@@ -605,7 +592,7 @@ public class MyMap<K, V> {
 //（同上，V 已在 MyMap<K, V> 中解释）
 ```
 
-#### 2.5、 ? - Wildcard (通配符)
+#### 2.5、 `? - Wildcard (通配符)`
 
 **含义**：? 是 通配符，用于表示一个未知类型。在泛型中，它通常表示一个不确定的类型，可以用作类型的占位符。
 ? 常用于方法、类或者集合的声明中，当你不关心类型具体是什么，只是想表明它是某种类型的子类或者父类时使用。
@@ -622,11 +609,11 @@ public void printList(List<?> list) {
 
 这里的 List<?> 表示可以接受任意类型的 List，但无法修改该 List，只能读取其中的元素。
 
-### 3、其他通配符的用法
+### 3、`其他通配符`
 
-**? extends T**：表示某个类型是 T 的子类（包括 T 本身）。
+**`? extends T`**：表示某个类型是 T 的子类（包括 T 本身）。
 
-**? super T**：表示某个类型是 T 的父类（包括 T 本身）。
+**`? super T`**：表示某个类型是 T 的父类（包括 T 本身）。
 
 示例：
 
@@ -653,14 +640,61 @@ public void addIntegerToList(List<? super Integer> list) {
 
 ### 4、 **Class&lt;T&gt;** 和 **Class&lt;?&gt;** 的区别
 
-- **Class&lt;T&gt;** 是你已经知道的具体类型。
+- **Class&lt;T&gt;** 表示 **确定的类型**，T 是一个具体的泛型参数，使用时必须指定具体类型，例如 Class&lt;String&gt;。
 
-- **Class&lt;?&gt;** 是一个未知的类型，用于处理不确定的类型信息。
+- **Class&lt;?&gt;** 表示 **未知类型**，适用于不确定类型的情况，例如泛型方法或反射中，能够处理任何类型的 Class。
+
+Class&lt;T&gt; 和 Class&lt;?&gt;
 
 ```java
-//正确的定义泛型方法
+public class ClassTypeDemo {
+
+  public static void main(String[] args) {
+    // Class<T> 用于已知类型
+    Class<String> stringClass = String.class;
+    // java.lang.String
+    System.out.println("stringClass: " + stringClass.getName());
+
+    // Class<?> 适用于未知类型
+    // 传入 Integer
+    Class<?> unknownClass = getClassType(42);
+    // java.lang.Integer
+    System.out.println("unknownClass: " + unknownClass.getName());
+  }
+
+  // 使用 Class<?> 处理不确定的类型
+  public static Class<?> getClassType(Object obj) {
+    return obj.getClass();
+  }
+  
+}
+```
+泛型类示例
+
+```java
+// 定义泛型类
 public static class MyObject<T> {
     private T value;
+
+    public MyObject(T value) {
+        this.value = value;
+    }
+
+    public T getValue() {
+        return value;
+    }
+}
+
+public class GenericExample {
+    public static void main(String[] args) {
+        // 使用 Class<T>，类型已知
+        MyObject<String> obj = new MyObject<>("Hello");
+        System.out.println("Value: " + obj.getValue());
+
+        // 使用 Class<?>，可以处理任何类型
+        MyObject<?> unknownObj = new MyObject<>(123);
+        System.out.println("Unknown Value: " + unknownObj.getValue());
+    }
 }
 ```
 

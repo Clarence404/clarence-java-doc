@@ -44,28 +44,37 @@ HashMap 是基于哈希表实现的，哈希表的基本思想是通过将数据
 扩容是一个相对耗时的操作，时间复杂度为 O(n)，但扩容操作是按需进行的，不是频繁发生，因此平均而言，HashMap 的操作仍然是 O(1)。
 
 ### 5、 关键特点
-- 非线程安全：HashMap 不是线程安全的，如果在多线程环境下使用，需要考虑同步问题。 
-- 允许 null 键和 null 值：HashMap 允许一个 null 键和多个 null 值。 
-- 元素顺序不保证：HashMap 不保证键值对的顺序，因为它是基于哈希函数计算索引的，顺序是无序的。如果需要顺序，可以使用 LinkedHashMap
+
+- **非线程安全**：HashMap 不是线程安全的，如果在多线程环境下使用，需要考虑同步问题。 
+
+- **允许 null 键和 null 值**：HashMap 允许一个 null 键和多个 null 值。 
+
+- **元素顺序不保证**：HashMap 不保证键值对的顺序，因为它是基于哈希函数计算索引的，顺序是无序的。如果需要顺序，可以使用 LinkedHashMap
 
 ## 二、LinkedHashMap分析
 
 ### 1、类继承关系
 
-LinkedHashMap继承了HashMap类，是HashMap的子类，LinkedHashMap的大多数方法的实现直接使用了父类HashMap的方法,
-LinkedHashMap可以说是HashMap和LinkedList的集合体，**既使用了HashMap的数据结构，又借用了LinkedList双向链表的结构保存了记录的插入顺序，
-在用Iterator遍历LinkedHashMap时，先得到的记录肯定是先插入的，也可以在构造时带参数，按照访问次序排序。**
+`LinkedHashMap` 继承自 `HashMap`，是其子类，并复用了 `HashMap` 的大部分方法。
+
+与 `HashMap` 不同的是，`LinkedHashMap` 结合了 **哈希表（HashMap）** 和 **双向链表（LinkedList）** 的特点，不仅提供了高效的键值存储，还维护了元素的 **插入顺序**。
+
+在使用 `Iterator` 遍历 `LinkedHashMap` 时，元素的顺序与插入顺序一致。
+
+此外，`LinkedHashMap` 还支持按照 **访问顺序** 排序，可在构造时通过参数指定，使最近访问的元素排列在前，适用于实现 **LRU（最近最少使用）缓存策略**。
 
 ![](../assets/java/LinkedHashMap.png)
 
 
 ### 2、基本原理
 
-Todo 彻底精通后完成。。。
+::: warning Todo
+更加精通后完成。。。
+:::
 
 ## 三、ConcurrentHashMap分析
 
-### 1、ConcurrentHashMap基本特性
+### 1、基本特性
 
 | **特性**	             | **描述**                                                                                      |
 |---------------------|---------------------------------------------------------------------------------------------|
@@ -84,82 +93,69 @@ Todo 彻底精通后完成。。。
 | **写入性能**	  | 分段锁，性能较好                       | 	CAS + 局部锁，性能更高              |
 | **扩容机制**	  | Segment 级别扩容	                  | 无锁扩容，支持并发扩容                  |
 
-- 更多细节，如基本结构，及其方法，研究后再写；
+::: warning Todo
+更加精通后完成。。。
+:::
 
-## 四、ConcurrentHashMap为什么放弃分段锁？
+## 四、ConcurrentHashMap 为什么放弃分段锁？
 
-### 1、 JDK 1.7 前分段锁的弊端
+### 1、JDK 1.7 前分段锁的弊端
 
-#### 🔴 1.1 扩容性能低
+在 JDK 1.7 之前，`ConcurrentHashMap` 使用 **分段锁（Segment）**，每个 `Segment` 管理独立的 `HashEntry[]`。但存在以下问题：
 
-JDK 1.7 ConcurrentHashMap 采用 **分段锁（Segment）**，每个 Segment 维护一个独立的 HashEntry[]，但在 扩容 时：
+- **扩容性能差**：扩容时需要对整个 `Segment` 加锁，影响并发。
 
-- 需要 **对整个 Segment 加锁**，导致其他线程无法访问该 Segment，影响并发性能。
+- **内存浪费**：预先分配多个 `Segment`，即使不使用也占用内存。
 
-- **迁移数据需要同步整个 Segment**，多个线程不能同时进行数据迁移。
+- **代码复杂**：锁管理复杂，且 `put()` 需要两次 `hash` 计算，降低性能。
 
-#### 🔴 1.2 空间浪费
+### 2、JDK 1.8 后的新方案
 
-- ConcurrentHashMap 预先分配多个 Segment，即使有的 Segment 为空，仍然占用内存，导致 空间利用率低。
+JDK 1.8 放弃了 `Segment`，改用 **数组 + 链表 + 红黑树** 结构，结合 **CAS** 和 **synchronized** 局部加锁，提升并发性能。
 
-#### 🔴 1.3 结构复杂，代码难维护
-
-- Segment **继承 ReentrantLock，导致 锁管理复杂**，增加了不必要的开销。
-
-- Segment 结构导致 put 操作需要 **两次 hash 计算**（一次计算 Segment 索引，一次计算 Entry 索引），影响性能：
-```java
- // 找到 Segment
-int segmentIndex = (hash >>> segmentShift) & segmentMask;
-// 在该 Segment 内部查找
-int bucketIndex = (hash & (segment.table.length - 1));
-```
-
-### 2、 JDK 1.8 后新方案
-
-JDK 1.8 直接去掉 Segment，采用 **数组 + 链表 + 红黑树** 结构，结合 CAS + synchronized 局部锁，实现更高效的并发控制：
-
-#### ✅ 2.1 采用 CAS 无锁优化
-
-- CAS（Compare And Swap） 是一种 乐观锁，当多个线程竞争同一个 Node 插入时，采用 CAS 方式写入，避免不必要的锁竞争：
+- **CAS 无锁优化**：避免锁竞争，提高吞吐量。
 
 ```java
 if (casTabAt(tab, i, null, new Node<K,V>(hash, key, value, null))) {
     return null;
 }
 ```
-- 这样，当 Node 为空时，线程可以 **无锁写入**，提高吞吐量。
 
-#### ✅ 2.2 采用 synchronized 代替 ReentrantLock
+- **synchronized 局部加锁**：只锁定当前桶位，减少锁竞争。
 
-- 由于 synchronized 在 JDK 1.8 中已优化（锁粗化、锁消除、偏向锁等），其性能接近 ReentrantLock，因此 JDK 1.8 直接使用 synchronized 进行局部加锁：
 ```java
-// f 是桶中的第一个节点
 synchronized (f) {
     putValUnderLock();
 }
 ```
-- 只锁定当前桶位（Node[] 数组中的一个索引），避免对整个 Map 加锁，减少竞争。
 
-#### ✅ 2.3 红黑树优化，提升查询性能
-
-- 如果某个桶的链表长度 超过 8，则转换为 红黑树，提升查询效率：
+- **红黑树优化**：当链表长度超过 8，转为红黑树，查询效率提高。
 
 ```java
 if (binCount >= TREEIFY_THRESHOLD) {
     treeifyBin(tab, i);
 }
-```
-- 链表查询 O(n) → 红黑树查询 O(log n)，减少链表查找的性能损耗。
+  ```
 
-#### ✅ 2.4 支持无锁扩容
-- 多个线程可以并发迁移数据，提升扩容效率，避免 Segment 级别的全局锁：
+- **无锁扩容**：多个线程并行迁移数据，提升扩容效率。
+
 ```java
 if (sizeCtl < table.length * 0.75) {
-    // 进行无锁扩容
     transferNodes();
 }
 ```
-- 采用 **分批次迁移**，多个线程 并行扩容，减少停顿时间。
+
+### 3、整体总结
+
+- JDK 1.7 分段锁的性能差、空间浪费和复杂性问题。
+
+- JDK 1.8 改用 CAS、synchronized 和红黑树，提升了并发性能和查询效率，支持无锁扩容。
+
+---
+
+> **提示**：JDK 1.8 的 `ConcurrentHashMap` 在高并发下表现更优，避免了分段锁带来的性能瓶颈。
+
+---
 
 ## 四、HashMap、LinkedHashMap、ConcurrentHashMap对比
 
@@ -263,11 +259,11 @@ System.out.println(result);
 
 ## 五、Java 泛型
 
-常见问题，见：<RouteLink to="/interview/0_java#十四、说说你对泛型的理解">Java总结-Java泛型</RouteLink>
+### 1、<RouteLink to="/interview/0_java#十四、说说你对泛型的理解">泛型基础</RouteLink>
 
-### **补充：类型擦除**
+### 2、类型擦除
 
-Java 泛型是编译时的特性，在运行时，Java 会移除（擦除）泛型的类型信息，这称为 类型擦除（Type Erasure）。
+Java 泛型是编译时的特性，在运行时，Java 会移除（擦除）泛型的类型信息，这称为 **类型擦除（Type Erasure）**。
 
 **原因**： Java 的泛型是为了**向后兼容**（Generics 是 JDK 1.5 引入的，而 Java 需要兼容早期版本）。
 **JVM 并不支持真正的泛型**，所有泛型信息在编译阶段就被擦除，JVM 看到的只有原始类型（Raw Type）。
@@ -431,7 +427,7 @@ Integer result = future.get(); // 获取任务执行结果
 
 - **CachedThreadPool**: 允许的创建线程数量为 **LinkedBlockingQueue**，可能会创建大量的线程，从而导致 OOM。
 
-综上，为了手动控制线程池，建议自己使用 <RouteLink to="/currency/1_threadpool">ThreadPoolExecutor</RouteLink> 来创建线程池
+综上，为了手动控制线程池，建议自己使用 <RouteLink to="/concurrent/1_threadpool">ThreadPoolExecutor</RouteLink> 来创建线程池
 
 ## 十、ThreadLocal
 

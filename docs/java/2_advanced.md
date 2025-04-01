@@ -9,7 +9,7 @@
 
 ## 三、Java中的锁
 
-详情见: <RouteLink to="/currency/0_currency#concurrent-lock">Java并发-LOCK</RouteLink>
+详情见: <RouteLink to="/concurrent/0_concurrent#concurrent-lock">Java并发-LOCK</RouteLink>
 
 ## 四、深入理解 Java 并发
 ### 并发模型（线程 vs 进程）
