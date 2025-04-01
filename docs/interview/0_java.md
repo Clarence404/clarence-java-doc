@@ -353,9 +353,57 @@ Java 反射是动态代理（JDK 动态代理和 CGLIB 代理）的基础，如 
 
 ### 2、何为静态代理？
 
+实例代码：
+
+```java
+// 1. 定义接口
+interface Subject {
+    void request();
+}
+
+// 2. 真实对象
+class RealSubject implements Subject {
+    public void request() {
+        System.out.println("真实对象的请求");
+    }
+}
+
+// 3. 代理类
+class Proxy implements Subject {
+    private RealSubject realSubject;
+    
+    public Proxy(RealSubject realSubject) {
+        this.realSubject = realSubject;
+    }
+    
+    public void request() {
+        preRequest();
+        realSubject.request(); // 调用真实对象的方法
+        postRequest();
+    }
+    
+    private void preRequest() {
+        System.out.println("代理前置处理");
+    }
+    
+    private void postRequest() {
+        System.out.println("代理后置处理");
+    }
+}
+
+// 使用
+public class Client {
+    public static void main(String[] args) {
+        RealSubject real = new RealSubject();
+        Proxy proxy = new Proxy(real);
+        proxy.request();
+    }
+}
+```
+
 ## 十二、写出几种单例模式实现
 
-### 1、 懒汉式（线程不安全）
+### 1、懒汉式（线程不安全）
 
 - 特点： 延迟初始化，调用 getInstance() 时才创建实例，但线程不安全。
 
@@ -402,7 +450,7 @@ public class SingletonEager {
 
 - 缺点： 类加载时即创建实例，即使从未使用，也会占用内存。
 
-### 3、 双重检查锁（DCL，推荐）
+### 3、双重检查锁（DCL，推荐）
 
 - 特点： 线程安全，且避免了资源浪费，是常见的最佳实践。
 
@@ -710,17 +758,11 @@ public class GenericExample {
 
 #### **1.1 `@FunctionalInterface` 的作用**
 
-✅ **1、编译检查**
+**1、编译检查**：确保接口**只能有一个抽象方法**，如果有多个，编译器会报错。
 
-- 确保接口**只能有一个抽象方法**，如果有多个，编译器会报错。
+**2、代码更清晰**：即使不加注解，符合规则的接口依旧是函数式接口，但加上注解更**直观明了**，也能防止**误修改**。
 
-✅ **2、代码更清晰**
-
-- 即使不加注解，符合规则的接口依旧是函数式接口，但加上注解更**直观明了**，也能防止**误修改**。
-
-✅ **3、支持 Lambda 表达式**
-
-- **Lambda表达式**可以被赋值给**任意函数式接口**，编译器通过接口的**唯一抽象方法**推断 Lambda 的**参数**和**返回值**。
+**3、支持 Lambda 表达式**： **Lambda表达式**可以被赋值给**任意函数式接口**，编译器通过接口的**唯一抽象方法**推断 Lambda 的**参数**和**返回值**。
 
 ------
 
@@ -752,17 +794,11 @@ greeting.sayHello("Tom");
 
 ####  **2.1、 Lambda 底层拆解流程**
 
-1️⃣ **生成匿名内部类**
+**生成匿名内部类**：Lambda 在运行时，会生成**一个匿名内部类**，实现函数式接口，并**重写**接口中的抽象方法。
 
-- Lambda 在运行时，会生成**一个匿名内部类**，实现函数式接口，并**重写**接口中的抽象方法。
+**编译生成静态方法**：编译时，**Lambda 表达式的代码块**会被编译成**一个静态方法**（`lambda$...` 命名形式）。
 
-2️⃣ **编译生成静态方法**
-
-- 编译时，**Lambda 表达式的代码块**会被编译成**一个静态方法**（`lambda$...` 命名形式）。
-
-3️⃣ **调用静态方法**
-
-- 匿名内部类中重写的方法，其实最终调用的**是静态方法**里的代码。
+**调用静态方法**：匿名内部类中重写的方法，其实最终调用的**是静态方法**里的代码。
 
 ------
 
@@ -800,7 +836,7 @@ greeting.sayHello("Tom");
 javap -c ClassName
 ```
 
-可以看到类似这样的结构👇
+可以看到类似这样的结构：
 
 ```plaintext
 private static void lambda$main$0(String name) {
@@ -818,7 +854,7 @@ private static void lambda$main$0(String name) {
   - 支持 **终端操作**（`collect()`、`reduce()`、`forEach()` 等）。
   - **不会修改原始数据**，而是通过**流水线式转换**，且 **延迟执行**（懒加载）。
 
-👉 **示例**：
+**示例**：
 
 ```java
 List<Integer> numbers = Arrays.asList(1, 2, 3, 4, 5);
@@ -843,7 +879,7 @@ System.out.println(evenNumbers); // 输出 [2, 4]
 
 ---
 
-#### ⚠️ **未使用 Optional（嵌套 if 判断）**
+#### **未使用 Optional（嵌套 if 判断）**
 
 ```java
 public void test() {
@@ -862,7 +898,7 @@ public void test() {
 }
 ```
 
-#### ✅ **使用 Optional（优雅流式写法）**
+#### **使用 Optional（优雅流式写法）**
 
 ```java
 String deptName = Optional.ofNullable(user)           // 创建 Optional
