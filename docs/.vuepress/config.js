@@ -53,7 +53,7 @@ export default defineUserConfig({
             { rel: 'icon', href: 'images/logo.png' }
         ]
     ],
-    base: '/clarence-doc/',
+    base: '/clarence-java-doc/',
     lang: 'en-US',
     port: 1000,
     title: 'ClarenceDoc',

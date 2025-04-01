@@ -1,7 +1,7 @@
 {
-  "name": "clarence-doc",
+  "name": "clarence-java-doc",
   "version": "0.0.1",
-  "description": "clarence-doc",
+  "description": "clarence-java-doc",
   "license": "MIT",
   "type": "module",
   "scripts": {
