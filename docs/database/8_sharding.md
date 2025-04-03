@@ -1,8 +1,6 @@
 # 数据库中间件
 
-## 一、MyCat
-
-## 二、ShardingSphere
+## 一、ShardingSphere
 
 ### 1、Sharding-JDBC
 

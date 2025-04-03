@@ -1,4 +1,4 @@
-# 分布式数据库
+# Distributed DB
 
 ## OceanBase
 

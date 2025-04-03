@@ -1,4 +1,4 @@
-# 列式数据库
+# Columnar DB
 
 ## Hbase
 

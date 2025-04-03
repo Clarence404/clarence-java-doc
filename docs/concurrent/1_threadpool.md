@@ -1,4 +1,4 @@
-# 线程池（ThreadPool）
+# ThreadPool
 
 关于Executor的介绍，在 <RouteLink to="/java/1_base#九、线程池基础-executors">Java基础-线程池基础（Executors）</RouteLink> 
 已经讲述过，此处只着重介绍 ThreadPoolExecutor相关的处理方案

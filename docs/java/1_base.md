@@ -259,51 +259,7 @@ System.out.println(result);
 - ConcurrentHashMap 在 **高并发 场景下比 Hashtable 性能更优（局部加锁，甚至无锁）**。
 :::
 
-## 五、Java 泛型
-
-### 1、<RouteLink to="/interview/0_java#十四、说说你对泛型的理解">泛型基础</RouteLink>
-
-### 2、类型擦除
-
-Java 泛型是编译时的特性，在运行时，Java 会移除（擦除）泛型的类型信息，这称为 **类型擦除（Type Erasure）**。
-
-**原因**： Java 的泛型是为了**向后兼容**（Generics 是 JDK 1.5 引入的，而 Java 需要兼容早期版本）。
-**JVM 并不支持真正的泛型**，所有泛型信息在编译阶段就被擦除，JVM 看到的只有原始类型（Raw Type）。
-
-**示例（泛型擦除前 vs. 擦除后）：**
-```java
-// 泛型代码
-public class Box<T> {
-    private T value;
-
-    public void setValue(T value) {
-        this.value = value;
-    }
-
-    public T getValue() {
-        return value;
-    }
-}
-```
-**编译后（擦除后的字节码）：**
-
-```java
-// 擦除泛型后的代码
-public class Box {
-    // 泛型 T 变成 Object
-    private Object value;
-
-    public void setValue(Object value) {
-        this.value = value;
-    }
-
-    public Object getValue() {
-        return value;
-    }
-}
-```
-
-## 六、线程的创建（Thread vs Runnable）
+## 五、线程的创建（Thread vs Runnable）
 
 ### 1、继承 Thread 类
 
@@ -345,18 +301,20 @@ class MyRunnable implements Runnable {
 - 优点：允许实现多个接口，提供更多的灵活性和可扩展性。
 - 缺点：比继承 Thread 类稍微复杂一些，但通常更加推荐。
 
-## 七、volatile 关键字
+
+
+## 六、volatile 关键字
 
 ### 1、线程可见性
 
 ### 2、防止指令重排
 
 
-## 八、wait() / notify() / notifyAll()
+## 七、线程的睡眠与唤醒
 
+### 1、wait() / notify() / notifyAll()
 
-
-## 九、线程池基础（Executors）
+## 八、线程池基础（Executors）
 
 ### 1、Executors工具类
 
@@ -431,25 +389,128 @@ Integer result = future.get(); // 获取任务执行结果
 
 综上，为了手动控制线程池，建议自己使用 <RouteLink to="/concurrent/1_threadpool">ThreadPoolExecutor</RouteLink> 来创建线程池
 
-## 十、ThreadLocal
+## 九、ThreadLocal
 
-### 1、基础原理
+### 1、基础概念
 
-ThreadLocal 是 Java 提供的一个类，用于为**每个线程提供独立的变量副本**。每个线程访问自己的副本，不会与其他线程共享数据，常用于处理线程安全的问题。
-- 业务使用示意图
+`ThreadLocal` 是 Java 中的一个类，用于为每个线程提供一个 **独立的变量副本**。每个线程都会有该变量的一个独立副本，因此一个线程的修改不会影响其他线程的副本。
+
+#### **特点：**
+- 每个线程都会持有自己独立的 **ThreadLocal 变量副本**。
+
+- 线程之间的变量是隔离的，不会相互影响。
+
+- 通常用于在多线程环境中保存线程级别的局部变量，例如数据库连接、用户会话等。
+
+- 线程结束时，相关资源（如内存）可以被清理。
+
+### 2、底层原理
 
 ![img_5.png](../assets/java/threadlocal_usage.png)
 
-- 内部结构示意图：
+### 3、内部结构
 
 ![img_5.png](../assets/java/threadlocal_structure.png)
 
-### 2、应用场景
+### 4、示例代码
 
-- **数据库连接**：如低代码系统中的数据源管理；
+```java
+public class ThreadLocalExample {
+    private static ThreadLocal<Integer> threadLocalValue = ThreadLocal.withInitial(() -> 0);
 
-为每个线程提供独立的数据库连接或事务对象，避免多个线程同时操作同一个连接，提升性能和安全性。
+    public static void main(String[] args) {
+        // 模拟多线程环境
+        Runnable task = () -> {
+            int value = threadLocalValue.get();
+            System.out.println(Thread.currentThread().getName() + " initial value: " + value);
+            threadLocalValue.set(value + 1); // 修改该线程的副本
+            System.out.println(Thread.currentThread().getName() + " modified value: " + threadLocalValue.get());
+        };
 
-- **用户会话信息**：如单体服务的用户会话信息管理；
+        // 启动两个线程
+        Thread t1 = new Thread(task);
+        Thread t2 = new Thread(task);
+        t1.start();
+        t2.start();
+    }
+}
+```
 
-在 Web 应用中，可以使用 ThreadLocal 存储每个请求的用户会话信息，使每个线程能够独立地访问相关的会话数据。
+**输出：**
+```
+Thread-0 initial value: 0
+Thread-1 initial value: 0
+Thread-0 modified value: 1
+Thread-1 modified value: 1
+```
+- 线程 `Thread-0` 和 `Thread-1` 拥有各自独立的 `ThreadLocal` 变量副本，互不干扰。
+
+### 5、适用场景
+
+- **线程局部变量**：例如存储每个线程的连接信息、日志标识符等。
+
+- **避免竞争条件**：避免多个线程共享变量时引发的线程安全问题。
+
+## 十、TransmittableThreadLocal
+
+### 1、基础概念
+
+`TransmittableThreadLocal` 是一种基于 `ThreadLocal` 的增强版本，通常是第三方库（如 `Alibaba` 的 **Arthas** 库）提供的，它的主要
+功能是 **支持跨线程传递 ThreadLocal 的值**，特别是在异步任务或线程池中，`ThreadLocal` 的值会被丢失，因为线程池的线程是复用的。
+
+- 与 `ThreadLocal` 不同，`TransmittableThreadLocal` 支持 **跨线程传递变量**，即使是线程池或异步执行的情况，也可以传递变量的值。
+
+- 适用于线程池中的任务或异步操作，它可以 **继承父线程中的 `ThreadLocal` 值**，即使线程被池复用，值也能正确传递到子线程。
+
+- 线程池的复用特性会导致传统 `ThreadLocal` 的值丢失，但 `TransmittableThreadLocal` 解决了这一问题，能够传递这些值。
+
+### 2、示例代码
+```java
+import com.alibaba.ttl.TransmittableThreadLocal;
+
+public class TransmittableThreadLocalExample {
+    private static TransmittableThreadLocal<Integer> transmittableThreadLocalValue = new TransmittableThreadLocal<>();
+
+    public static void main(String[] args) {
+        transmittableThreadLocalValue.set(10);  // 设置主线程中的值
+
+        // 模拟一个线程池中的任务
+        Runnable task = () -> {
+            Integer value = transmittableThreadLocalValue.get();
+            System.out.println(Thread.currentThread().getName() + " value: " + value); // 子线程继承了主线程的值
+        };
+
+        // 启动线程池任务
+        Thread t1 = new Thread(task);
+        Thread t2 = new Thread(task);
+        t1.start();
+        t2.start();
+    }
+}
+```
+
+**输出：**
+```
+Thread-0 value: 10
+Thread-1 value: 10
+```
+- 这里，`TransmittableThreadLocal` 的值（`10`）从主线程传递到子线程，即使是通过线程池执行任务。
+
+### 3、适用场景
+
+- **跨线程传递**：当需要在异步执行（例如线程池）或任务传递中保持 `ThreadLocal` 值时。
+
+- **增强的线程安全**：特别适用于需要在并行任务中传递父线程上下文的场景。
+
+### 4、对比 Threadlocal
+
+| 特性                         | **ThreadLocal**                                  | **TransmittableThreadLocal**               |
+|------------------------------|-------------------------------------------------|--------------------------------------------|
+| **线程隔离**                  | 每个线程有自己的副本，线程之间互不干扰          | 支持跨线程传递，适合线程池和异步任务        |
+| **跨线程传递**                | 不支持                                          | 支持跨线程传递（尤其是在线程池中）         |
+| **适用场景**                  | 线程局部变量，避免线程之间共享变量引发的问题   | 跨线程任务传递，线程池和异步任务的上下文传递 |
+| **库**                        | Java 标准库                                     | 通常是第三方库（如 Alibaba）提供的扩展  |
+
+- **`ThreadLocal`** 更适合 **单线程内部的线程局部存储**，适用于普通的多线程编程。
+
+- **`TransmittableThreadLocal`** 适合于 **需要传递 ThreadLocal 值的异步操作或线程池**，解决了传统 `ThreadLocal` 在跨线程场景下丢失的问题。

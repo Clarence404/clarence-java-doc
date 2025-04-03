@@ -240,39 +240,82 @@ class Car {
 
 ## 八、说说Java的IO类
 
-### 1、Java的IO流
+### 1、Java的IO分类梳理
 
 ![img.png](../assets/java/io.png)
 
 ### 2、为什么要进行序列化？
 
-- **对象序列化可以实现分布式对象**。
+在Java中，**序列化（Serialization）** 是指将对象转换为字节流，以便存储或传输的过程。反序列化（Deserialization）则是将字节流恢复为对象的过程。序列化的主要作用如下：
 
-主要应用例如：RMI(即远程调用Remote Method Invocation)要利用对象序列化运行远程主机上的服务，就像在本地机上运行对象时一样。
+**远程通信（分布式对象）**
 
-- **java对象序列化不仅保留一个对象的数据，而且递归保存对象引用的每个对象的数据**。
+- **对象序列化可以实现分布式对象**，例如 Java RMI（远程方法调用，Remote Method Invocation）。
 
-可以将整个对象层次写入字节流中，可以保存在文件中或在网络连接上传递。利用对象序列化可以进行对象的"深复制"，即复制对象本身及引用的对象本身。序列化一个对象可能得到整个对象序列。
+- RMI 允许在不同的 JVM 之间传输对象，使远程主机上的服务像本地对象一样使用。
 
-- **序列化可以将内存中的类写入文件或数据库中**。
+**数据持久化（存储与恢复）**
 
-比如：将某个类序列化后存为文件，下次读取时只需将文件中的数据反序列化就可以将原先的类还原到内存中。也可以将类序列化为流数据进行传输。
+- **对象可以被序列化后存储在文件或数据库中**，方便后续恢复：
 
-总的来说就是将一个已经实例化的类转成文件存储，下次需要实例化的时候只要反序列化即可将类实例化到内存中并保留序列化时类中的所有变量和状态。
+  - 例如：某个对象的状态可以被保存到文件，下次程序运行时，可以直接从文件中恢复，而不需要重新创建和初始化对象。
+  
+  - 适用于缓存、日志存储、数据备份等场景。
 
-- **对象、文件、数据，有许多不同的格式，很难统一传输和保存**。
+**深拷贝（Deep Copy）**
 
-序列化以后就都是字节流了，无论原来是什么东西，都能变成一样的东西，就可以进行通用的格式传输或保存，传输结束以后，要再次使用，就进行反序列化还原，这样对象还是对象，文件还是文件。
+- **Java 对象序列化不仅保留对象的数据，而且递归保存对象引用的每个对象的数据**。
 
-### 3、serialVersionUID的作用？
+  - 这样可以将整个对象层次写入字节流，实现对象的 **深复制**（Deep Copy）。
 
-serialVersionUID 是一个 private static final long 型 ID, 当它被印在对象上时, 它通常是对象的哈希码,你可以使用 serialver 这个 
-JDK 工具来查看序列化对象的 serialVersionUID。
+**统一数据格式**
 
-SerialVerionUID 用于对象的版本控制。也可以在类文件中指定 serialVersionUID。不指定 serialVersionUID的后果是,
-当你添加或修改类中的任何字段时, 则已序列化类将无法恢复, 因为为新类和旧序列化对象生成的 serialVersionUID 将有所不同。
+- **对象、文件、数据的格式各不相同，难以统一传输和存储**。
 
-Java 序列化过程依赖于正确的序列化对象恢复状态的, ,并在序列化对象序列版本不匹配的情况下引发 java.io.InvalidClassException 无效类异常。
+  - 但序列化后，所有数据都转换为字节流，使得不同系统之间能够轻松交换数据。
+
+  - 例如，在网络通信中，可以将复杂对象转换成字节流发送给远程服务端，然后在服务端通过反序列化恢复原始对象。
+
+
+### 3、serialVersionUID的作用
+
+在Java的**序列化机制**中，`serialVersionUID` 是一个 **用于版本控制** 的唯一标识符，它的作用是确保反序列化时类的兼容性。
+
+**serialVersionUID 的定义**
+
+```java
+private static final long serialVersionUID = 1L;
+```
+
+- `serialVersionUID` 是一个 `private static final long` 类型的字段。
+
+- 它用于标识当前类的**版本**，确保序列化对象在不同版本的类中能够正确反序列化。
+
+**serialVersionUID 的作用**
+
+- Java 序列化机制会自动为每个类生成 `serialVersionUID`，但如果类发生改变（如字段增删、方法修改等），默认的 `serialVersionUID` 可能会变化。
+
+- 当反序列化时，如果 `serialVersionUID` 不匹配，就会抛出 `java.io.InvalidClassException` 异常，导致无法反序列化。
+
+**为什么要手动指定 serialVersionUID**
+
+- **如果不指定**，Java 会自动生成 `serialVersionUID`，但其计算方式依赖于类结构，类的微小修改（比如新增方法）可能会导致 `serialVersionUID` 变化，从而影响反序列化兼容性。
+
+- **如果手动指定**，则即使类发生了一些不影响反序列化的改动（比如新增方法），仍然可以正确反序列化旧对象，避免 `InvalidClassException` 异常。
+
+**serialVersionUID 的计算**
+
+- 你可以使用 `serialver` 命令行工具查看某个类的 `serialVersionUID`：
+  ```sh
+  serialver -show -classpath . YourClassName
+  ```
+
+**总结**
+
+- `serialVersionUID` 用于对象的**版本控制**，保证序列化对象在不同版本的类中能够正确反序列化。
+
+- **推荐手动定义 `serialVersionUID`**，避免 Java 自动生成 `serialVersionUID` 带来的兼容性问题。
+
 
 ## 九、IO模型的理解
 
@@ -649,6 +692,15 @@ public void printList(List<?> list) {
 
 这里的 List<?> 表示可以接受任意类型的 List，但无法修改该 List，只能读取其中的元素。
 
+::: tip 总结
+
+- T：表示一个类型，通常用于泛型类和方法的类型参数。
+- E：表示元素类型，常用于表示集合中的元素类型。
+- K：表示键类型，常用于表示 Map 中的键。
+- V：表示值类型，常用于表示 Map 中的值。
+- ?：表示通配符，表示不确定的类型，常用于方法参数、集合类型的限制等。
+:::
+
 ### 3、`其他通配符`
 
 **`? extends T`**：表示某个类型是 T 的子类（包括 T 本身）。
@@ -668,15 +720,6 @@ public void addIntegerToList(List<? super Integer> list) {
     list.add(42);  // 可以添加 Integer 或其父类类型的元素
 }
 ```
-
-::: tip 总结
-
-- T：表示一个类型，通常用于泛型类和方法的类型参数。
-- E：表示元素类型，常用于表示集合中的元素类型。
-- K：表示键类型，常用于表示 Map 中的键。
-- V：表示值类型，常用于表示 Map 中的值。
-- ?：表示通配符，表示不确定的类型，常用于方法参数、集合类型的限制等。
-  :::
 
 ### 4、 **Class&lt;T&gt;** 和 **Class&lt;?&gt;** 的区别
 
@@ -734,6 +777,46 @@ public class GenericExample {
         // 使用 Class<?>，可以处理任何类型
         MyObject<?> unknownObj = new MyObject<>(123);
         System.out.println("Unknown Value: " + unknownObj.getValue());
+    }
+}
+```
+
+### 5、类型擦除
+
+Java 泛型是编译时的特性，在运行时，Java 会移除（擦除）泛型的类型信息，这称为 **类型擦除（Type Erasure）**。
+
+**原因**： Java 的泛型是为了**向后兼容**（Generics 是 JDK 1.5 引入的，而 Java 需要兼容早期版本）。
+**JVM 并不支持真正的泛型**，所有泛型信息在编译阶段就被擦除，JVM 看到的只有原始类型（Raw Type）。
+
+**示例（泛型擦除前 vs. 擦除后）：**
+```java
+// 泛型代码
+public class Box<T> {
+    private T value;
+
+    public void setValue(T value) {
+        this.value = value;
+    }
+
+    public T getValue() {
+        return value;
+    }
+}
+```
+**编译后（擦除后的字节码）：**
+
+```java
+// 擦除泛型后的代码
+public class Box {
+    // 泛型 T 变成 Object
+    private Object value;
+
+    public void setValue(Object value) {
+        this.value = value;
+    }
+
+    public Object getValue() {
+        return value;
     }
 }
 ```
