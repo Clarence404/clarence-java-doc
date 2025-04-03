@@ -1,5 +1,7 @@
 # Java基础
 
+官方API地址：[https://docs.oracle.com/en/java/javase/](https://docs.oracle.com/en/java/javase/)
+
 ## 一、Hashmap分析
 
 HashMap 是一种基于哈希表的数据结构，它实现了 Map 接口，用于存储键值对 (key-value)。其基本原理如下：
