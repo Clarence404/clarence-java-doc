@@ -1,4 +1,4 @@
-# Mysql数据库
+# MySQL
 
 参考的数据库教程: [https://dunwu.github.io/db-tutorial/](https://dunwu.github.io/db-tutorial/)
 

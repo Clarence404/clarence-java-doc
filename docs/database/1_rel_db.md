@@ -1,40 +1,6 @@
 # 其他关系库
 
-## 一、 PostgreSQL
-
-## 1、基础介绍
-
-- **背景**：PostgreSQL 是一个开源的关系型数据库管理系统（RDBMS），最初由加利福尼亚大学伯克利分校的研究团队在 1986
-  年开始开发，最初的名字叫做 Postgres。
-- **来源**：PostgreSQL 并非中国的数据库，而是源自美国的开源项目。
-- **特点**：
-    - 全球范围内广泛使用的开源数据库，具有高可扩展性和强大的事务支持。
-    - 支持 SQL 标准，具备丰富的功能，如 JSON 数据类型、地理信息系统（GIS）功能（PostGIS）等。
-    - 在全球范围内有广泛的社区支持和开发者贡献。
-- **官网**：[PostgreSQL 官网](https://www.postgresql.org/)
-
-## 2、安装使用
-
-```shell
-services:
-  postgres:
-    image: postgres:17.4-bookworm
-    container_name: postgres
-    restart: always
-    environment:
-      POSTGRES_USER: root
-      POSTGRES_PASSWORD: 123456
-    ports:
-      - "5432:5432"
-    volumes:
-      - ./postgres_data:/var/lib/postgresql/data
-
-volumes:
-  postgres_data:
-
-```
-
-## 二、 达梦（DM 数据库）
+## 一、达梦（DM 数据库）
 
 - **背景**：达梦（DM 数据库）是由中国公司 **武汉达梦数据库有限公司** 开发的关系型数据库管理系统。
 - **来源**：达梦是**中国自主研发**的数据库，专为满足国内需求而设计，具有符合中国国情的技术特点和安全要求。
@@ -44,7 +10,7 @@ volumes:
     - 具备较强的安全性和合规性，满足中国国家对信息安全和数据隐私的严格要求。
 - **官网**：[达梦数据库官网](https://www.dameng.com/)
 
-## 三、 Oracle 数据库
+## 二、Oracle 数据库
 
 - **开发公司**：Oracle Corporation（甲骨文公司）
 - **类型**：关系型数据库（RDBMS）
@@ -56,7 +22,7 @@ volumes:
     - 提供云端和本地部署选项，并在 Oracle Cloud 上提供托管数据库服务（Autonomous Database）。
 - **官网**：[Oracle 数据库官网](https://www.oracle.com/database/)
 
-## 四、 人大金仓（Kingbase）
+## 三、人大金仓（Kingbase）
 
 - **开发公司**：北京人大金仓信息技术股份有限公司
 - **类型**：关系型数据库（RDBMS）
