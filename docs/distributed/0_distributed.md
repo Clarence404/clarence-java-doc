@@ -2,6 +2,8 @@
 
 参考链接：[https://gitee.com/Doocs/advanced-java](https://gitee.com/Doocs/advanced-java#分布式系统)
 
+架构演变：[https://mp.weixin.qq.com/s/gKrjWU76SlXWgUAix4xtLw](https://mp.weixin.qq.com/s/gKrjWU76SlXWgUAix4xtLw)
+
 ## 一、单体架构
 
 ### 1. 概念
