@@ -6,7 +6,7 @@
 
 HashMap 是一种基于哈希表的数据结构，它实现了 Map 接口，用于存储键值对 (key-value)。其基本原理如下：
 
-### 1、 哈希表（Hash Table）
+### 1、哈希表（Hash Table）
 
 HashMap 是基于哈希表实现的，哈希表的基本思想是通过将数据的键值对映射到一个数组的索引位置上来提高数据查找的效率。具体流程如下：
 
@@ -15,26 +15,27 @@ HashMap 是基于哈希表实现的，哈希表的基本思想是通过将数据
 - **数组**： 哈希表内部使用一个数组来存储数据。数组中的每个元素存储一个链表（或者在 Java 8 后是 
 <RouteLink to="/algorithm/0_base_4_tree#红黑树-balanced-binary-search-tree-bbst">红黑树</RouteLink>），用于处理哈希冲突。
 
-### 2、 哈希冲突
+### 2、哈希冲突
 由于哈希函数不可能做到完全唯一的映射，不同的键可能会被映射到相同的索引，这种情况称为哈希冲突。HashMap 通过以下方式解决哈希冲突：
 
 - **链表法（链式哈希）**： 在发生冲突的情况下，HashMap 会将冲突的键值对存储到一个链表中
 （或者 <RouteLink to="/algorithm/0_base_4_tree#红黑树-balanced-binary-search-tree-bbst">红黑树</RouteLink>）。
 当多个元素映射到同一个索引位置时，它们会形成一个链表。
 
--  **<RouteLink to="/algorithm/0_base_4_tree#红黑树-balanced-binary-search-tree-bbst">红黑树</RouteLink>法**： 在 Java 8 及以后的版本中，
-如果链表的长度超过一定阈值（默认为 8），HashMap 会将链表转化为<RouteLink to="/algorithm/0_base_4_tree#红黑树-balanced-binary-search-tree-bbst">红黑树</RouteLink>，以提高查询效率。
+-  **<RouteLink to="/algorithm/0_base_4_tree#红黑树-balanced-binary-search-tree-bbst">红黑树</RouteLink> 法**： 在 Java 8 及以后的版本中，
+如果链表的长度超过一定阈值（默认为 8），HashMap 会将链表转化为 <RouteLink to="/algorithm/0_base_4_tree#红黑树-balanced-binary-search-tree-bbst">红黑树</RouteLink>，
+以提高查询效率。
 
 ![img.png](../assets/java/hashmap_hash_conflict.png)
 
-### 3、  扩容机制
+### 3、扩容机制
 
 当 HashMap 中的元素过多时，哈希表的负载因子（load factor）可能会达到阈值，导致哈希表的存储效率降低。默认情况下，负载因子为 0.75。
-**当元素个数超过当前容量 * 负载因子时，HashMap 会进行扩容**（通常是原数组大小的 2 倍）。
+**当元素个数超过 (当前容量 * 负载因子) 时，HashMap 会进行扩容（通常是原数组大小的 2 倍）**。
 
-扩容过程中，所有元素的哈希值会被重新计算，并重新放置到新的数组位置。这是因为**哈希表的大小发生变化，导致原先的索引位置不再适用**。
+扩容过程中，所有元素的哈希值会被重新计算，并重新放置到新的数组位置。这是因为 **哈希表的大小发生变化，导致原先的索引位置不再适用**。
 
-### 4、 时间复杂度
+### 4、时间复杂度
 
 - **查找、插入、删除 时间复杂度**：
 
@@ -45,13 +46,6 @@ HashMap 是基于哈希表实现的，哈希表的基本思想是通过将数据
 
 扩容是一个相对耗时的操作，时间复杂度为 O(n)，但扩容操作是按需进行的，不是频繁发生，因此平均而言，HashMap 的操作仍然是 O(1)。
 
-### 5、 关键特点
-
-- **非线程安全**：HashMap 不是线程安全的，如果在多线程环境下使用，需要考虑同步问题。 
-
-- **允许 null 键和 null 值**：HashMap 允许一个 null 键和多个 null 值。 
-
-- **元素顺序不保证**：HashMap 不保证键值对的顺序，因为它是基于哈希函数计算索引的，顺序是无序的。如果需要顺序，可以使用 LinkedHashMap
 
 ## 二、LinkedHashMap分析
 
@@ -147,17 +141,14 @@ if (sizeCtl < table.length * 0.75) {
 }
 ```
 
-### 3、整体总结
+### 3、两句话总结
 
 - JDK 1.7 分段锁的性能差、空间浪费和复杂性问题。
 
 - JDK 1.8 改用 CAS、synchronized 和红黑树，提升了并发性能和查询效率，支持无锁扩容。
 
----
-
 > **提示**：JDK 1.8 的 `ConcurrentHashMap` 在高并发下表现更优，避免了分段锁带来的性能瓶颈。
 
----
 
 ## 四、HashMap、LinkedHashMap、ConcurrentHashMap对比
 
@@ -264,6 +255,7 @@ System.out.println(result);
 ### 1、继承 Thread 类
 
 这种方法需要创建一个自定义的线程类，继承 Thread 类，并重写 run() 方法。
+
 ```java
 class MyThread extends Thread {
     @Override
@@ -279,6 +271,7 @@ class MyThread extends Thread {
 }
 ```
 - 优点：简单直观，适合只有一个任务的情况。
+
 - 缺点：如果需要继承其他类，无法再继承 Thread 类（Java 是单继承）。
 
 ### 2、实现 Runnable 接口
@@ -299,20 +292,169 @@ class MyRunnable implements Runnable {
 }
 ```
 - 优点：允许实现多个接口，提供更多的灵活性和可扩展性。
+
 - 缺点：比继承 Thread 类稍微复杂一些，但通常更加推荐。
-
-
 
 ## 六、volatile 关键字
 
-### 1、线程可见性
+### 1、线程可见性机制
 
-### 2、防止指令重排
+#### **内存模型图解**
+
+![volatile.png](../assets/java/volatile.png)
+
+#### **核心特性**
+
+- **即时刷新**：当线程修改volatile变量时，新值**立即写回主内存**
+
+- **读取穿透**：其他线程读取时**绕过工作内存**，直接读取主内存最新值
+
+- **适用场景**：状态标志位（如`boolean running`）、一次性安全发布
+
+> ⚠️ 注意：`count++`这类复合操作仍需配合`synchronized`或`AtomicXXX`
+
+### 2、禁止指令重排原理
+
+#### **内存屏障示意图**
+
+![command_reformat.png](../assets/java/command_reformat.png)
+
+#### **happens-before规则**
+
+1. **写屏障**：确保volatile写之前的操作不会重排到写之后
+
+2. **读屏障**：防止volatile读之后的操作重排到读之前
+
+3. **传递性**：线程A写volatile变量 → 线程B读该变量 → 线程B能看到A的所有写操作
+
+### 3、双重检查锁案例
+
+#### 正确实现代码
+```java
+private static volatile Singleton instance;
+
+public static Singleton getInstance() {
+  if (instance == null) {
+    synchronized (Singleton.class) {
+      if (instance == null) {
+        // volatile保证以下操作不重排：
+        // 1. memory = allocate() 分配空间
+        // 2. init(memory) 初始化对象 ← StoreStore屏障在此
+        // 3. instance = memory 设置引用 ← StoreLoad屏障在此
+        instance = new Singleton();
+      }
+    }
+  }
+  return instance; // LoadLoad屏障保证读到最新值
+}
+```
+
+#### **对象创建过程图解**
+
+![singleton_double_check.png](../assets/java/singleton_double_check.png)
+
+#### **关键作用**
+
+- 阻止`instance = new Singleton()`被重排为「先赋值后初始化」
+
+- 保证其他线程拿到的是**完全初始化的对象**
+
+### 4、对比总结表
+
+| 特性   | volatile | synchronized | AtomicXXX |
+|------|----------|--------------|-----------|
+| 可见性  | ✔        | ✔            | ✔         |
+| 原子性  | ✖        | ✔            | ✔         |
+| 禁止重排 | ✔        | ✔            | ✖         |
+| 性能成本 | 低        | 高            | 中         |
 
 
-## 七、线程的睡眠与唤醒
+## 七、线程的等待与唤醒机制
 
-### 1、wait() / notify() / notifyAll()
+在多线程编程中，线程的等待与唤醒是实现线程间协作、资源同步的重要手段。Java 中提供了多种机制来实现线程的阻塞与唤醒，
+包括基于 `Object`、`Thread`、`Lock` 以及 `LockSupport` 的方式。
+
+
+### 1、Object的wait() / notify() / notifyAll()
+
+- 属于基础的线程通信方式，使用的是对象监视器（Monitor）。
+
+- 只能在 `synchronized` 块或方法内部调用，否则会抛出 `IllegalMonitorStateException`。
+
+- 方法说明：
+
+  - `wait()`：当前线程等待并释放锁，进入对象的等待队列。
+  
+  - `notify()`：唤醒一个正在等待该对象锁的线程（具体哪个由 JVM 决定）。
+  
+  - `notifyAll()`：唤醒所有等待该对象锁的线程。
+
+```java
+synchronized (lock) {
+    while (!condition) {
+        lock.wait();
+    }
+    // do something
+    lock.notify();
+}
+```
+
+
+### 2、Thread.sleep()
+
+- 使当前线程进入“睡眠状态”，在指定时间内不参与 CPU 调度。
+
+- 与锁无关，不释放任何对象锁。
+
+- 常用于限流、轮询等待等场景。
+
+```java
+Thread.sleep(1000); // 休眠1秒
+```
+
+### 3、Lock的Condition.await() / signal() / signalAll()
+
+- 与 `ReentrantLock` 配合使用，功能类似 `wait/notify`，但更灵活。
+
+- 一个 `Lock` 可以创建多个 `Condition`，每个条件变量维护独立的等待队列。
+
+```java
+Lock lock = new ReentrantLock();
+Condition condition = lock.newCondition();
+
+lock.lock();
+try {
+    while (!conditionSatisfied) {
+        condition.await();  // 等待
+    }
+    // 条件满足后执行逻辑
+    condition.signal();     // 唤醒一个等待线程
+} finally {
+    lock.unlock();
+}
+```
+
+### 4、LockSupport.park() / unpark()
+
+- 更底层的线程阻塞与唤醒工具，广泛应用于并发类库（如 AQS）。
+
+- 不依赖锁机制，线程可随时 `park()` 暂停自己，另一个线程通过 `unpark()` 唤醒。
+
+- 支持先 `unpark()` 后 `park()` 的调用顺序，不会丢失信号。
+
+```java
+LockSupport.park();  // 阻塞当前线程
+LockSupport.unpark(thread);  // 唤醒指定线程
+```
+
+### 5、小结对比
+
+| 机制 | 是否释放锁 | 是否依赖锁 | 唤醒粒度 | 应用场景 |
+|------|------------|-------------|-----------|-----------|
+| `wait/notify` | 是 | 是（synchronized） | 不可控（JVM决定） | 线程协作（经典用法） |
+| `sleep` | 否 | 否 | 无需唤醒 | 定时等待 |
+| `Condition` | 是 | 是（Lock） | 可控（条件变量） | 精细控制并发 |
+| `LockSupport` | 否 | 否 | 精确（线程级） | 高级并发工具实现 |
 
 ## 八、线程池基础（Executors）
 

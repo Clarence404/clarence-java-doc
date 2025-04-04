@@ -943,13 +943,16 @@ System.out.println(evenNumbers); // 输出 [2, 4]
 
 ---
 
-### 2、Optional
+### 2、Optional 类
 
 `Optional` 是 Java 8 引入的类，**用来避免 `NullPointerException`**。
 
 **创建方式**：
+
 - `Optional.of()`：创建非空对象（`null` 会抛异常）。
+
 - `Optional.ofNullable()`：创建可为空对象（`null` 返回空 Optional）。
+
 - `Optional.empty()`：创建一个空 Optional。
 
 ---
@@ -1002,17 +1005,11 @@ numbers.parallelStream()
 
 #### **3.2、并行流的底层原理**
 
-- **数据分割**：  
+- **数据分割**：通过 **`ForkJoinPool`**（分叉-合并框架）拆分成多个子任务，每个线程处理一部分数据。
 
-通过 **`ForkJoinPool`**（分叉-合并框架）拆分成多个子任务，每个线程处理一部分数据。
-
-- **结果合并**：  
-
-归约（Reduction）采用 **分治法**，最终将各线程的部分结果合并成最终结果。
-
+- **结果合并**：归约（Reduction）采用 **分治法**，最终将各线程的部分结果合并成最终结果。
 
 - **终止操作**（`reduce()`、`collect()`）会触发 **归约合并**。
-
 
 - **底层原理**：详细原理见：<RouteLink to="/currency/0_currency#fork-join-框架">Fork/Join框架</RouteLink>
 
