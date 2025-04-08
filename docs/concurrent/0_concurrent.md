@@ -26,6 +26,8 @@
 
 ## JUC - CompletableFuture 与异步编程
 
+[CompletableFuture使用的6个坑](https://mp.weixin.qq.com/s/_Qre84czFDNNQVQArbY2UA)
+
 ### Future vs CompletableFuture
 
 ### 异步任务组合
