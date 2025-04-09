@@ -1,10 +1,65 @@
 # Redis
 
-## Redis数据结构
+官网地址：[https://redis.io/](https://redis.io/)
 
-这是关于高级数据结构的内容...
+官方代码：[https://github.com/redis](https://github.com/redis)
 
-## Redis线程模型
+## 一、Redis数据结构
+
+**基础类型**： <RouteLink to="/interview/2_cache.md#六、redis-的常用数据结构有哪些">redis-常用的数据结构</RouteLink>
+
+### 1、HyperLogLog
+
+- 用于 **基数统计**（比如：统计网站独立访问人数UV）。
+- 特点是：占用极小的内存（12KB），可以近似统计数十亿个数据元素，误差在 0.81% 左右。
+- 适用场景：
+    - 统计用户访问量
+    - 活跃用户去重
+    - 商品浏览量去重
+
+✅ 典型命令：`PFADD`, `PFCOUNT`, `PFMERGE`
+
+---
+
+### 2、Bitmap
+
+- 位图数据结构，用于按位存储数据，适合用来快速记录、统计、判断海量数据。
+- 适用场景：
+    - 签到功能（某天是否签到）
+    - 活跃状态标记（某个用户是否在线）
+    - 性能极佳，适合批量快速统计。
+
+✅ 典型命令：`SETBIT`, `GETBIT`, `BITCOUNT`
+
+---
+
+### 3、GEO
+
+- Redis 提供的地理位置存储和检索能力，基于 SortedSet 底层实现。
+- 适用场景：
+    - 附近的人、附近的店
+    - 基于位置的服务（LBS）
+
+✅ 典型命令：`GEOADD`, `GEORADIUS`, `GEODIST`
+
+---
+
+### 4、Stream
+
+- Redis 5.0 新增的数据类型，支持**消息队列**场景。
+- 相比 List 更强大，天然支持：
+    - 消息持久化
+    - 消息确认机制（ACK）
+    - 消费组（Consumer Group）模式，支持水平扩展
+- 适用场景：
+    - 异步解耦
+    - 消息流处理
+    - 任务分发系统
+
+✅ 典型命令：`XADD`, `XREAD`, `XGROUP`
+
+
+## 二、Redis线程模型
 
 介绍线程模型的内容...
 

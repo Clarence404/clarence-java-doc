@@ -522,7 +522,7 @@ Integer result = future.get(); // 获取任务执行结果
 `Executors` 类提供了多种类型的线程池，可以根据任务的需求选择不同类型的线程池。合理使用线程池可以提高并发程序的性能，
 并且避免了手动管理线程的复杂性，避免了线程创建和销毁的开销。
 
-### 6、为何不建议使用 Executors？
+### 6、为何不建议 Executors？
 **Executors** 返回的线程池对象的弊端如下:
 
 - **FixedThreadPool** 和 **SingleThreadPool**: 允许的请求队列（**LinkedBlockingQueue**）长度为 **Integer.MAX VALUE**，可能会堆积大量的请求，从而导致 OOM。
