@@ -1,4 +1,4 @@
-# 幂等 
+# 幂等 方案总结 
 
 https://mp.weixin.qq.com/s/adRe5OuDhMndPltzgP73hg
 
