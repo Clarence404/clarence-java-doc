@@ -6,6 +6,8 @@
 
 [苏三说技术-并发编程](https://mp.weixin.qq.com/s/jUu1k1oKyzt-4wZyDHJp2w)
 
+[实现异步的9种方式](https://mp.weixin.qq.com/s/eTQwT-zFgHgNVJ_nNAZidw)
+
 ## JUC - Atomic
 
 ## JUC - LOCK
