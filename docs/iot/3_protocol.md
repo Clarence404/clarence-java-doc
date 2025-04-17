@@ -53,7 +53,7 @@ MQTT 是一种轻量级的**发布/订阅模型**的通信协议，特别适用�
 
 ---
 
-## CoAP
+## 二、CoAP
 
 英文全称：Constrained Application Protocol
 
