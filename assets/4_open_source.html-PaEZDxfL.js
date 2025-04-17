@@ -1,0 +1,30 @@
+import{_ as s,c as e,a,o as l}from"./app-BW-aRpj8.js";const i={};function r(d,n){return l(),e("div",null,n[0]||(n[0]=[a(`<h1 id="开源-云平台" tabindex="-1"><a class="header-anchor" href="#开源-云平台"><span>开源 云平台</span></a></h1><h2 id="一、国内iot开源项目" tabindex="-1"><a class="header-anchor" href="#一、国内iot开源项目"><span>一、<a href="https://gitee.com/explore/iot?lang=Java" target="_blank" rel="noopener noreferrer">国内IOT开源项目</a>：</span></a></h2><h3 id="_1、iot-dc3" tabindex="-1"><a class="header-anchor" href="#_1、iot-dc3"><span>1、<a href="https://doc.dc3.site/" target="_blank" rel="noopener noreferrer">iot-dc3</a></span></a></h3><ul><li>一个基于 Spring Cloud 的开源的、分布式的物联网(IoT)平台</li></ul><h3 id="_2、jetlinks" tabindex="-1"><a class="header-anchor" href="#_2、jetlinks"><span>2、<a href="https://gitee.com/jetlinks" target="_blank" rel="noopener noreferrer">jetlinks</a></span></a></h3><ul><li>是一个全响应式的物联网平台</li></ul><h3 id="_3、等待补充中" tabindex="-1"><a class="header-anchor" href="#_3、等待补充中"><span>3、等待补充中；</span></a></h3><h2 id="二、国际开源平台" tabindex="-1"><a class="header-anchor" href="#二、国际开源平台"><span>二、国际开源平台</span></a></h2><p>ThingsBoard、EMQX、OpenHAB、Home Assistant</p><h3 id="_1、thingsboard" tabindex="-1"><a class="header-anchor" href="#_1、thingsboard"><span>1、ThingsBoard</span></a></h3><p>tobe continue；</p><h2 id="三、物联网数据链路架构整体展示-待打磨仔细" tabindex="-1"><a class="header-anchor" href="#三、物联网数据链路架构整体展示-待打磨仔细"><span>三、物联网数据链路架构整体展示（待打磨仔细）：</span></a></h2><div class="language-text line-numbers-mode" data-highlighter="prismjs" data-ext="text" data-title="text"><pre><code><span class="line">+---------------------------------------------------+</span>
+<span class="line">|               数据治理与安全层                    |</span>
+<span class="line">|  - 数据治理框架                                   |</span>
+<span class="line">|  - 数据安全与合规                                 |</span>
+<span class="line">|  - 审计与日志                                     |</span>
+<span class="line">+---------------------------------------------------+</span>
+<span class="line">|               数据分析与应用层                    |</span>
+<span class="line">|  - 告警规则引擎                                   |</span>
+<span class="line">|  - 实时看板（Grafana）                            |</span>
+<span class="line">|  - 机器学习平台                                   |</span>
+<span class="line">|  - 通知系统                                       |</span>
+<span class="line">+---------------------------------------------------+</span>
+<span class="line">|               数据存储层                          |</span>
+<span class="line">|  - MySQL：设备信息、告警规则、历史告警、工单信息  |</span>
+<span class="line">|  - Redis：设备状态缓存、实时计算                  |</span>
+<span class="line">|  - 数据湖（HDFS、S3）：原始数据存储               |</span>
+<span class="line">|  - 数据仓库（Snowflake、ClickHouse）：聚合数据存储|</span>
+<span class="line">+---------------------------------------------------+</span>
+<span class="line">|               数据处理层                          |</span>
+<span class="line">|  - 流处理引擎（Flink）：实时计算告警              |</span>
+<span class="line">|  - 时序数据库（InfluxDB）：高频传感器数据存储     |</span>
+<span class="line">+---------------------------------------------------+</span>
+<span class="line">|               数据传输层                          |</span>
+<span class="line">|  - 消息队列（Kafka）：高并发数据缓冲              |</span>
+<span class="line">+---------------------------------------------------+</span>
+<span class="line">|               数据采集层                          |</span>
+<span class="line">|  - 设备与传感器：数据生成                         |</span>
+<span class="line">|  - 边缘网关：数据采集、协议转换、本地缓存         |</span>
+<span class="line">+---------------------------------------------------+</span>
+<span class="line"></span></code></pre><div class="line-numbers" aria-hidden="true" style="counter-reset:line-number 0;"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div>`,13)]))}const t=s(i,[["render",r],["__file","4_open_source.html.vue"]]),p=JSON.parse('{"path":"/iot/4_open_source.html","title":"开源 云平台","lang":"en-US","frontmatter":{},"headers":[{"level":2,"title":"一、国内IOT开源项目：","slug":"一、国内iot开源项目","link":"#一、国内iot开源项目","children":[{"level":3,"title":"1、iot-dc3","slug":"_1、iot-dc3","link":"#_1、iot-dc3","children":[]},{"level":3,"title":"2、jetlinks","slug":"_2、jetlinks","link":"#_2、jetlinks","children":[]},{"level":3,"title":"3、等待补充中；","slug":"_3、等待补充中","link":"#_3、等待补充中","children":[]}]},{"level":2,"title":"二、国际开源平台","slug":"二、国际开源平台","link":"#二、国际开源平台","children":[{"level":3,"title":"1、ThingsBoard","slug":"_1、thingsboard","link":"#_1、thingsboard","children":[]}]},{"level":2,"title":"三、物联网数据链路架构整体展示（待打磨仔细）：","slug":"三、物联网数据链路架构整体展示-待打磨仔细","link":"#三、物联网数据链路架构整体展示-待打磨仔细","children":[]}],"git":{"updatedTime":1744899332000,"contributors":[{"name":"Clarence","username":"Clarence","email":"1154937362@qq.com","commits":1,"url":"https://github.com/Clarence"}]},"filePathRelative":"iot/4_open_source.md"}');export{t as comp,p as data};
