@@ -21,6 +21,8 @@
 
 ### 1、Aps原理-多线程基础
 
+[30张图彻底掌握Aqs-苏三说技术](https://mp.weixin.qq.com/s/kvmX6-Iz38mG5907itEb2w)
+
 ### 2、线程池与Executor框架
 
 ### 3、`synchronized`与锁机制
