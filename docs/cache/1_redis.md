@@ -63,9 +63,9 @@
 
 介绍线程模型的内容...
 
-## 布隆过滤器
+## 三、布隆过滤器
 
-## Redis分布式锁
+## 四、Redis分布式锁
 
 为了更好的理解分布式锁的原理，我这边自己画张图通过这张图来分析：
 
@@ -109,7 +109,7 @@ Todo: to be continue...
 :::
 
 
-## Redis主从复制原理
+## 五、Redis主从复制原理
 
 ### 1、全量复制
 
@@ -119,5 +119,5 @@ Todo: to be continue...
 
 ![img_1.png](../assets/cache/continue_copy.png)
 
-## Redis性能优化
+## 六、Redis性能优化
 

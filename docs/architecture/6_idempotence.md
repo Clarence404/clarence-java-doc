@@ -1,4 +1,4 @@
-# 幂等 方案总结 
+# 幂等 方案总结
 
 [幂等的八种实现方式-苏三说技术](https://mp.weixin.qq.com/s/adRe5OuDhMndPltzgP73hg)
 

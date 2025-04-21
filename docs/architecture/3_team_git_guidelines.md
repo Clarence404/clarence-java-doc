@@ -4,13 +4,19 @@
 
 ## 一、背景
 
-Git每次提交代码都需要写commit message，否则就不允许提交。一般来说，commit message应该清晰明了，说明本次提交的目的，具体做了什么操作……但是在日常开发中，大家的commit message千奇百怪，中英文混合使用、fix bug等各种笼统的message司空见怪，这就导致后续代码维护成本特别大，有时自己都不知道自己的fix bug修改的是什么问题。基于以上这些问题，我们希望通过某种方式来监控用户的git commit message，让规范更好的服务于质量，提高大家的研发效率。
+Git每次提交代码都需要写commit message，否则就不允许提交。一般来说，commit
+message应该清晰明了，说明本次提交的目的，具体做了什么操作……但是在日常开发中，大家的commit message千奇百怪，中英文混合使用、fix
+bug等各种笼统的message司空见怪，这就导致后续代码维护成本特别大，有时自己都不知道自己的fix
+bug修改的是什么问题。基于以上这些问题，我们希望通过某种方式来监控用户的git commit message，让规范更好的服务于质量，提高大家的研发效率。
 
 ## 二、规范建设
 
-初期我们在互联网上搜索了大量有关git commit规范的资料，但只有Angular规范是目前使用最广的写法，比较合理和系统化，并且有配套的工具（IDEA就有插件支持这种写法）。最后综合阿里巴巴高德地图相关部门已有的规范总结出了一套git commit规范。
+初期我们在互联网上搜索了大量有关git
+commit规范的资料，但只有Angular规范是目前使用最广的写法，比较合理和系统化，并且有配套的工具（IDEA就有插件支持这种写法）。最后综合阿里巴巴高德地图相关部门已有的规范总结出了一套git
+commit规范。
 
 commit message格式:
+
 ```
 <type>(<scope>): <subject>
 ```
@@ -49,7 +55,8 @@ sync：同步主线或分支的Bug。
 
 scope用于说明 commit 影响的范围，比如数据层、控制层、视图层等等，视项目不同而不同。
 
-例如在Angular，可以是location，browser，compile，compile，rootScope， ngHref，ngClick，ngView等。如果你的修改影响了不止一个scope，你可以使用*代替。
+例如在Angular，可以是location，browser，compile，compile，rootScope，
+ngHref，ngClick，ngView等。如果你的修改影响了不止一个scope，你可以使用*代替。
 
 ### 3、subject(必须)
 
@@ -69,5 +76,6 @@ feat(Controller):用户查询接口开发
 
 便于程序员对提交历史进行追溯，了解发生了什么情况。
 
-一旦约束了commit message，意味着我们将慎重的进行每一次提交，不能再一股脑的把各种各样的改动都放在一个git commit里面，这样一来整个代码改动的历史也将更加清晰。
+一旦约束了commit message，意味着我们将慎重的进行每一次提交，不能再一股脑的把各种各样的改动都放在一个git
+commit里面，这样一来整个代码改动的历史也将更加清晰。
 格式化的commit message才可以用于自动化输出Change log
