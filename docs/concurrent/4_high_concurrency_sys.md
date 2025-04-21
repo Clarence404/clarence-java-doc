@@ -1,10 +1,10 @@
-# 高并发的系统设计？
+# 高并发系统设计
 
 ## 核心要点：高性能、高可用
 
 ![img.png](../assets/concurrency/hc_sys.png)
 
-## 简化的设计方案
+## 基础设计方案
 
 ![img_1.png](../assets/concurrency/hc_sys_demo.png)
 

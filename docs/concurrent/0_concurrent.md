@@ -78,8 +78,6 @@ private void test() {
 }
 ```
 
----
-
 ### 4、优缺点对比
 
 | 特点   | Atomic 原子类 | synchronized |
@@ -89,14 +87,13 @@ private void test() {
 | 是否公平 | 否          | 是            |
 | 可读性  | 一般         | 高            |
 
----
-
 ### 5、使用建议
 
 - 在**并发量大**但**冲突概率低**的场景中使用 Atomic 类。
-- 如果涉及多个变量的原子性，则需要使用 `synchronized` 或 `Lock`。
 
-## JUC - LOCK
+- 如果涉及多个变量的原子性，则需要使用 **`synchronized`** 或 **`Lock`**。
+
+## 二、JUC - LOCK
 
 ### ReentrantLock（可重入锁）
 
@@ -108,16 +105,61 @@ private void test() {
 
 ### ConcurrentHashMap 并发容器
 
-## JUC - Fork/Join
+## 三、JUC - Fork/Join
 
 ### Fork/Join 工作窃取算法
 
 ### 任务拆分与合并
 
-## JUC - CompletableFuture 与异步编程
+## 四、JUC - CompletableFuture
 
-[CompletableFuture使用的6个坑](https://mp.weixin.qq.com/s/_Qre84czFDNNQVQArbY2UA)
+### 1. CompletableFuture 简介
 
-### Future vs CompletableFuture
+- 介绍 `CompletableFuture` 的定义和基本用途。
+- 与 `Future` 的区别。
 
-### 异步任务组合
+### 2. CompletableFuture 常用操作
+
+- 创建 `CompletableFuture` 的方式。
+- `thenApply`、`thenAccept`、`thenRun` 等常用方法。
+- 异常处理 (`handle`、`exceptionally` 等)。
+
+### 3. 组合异步任务
+
+- `thenCompose` 和 `thenCombine` 的使用。
+- `allOf` 和 `anyOf` 的异步任务组合。
+
+### 4. 完成和取消任务
+
+- 使用 `complete` 方法完成任务。
+- 使用 `cancel` 方法取消任务。
+
+### 5. 相关坑和陷阱
+
+- 线程池管理。
+- 异常处理。
+- 阻塞与非阻塞操作。
+
+## 五、JUC - 异步编程
+
+### 1. 异步编程概述
+
+- 异步编程的基本概念。
+- 为什么需要异步编程？
+
+### 2. 异步任务的设计与实现
+
+- 使用 `ExecutorService` 和 `Callable` 进行任务调度。
+- 如何设计高效的异步任务执行模型。
+
+### 3. 异步编程的模式
+
+- 发布-订阅模式。
+- 生产者-消费者模式。
+- 任务链模式。
+
+### 4. 异步编程的挑战与最佳实践
+
+- 线程管理与资源消耗。
+- 错误处理与回调机制。
+- 如何避免死锁、竞争条件等问题。

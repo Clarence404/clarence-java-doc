@@ -1,8 +1,8 @@
 # 开源 云平台
 
-## 一、[国内IOT开源项目](https://gitee.com/explore/iot?lang=Java)：
+## 一、[国内IOT开源](https://gitee.com/explore/iot?lang=Java)：
 
-### 1、[iot-dc3](https://doc.dc3.site/) 
+### 1、[iot-dc3](https://doc.dc3.site/)
 
 - 一个基于 Spring Cloud 的开源的、分布式的物联网(IoT)平台
 
@@ -10,17 +10,37 @@
 
 - 是一个全响应式的物联网平台
 
-### 3、等待补充中；
+### 3、持续补充中；
 
 ## 二、国际开源平台
 
-ThingsBoard、EMQX、OpenHAB、Home Assistant
-
 ### 1、ThingsBoard
 
-tobe continue；
+- **官网**：[https://thingsboard.io](https://thingsboard.io)
 
-## 三、物联网数据链路架构整体展示（待打磨仔细）：
+- **GitHub 源码地址**： [https://github.com/thingsboard/thingsboard](https://github.com/thingsboard/thingsboard)
+
+### 2、EMQX
+
+- **官网**：[https://www.emqx.io](https://www.emqx.io)
+
+- **GitHub 源码地址**： [https://github.com/emqx/emqx](https://github.com/emqx/emqx)
+
+### 3、OpenHAB
+
+- **官网**：[https://www.openhab.org](https://www.openhab.org)
+
+- **GitHub 源码地址**： [https://github.com/openhab/openhab-core](https://github.com/openhab/openhab-core)
+
+### 4、Home Assistant
+
+- **官网**：[https://www.home-assistant.io](https://www.home-assistant.io)
+
+- **GitHub 源码地址**： [https://github.com/home-assistant/core](https://github.com/home-assistant/core)
+
+## 三、常见架构：
+
+（待打磨仔细）
 
 ```
 +---------------------------------------------------+
