@@ -79,7 +79,7 @@ export default defineUserConfig({
             {text: 'Netty', link: '/netty/0_stick_split'},
             {text: '容器', link: '/container/1_linux'},
             {text: '算法', link: '/algorithm/0_base_0_complexity'},
-            {text: '系统架构', link: '/architecture/0_structure'},
+            {text: '系统架构', link: '/architecture/0_system_structure'},
             {text: 'Protocol', link: '/protocol/0'},
             {text: 'IOT', link: '/iot/0_base'},
             {text: '人工智能', link: '/ai/0_ai'},
