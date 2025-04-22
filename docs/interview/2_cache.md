@@ -332,7 +332,7 @@ key 堆积在内存里，导致 Redis 内存块耗尽了，咋整？
 
     - 构建延时队列，使用 Score 作为时间戳，按时间顺序处理任务。
 
-**更多类型**： <RouteLink to="/cache/1_redis.md#redis数据结构">Redis数据结构</RouteLink>
+**更多类型**： <RouteLink to="/cache/1_redis.md#一、redis数据结构">缓存：Redis数据结构</RouteLink>
 
 ## 七、本地缓存与分布式缓存
 
@@ -376,8 +376,8 @@ key 堆积在内存里，导致 Redis 内存块耗尽了，咋整？
 - **分布式缓存** 适合：
     - 数据量较大
     - 访问模式不可预测
-    - 需要跨服务共享缓存的场景
-      :::
+- 需要跨服务共享缓存的场景
+:::
 
 ## 八、Redis 的线程模型
 

@@ -1,12 +1,11 @@
 # ThreadPool
 
-关于Executor的介绍，在 <RouteLink to="/java/1_base#九、线程池基础-executors">Java基础-线程池基础（Executors）</RouteLink> 
-已经讲述过，此处只着重介绍 ThreadPoolExecutor相关的处理方案
+关于Executor的介绍，在 <RouteLink to="/java/1_base#八、线程池基础-executors">Java基础-线程池基础（Executors）</RouteLink> 
+已经讲述过，此处只着重介绍 ThreadPoolExecutor相关的处理方案，以下为参考文章：
 
-参考文章：
->[https://mp.weixin.qq.com/s/xWbSPHJG_TztJpM4Pv9knw](https://mp.weixin.qq.com/s/xWbSPHJG_TztJpM4Pv9knw)
-> 
-> [https://mp.weixin.qq.com/s/7ub5RhxfuklzYsa84tGAzQ](https://mp.weixin.qq.com/s/7ub5RhxfuklzYsa84tGAzQ)
+>[程序员老猫-背会了常见的几个线程池用法，结果被问翻](https://mp.weixin.qq.com/s/xWbSPHJG_TztJpM4Pv9knw)
+
+> [程序员追风-面试官：线程池灵魂8连问，你挡的住吗？](https://mp.weixin.qq.com/s/7ub5RhxfuklzYsa84tGAzQ)
 
 ## 一、什么是线程池？
 

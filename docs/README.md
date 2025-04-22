@@ -21,3 +21,10 @@ features:
 
 footer: MIT 协议 | 版权所有 © 2025-至今 Clarence
 ---
+
+### 推荐博客
+
+| 博客名称             | 链接                                              |
+|------------------|-------------------------------------------------|
+| Java 全栈知识体系      | [https://www.pdai.tech/](https://www.pdai.tech) |
+| 小傅哥 bugstack 虫洞栈 | [https://bugstack.cn/](https://bugstack.cn)     |

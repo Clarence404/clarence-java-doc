@@ -6,7 +6,7 @@
 
 ## 一、Redis数据结构
 
-**基础类型**： <RouteLink to="/interview/2_cache.md#六、redis-的常用数据结构有哪些">redis-常用的数据结构</RouteLink>
+**基础类型**： <RouteLink to="/interview/2_cache.md#六、redis-的常用数据结构有哪些">java总结-缓存：Redis-常用的数据结构</RouteLink>
 
 ### 1、HyperLogLog
 
