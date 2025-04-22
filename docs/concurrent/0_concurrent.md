@@ -1,24 +1,21 @@
 # Java 并发
 
 参考链接：
-
-[https://gitee.com/Doocs/advanced-java](https://gitee.com/Doocs/advanced-java#%E9%AB%98%E5%B9%B6%E5%8F%91%E6%9E%B6%E6%9E%84)
-
-[苏三说技术-并发编程](https://mp.weixin.qq.com/s/jUu1k1oKyzt-4wZyDHJp2w)
-
-[实现异步的9种方式](https://mp.weixin.qq.com/s/eTQwT-zFgHgNVJ_nNAZidw)
+>[https://gitee.com/Doocs/advanced-java](https://gitee.com/Doocs/advanced-java#%E9%AB%98%E5%B9%B6%E5%8F%91%E6%9E%B6%E6%9E%84)
+>[苏三说技术-并发编程](https://mp.weixin.qq.com/s/jUu1k1oKyzt-4wZyDHJp2w)
+>[实现异步的9种方式](https://mp.weixin.qq.com/s/eTQwT-zFgHgNVJ_nNAZidw)
 
 ## 一、JUC - Atomic
 
 Java 中的 `java.util.concurrent.atomic` 包提供了一组**原子变量类**，主要用于**高并发场景下的无锁编程**，比起使用
 `synchronized`，这些类可以提升程序的性能和吞吐量。
 
-### 1、核心思想：CAS（Compare-And-Swap）
+### 1、核心思想
 
-CAS 是实现原子操作的核心：
+CAS（Compare-And-Swap）是实现原子操作的核心思想，其工作原理如下：
 
-- **比较内存值是否为预期值**，如果是则修改为新值。
-- 是一种乐观锁机制。
+- **比较内存中的值与预期值**，如果一致，则将其更新为新的值。
+- 它是一种**乐观锁机制**，通过尝试修改共享数据并检查是否发生了冲突来保证线程安全。
 
 ### 2、常用的原子类分类
 
@@ -94,6 +91,8 @@ private void test() {
 - 如果涉及多个变量的原子性，则需要使用 **`synchronized`** 或 **`Lock`**。
 
 ## 二、JUC - LOCK
+
+### synchronized
 
 ### ReentrantLock（可重入锁）
 
