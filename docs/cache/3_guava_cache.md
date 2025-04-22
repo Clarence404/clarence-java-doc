@@ -9,7 +9,7 @@
 | 模块          | 作用                         |
 |:------------|:---------------------------|
 | Collections | 集合扩展工具（如 Multimap、BiMap 等） |
-| Caching     | 本地缓存（就是你问的 Guava Cache）    |
+| Caching     | 本地缓存（也就是 Guava Cache）      |
 | Concurrency | 并发工具（如 ListenableFuture）   |
 | Hashing     | 高效哈希算法支持（比如 BloomFilter）   |
 | Strings     | 字符串处理工具类                   |

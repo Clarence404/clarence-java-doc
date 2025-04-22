@@ -68,7 +68,7 @@ export default defineUserConfig({
             {text: '数据库', link: '/database/0_mysql'},
             {text: '缓存', link: '/cache/1_redis'},
             {text: 'JVM', link: '/jvm/jvm'},
-            {text: 'Spring', link: '/spring/1_spring'},
+            {text: 'Spring', link: '/spring/1_spring_framework'},
             {text: '微服务', link: '/springcloud/1_base'},
             {text: '消息队列', link: '/mq/1_mq'},
             {text: '高并发', link: '/concurrent/0_concurrent'},
