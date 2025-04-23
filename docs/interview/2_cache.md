@@ -464,53 +464,11 @@ Redis 提供了两种主要的持久化方式，用于在服务重启后恢复�
 
 缓存热备既当一个缓存服务器不可用时能实时切换到备用缓存服务器，不影响缓存使用。集群模式下，每个主节点都会有一个或多个从节点备用，一旦主节点挂掉，从节点会被哨兵提升为主节点使用。
 
-## 十五、Redis 集群问题总结
 
-### 1、Redis 集群分类
+## 十五、怎么使用 Redis 实现消息队列？
 
-![img.png](../assets/interview/cluster-diff.png)
 
-### 2、Redis 集群搭建
-
-#### 主从模式方案
-
-![img.png](../assets/interview/master-slave.png)
-
-- 部署实测：Todo
-
-#### 哨兵模式方案：
-
-![img.png](../assets/interview/sentinel.png)
-
--
-
-部署实测：[三台 Centos7.9 中 Docker 部署 Redis 哨兵模式](https://blog.csdn.net/weixin_43108539/article/details/145148482)
-
-#### 集群模式方案：
-
-![img.png](../assets/interview/redis-cluster.png)
-
--
-
-部署实测：[三台 Centos7.9 中 Docker 部署 Redis 集群模式](https://blog.csdn.net/weixin_43108539/article/details/145098017)
-
-## 十六、Redis 集群同步数据
-
-Todo
-
-## 十七、Redis 的主从复制原理
-
-Todo
-
-## 十八、知道哪些 Redis 的优化操作
-
-## 十九、怎么使用 Redis 实现消息队列？
-
-以下是补充后的 **Redis 热 Key 问题如何解决** 章节：
-
----
-
-## 二十、Redis 热 Key 问题如何解决?
+## 十六、Redis 热 Key 问题如何解决?
 
 热key 问题是指某些键因高频访问导致 Redis 性能瓶颈或集群压力过高。这类问题通常发生在一些热门数据频繁被访问时，可能导致
 Redis 服务器负载过重，甚至导致 Redis 崩溃。
@@ -568,10 +526,10 @@ user_id:1:part1, user_id:1:part2）来进行访问。这种方式能够减少对
   参考代码：[https://gitee.com/jd-platform-opensource/hotkey](https://gitee.com/jd-platform-opensource/hotkey)  
   该代码库提供了一个自动化检测和处理 Redis 热key的方案，可以根据实际需求进行二次开发和集成。
 
-## 二十一、Redis大 Key 问题如何解决?
+## 十七、Redis大 Key 问题如何解决?
 
-## 二十二、Redis 6.x 为什么要引入多线程?
+## 十八、Redis 6.x 为什么要引入多线程?
 
-## 二十三、Redis 说说分布式锁？
+## 十九、Redis 说说分布式锁？
 
-- 点击查看  <RouteLink to="/cache/1_redis#redis分布式锁">分布式锁</RouteLink>
+- 点击查看  <RouteLink to="/cache/1_redis#四、Redis分布式锁">Redis：Redis分布式锁</RouteLink>
