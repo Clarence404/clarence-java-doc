@@ -28,4 +28,4 @@ footer: MIT 协议 | 版权所有 © 2025-至今 Clarence
 |------------------|-------------------------------------------------|
 | Java 全栈知识体系      | [https://www.pdai.tech/](https://www.pdai.tech) |
 | 小傅哥 bugstack 虫洞栈 | [https://bugstack.cn/](https://bugstack.cn)     |
-｜互联网公司常用框架源码赏析  ｜https://schunter.doocs.org｜
+|互联网公司常用框架源码赏析  |https://schunter.doocs.org |
