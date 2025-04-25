@@ -115,8 +115,10 @@ export default defineUserConfig({
                     placeholder: '搜索',
                 },
             },
-            maxSuggestions: 10, // 最大显示条目数
-            isSearchable: (page) => page.path !== '/', // 排除首页
+            // 最大显示条目数
+            maxSuggestions: 10,
+            // 排除首页
+            isSearchable: (page) => page.path !== '/',
         }),
         markdownHintPlugin({
             // 启用提示容器，默认启用
