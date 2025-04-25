@@ -1,6 +1,7 @@
 # Java基础
 
-官方API地址：[https://docs.oracle.com/en/java/javase/](https://docs.oracle.com/en/java/javase/)
+- API地址：[https://docs.oracle.com/en/java/javase/](https://docs.oracle.com/en/java/javase/)
+- 源码地址：[https://github.com/openjdk](https://github.com/openjdk)
 
 ## 一、Hashmap分析
 
