@@ -46,18 +46,18 @@ clarence-java-doc/
 ├── cache/                # Caching systems (Redis, Caffeine, Guava)
 ├── jvm/                  # JVM internals and optimization
 ├── spring/               # Spring framework ecosystem
-├── micro_service/        # Microservices architecture and practice
-├── mq/                   # Message queue systems (Kafka, RabbitMQ, etc.)
-├── high_concurrency/     # High concurrency programming
-├── distributed/          # Distributed systems and principles
-├── high_availability/    # High availability strategies
-├── design/               # Design patterns
-├── scene/                # Scenario-based problem solving
+├── microservices/        # Microservices architecture and practice
+├── messaging/            # Message queue systems (Kafka, RabbitMQ, etc.)
+├── high-concurrency/     # High concurrency programming
+├── distributed-systems/  # Distributed systems and principles
+├── high-availability/    # High availability strategies
+├── design-patterns/      # Design patterns
+├── scenario-solutions/   # Scenario-based problem solving
 ├── netty/                # Netty and network programming
-├── cloud_native/         # Linux, Docker, containerization topics
-├── algorithm/            # Algorithms and data structures
+├── cloud-native/         # Linux, Docker, containerization topics）
+├── algorithms/           # Algorithms and data structures
 ├── architecture/         # System architecture and system design
-├── protocol/             # Communication protocols
+├── protocols/            # Communication protocols
 ├── iot/                  # IoT (Internet of Things) solutions
 ├── ai/                   # Artificial Intelligence basics
 └── README.md             # Project introduction (You are here)
