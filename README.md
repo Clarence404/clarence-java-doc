@@ -46,7 +46,7 @@ clarence-java-doc/
 ├── cache/              # Caching systems (Redis, Caffeine, Guava)
 ├── jvm/                # JVM internals and optimization
 ├── spring/             # Spring framework ecosystem
-├── microservice/       # Microservices architecture and practice
+├── micro_service/      # Microservices architecture and practice
 ├── mq/                 # Message queue systems (Kafka, RabbitMQ, etc.)
 ├── concurrent/         # High concurrency programming
 ├── distributed/        # Distributed systems and principles
@@ -54,7 +54,7 @@ clarence-java-doc/
 ├── design/             # Design patterns
 ├── scene/              # Scenario-based problem solving
 ├── netty/              # Netty and network programming
-├── container/          # Linux, Docker, containerization topics
+├── cloud_native/       # Linux, Docker, containerization topics
 ├── algorithm/          # Algorithms and data structures
 ├── architecture/       # System architecture and system design
 ├── protocol/           # Communication protocols
