@@ -2,8 +2,10 @@
 
 参考链接：
 >[https://gitee.com/Doocs/advanced-java](https://gitee.com/Doocs/advanced-java#%E9%AB%98%E5%B9%B6%E5%8F%91%E6%9E%B6%E6%9E%84)
->[苏三说技术-并发编程](https://mp.weixin.qq.com/s/jUu1k1oKyzt-4wZyDHJp2w)
->[实现异步的9种方式](https://mp.weixin.qq.com/s/eTQwT-zFgHgNVJ_nNAZidw)
+> 
+>[1.6w字图解并发编程-苏三说技术](https://mp.weixin.qq.com/s/jUu1k1oKyzt-4wZyDHJp2w)
+> 
+>[实现异步的9种方式-捡田螺的小男孩](https://mp.weixin.qq.com/s/eTQwT-zFgHgNVJ_nNAZidw)
 
 ## 一、JUC - Atomic
 
