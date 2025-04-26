@@ -14,7 +14,6 @@
 
 [https://xuanyuan.me/](https://xuanyuan.me/)
 
-
 ### 2、常用解决方案
 
 #### 2.1、魔法下载后，手动上传（最笨方案）
@@ -68,7 +67,6 @@ Vmware使用NAT模式，保证主机和虚拟机在一个局域网下
 
 ![img_1.png](../assets/container/host.png)
 
-
 ### 3、None
 
 内部容器，没有网卡、路由、防火墙、IP、网关，端口等
@@ -86,3 +84,5 @@ bridge和Host模式的结合体，存在Docker0网络，后续指定其网关；
 :::
 
 ![img_3.png](../assets/container/container_warning.png)
+
+## 二、Docker 操作命令
