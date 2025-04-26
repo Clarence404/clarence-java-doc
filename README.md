@@ -38,29 +38,29 @@ It mainly covers a wide range of backend development and system design topics, i
 
 ```bash
 clarence-java-doc/
-├── .vuepress/          # VuePress configuration (theme, plugins, sidebar generation)
-│   └── config.js       # Main configuration file
-├── interview/          # Development experience and technical interviews
-├── java/               # Java basics and advanced topics
-├── database/           # MySQL and database-related content
-├── cache/              # Caching systems (Redis, Caffeine, Guava)
-├── jvm/                # JVM internals and optimization
-├── spring/             # Spring framework ecosystem
-├── micro_service/      # Microservices architecture and practice
-├── mq/                 # Message queue systems (Kafka, RabbitMQ, etc.)
-├── concurrent/         # High concurrency programming
-├── distributed/        # Distributed systems and principles
-├── ha/                 # High availability strategies
-├── design/             # Design patterns
-├── scene/              # Scenario-based problem solving
-├── netty/              # Netty and network programming
-├── cloud_native/       # Linux, Docker, containerization topics
-├── algorithm/          # Algorithms and data structures
-├── architecture/       # System architecture and system design
-├── protocol/           # Communication protocols
-├── iot/                # IoT (Internet of Things) solutions
-├── ai/                 # Artificial Intelligence basics
-└── README.md           # Project introduction (You are here)
+├── .vuepress/            # VuePress configuration (theme, plugins, sidebar generation)
+│   └── config.js         # Main configuration file
+├── interview/            # Development experience and technical interviews
+├── java/                 # Java basics and advanced topics
+├── database/             # MySQL and database-related content
+├── cache/                # Caching systems (Redis, Caffeine, Guava)
+├── jvm/                  # JVM internals and optimization
+├── spring/               # Spring framework ecosystem
+├── micro_service/        # Microservices architecture and practice
+├── mq/                   # Message queue systems (Kafka, RabbitMQ, etc.)
+├── high_concurrency/     # High concurrency programming
+├── distributed/          # Distributed systems and principles
+├── high_availability/    # High availability strategies
+├── design/               # Design patterns
+├── scene/                # Scenario-based problem solving
+├── netty/                # Netty and network programming
+├── cloud_native/         # Linux, Docker, containerization topics
+├── algorithm/            # Algorithms and data structures
+├── architecture/         # System architecture and system design
+├── protocol/             # Communication protocols
+├── iot/                  # IoT (Internet of Things) solutions
+├── ai/                   # Artificial Intelligence basics
+└── README.md             # Project introduction (You are here)
 ```
 
 ---
