@@ -1,7 +1,5 @@
 # JAVA 8+ 特性
 
-
-
 ## Java 8 升Java 11 重要特性必读
 
 ## Java 11 升Java 17 重要特性必读
