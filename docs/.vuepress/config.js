@@ -69,7 +69,7 @@ export default defineUserConfig({
             {text: '缓存', link: '/cache/1_redis'},
             {text: 'JVM', link: '/jvm/jvm'},
             {text: 'Spring', link: '/spring/1_spring_framework'},
-            {text: '微服务', link: '/microservices/1_base'},
+            {text: '微服务', link: '/microservices/1_base_concept'},
             {text: '消息队列', link: '/messaging/1_mq'},
             {text: '高并发', link: '/high-concurrency/0_concurrent'},
             {text: '分布式', link: '/distributed/0_distributed'},
