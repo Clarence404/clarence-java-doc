@@ -80,7 +80,7 @@ export default defineUserConfig({
             {text: '云原生', link: '/cloud-native/1_linux'},
             {text: '算法', link: '/algorithms/0_base_0_complexity'},
             {text: '架构', link: '/architecture/0_system_structure'},
-            {text: '开发协议', link: '/protocols/0'},
+            {text: '开发协议', link: '/protocols/0_protocols_base'},
             {text: 'IOT', link: '/iot/0_base'},
             {text: '人工智能', link: '/ai/0_ai'},
         ],

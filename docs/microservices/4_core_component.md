@@ -32,6 +32,7 @@
 - **OpenSergo**（下一代服务治理标准）
 - **gRPC**（Google 出品，Protocol Buffers 通信）
 - **Istio**（服务网格 Service Mesh，基于 Envoy）
+- **OpenFeign**（Spring Cloud 提供的声明式 HTTP 客户端，简化服务间调用）
 
 说明：如果追求更标准的跨语言通信，gRPC + Istio 是国际主流组合。
 
@@ -86,7 +87,7 @@
 |:-----|:----------------------------|:--------------------------|
 | 网关   | Spring Cloud Gateway、APISIX | Kong、Traefik              |
 | 注册发现 | Nacos                       | Consul、etcd               |
-| 通信   | Dubbo、OpenSergo             | gRPC、Istio                |
+| 通信   | Dubbo、OpenSergo、OpenFeign   | gRPC、Istio                |
 | 流控   | Sentinel                    | Resilience4j、Envoy        |
 | 事务   | Seata                       | Saga/Event Sourcing       |
 | 消息   | RocketMQ                    | Kafka、RabbitMQ、Pulsar     |
@@ -94,7 +95,7 @@
 
 ---
 
-## 小提示
+::: tip 小提示
 
 - 国内偏向「**一站式集成**」（比如 Spring Cloud Alibaba）
 - 国外偏向「**组合搭积木式**」（比如 gRPC + Consul + Envoy + Jaeger）
@@ -103,3 +104,5 @@
     - 实时消息处理（Kafka / RocketMQ）
     - 高可用注册中心（Nacos / Consul）
     - 全链路监控（SkyWalking / Prometheus）
+  
+:::
