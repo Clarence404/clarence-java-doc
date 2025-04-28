@@ -1,5 +1,7 @@
 # Redis
 
+[Redis核心原理-苏三说技术](https://mp.weixin.qq.com/s/kRNm9SA6tZx3e9enT7kMUA)
+
 官网地址：[https://redis.io/](https://redis.io/)
 
 源码地址：[https://github.com/redis](https://github.com/redis)
