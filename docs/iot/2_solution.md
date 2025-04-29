@@ -1,5 +1,7 @@
 # 优秀解决方案
 
+[主流的IoT物联网架构方案整理](https://blog.csdn.net/hekuinumberone/article/details/110051328)
+
 ## 一、小米 IoT
 
 ### **解决方案概述**
