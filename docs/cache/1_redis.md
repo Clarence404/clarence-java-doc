@@ -1,7 +1,5 @@
 # 缓存 - Redis
 
-[Redis核心原理-苏三说技术](https://mp.weixin.qq.com/s/kRNm9SA6tZx3e9enT7kMUA)
-
 官网地址：[https://redis.io/](https://redis.io/)
 
 源码地址：[https://github.com/redis](https://github.com/redis)
@@ -69,7 +67,7 @@ java总结-缓存：Redis-常用的数据结构</RouteLink>
     - `volatile-lru`：只在设置了过期时间的 key 中淘汰 LRU 的
 - 推荐配图 + 命令演示，帮助理解。
 
-## 三、深入 持久化机制 
+## 三、深入 持久化机制
 
 - RDB 和 AOF 两种机制
     - 优劣对比、适用场景
@@ -174,7 +172,7 @@ Todo
 
 ## 九、Redis 性能优化
 
-### 十、监控与运维
+## 十、监控与运维
 
 - 常见工具：RedisInsight、Prometheus + Grafana、阿里云控制台
 - 数据指标：命中率、连接数、慢查询、内存使用率等
