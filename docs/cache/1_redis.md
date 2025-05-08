@@ -1,4 +1,4 @@
-# 缓存 - Redis
+# Redis
 
 官网地址：[https://redis.io/](https://redis.io/)
 
