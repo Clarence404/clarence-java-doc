@@ -1,4 +1,4 @@
-# 最佳 Git 规范
+# 团队 Git 规范
 
 参考链接：[https://zhuanlan.zhihu.com/p/182553920](https://zhuanlan.zhihu.com/p/182553920)
 
