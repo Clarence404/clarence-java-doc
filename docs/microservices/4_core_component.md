@@ -1,4 +1,4 @@
-# 核心组件（融合版）
+# 核心组件
 
 主要基于 [Spring Cloud Alibaba](https://sca.aliyun.com/) + 国际流行方案扩展。
 
