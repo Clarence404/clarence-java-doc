@@ -159,6 +159,9 @@ public void execute(Runnable command) {
 
 ### 7、线程池最优参数
 
+- 常见的区分cpu和io密集型
+
+- [计算线程池场景分析](https://zhuanlan.zhihu.com/p/116426107)
 
 ## 三、动态线程池
 
