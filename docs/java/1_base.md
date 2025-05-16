@@ -13,61 +13,74 @@ HashMap 是基于哈希表实现的，哈希表的基本思想是通过将数据
 
 - **哈希函数**： HashMap 使用哈希函数将键（key）映射到数组的索引位置。哈希函数的目的是通过计算一个值，将不同的键映射到哈希表中的位置。
 
-- **数组**： 哈希表内部使用一个数组来存储数据。数组中的每个元素存储一个链表（或者在 Java 8 后是 
-<RouteLink to="/algorithm/0_base_4_tree#红黑树-balanced-binary-search-tree-bbst">红黑树</RouteLink>），用于处理哈希冲突。
+- **数组**： 哈希表内部使用一个数组来存储数据。数组中的每个元素存储一个链表（或者在 Java 8 后是
+  <RouteLink to="/algorithm/0_base_4_tree#红黑树-balanced-binary-search-tree-bbst">红黑树</RouteLink>），用于处理哈希冲突。
 
 ### 2、哈希冲突
+
 由于哈希函数不可能做到完全唯一的映射，不同的键可能会被映射到相同的索引，这种情况称为哈希冲突。HashMap 通过以下方式解决哈希冲突：
 
 - **链表法（链式哈希）**： 在发生冲突的情况下，HashMap 会将冲突的键值对存储到一个链表中
-（或者 <RouteLink to="/algorithm/0_base_4_tree#红黑树-balanced-binary-search-tree-bbst">红黑树</RouteLink>）。
-当多个元素映射到同一个索引位置时，它们会形成一个链表。
+  （或者 <RouteLink to="/algorithm/0_base_4_tree#红黑树-balanced-binary-search-tree-bbst">红黑树</RouteLink>）。
+  当多个元素映射到同一个索引位置时，它们会形成一个链表。
 
--  **<RouteLink to="/algorithm/0_base_4_tree#红黑树-balanced-binary-search-tree-bbst">红黑树</RouteLink> 法**： 在 Java 8 及以后的版本中，
-如果链表的长度超过一定阈值（默认为 8），HashMap 会将链表转化为 <RouteLink to="/algorithm/0_base_4_tree#红黑树-balanced-binary-search-tree-bbst">红黑树</RouteLink>，
-以提高查询效率。
+- **<RouteLink to="/algorithm/0_base_4_tree#红黑树-balanced-binary-search-tree-bbst">红黑树</RouteLink> 法**： 在 Java 8
+  及以后的版本中，如果链表的长度超过一定阈值（默认为 8），HashMap
+  会将链表转化为 <RouteLink to="/algorithm/0_base_4_tree#红黑树-balanced-binary-search-tree-bbst">红黑树</RouteLink>，
+  以提高查询效率。
 
 ![img.png](../assets/java/hashmap_hash_conflict.png)
 
 ### 3、扩容机制
 
-当 HashMap 中的元素过多时，哈希表的负载因子（load factor）可能会达到阈值，导致哈希表的存储效率降低。默认情况下，负载因子为 0.75。
+当 HashMap 中的元素过多时，哈希表的负载因子（load factor）可能会达到阈值，导致哈希表的存储效率降低。默认情况下，负载因子为
+0.75。
 **当元素个数超过 (当前容量 * 负载因子) 时，HashMap 会进行扩容（通常是原数组大小的 2 倍）**。
 
-扩容过程中，所有元素的哈希值会被重新计算，并重新放置到新的数组位置。这是因为 **哈希表的大小发生变化，导致原先的索引位置不再适用**。
+扩容过程中，所有元素的哈希值会被重新计算，并重新放置到新的数组位置。这是因为 **哈希表的大小发生变化，导致原先的索引位置不再适用
+**。
 
 ### 4、时间复杂度
 
 - **查找、插入、删除 时间复杂度**：
 
 在理想情况下，哈希表的查找、插入和删除操作的时间复杂度为 O(1)。但是，如果发生哈希冲突，性能会退化到 O(n)（链表长度为 n 时）。
-使用 <RouteLink to="/algorithm/0_base_4_tree#红黑树-balanced-binary-search-tree-bbst">红黑树</RouteLink>优化后，最坏情况下时间复杂度为 O(log n)。
+使用 <RouteLink to="/algorithm/0_base_4_tree#红黑树-balanced-binary-search-tree-bbst">红黑树</RouteLink>优化后，最坏情况下时间复杂度为
+O(log n)。
 
 - **扩容操作的时间复杂度**：
 
 扩容是一个相对耗时的操作，时间复杂度为 O(n)，但扩容操作是按需进行的，不是频繁发生，因此平均而言，HashMap 的操作仍然是 O(1)。
 
-
 ## 二、LinkedHashMap分析
 
-### 1、类继承关系
+### 1、有序性支持
 
-`LinkedHashMap` 继承自 `HashMap`，是其子类，并复用了 `HashMap` 的大部分方法。
+与 `HashMap` 不同，`LinkedHashMap` 保留了元素的顺序特性：
 
-与 `HashMap` 不同的是，`LinkedHashMap` 结合了 **哈希表（HashMap）** 和 **双向链表（LinkedList）** 的特点，不仅提供了高效的键值存储，还维护了元素的 **插入顺序**。
+- 默认按照 **插入顺序** 排列。
+- 可以选择按照 **访问顺序** 排列（构造函数中设置 `accessOrder=true`）。
 
-在使用 `Iterator` 遍历 `LinkedHashMap` 时，元素的顺序与插入顺序一致。
+### 2、遍历顺序可控
 
-此外，`LinkedHashMap` 还支持按照 **访问顺序** 排序，可在构造时通过参数指定，使最近访问的元素排列在前，适用于实现 **LRU（最近最少使用）缓存策略**。
+使用 `Iterator` 遍历时，元素的顺序：
+
+- 插入顺序模式下：与插入顺序一致；
+- 访问顺序模式下：最近被访问的元素会排在后面。
+
+### 3、应用场景：LRU 缓存
+
+通过设置为访问顺序 + 搭配 `removeEldestEntry` 方法，`LinkedHashMap` 可轻松实现：
+
+* **最近最少使用（LRU）缓存淘汰策略**
+
+```java
+new LinkedHashMap<>(16,0.75f,true) // accessOrder = true
+```
+
+### 4、类关系图
 
 ![](../assets/java/LinkedHashMap.png)
-
-
-### 2、基本原理
-
-::: warning Todo
-更加精通后完成。。。
-:::
 
 ## 三、ConcurrentHashMap分析
 
@@ -94,7 +107,7 @@ HashMap 是基于哈希表实现的，哈希表的基本思想是通过将数据
 更加精通后完成。。。
 :::
 
-## 四、ConcurrentHashMap 为什么放弃分段锁？
+## 四、ConcurrentHashMap 为何放弃分段锁？
 
 ### 1、JDK 1.7 前分段锁的弊端
 
@@ -113,33 +126,99 @@ JDK 1.8 放弃了 `Segment`，改用 **数组 + 链表 + 红黑树** 结构，�
 - **CAS 无锁优化**：避免锁竞争，提高吞吐量。
 
 ```java
-if (casTabAt(tab, i, null, new Node<K,V>(hash, key, value, null))) {
+public V put(K key, V value) {
+    // 扰动哈希，减少碰撞
+    int hash = spread(key.hashCode());
+    // 计算桶索引
+    int i = (table.length - 1) & hash;
+
+    // 如果桶是空的，直接 CAS 插入（无锁）
+    if (tabAt(table, i) == null) {
+        if (casTabAt(table, i, null, new Node<>(hash, key, value, null))) {
+            return null;
+        }
+    }
+
+    // 否则进入加锁流程
+    synchronized (table[i]) {
+        // 链表插入或树形插入逻辑...
+    }
     return null;
 }
+
 ```
 
 - **synchronized 局部加锁**：只锁定当前桶位，减少锁竞争。
 
 ```java
-synchronized (f) {
-    putValUnderLock();
+private void putVal(int hash, K key, V value) {
+    int i = (n - 1) & hash;
+    Node<K, V> f = tabAt(table, i);
+
+    if (f == null) {
+        if (casTabAt(table, i, null, new Node<>(hash, key, value, null))) {
+            return;
+        }
+    } else {
+        synchronized (f) { // 局部加锁，只锁定当前桶位
+            Node<K, V> e = f;
+            while (e != null) {
+                if (e.hash == hash && Objects.equals(e.key, key)) {
+                    e.value = value; // 覆盖已有 key 的值
+                    return;
+                }
+                e = e.next;
+            }
+            // 插入新节点
+            f.next = new Node<>(hash, key, value, null);
+        }
+    }
 }
+
 ```
 
 - **红黑树优化**：当链表长度超过 8，转为红黑树，查询效率提高。
 
 ```java
-if (binCount >= TREEIFY_THRESHOLD) {
-    treeifyBin(tab, i);
+private void putVal(int hash, K key, V value) {
+    int i = (n - 1) & hash;
+    Node<K, V> f = tabAt(table, i);
+
+    if (f != null) {
+        int binCount = 1;
+        Node<K, V> e = f;
+        while (e.next != null) {
+            binCount++;
+            e = e.next;
+        }
+
+        if (binCount >= TREEIFY_THRESHOLD) { // 默认值为8
+            treeifyBin(table, i); // 转为红黑树结构
+        }
+    }
 }
-  ```
+
+```
 
 - **无锁扩容**：多个线程并行迁移数据，提升扩容效率。
 
 ```java
-if (sizeCtl < table.length * 0.75) {
-    transferNodes();
+private void resize() {
+    Node<K, V>[] oldTab = table;
+    int oldCap = oldTab.length;
+    int newCap = oldCap << 1;
+    Node<K, V>[] newTab = new Node[newCap];
+
+    for (int i = 0; i < oldCap; ++i) {
+        Node<K, V> e = oldTab[i];
+        if (e != null) {
+            transferNode(e, newTab); // 将链表或树迁移到新表
+        }
+    }
+
+    table = newTab;
 }
+
 ```
 
 ### 3、两句话总结
@@ -149,7 +228,6 @@ if (sizeCtl < table.length * 0.75) {
 - JDK 1.8 改用 CAS、synchronized 和红黑树，提升了并发性能和查询效率，支持无锁扩容。
 
 > **提示**：JDK 1.8 的 `ConcurrentHashMap` 在高并发下表现更优，避免了分段锁带来的性能瓶颈。
-
 
 ## 四、HashMap、LinkedHashMap、ConcurrentHashMap对比
 
@@ -174,45 +252,52 @@ if (sizeCtl < table.length * 0.75) {
 
 - TreeMap 的核心特点
 
-| 特性              | 	说明                                                 |
-|-----------------|-----------------------------------------------------|
-| 底层实现            | 	 <RouteLink to="/algorithm/0_base_4_tree#红黑树-balanced-binary-search-tree-bbst">红黑树</RouteLink>（Red-Black Tree），是一种自平衡二叉搜索树（BST）               |
-| 排序方式            | 	默认按 key 的 自然顺序（Comparable） 排序，也可以传入 自定义 Comparator |
-| 时间复杂度           | 	O(log n)（增、删、查）                                    |
-| 是否允许 null key   | 	❌ 不允许 null key（会抛 NullPointerException）            |
-| 是否允许 null value | 	✅ 允许 null value                                    |
-| 是否线程安全          | 	❌ 非线程安全（需要 Collections.synchronizedMap() 保护）       |
+| 特性              | 	说明                                                                                                                              |
+|-----------------|----------------------------------------------------------------------------------------------------------------------------------|
+| 底层实现            | 	 <RouteLink to="/algorithm/0_base_4_tree#红黑树-balanced-binary-search-tree-bbst">红黑树</RouteLink>（Red-Black Tree），是一种自平衡二叉搜索树（BST） |
+| 排序方式            | 	默认按 key 的 自然顺序（Comparable） 排序，也可以传入 自定义 Comparator                                                                              |
+| 时间复杂度           | 	O(log n)（增、删、查）                                                                                                                 |
+| 是否允许 null key   | 	❌ 不允许 null key（会抛 NullPointerException）                                                                                         |
+| 是否允许 null value | 	✅ 允许 null value                                                                                                                 |
+| 是否线程安全          | 	❌ 非线程安全（需要 Collections.synchronizedMap() 保护）                                                                                    |
 
 ::: important 使用途径
 适用于需要 "**自动排序**" 和 "**范围查询**" 的场景。
 :::
 
-
 1、适用场景：数据存储时要求按照 key 进行排序，方便后续查询和展示
+
 ```java
-TreeMap<Integer, String> productMap = new TreeMap<>();
-productMap.put(102, "iPhone");
-productMap.put(101, "Samsung");
-productMap.put(103, "Huawei");
+private void test() {
+    TreeMap<Integer, String> productMap = new TreeMap<>();
+    productMap.put(102, "iPhone");
+    productMap.put(101, "Samsung");
+    productMap.put(103, "Huawei");
 
 // 遍历时 key 是按顺序排序的（101, 102, 103）
-for (Map.Entry<Integer, String> entry : productMap.entrySet()) {
-    System.out.println(entry.getKey() + " -> " + entry.getValue());
+    for (Map.Entry<Integer, String> entry : productMap.entrySet()) {
+        System.out.println(entry.getKey() + " -> " + entry.getValue());
+    }
 }
 ```
-2、需要 "范围查询" 或 "区间搜索"
-```java
-TreeMap<Long, String> transactionMap = new TreeMap<>();
-transactionMap.put(1707052800000L, "订单 A");  // 2024-02-05 00:00:00
-transactionMap.put(1707139200000L, "订单 B");  // 2024-02-06 00:00:00
-transactionMap.put(1707225600000L, "订单 C");  // 2024-02-07 00:00:00
 
-// 获取 2 月 5 日到 2 月 6 日之间的交易
-Map<Long, String> result = transactionMap.subMap(1707052800000L, 1707139200000L);
-System.out.println(result);
+2、需要 "范围查询" 或 "区间搜索"
+
+```java
+private void test() {
+    TreeMap<Long, String> transactionMap = new TreeMap<>();
+    transactionMap.put(1707052800000L, "订单 A");  // 2024-02-05 00:00:00
+    transactionMap.put(1707139200000L, "订单 B");  // 2024-02-06 00:00:00
+    transactionMap.put(1707225600000L, "订单 C");  // 2024-02-07 00:00:00
+
+    // 获取 2 月 5 日到 2 月 6 日之间的交易
+    Map<Long, String> result = transactionMap.subMap(1707052800000L, 1707139200000L);
+    System.out.println(result);
+}
 ```
 
 ### 2、相关类对比
+
 | **对比项**             | **TreeMap**         | **ConcurrentSkipListMap** |
 |---------------------|---------------------|---------------------------|
 | **底层数据结构**          | 红黑树（Red-Black Tree） | 跳表（Skip List）             |
@@ -223,7 +308,6 @@ System.out.println(result);
 | **线程安全**            | ❌ 非线程安全             | ✅ 线程安全                    |
 | **适用场景**            | 需要排序、范围查询、导航结构      | 并发环境下的有序映射                |
 | **主要应用**            | 排名、日志存储、区间查找        | 线程安全的排序映射结构               |
-
 
 ## 四、HashMap和HashTable对比
 
@@ -244,11 +328,15 @@ System.out.println(result);
 
 ::: tip
 ✅ 用 HashMap
+
 - 大多数场景 推荐使用 HashMap，只在单线程环境下使用。
 
 ✅ 用 ConcurrentHashMap（代替 Hashtable）
+
 - 如果需要线程安全，**请用 ConcurrentHashMap，不要用 Hashtable！**
+
 - ConcurrentHashMap 在 **高并发 场景下比 Hashtable 性能更优（局部加锁，甚至无锁）**。
+
 :::
 
 ## 五、线程的创建（Thread vs Runnable）
@@ -271,6 +359,7 @@ class MyThread extends Thread {
     }
 }
 ```
+
 - 优点：简单直观，适合只有一个任务的情况。
 
 - 缺点：如果需要继承其他类，无法再继承 Thread 类（Java 是单继承）。
@@ -278,6 +367,7 @@ class MyThread extends Thread {
 ### 2、实现 Runnable 接口
 
 这种方法更灵活，创建一个实现 Runnable 接口的类，并将其作为参数传递给 Thread 构造函数。
+
 ```java
 class MyRunnable implements Runnable {
     @Override
@@ -292,6 +382,7 @@ class MyRunnable implements Runnable {
     }
 }
 ```
+
 - 优点：允许实现多个接口，提供更多的灵活性和可扩展性。
 
 - 缺点：比继承 Thread 类稍微复杂一些，但通常更加推荐。
@@ -331,22 +422,23 @@ class MyRunnable implements Runnable {
 ### 3、双重检查锁案例
 
 #### 正确实现代码
+
 ```java
 private static volatile Singleton instance;
 
 public static Singleton getInstance() {
-  if (instance == null) {
-    synchronized (Singleton.class) {
-      if (instance == null) {
-        // volatile保证以下操作不重排：
-        // 1. memory = allocate() 分配空间
-        // 2. init(memory) 初始化对象 ← StoreStore屏障在此
-        // 3. instance = memory 设置引用 ← StoreLoad屏障在此
-        instance = new Singleton();
-      }
+    if (instance == null) {
+        synchronized (Singleton.class) {
+            if (instance == null) {
+                // volatile保证以下操作不重排：
+                // 1. memory = allocate() 分配空间
+                // 2. init(memory) 初始化对象 ← StoreStore屏障在此
+                // 3. instance = memory 设置引用 ← StoreLoad屏障在此
+                instance = new Singleton();
+            }
+        }
     }
-  }
-  return instance; // LoadLoad屏障保证读到最新值
+    return instance; // LoadLoad屏障保证读到最新值
 }
 ```
 
@@ -369,12 +461,10 @@ public static Singleton getInstance() {
 | 禁止重排 | ✔        | ✔            | ✖         |
 | 性能成本 | 低        | 高            | 中         |
 
-
 ## 七、线程的等待与唤醒机制
 
 在多线程编程中，线程的等待与唤醒是实现线程间协作、资源同步的重要手段。Java 中提供了多种机制来实现线程的阻塞与唤醒，
 包括基于 `Object`、`Thread`、`Lock` 以及 `LockSupport` 的方式。
-
 
 ### 1、Object的wait() / notify() / notifyAll()
 
@@ -384,22 +474,23 @@ public static Singleton getInstance() {
 
 - 方法说明：
 
-  - `wait()`：当前线程等待并释放锁，进入对象的等待队列。
-  
-  - `notify()`：唤醒一个正在等待该对象锁的线程（具体哪个由 JVM 决定）。
-  
-  - `notifyAll()`：唤醒所有等待该对象锁的线程。
+    - `wait()`：当前线程等待并释放锁，进入对象的等待队列。
+
+    - `notify()`：唤醒一个正在等待该对象锁的线程（具体哪个由 JVM 决定）。
+
+    - `notifyAll()`：唤醒所有等待该对象锁的线程。
 
 ```java
-synchronized (lock) {
-    while (!condition) {
-        lock.wait();
+private void test() {
+    synchronized (lock) {
+        while (!condition) {
+            lock.wait();
+        }
+        // do something
+        lock.notify();
     }
-    // do something
-    lock.notify();
 }
 ```
-
 
 ### 2、Thread.sleep()
 
@@ -420,18 +511,20 @@ Thread.sleep(1000); // 休眠1秒
 - 一个 `Lock` 可以创建多个 `Condition`，每个条件变量维护独立的等待队列。
 
 ```java
-Lock lock = new ReentrantLock();
-Condition condition = lock.newCondition();
+private void test() {
+    Lock lock = new ReentrantLock();
+    Condition condition = lock.newCondition();
 
-lock.lock();
-try {
-    while (!conditionSatisfied) {
-        condition.await();  // 等待
+    lock.lock();
+    try {
+        while (!conditionSatisfied) {
+            condition.await();  // 等待
+        }
+        // 条件满足后执行逻辑
+        condition.signal();     // 唤醒一个等待线程
+    } finally {
+        lock.unlock();
     }
-    // 条件满足后执行逻辑
-    condition.signal();     // 唤醒一个等待线程
-} finally {
-    lock.unlock();
 }
 ```
 
@@ -444,18 +537,20 @@ try {
 - 支持先 `unpark()` 后 `park()` 的调用顺序，不会丢失信号。
 
 ```java
-LockSupport.park();  // 阻塞当前线程
-LockSupport.unpark(thread);  // 唤醒指定线程
+private void test() {
+    LockSupport.park();  // 阻塞当前线程
+    LockSupport.unpark(thread);  // 唤醒指定线程
+}
 ```
 
 ### 5、小结对比
 
-| 机制 | 是否释放锁 | 是否依赖锁 | 唤醒粒度 | 应用场景 |
-|------|------------|-------------|-----------|-----------|
-| `wait/notify` | 是 | 是（synchronized） | 不可控（JVM决定） | 线程协作（经典用法） |
-| `sleep` | 否 | 否 | 无需唤醒 | 定时等待 |
-| `Condition` | 是 | 是（Lock） | 可控（条件变量） | 精细控制并发 |
-| `LockSupport` | 否 | 否 | 精确（线程级） | 高级并发工具实现 |
+| 机制            | 是否释放锁 | 是否依赖锁           | 唤醒粒度       | 应用场景       |
+|---------------|-------|-----------------|------------|------------|
+| `wait/notify` | 是     | 是（synchronized） | 不可控（JVM决定） | 线程协作（经典用法） |
+| `sleep`       | 否     | 否               | 无需唤醒       | 定时等待       |
+| `Condition`   | 是     | 是（Lock）         | 可控（条件变量）   | 精细控制并发     |
+| `LockSupport` | 否     | 否               | 精确（线程级）    | 高级并发工具实现   |
 
 ## 八、线程池基础（Executors）
 
@@ -467,66 +562,81 @@ LockSupport.unpark(thread);  // 唤醒指定线程
 ### 2、 `Executors` 的创建方式
 
 ```java
-//创建一个固定大小的线程池，该线程池可以容纳固定数量的线程。它适用于负载较为稳定的场景，线程数固定。
-ExecutorService executor = Executors.newFixedThreadPool(5);
+private void test() {
+    //创建一个固定大小的线程池，该线程池可以容纳固定数量的线程。它适用于负载较为稳定的场景，线程数固定。
+    ExecutorService executor = Executors.newFixedThreadPool(5);
 
-//创建一个可缓存的线程池。该线程池会根据需要创建新线程，如果某个线程长时间没有被使用，它会被回收。
-ExecutorService executor = Executors.newCachedThreadPool();
+    //创建一个可缓存的线程池。该线程池会根据需要创建新线程，如果某个线程长时间没有被使用，它会被回收。
+    ExecutorService executor = Executors.newCachedThreadPool();
 
-//创建一个单线程的线程池，所有任务会按照提交的顺序依次执行。
-ExecutorService executor = Executors.newSingleThreadExecutor();
+    //创建一个单线程的线程池，所有任务会按照提交的顺序依次执行。
+    ExecutorService executor = Executors.newSingleThreadExecutor();
 
-//创建一个定时任务线程池，支持任务的延迟执行和定期执行。
-ScheduledExecutorService executor = Executors.newScheduledThreadPool(5);
+    //创建一个定时任务线程池，支持任务的延迟执行和定期执行。
+    ScheduledExecutorService executor = Executors.newScheduledThreadPool(5);
 
-//创建一个工作窃取线程池，线程池会自动调整线程的数量，适用于有多个任务需要并发执行的场景。
-ExecutorService executor = Executors.newWorkStealingPool();
+    //创建一个工作窃取线程池，线程池会自动调整线程的数量，适用于有多个任务需要并发执行的场景。
+    ExecutorService executor = Executors.newWorkStealingPool();
+}
 ```
 
 ### 3、 `invokeAll()` 和 `invokeAny()`
+
 这两个方法用于执行任务：
 
 - **`invokeAll()`**：将一组任务提交给线程池并等待所有任务执行完成。返回一个 `List<Future>`，表示每个任务的执行结果。
 
-  ```java
-  List<Callable<Integer>> tasks = new ArrayList<>();
-  tasks.add(() -> { return 1; });
-  tasks.add(() -> { return 2; });
-  List<Future<Integer>> results = executor.invokeAll(tasks);
+```java
+private void test() {
+    List<Callable<Integer>> tasks = new ArrayList<>();
+    tasks.add(() -> {
+        return 1;
+    });
+    tasks.add(() -> {
+        return 2;
+    });
+    List<Future<Integer>> results = executor.invokeAll(tasks);
+}
   ```
 
 - **`invokeAny()`**：将一组任务提交给线程池，并等待其中任意一个任务完成。返回第一个完成任务的结果。
 
-  ```java
-  Integer result = executor.invokeAny(tasks);
-  ```
+```java
+Integer result = executor.invokeAny(tasks);
+```
 
 ### 4、使用 `Future` 和 `Callable`
+
 当需要获取任务执行结果时，通常会使用 `Future` 和 `Callable`：
 
 - **`Future`**：表示一个异步计算的结果，可以通过 `get()` 方法获取任务执行结果。
 - **`Callable`**：类似于 `Runnable`，但是可以返回结果，并且可以抛出异常。
 
 ```java
-ExecutorService executor = Executors.newFixedThreadPool(2);
+private void test() {
+    ExecutorService executor = Executors.newFixedThreadPool(2);
 
-Callable<Integer> task = () -> {
-    // 执行任务
-    return 1 + 1;
-};
+    Callable<Integer> task = () -> {
+        // 执行任务
+        return 1 + 1;
+    };
 
-Future<Integer> future = executor.submit(task);
-Integer result = future.get(); // 获取任务执行结果
+    Future<Integer> future = executor.submit(task);
+    Integer result = future.get(); // 获取任务执行结果
+}
 ```
 
 ### 5、Executors 总结
+
 `Executors` 类提供了多种类型的线程池，可以根据任务的需求选择不同类型的线程池。合理使用线程池可以提高并发程序的性能，
 并且避免了手动管理线程的复杂性，避免了线程创建和销毁的开销。
 
 ### 6、为何不建议 Executors？
+
 **Executors** 返回的线程池对象的弊端如下:
 
-- **FixedThreadPool** 和 **SingleThreadPool**: 允许的请求队列（**LinkedBlockingQueue**）长度为 **Integer.MAX VALUE**，可能会堆积大量的请求，从而导致 OOM。
+- **FixedThreadPool** 和 **SingleThreadPool**: 允许的请求队列（**LinkedBlockingQueue**）长度为 **Integer.MAX VALUE**
+  ，可能会堆积大量的请求，从而导致 OOM。
 
 - **CachedThreadPool**: 允许的创建线程数量为 **LinkedBlockingQueue**，可能会创建大量的线程，从而导致 OOM。
 
@@ -539,6 +649,7 @@ Integer result = future.get(); // 获取任务执行结果
 `ThreadLocal` 是 Java 中的一个类，用于为每个线程提供一个 **独立的变量副本**。每个线程都会有该变量的一个独立副本，因此一个线程的修改不会影响其他线程的副本。
 
 #### **特点：**
+
 - 每个线程都会持有自己独立的 **ThreadLocal 变量副本**。
 
 - 线程之间的变量是隔离的，不会相互影响。
@@ -580,12 +691,14 @@ public class ThreadLocalExample {
 ```
 
 **输出：**
+
 ```
 Thread-0 initial value: 0
 Thread-1 initial value: 0
 Thread-0 modified value: 1
 Thread-1 modified value: 1
 ```
+
 - 线程 `Thread-0` 和 `Thread-1` 拥有各自独立的 `ThreadLocal` 变量副本，互不干扰。
 
 ### 5、适用场景
@@ -608,6 +721,7 @@ Thread-1 modified value: 1
 - 线程池的复用特性会导致传统 `ThreadLocal` 的值丢失，但 `TransmittableThreadLocal` 解决了这一问题，能够传递这些值。
 
 ### 2、示例代码
+
 ```java
 import com.alibaba.ttl.TransmittableThreadLocal;
 
@@ -633,10 +747,12 @@ public class TransmittableThreadLocalExample {
 ```
 
 **输出：**
+
 ```
 Thread-0 value: 10
 Thread-1 value: 10
 ```
+
 - 这里，`TransmittableThreadLocal` 的值（`10`）从主线程传递到子线程，即使是通过线程池执行任务。
 
 ### 3、适用场景
@@ -647,13 +763,14 @@ Thread-1 value: 10
 
 ### 4、对比 Threadlocal
 
-| 特性                         | **ThreadLocal**                                  | **TransmittableThreadLocal**               |
-|------------------------------|-------------------------------------------------|--------------------------------------------|
-| **线程隔离**                  | 每个线程有自己的副本，线程之间互不干扰          | 支持跨线程传递，适合线程池和异步任务        |
-| **跨线程传递**                | 不支持                                          | 支持跨线程传递（尤其是在线程池中）         |
-| **适用场景**                  | 线程局部变量，避免线程之间共享变量引发的问题   | 跨线程任务传递，线程池和异步任务的上下文传递 |
-| **库**                        | Java 标准库                                     | 通常是第三方库（如 Alibaba）提供的扩展  |
+| 特性        | **ThreadLocal**        | **TransmittableThreadLocal** |
+|-----------|------------------------|------------------------------|
+| **线程隔离**  | 每个线程有自己的副本，线程之间互不干扰    | 支持跨线程传递，适合线程池和异步任务           |
+| **跨线程传递** | 不支持                    | 支持跨线程传递（尤其是在线程池中）            |
+| **适用场景**  | 线程局部变量，避免线程之间共享变量引发的问题 | 跨线程任务传递，线程池和异步任务的上下文传递       |
+| **库**     | Java 标准库               | 通常是第三方库（如 Alibaba）提供的扩展      |
 
 - **`ThreadLocal`** 更适合 **单线程内部的线程局部存储**，适用于普通的多线程编程。
 
-- **`TransmittableThreadLocal`** 适合于 **需要传递 ThreadLocal 值的异步操作或线程池**，解决了传统 `ThreadLocal` 在跨线程场景下丢失的问题。
+- **`TransmittableThreadLocal`** 适合于 **需要传递 ThreadLocal 值的异步操作或线程池**，解决了传统 `ThreadLocal`
+  在跨线程场景下丢失的问题。
