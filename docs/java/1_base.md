@@ -33,18 +33,19 @@ HashMap 是基于哈希表实现的，哈希表的基本思想是通过将数据
 
 ### 3、扩容机制
 
-当 HashMap 中的元素过多时，哈希表的负载因子（load factor）可能会达到阈值，导致哈希表的存储效率降低。默认情况下，负载因子为
-0.75。
-**当元素个数超过 (当前容量 * 负载因子) 时，HashMap 会进行扩容（通常是原数组大小的 2 倍）**。
+当 HashMap 中的元素过多时，哈希表的负载因子（load factor）可能会达到阈值，导致哈希表的存储效率降低。
 
-扩容过程中，所有元素的哈希值会被重新计算，并重新放置到新的数组位置。这是因为 **哈希表的大小发生变化，导致原先的索引位置不再适用
-**。
+- 默认情况下，负载因子为 0.75。**当元素个数超过 (当前容量 * 负载因子) 时，HashMap 会进行扩容（通常是原数组大小的 2 倍）**。
+
+- 扩容过程中，所有元素的哈希值会被重新计算，并重新放置到新的数组位置。因为**哈希表的大小发生变化，导致原先的索引位置不再适用**。
 
 ### 4、时间复杂度
 
 - **查找、插入、删除 时间复杂度**：
 
-在理想情况下，哈希表的查找、插入和删除操作的时间复杂度为 O(1)。但是，如果发生哈希冲突，性能会退化到 O(n)（链表长度为 n 时）。
+在理想情况下，哈希表的查找、插入和删除操作的时间复杂度为 O(1)。
+
+但是，如果发生哈希冲突，性能会退化到 O(n)（链表长度为 n 时）。
 使用 <RouteLink to="/algorithm/0_base_4_tree#红黑树-balanced-binary-search-tree-bbst">红黑树</RouteLink>优化后，最坏情况下时间复杂度为
 O(log n)。
 
@@ -93,7 +94,7 @@ new LinkedHashMap<>(16,0.75f,true) // accessOrder = true
 | **不支持 null**        | 	key 和 value 都 不能为 null，防止 NullPointerException                                             |
 | **比 Hashtable 性能高** | 	Hashtable 使用 synchronized 进行全表加锁，而 ConcurrentHashMap 采用 分段锁机制（JDK 1.7）和 CAS + 自旋锁（JDK 1.8） |
 
-### 2、JDK 1.7 和 1.8 的区别
+### 2、JDK 1.7 和 1.8 对比
 
 | **版本**	    | **JDK 1.7**	                   | **JDK 1.8 及以后**              |
 |------------|--------------------------------|------------------------------|
@@ -109,7 +110,7 @@ new LinkedHashMap<>(16,0.75f,true) // accessOrder = true
 
 ## 四、ConcurrentHashMap 为何放弃分段锁？
 
-### 1、JDK 1.7 前分段锁的弊端
+### 1、JDK 1.7 前分段锁弊端
 
 在 JDK 1.7 之前，`ConcurrentHashMap` 使用 **分段锁（Segment）**，每个 `Segment` 管理独立的 `HashEntry[]`。但存在以下问题：
 
@@ -221,7 +222,7 @@ private void resize() {
 
 ```
 
-### 3、两句话总结
+### 3、两句话总结对比
 
 - JDK 1.7 分段锁的性能差、空间浪费和复杂性问题。
 
@@ -339,7 +340,7 @@ private void test() {
 
 :::
 
-## 五、线程的创建（Thread vs Runnable）
+## 五、线程的创建方式
 
 ### 1、继承 Thread 类
 
@@ -386,6 +387,82 @@ class MyRunnable implements Runnable {
 - 优点：允许实现多个接口，提供更多的灵活性和可扩展性。
 
 - 缺点：比继承 Thread 类稍微复杂一些，但通常更加推荐。
+
+
+### 3、实现 Callable 接口（带返回值的任务）
+
+`Callable` 是 Java 5 引入的功能性接口，与 `Runnable` 类似，用于定义线程执行的任务逻辑。但它支持：
+
+- 返回结果；
+- 抛出异常。
+
+```java
+import java.util.concurrent.Callable;
+
+class MyCallable implements Callable<String> {
+    @Override
+    public String call() throws Exception {
+        Thread.sleep(1000); // 模拟耗时操作
+        return "Hello from Callable";
+    }
+}
+```
+
+- 与 `Runnable` 不同，`Callable` 的 `call()` 方法有返回值，并且可以抛出受检异常。
+- 通常与 `Future`、`ExecutorService` 搭配使用。
+
+---
+
+### 4、Future 接口（任务结果的获取与控制）
+
+`Future` 用于表示**一个异步计算的结果**。通过它可以：
+
+* 获取 `Callable` 任务的返回结果；
+* 检查任务是否完成；
+* 取消任务；
+* 阻塞等待任务完成。
+
+#### 示例：结合 Callable 和 Future 使用
+
+```java
+import java.util.concurrent.*;
+
+public class FutureDemo {
+    public static void main(String[] args) throws Exception {
+        ExecutorService executor = Executors.newSingleThreadExecutor();
+
+        Callable<String> task = () -> {
+            Thread.sleep(1000);
+            return "Callable task completed";
+        };
+
+        Future<String> future = executor.submit(task); // 提交 Callable 任务
+
+        // 可以做其他事情
+        System.out.println("Main thread doing other things...");
+
+        // 获取结果（会阻塞直到任务完成）
+        String result = future.get();
+        System.out.println("Task result: " + result);
+
+        executor.shutdown();
+    }
+}
+```
+
+#### Future 常用方法
+
+| 方法                   | 描述                                    |
+| -------------------- | ------------------------------------- |
+| `get()`              | 阻塞等待任务完成并返回结果。                        |
+| `get(timeout, unit)` | 在指定时间内等待任务完成，超时抛出 `TimeoutException`。 |
+| `isDone()`           | 判断任务是否已完成。                            |
+| `cancel(true)`       | 尝试取消任务（如设置为 true，可中断正在运行的线程）。         |
+| `isCancelled()`      | 判断任务是否已被取消。                           |
+
+### 5、其他高级方式
+
+- <RouteLink to="/java/2_advanced.html#三、多线程与并发编程">多线程与并发编程</RouteLink>
 
 ## 六、volatile 关键字
 
@@ -640,7 +717,7 @@ private void test() {
 
 - **CachedThreadPool**: 允许的创建线程数量为 **LinkedBlockingQueue**，可能会创建大量的线程，从而导致 OOM。
 
-综上，为了手动控制线程池，建议自己使用 <RouteLink to="/concurrent/1_threadpool">ThreadPoolExecutor</RouteLink> 来创建线程池
+综上，为了手动控制线程池，建议自己使用 <RouteLink to="/high-concurrency/1_thread_pool.html">ThreadPoolExecutor</RouteLink> 来创建线程池
 
 ## 九、ThreadLocal
 

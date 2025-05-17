@@ -1,10 +1,10 @@
-# Java 并发基础
+# Java 并发
 
 参考链接：
 >[https://gitee.com/Doocs/advanced-java](https://gitee.com/Doocs/advanced-java#%E9%AB%98%E5%B9%B6%E5%8F%91%E6%9E%B6%E6%9E%84)
-> 
+
 >[1.6w字图解并发编程-苏三说技术](https://mp.weixin.qq.com/s/jUu1k1oKyzt-4wZyDHJp2w)
-> 
+
 >[实现异步的9种方式-捡田螺的小男孩](https://mp.weixin.qq.com/s/eTQwT-zFgHgNVJ_nNAZidw)
 
 ## 一、JUC - Atomic
@@ -96,15 +96,15 @@ private void test() {
 
 ### synchronized
 
-### ReentrantLock（可重入锁）
+### ReentrantLock
 
 ### CountDownLatch / CyclicBarrier
 
-### Semaphore（信号量）
+### Semaphore
 
-### BlockingQueue（生产者-消费者模式）
+### BlockingQueue
 
-### ConcurrentHashMap 并发容器
+### ConcurrentHashMap
 
 ## 三、JUC - Fork/Join
 
