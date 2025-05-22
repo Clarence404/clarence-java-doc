@@ -10,9 +10,11 @@ todo
 
 ## 四、虚拟机扩容
 
+[参考博客-CSDN](https://blog.csdn.net/weixin_45962133/article/details/140315006)
+
 ### 1、硬盘扩容
 
-https://blog.csdn.net/weixin_45962133/article/details/140315006
+详见上方博客
 
 ### 2、内存扩容
 
