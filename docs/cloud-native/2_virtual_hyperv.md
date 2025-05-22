@@ -1,6 +1,6 @@
 # VM- Hyper-V
 
-[HyperV-微软官网](https://learn.microsoft.com/zh-cn/windows-server/virtualization/hyper-v/hyper-v-overview)
+官网地址：[HyperV-微软官网](https://learn.microsoft.com/zh-cn/windows-server/virtualization/hyper-v/hyper-v-overview)
 
 ## 一、网络详解
 
@@ -29,4 +29,4 @@ Default Switch 同时支持了 NAT 网络以及 DHCP
 
 ## 二、设置固定IP
 
-[https://zahui.fan/posts/6f952944/](https://zahui.fan/posts/6f952944/)
+参考文章：[https://zahui.fan/posts/6f952944/](https://zahui.fan/posts/6f952944/)
