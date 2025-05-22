@@ -53,7 +53,7 @@ List<String> upperNames = names.stream()
 
 ## 三、多线程与并发编程
 
-### 1、AQS 原理
+### 1、AQS 基础原理
 
 AQS（AbstractQueuedSynchronizer）是 JUC 包中多种同步器（如 ReentrantLock、Semaphore、CountDownLatch 等）的基础框架，底层通过一个
 FIFO 的等待队列管理线程竞争资源。
