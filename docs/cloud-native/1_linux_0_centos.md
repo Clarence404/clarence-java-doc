@@ -1,5 +1,7 @@
 # Linux-Centos
 
+官网地址：[https://www.centos.org/](https://www.centos.org/)
+
 ## 一、Centos-7.9 设置固定IP
 
 1、设置ens33网口的地址
@@ -40,3 +42,5 @@ DNS1="192.168.2.2"
 ```shell
 systemctl restart network
 ```
+
+## 一、Centos-8+ Stream
