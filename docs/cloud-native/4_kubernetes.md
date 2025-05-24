@@ -2,8 +2,6 @@
 
 Kubernetes（简称 K8s）是一个开源的容器编排平台，用于自动化部署、扩缩容和管理容器化应用，广泛用于云原生架构中。
 
-
-
 ## 一、基本概念
 
 - **Pod**：最小的部署单元，封装了一个或多个容器。
@@ -12,8 +10,6 @@ Kubernetes（简称 K8s）是一个开源的容器编排平台，用于自动化
 - **Deployment**：用于声明式地管理 Pod 和 ReplicaSet。
 - **ConfigMap / Secret**：用于管理配置信息和敏感信息。
 - **Namespace**：逻辑隔离的命名空间，用于资源分组管理。
-
-
 
 ### Helm
 
@@ -28,7 +24,7 @@ helm repo add bitnami https://charts.bitnami.com/bitnami
 helm install my-release bitnami/nginx
 ````
 
-## 二、开源K8s平台 
+## 二、开源K8s平台
 
 ### 1、Rancher
 
@@ -40,8 +36,6 @@ Rancher 是一个开源的 Kubernetes 管理平台，提供统一的多集群管
 * 提供 UI 仪表盘、权限控制、镜像仓库集成等功能
 * 支持 RKE、K3s 等轻量级集群部署方式
 
-
-
 ### 2、Sealos
 
 [Sealos 官网](https://sealos.run/)
@@ -51,8 +45,6 @@ Sealos 是一个云原生操作系统，致力于一键构建、部署、运维�
 * 简洁的一键集群安装方式（`sealos run`）
 * 支持创建完整的云平台集群
 * 结合云原生生态，提供平台化的集群管理能力
-
-
 
 ### 3、KubeSphere
 
