@@ -95,10 +95,11 @@ PostgreSQL 采用 数据库 - 模式（Schema） - 表 的层级结构：
 
 ## 四、常用命令
 
-
 ## 五、常见问题
 
 ### 1、PostgreSQL Gis如何支持？
+
+17版本可以直接使用如下命令：
 
 ```sql
 CREATE EXTENSION postgis;

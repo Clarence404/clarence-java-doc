@@ -143,7 +143,7 @@ curl -X POST "http://localhost:8087/api/v2/write?org=my-org&bucket=my-bucket&pre
   --data-raw "sensor,location=room1 temperature=25.3,humidity=60"
 ```
 
--  数据查询
+- 数据查询
 
 2.x 默认使用 Flux 语言查询数据，示例：
 
@@ -259,10 +259,20 @@ influx query --sql 'SELECT * FROM sensor'
 | 多租户     | 基础权限         | 多用户多组织          | 未来支持（基于 Cloud）              |
 | 最佳应用场景  | 小型系统迁移       | 中型系统            | 大数据量、云原生、数据湖分析              |
 
-## 二、TDengine
+---
 
-### 1、背景介绍
+## 二、Prometheus
 
-## 三、IoTDB
+* **官网地址**：[https://prometheus.io](https://prometheus.io)
 
-### 1、背景介绍
+---
+
+## 三、国产时序数据库
+
+### 1、TDengine
+
+* **官网地址**：[https://www.taosdata.com](https://www.taosdata.com)
+
+### 2、IoTDB（Apache IoTDB）
+
+* **官网地址**：[https://iotdb.apache.org](https://iotdb.apache.org)
