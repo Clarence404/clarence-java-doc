@@ -52,7 +52,7 @@ clarence-java-doc/
 ├── distributed-systems/  # Distributed systems and principles
 ├── high-availability/    # High availability strategies
 ├── design-patterns/      # Design patterns
-├── scenario-solutions/   # Scenario-based problem solving
+├── scenario/             # Scenario-based problem solving
 ├── netty/                # Netty and network programming
 ├── cloud-native/         # Linux, Docker, containerization topics）
 ├── algorithms/           # Algorithms and data structures

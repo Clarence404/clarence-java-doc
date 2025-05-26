@@ -1,4 +1,4 @@
-# PostgreSQL
+# Postgres
 
 - **官网**：[PostgreSQL 官网](https://www.postgresql.org/)
 
