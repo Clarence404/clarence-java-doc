@@ -259,7 +259,7 @@ influx query --sql 'SELECT * FROM sensor'
 | 多租户     | 基础权限         | 多用户多组织          | 未来支持（基于 Cloud）              |
 | 最佳应用场景  | 小型系统迁移       | 中型系统            | 大数据量、云原生、数据湖分析              |
 
----
+--- 
 
 ## 二、Prometheus
 
@@ -267,7 +267,7 @@ influx query --sql 'SELECT * FROM sensor'
 
 ---
 
-## 三、国产时序数据库
+## 三、国产 TSDB
 
 ### 1、TDengine
 
