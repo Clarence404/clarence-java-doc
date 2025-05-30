@@ -177,3 +177,7 @@ Todo
 - 常见工具：RedisInsight、Prometheus + Grafana、阿里云控制台
 - 数据指标：命中率、连接数、慢查询、内存使用率等
 - 可贴图、提供实际界面截图更生动
+
+## 十一、缓存一致性
+
+[https://cloud.tencent.com/developer/article/1932934](https://cloud.tencent.com/developer/article/1932934)

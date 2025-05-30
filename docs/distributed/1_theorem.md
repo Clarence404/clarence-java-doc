@@ -2,14 +2,8 @@
 
 ## CAP && BASE
 
-
-
 ## Paxos
 
-
-
 ## Raft
-
-
 
 ## Gossip
