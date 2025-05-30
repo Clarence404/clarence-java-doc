@@ -1,0 +1,30 @@
+import{_ as s,c as a,a as e,o as i}from"./app-C9QDOscY.js";const l={};function c(d,n){return i(),a("div",null,n[0]||(n[0]=[e(`<h1 id="待重构" tabindex="-1"><a class="header-anchor" href="#待重构"><span>待重构</span></a></h1><p>以下为建议思路：</p><div class="language-text line-numbers-mode" data-highlighter="prismjs" data-ext="text" data-title="text"><pre><code><span class="line">高可用架构（High Availability Architecture）</span>
+<span class="line">├── 负载均衡（Load Balancing）</span>
+<span class="line">│     ├── 软负载（Nginx、LVS、Traefik）</span>
+<span class="line">│     ├── 硬负载（F5、A10）</span>
+<span class="line">│     ├── 负载均衡算法（轮询、最少连接、哈希一致性等）</span>
+<span class="line">│</span>
+<span class="line">├── 故障转移（Failover）</span>
+<span class="line">│     ├── 主从切换（MySQL 主从、Redis Sentinel）</span>
+<span class="line">│     ├── 服务实例自动恢复（Kubernetes 自愈能力）</span>
+<span class="line">│     ├── DNS 级别故障转移（AWS Route53）</span>
+<span class="line">│</span>
+<span class="line">├── 数据高可用（Data Availability）</span>
+<span class="line">│     ├── 分布式存储（HDFS、Ceph）</span>
+<span class="line">│     ├── 数据副本（MySQL、MongoDB 副本集）</span>
+<span class="line">│     ├── 强一致性 vs 最终一致性</span>
+<span class="line">│</span>
+<span class="line">├── ** 服务保护（Service Protection）**</span>
+<span class="line">│     ├── 限流（Throttling）→ 令牌桶、漏桶算法</span>
+<span class="line">│     ├── 熔断（Circuit Breaker）→ Hystrix、Sentinel</span>
+<span class="line">│     ├── 降级（Fallback）→ 兜底策略、降级方案</span>
+<span class="line">│</span>
+<span class="line">├── 弹性扩展（Elastic Scaling）</span>
+<span class="line">│     ├── 自动扩缩容（Kubernetes HPA）</span>
+<span class="line">│     ├── 无状态化设计（减少对 Session 依赖）</span>
+<span class="line">│</span>
+<span class="line">├── 服务治理（Service Governance）</span>
+<span class="line">├── API 网关（Kong、Spring Cloud Gateway）</span>
+<span class="line">├── 服务注册与发现（Nacos、Eureka）</span>
+<span class="line">├── 配置中心（Apollo、Consul）</span>
+<span class="line"></span></code></pre><div class="line-numbers" aria-hidden="true" style="counter-reset:line-number 0;"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div>`,3)]))}const p=s(l,[["render",c],["__file","99_todo.html.vue"]]),t=JSON.parse('{"path":"/high-availability/99_todo.html","title":"待重构","lang":"en-US","frontmatter":{},"headers":[],"git":{"updatedTime":1745686292000,"contributors":[{"name":"Clarence","username":"Clarence","email":"1154937362@qq.com","commits":3,"url":"https://github.com/Clarence"}]},"filePathRelative":"high-availability/99_todo.md"}');export{p as comp,t as data};
