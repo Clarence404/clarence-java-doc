@@ -781,7 +781,7 @@ public void addIntegerToList(List<? super Integer> list) {
 }
 ```
 
-### 4、 **Class&lt;T&gt;** 和 **Class&lt;?&gt;** 的区别
+### 4、 **Class&lt;T&gt;** 与 **Class&lt;?&gt;** 
 
 - **Class&lt;T&gt;** 表示 **确定的类型**，T 是一个具体的泛型参数，使用时必须指定具体类型，例如 Class&lt;String&gt;。
 
