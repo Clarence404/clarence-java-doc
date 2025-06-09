@@ -46,6 +46,7 @@ clarence-java-doc/
 ├── cache/                # Caching systems (Redis, Caffeine, Guava)
 ├── jvm/                  # JVM internals and optimization
 ├── spring/               # Spring framework ecosystem
+├── springboot/           # Spring Boot ecosystem
 ├── microservices/        # Microservices architecture and practice
 ├── messaging/            # Message queue systems (Kafka, RabbitMQ, etc.)
 ├── high-concurrency/     # High concurrency programming
