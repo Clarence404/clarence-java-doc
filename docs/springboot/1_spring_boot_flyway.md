@@ -1,4 +1,4 @@
-# DB migration 工具
+# DB migration
 
 > 参考博客：[https://www.cnblogs.com/cndarren/p/12435787.html](https://www.cnblogs.com/cndarren/p/12435787.html)
 
@@ -19,6 +19,10 @@ SQL 脚本 在已有数据表的基础上进行升级。鉴于这种情况，于
 Flyway官网地址：[https://flywaydb.org](https://flywaydb.org)
 
 ## Flyway
+
+todo
+
+## Liquibase
 
 todo
 
