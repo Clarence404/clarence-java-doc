@@ -1,0 +1,7 @@
+import{_ as s,c as e,a as n,o as t}from"./app-B4nd40cH.js";const i={};function l(c,a){return t(),e("div",null,a[0]||(a[0]=[n(`<h1 id="data-access" tabindex="-1"><a class="header-anchor" href="#data-access"><span>Data Access</span></a></h1><div class="language-text line-numbers-mode" data-highlighter="prismjs" data-ext="text" data-title="text"><pre><code><span class="line">├── Data Access</span>
+<span class="line">│   ├── Spring Data JPA</span>
+<span class="line">│   ├── MyBatis / MyBatis-Plus</span>
+<span class="line">│   ├── Transaction Management</span>
+<span class="line">│   ├── Multi-DataSource Support</span>
+<span class="line">│   └── Pagination and Query DSL</span>
+<span class="line"></span></code></pre><div class="line-numbers" aria-hidden="true" style="counter-reset:line-number 0;"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div>`,2)]))}const d=s(i,[["render",l],["__file","3_data_access.html.vue"]]),o=JSON.parse('{"path":"/springboot/3_data_access.html","title":"Data Access","lang":"en-US","frontmatter":{},"headers":[],"git":{"updatedTime":1752226181000,"contributors":[{"name":"hello0709","username":"hello0709","email":"1154937362@qq.com","commits":1,"url":"https://github.com/hello0709"}]},"filePathRelative":"springboot/3_data_access.md"}');export{d as comp,o as data};
