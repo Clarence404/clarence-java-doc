@@ -50,7 +50,7 @@ clarence-java-doc/
 ├── microservices/        # Microservices architecture and practice
 ├── messaging/            # Message queue systems (Kafka, RabbitMQ, etc.)
 ├── high-concurrency/     # High concurrency programming
-├── distributed-systems/  # Distributed systems and principles
+├── distributed/          # Distributed systems and principles
 ├── high-availability/    # High availability strategies
 ├── design-patterns/      # Design patterns
 ├── scenario/             # Scenario-based problem solving
