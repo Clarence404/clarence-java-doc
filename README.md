@@ -49,10 +49,10 @@ clarence-java-doc/
 ├── springboot/           # Spring Boot ecosystem
 ├── microservices/        # Microservices architecture and practice
 ├── messaging/            # Message queue systems (Kafka, RabbitMQ, etc.)
-├── high-concurrency/     # High concurrency programming
+├── high-con/             # High concurrency programming
 ├── distributed/          # Distributed systems and principles
-├── high-availability/    # High availability strategies
-├── design-patterns/      # Design patterns
+├── high-avail/           # High availability strategies
+├── patterns/             # Design patterns
 ├── scenario/             # Scenario-based problem solving
 ├── netty/                # Netty and network programming
 ├── cloud-native/         # Linux, Docker, containerization topics）
