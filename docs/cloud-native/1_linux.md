@@ -2,8 +2,8 @@
 
 ## **一、Linux 前身：Unix 及 Minix**
 
-Linux 不是凭空诞生的，它的核心思想、架构和设计理念都来源于 **Unix**，并受到 **Minix** 的影响。因此，要理解 Linux 的前身，必须先了解
-Unix 和 Minix。
+Linux 不是凭空诞生的，它的核心思想、架构和设计理念都来源于 **Unix**，并受到 **Minix** 的影响。因此，要理解 Linux 的前身，
+必须先了解 Unix 和 Minix。
 
 ---
 
@@ -78,20 +78,21 @@ Linux。
 | **Minix** | 1987 | Andrew Tanenbaum              | 教学          | 受限开源          | 启发 Linus Torvalds 开发 Linux |
 | **Linux** | 1991 | Linus Torvalds                | 服务器、桌面、移动设备 | GNU GPL       | 成为全球最流行的开源操作系统             |
 
-Linux 继承了 Unix 的设计思想，同时受 Minix 启发成为完全自由的开源系统。如今，它已经发展成为全球服务器、云计算、嵌入式设备、超级计算机的核心操作系统。
+Linux 继承了 Unix 的设计思想，同时受 Minix 启发成为完全自由的开源系统。如今，它已经发展成为全球服务器、云计算、嵌入式设备、
+超级计算机的核心操作系统。
 
 ## **二、Linux 的发展历程**
 
 ### 1、**Linux 的起源**
 
-Linux 的历史可以追溯到 1991 年，当时芬兰计算机科学家 **Linus Torvalds** 在学习 MINIX（一个教学用的小型 UNIX 类操作系统）时，觉得
-MINIX 受限太多，于是自己从零开始开发了一个新的内核。这个内核就是 Linux，它最初只是一个兴趣项目，但由于 Torvalds 选择了 *
+Linux 的历史可以追溯到 1991 年，当时芬兰计算机科学家 **Linus Torvalds** 在学习 MINIX（一个教学用的小型 UNIX 类操作系统）时，
+觉得 MINIX 受限太多，于是自己从零开始开发了一个新的内核。这个内核就是 Linux，它最初只是一个兴趣项目，但由于 Torvalds 选择了 *
 *GPL（GNU General Public License）** 开源许可证，导致 Linux 迅速吸引了一大批开发者的关注和贡献。
 
 ### 2、**GNU 计划与 Linux 的结合**
 
-Linux 仅仅是一个内核，而一个完整的操作系统还需要 Shell、编译器、库文件等组件。幸运的是，在 1983 年，**Richard Stallman** 发起了
-**GNU 计划**，目标是创建一个完全自由的 UNIX 类操作系统。GNU 计划提供了许多关键组件，如 `gcc`（编译器）、`glibc`（C 语言库）、
+Linux 仅仅是一个内核，而一个完整的操作系统还需要 Shell、编译器、库文件等组件。幸运的是，在 1983 年，**Richard Stallman** 
+发起了**GNU 计划**，目标是创建一个完全自由的 UNIX 类操作系统。GNU 计划提供了许多关键组件，如 `gcc`（编译器）、`glibc`（C 语言库）、
 `bash`（Shell）等。
 
 Linux 内核 + GNU 工具链 = **完整的 Linux 操作系统**
