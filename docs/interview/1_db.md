@@ -7,11 +7,13 @@
 - 事务可以读取其他事务未提交的数据（脏读）。
 - 可能会出现**脏读（Dirty Read）、不可重复读（Non-repeatable Read）和幻读（Phantom Read）**。
 - 并发性能高，但数据一致性差。
+
 ### 2、Read Committed（读已提交）
 
 - 事务只能读取已经提交的数据。
 - **避免脏读**，但仍然可能出现**不可重复读和幻读**。
 - 提高数据一致性，但可能影响性能。
+
 ### 3、Repeatable Read（可重复读）
 
 - 事务在执行期间，多次读取相同的数据时，保证读取结果一致。
@@ -27,17 +29,20 @@
 SQL Server、Oracle 默认的隔离级别：Repeatable Read（可重读）级别。<br>
 Oracle 默认的隔离级别：Read Committed（读取已提交的）级别。
 :::
+
 ### 5、脏读和幻读的区别
 
 **脏读**和**幻读**都是数据库事务中的一致性问题，但它们本质上不一样，咱们来对比一下：
 
 #### 🎯 **1. 脏读 (Dirty Read)**
+
 - **定义**：事务A读取了事务B尚未提交的数据，若B回滚，A就读到了无效数据。
 - **场景示例**：
     - 事务B修改了一条记录但还没提交，事务A读取了这条数据。
     - 结果事务B回滚了，事务A读取的数据就成了“脏数据”。
 
 **例子**：
+
 1. 事务B将用户余额从100改成200，但未提交。
 2. 事务A读取了余额200。
 3. 事务B回滚，恢复余额为100。
@@ -48,12 +53,14 @@ Oracle 默认的隔离级别：Read Committed（读取已提交的）级别。
 ---
 
 #### 🎯 **2. 幻读 (Phantom Read)**
+
 - **定义**：事务A在读取数据集后，事务B插入、删除了数据，导致事务A再次读取时发现数据“多了”或“少了”，就像“幻觉”一样。
 - **场景示例**：
     - 事务A统计订单表的记录有10条。
     - 事务B插入了新订单，事务A再次查询，发现有11条，出现“幻读”。
 
 **例子**：
+
 1. 事务A查询 `SELECT COUNT(*) FROM orders;` 结果为10条。
 2. 事务B插入了1条新订单并提交。
 3. 事务A再次查询，发现结果变成了11条。
@@ -71,19 +78,22 @@ Oracle 默认的隔离级别：Read Committed（读取已提交的）级别。
 | **产生原因** | 事务回滚导致数据失效          | 新增、删除导致数据集变化                                     |
 | **隔离级别** | `READ COMMITTED` 防止 | `SERIALIZABLE` 防止/`REPEATABLE`下MVCC + Gap Lock防止 |
 
-
-
 ## 二、讲一讲MySql的索引？
 
 ### 1、索引的原理
+
 ### 2、索引的类型
+
 ### 3、如何创建合理的索引？
+
 ### 4、索引如何优化？
 
 ## 三、聚集索引和非聚集索引的区别？
 
 ### 1、聚集索引
+
 ### 2、非聚集索引
+
 ### 3、回表了解吗？
 
 ## 四、索引失效的场景有哪些？
@@ -101,26 +111,27 @@ Oracle 默认的隔离级别：Read Committed（读取已提交的）级别。
 ::: tip
 此种情况其实就是**最左匹配原则**，如下情况：<br>
 
-- LIKE 'keyword%'  ✅ 可以走索引
+- LIKE 'keyword%' ✅ 可以走索引
 
-- LIKE '%keyword%'  ❌ 索引失效（前置 % 导致全表扫描）
-:::
-
+- LIKE '%keyword%' ❌ 索引失效（前置 % 导致全表扫描）
+  :::
 
 ### 3、参与运算或使用函数
 
-::: tip 
+::: tip
 **运算**（WHERE salary*2 > 2000）：索引列在运算后变成了表达式结果，索引用不上。
 
 **函数**（WHERE LEFT(name, 3) = 'Tom'）：函数改变了索引列的值，也就失效了。
 :::
 
 ### 4、类型隐式转换
+
 ::: tip
+
 - 比如 phone 是 VARCHAR 类型，查询 WHERE phone = 123456789，会**触发类型转换**（把字符串转数字），导致索引失效。
 
 - 改写成：WHERE phone = '123456789' ✅ 才能走索引。
-:::
+  :::
 
 ### 5、列使用OR操作
 
@@ -135,16 +146,17 @@ Oracle 默认的隔离级别：Read Committed（读取已提交的）级别。
 ### 6、两列做比较（等于/不等于）
 
 ::: tip
+
 - WHERE a = b ✅ 可以走索引（前提是 a、b 是索引列）
 
 - WHERE a != b ❌ 索引失效（因为范围太大，优化器更倾向全表扫描）
-
 
 :::
 
 ### 7、IS NOT NULL、NOT IN和NOT EXISTS
 
 ::: tip
+
 - IS NOT NULL ✅ 索引可能失效（要看版本和索引设计）
 
 - NOT IN ❌ 一般失效，但 NOT IN (索引列) 有时能优化成 Anti-Join
@@ -154,14 +166,21 @@ Oracle 默认的隔离级别：Read Committed（读取已提交的）级别。
 例如：
 
 ```sql
-SELECT * FROM orders WHERE customer_id IS NOT NULL;  -- 可能索引失效
+SELECT *
+FROM orders
+WHERE customer_id IS NOT NULL; -- 可能索引失效
 
-SELECT * FROM orders WHERE customer_id NOT IN (1,2,3); -- 索引一般失效
+SELECT *
+FROM orders
+WHERE customer_id NOT IN (1, 2, 3); -- 索引一般失效
 ```
+
 :::
 
 ### 8、 order by导致索引失效
+
 ::: tip
+
 - 单列索引排序 ✅ 能走索引
 
 - 联合索引排序 ✅ 要按索引顺序排序，不能乱
@@ -169,12 +188,18 @@ SELECT * FROM orders WHERE customer_id NOT IN (1,2,3); -- 索引一般失效
 - 排序方向必须一致，ORDER BY a ASC, b DESC ❌ 索引失效
 
 例如：
+
 ```sql
 -- 索引 (a, b)
-SELECT * FROM users ORDER BY a, b; -- ✅ 走索引
+SELECT *
+FROM users
+ORDER BY a, b; -- ✅ 走索引
 
-SELECT * FROM users ORDER BY b, a; -- ❌ 索引失效
+SELECT *
+FROM users
+ORDER BY b, a; -- ❌ 索引失效
 ```
+
 :::
 
 ### 9、参数不同导致索引失效
@@ -187,9 +212,13 @@ MySQL 优化器会判断 "索引扫描" 和 "全表扫描" 的成本：
 - 如果查询结果占比 >30%，全表扫描更快
 
 例如：
+
 ```sql
-SELECT * FROM users WHERE age > 10;  -- 小表走索引，大表直接全表扫描
+SELECT *
+FROM users
+WHERE age > 10; -- 小表走索引，大表直接全表扫描
 ```
+
 :::
 
 ### 10、Mysql优化器的其他优化策略
@@ -202,9 +231,10 @@ SELECT * FROM users WHERE age > 10;  -- 小表走索引，大表直接全表扫�
 - Intersection 合并：多个条件筛选索引交集
 
 - Sort-Union 合并：排序+索引合并
-:::
+  :::
 
 ## 五、Mysql的存储引擎对比
+
 ### 1、MyISAM
 
 （1）不支持事务，但是每次查询都是原子的；
@@ -231,9 +261,9 @@ SELECT * FROM users WHERE age > 10;  -- 小表走索引，大表直接全表扫�
 （5）主键索引采用聚集索引（索引的数据域存储数据文件本身），辅索引的数据域存储主键的值；因此从辅索引查找数据，需要先通过辅
 索引找到主键值，再访问辅索引；最好使用自增主键，防止插入数据时，为维持 B+树结构，文件的大调整。
 
-## 六、Explain关键字的介绍？ 
+## 六、Explain关键字的介绍？
 
-## 七、Mysql的几种锁对比？ 
+## 七、Mysql的几种锁对比？
 
 更多详情请查看 <RouteLink to="/database/1_mysql.md">Mysql锁</RouteLink>
 
@@ -246,19 +276,20 @@ SELECT * FROM users WHERE age > 10;  -- 小表走索引，大表直接全表扫�
 ## 九、说一下MVCC？
 
 ### 1、MVCC原理
+
 ### 2、Mysql是如何解决幻读的？
 
-## 十、Mysql的几种日志？  
+## 十、Mysql的几种日志？
 
 ## 十一、Mysql集群分类？
 
-## 十二、Mysql的主从同步原理？  
+## 十二、Mysql的主从同步原理？
 
 ### 1、Mysql 5.7之前：
 
 ### 2、Mysql 5.7之后：
 
-## 十三、Mysql的执行流程？    
+## 十三、Mysql的执行流程？
 
 ## 十四、高并发下，如何做到安全的修改同一行数据
 
