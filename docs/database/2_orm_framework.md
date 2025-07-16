@@ -12,7 +12,7 @@
 
 ### 5、MyBatis 执行器
 
-### 6、MyBatis 实现自定义的 TypeHandler
+### 6、自定义的 TypeHandler
 
 在实际开发中，我们常常需要将数据库中的某些类型与 Java 对象之间进行复杂转换，例如：
 
@@ -100,16 +100,19 @@ public class JacksonListTypeHandler<T> implements TypeHandler<List<T>> {
 2. **注解注册**
 
 ```java
-@TableField(typeHandler = JacksonListTypeHandler.class)
-private List<JAVA-OBJECT>failureReason;
+private class configuration {
+
+    @TableField(typeHandler = JacksonListTypeHandler.class)
+    private List<JAVA-OBJECT>failureReason;
+
+}
 ```
 
 #### 进阶源码
 
 Mybatis-plus的处理方案：[https://baomidou.com/guides/type-handler/](https://baomidou.com/guides/type-handler/)
----
 
-### 7、MyBatis 拦截器和过滤器
+### 7、拦截器和过滤器
 
 MyBatis 拦截器是一种插件机制，可以在四大对象的方法执行前后进行拦截，常用于实现通用逻辑（如 SQL 日志、加密解密、多租户等）。
 
@@ -184,23 +187,16 @@ mybatis-plus:
 
 ### 1、多租户方案
 
-#### 字段级
-#### 数据库级隔离
-#### Schema 级
-#### 实例级
-
-## 🎯 多租户隔离方案一览
+🎯 多租户隔离方案一览
 
 | 隔离级别              | 方式                    | 说明                                                         | 场景适配                                | 优缺点                             |
-| ----------------- | --------------------- | ---------------------------------------------------------- | ----------------------------------- | ------------------------------- |
+|-------------------|-----------------------|------------------------------------------------------------|-------------------------------------|---------------------------------|
 | **字段级（逻辑隔离）**     | 同表共库，共加 tenant\_id 字段 | 租户数据共存在一张表中，通过 SQL 拼接 `tenant_id` 进行逻辑区分                   | 适合中小型 SaaS、轻量多租户平台                  | 实现简单，成本低，但存在**数据泄露风险（依赖程序层控制）** |
 | **库级（数据库级隔离）**    | 每个租户独立一个数据库           | 应用动态切换 `DataSource`，每个租户配置独立的数据源                           | 中大型 SaaS 平台、需要租户间较强数据隔离             | 数据隔离更安全，**复杂度中等**，运维成本增加        |
 | **Schema 级（中间层）** | 同一个数据库下，不同 schema     | 兼顾共享与隔离，每个租户用不同 schema（如 `tenant_a.user`, `tenant_b.user`） | 对数据库支持 schema 较好的系统（如 PostgreSQL）适用 | 安全性介于字段与库之间，MySQL 支持较弱          |
 | **实例级（物理隔离）**     | 每个租户部署独立应用/数据库实例      | 资源彻底隔离，每个租户拥有独立部署                                          | 大型企业客户、私有化部署需求                      | 成本高、维护复杂、安全性最佳                  |
 
----
-
-## ✅ 方案 1：字段级（逻辑隔离）
+#### ✅ 方案 1：字段级（逻辑隔离）
 
 **核心做法：**
 
@@ -221,12 +217,15 @@ mybatis-plus:
 
 ---
 
-## ✅ 方案 2：库级隔离（多数据源 + 动态路由）
+#### ✅ 方案 2：库级隔离（多数据源 + 动态路由）
 
 **核心做法：**
 
 * 每个租户对应一个数据库（如 `mdm_tenant_001`, `mdm_tenant_002`）；
-* 程序通过动态数据源切换（如使用 [DynamicDatasource](https://github.com/baomidou/dynamic-datasource-spring-boot-starter)）；
+*
+
+程序通过动态数据源切换（如使用 [DynamicDatasource](https://github.com/baomidou/dynamic-datasource-spring-boot-starter)）；
+
 * 每次请求根据租户 ID 决定使用哪个 DataSource。
 
 **实现要点：**
@@ -249,7 +248,7 @@ mybatis-plus:
 
 ---
 
-## ✅ 方案 3：Schema级隔离（PostgreSQL 推荐）
+#### ✅ 方案 3：Schema级隔离（PostgreSQL 推荐）
 
 **核心做法：**
 
@@ -271,7 +270,7 @@ mybatis-plus:
 
 ---
 
-## ✅ 方案 4：实例级隔离（物理隔离）
+#### ✅ 方案 4：实例级隔离（物理隔离）
 
 **核心做法：**
 
