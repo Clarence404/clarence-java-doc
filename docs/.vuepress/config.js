@@ -90,7 +90,7 @@ export default defineUserConfig({
             '/java/': getSidebarFromDir(path.resolve(__dirname, '../java')),
             '/database/': getSidebarFromDir(path.resolve(__dirname, '../database')),
             '/cache/': getSidebarFromDir(path.resolve(__dirname, '../cache')),
-            '/jvm/': getSidebarFromDir(path.resolve(__dirname, '../1_jvm_memory_base')),
+            '/jvm/': getSidebarFromDir(path.resolve(__dirname, '../jvm')),
             '/spring/': getSidebarFromDir(path.resolve(__dirname, '../spring')),
             '/springboot/': getSidebarFromDir(path.resolve(__dirname, '../springboot')),
             '/microservices/': getSidebarFromDir(path.resolve(__dirname, '../microservices')),

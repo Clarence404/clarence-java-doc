@@ -1,4 +1,4 @@
-# 单点登录（Single Sign On）
+# SSO 解决方案
 
 ## 一、LDAP
 
