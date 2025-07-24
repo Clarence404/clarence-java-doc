@@ -75,7 +75,7 @@ export default defineUserConfig({
             {text: '高并发', link: '/high-con/0_concurrent'},
             {text: '分布式', link: '/distributed/0_distributed'},
             {text: '高可用', link: '/high-avail/0_high_availability'},
-            {text: '设计模式', link: '/patterns/0_design'},
+            {text: '设计模式', link: '/patterns/0_design_intro'},
             {text: '场景题', link: '/scenario/0_scene'},
             {text: 'Netty', link: '/netty/0_stick_split'},
             {text: '云原生', link: '/cloud-native/1_linux'},
