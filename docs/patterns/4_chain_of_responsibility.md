@@ -1,4 +1,4 @@
-# 四、责任链模式
+# 责任链模式
 
 **作用**：将请求沿着处理链传递，多个处理者可对其进行处理。
 
@@ -8,14 +8,14 @@
 - Netty 责任链（ChannelPipeline）
 - 日志处理（不同级别日志）
 
-## 实现举例
+## 一、实现举例
 
 我们创建抽象类 AbstractLogger，带有详细的日志记录级别。然后我们创建三种类型的记录器，都扩展了
 AbstractLogger。每个记录器消息的级别是否属于自己的级别，如果是则相应地打印出来，否则将不打印并把消息传给下一个记录器。
 
 ![img.png](../assets/pattern/chain_of_resp.png)
 
-### 创建抽象的记录器类
+### 1、创建抽象的记录器类
 
 ```java
 public abstract class AbstractLogger {
@@ -88,7 +88,7 @@ public class FileLogger extends AbstractLogger {
 }
 ```
 
-### 使用方式：
+### 2、使用方式：
 
 创建不同类型的记录器。赋予它们不同的错误级别，并在每个记录器中设置下一个记录器。每个记录器中的下一个记录器代表的是链的一部分。
 
