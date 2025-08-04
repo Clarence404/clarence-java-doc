@@ -39,8 +39,10 @@ Vmware使用NAT模式，保证主机和虚拟机在一个局域网下
 ![img.png](../assets/container/clash_config.png)
 
 ::: tip 建议
-设置完成后，建议清空 daemon.json 内容，当然也可以保留（不过会使得Docker去所有的daemon地址搜索，降低 pull 速度）
-:::
+
+- 设置完成后，建议清空 daemon.json 内容;
+- **当然也可以保留,不过会使得Docker去所有的地址搜索，降低 pull 速度**
+  :::
 
 - Hyper-V 中的Docker使用魔法方式
 
@@ -162,7 +164,7 @@ docker volume ls
 docker volume rm mydata
 ```
 
-## 四、Docker Compose 简介与使用
+## 四、Docker Compose
 
 ### 1. 什么是 Docker Compose？
 
