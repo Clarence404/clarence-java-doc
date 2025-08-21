@@ -595,10 +595,12 @@ private void test() {
     lock.lock();
     try {
         while (!conditionSatisfied) {
-            condition.await();  // 等待
+            // 等待
+            condition.await();
         }
         // 条件满足后执行逻辑
-        condition.signal();     // 唤醒一个等待线程
+        // 唤醒一个等待线程
+        condition.signal();
     } finally {
         lock.unlock();
     }
@@ -615,8 +617,10 @@ private void test() {
 
 ```java
 private void test() {
-    LockSupport.park();  // 阻塞当前线程
-    LockSupport.unpark(thread);  // 唤醒指定线程
+    // 阻塞当前线程
+    LockSupport.park();
+    // 唤醒指定线程
+    LockSupport.unpark(thread);
 }
 ```
 
@@ -636,7 +640,7 @@ private void test() {
 `Executors` 是 Java 中用于管理线程池的一个工具类，它是 `java.util.concurrent` 包的一部分。通过 `Executors`，
 我们可以轻松地创建和管理线程池，避免手动管理线程的创建和销毁，提高程序的性能和可维护性。
 
-### 2、 `Executors` 的创建方式
+### 2、`Executors` 的创建方式
 
 ```java
 private void test() {
@@ -657,7 +661,7 @@ private void test() {
 }
 ```
 
-### 3、 `invokeAll()` 和 `invokeAny()`
+### 3、`invokeAll()` 和 `invokeAny()`
 
 这两个方法用于执行任务：
 
