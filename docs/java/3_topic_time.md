@@ -121,7 +121,85 @@ String formatted = offsetNow.format(DateTimeFormatter.ISO_OFFSET_DATE_TIME);
 
 ---
 
-## 5、适用建议
+## 5、时区“规范”
+
+---
+
+### 1. **IANA 时区（推荐）**
+
+* 格式：`Region/City`（区/城市名）
+* 例子：`Asia/Shanghai`、`America/New_York`、`Europe/London`
+* 特点：
+
+    * 跨平台、跨语言通用（Java、Python、数据库、Linux 都支持）
+    * 能正确处理夏令时（DST）和历史规则
+* **规范来源**：IANA Time Zone Database (tzdb)
+
+---
+
+### 2. **固定偏移时区**
+
+* 格式：`UTC±hh:mm` 或 `GMT±hh:mm`
+* 例子：`UTC+08:00`、`GMT-05:00`
+* 特点：
+
+    * 直观，但 **不会处理夏令时**
+    * 适合只需要固定偏移、不关心城市的场景（例如账单结算）
+
+---
+
+### 3. **`Etc/GMT±X` 系列**
+
+* 格式：`Etc/GMT+X` 或 `Etc/GMT-X`
+* 特点：**容易误解**
+
+    * `Etc/GMT+8` 实际是 UTC-8
+    * `Etc/GMT-8` 实际是 UTC+8
+* 建议：避免使用，容易让开发和用户搞混
+
+---
+
+### 4. **Windows 时区 ID（不推荐）**
+
+* 格式：`China Standard Time`、`Pacific Standard Time`
+* 特点：
+
+    * 只在 Windows 系统环境下常见
+    * 不同于 IANA 命名，Java 里不直接兼容
+    * 需要通过映射表（微软 ↔ IANA 对照表）转换
+
+---
+
+### 5. **Java 内置别名**
+
+* Java 的 `ZoneId.SHORT_IDS` 里有一些缩写别名，比如：
+
+    * `CST` → `America/Chicago`（不是中国！）
+    * `EST` → `America/New_York`
+* 特点：含糊、不推荐使用
+
+---
+
+### ✅ 结论 / 最佳实践
+
+1. **存储层（数据库、消息队列）**
+
+    * 存时间 → 用 **UTC (`OffsetDateTime` 或 `Instant`)**
+    * 存时区 → 用 **IANA TZDB ID**（如 `Asia/Shanghai`）
+
+2. **展示层（前端/用户界面）**
+
+    * 根据用户设置的 IANA 时区 → 转换时间 → 展示本地化的结果
+
+3. **避免**
+
+    * 避免 `Etc/GMT±X`（反直觉）
+    * 避免缩写（CST、PST），多义性太强
+    * 避免 Windows 时区 ID（不可移植）
+
+---
+
+## 6、适用建议
 
 * 如果你需要处理 **时间戳（含偏移）但不想处理时区数据库**，`OffsetDateTime` 是非常干净利落的选择。
 * 如果你需要考虑时区历史变更（如夏令时），用 `ZonedDateTime`。
