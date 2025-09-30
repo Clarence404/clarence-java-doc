@@ -109,7 +109,7 @@ Todo：完成自己的理解书写
     - 避免 NOT IN / NOT EXISTS 导致的全表扫描
     - 分析执行计划（EXPLAIN / PROFILE）
 
-## 九、深度分页介绍及优化
+## 九、深度分页及优化
 
 - LIMIT offset 大时的优化策略（比如 `ORDER BY id LIMIT 100000, 10` 的优化）
 - **优化方法**：
@@ -143,3 +143,67 @@ Todo：完成自己的理解书写
     - my.cnf 配置优化
     - 常见参数（innodb_buffer_pool_size, query_cache_size, max_connections）
 
+### 1、MySQL Binlog
+
+**概念**
+
+* Binlog 是 MySQL 的二进制日志（Binary Log），记录了数据库的所有 **修改操作**（INSERT/UPDATE/DELETE）以及 **数据变更顺序**。
+* Binlog 不记录 SELECT 语句，但可以记录 `CREATE TABLE`、`ALTER TABLE` 等 DDL 操作。
+* 主要用途：
+
+  1. **数据恢复**：可用于 Point-in-Time 恢复（基于时间回滚数据）。
+  2. **主从复制**：主库通过 Binlog 发送数据变更给从库。
+  3. **审计与监控**：分析数据修改历史。
+
+**类型**
+
+1. **Statement-Based Logging (SBL)**：记录执行的 SQL 语句。
+
+  * 优点：日志体积小。
+  * 缺点：依赖 SQL 执行结果，某些函数（如 NOW()）可能在主从库不一致。
+2. **Row-Based Logging (RBL)**：记录变更的行数据。
+
+  * 优点：精确记录每一行变动，主从库结果一致。
+  * 缺点：日志体积大。
+3. **Mixed Logging (MBL)**：SBL 与 RBL 的混合模式，MySQL 自动选择最优方式。
+
+**存储位置**
+
+* Binlog 文件位于 MySQL 数据目录下，文件名通常形如：`mysql-bin.000001`。
+* 对应的索引文件：`mysql-bin.index`，记录所有 binlog 文件列表。
+
+**使用与管理**
+
+* **开启 Binlog**：
+
+```ini
+[mysqld]
+server-id = 1
+log_bin = mysql-bin
+binlog_format = ROW   # 或 STATEMENT / MIXED
+expire_logs_days = 7  # 自动清理过期 binlog
+```
+
+* **查看 Binlog 文件**：
+
+```sql
+SHOW BINARY LOGS;
+```
+
+* **mysqlbinlog 下载**：
+
+* **查看 Binlog 内容**：
+
+```bash
+mysqlbinlog mysql-bin.000001
+```
+
+* **主从复制使用**：从库通过 `CHANGE MASTER TO` 语句指定主库和位置，读取 Binlog 更新数据。
+
+**注意事项**
+
+1. **日志轮转与清理**：长期不清理会占用大量磁盘空间。
+2. **性能考虑**：Binlog 开启后会略微增加写操作的开销。
+3. **GTID（全局事务 ID）**：增强型复制方式，可以更方便地进行主从切换和容灾。
+
+---
