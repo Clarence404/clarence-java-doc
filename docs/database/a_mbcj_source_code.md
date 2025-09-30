@@ -1,6 +1,6 @@
-# Mysql-binlog-connect-java 分析
+# Mysql-binlog-connect-java
 
-- Github: [https://github.com/shyiko/mysql-binlog-connector-java]{https://github.com/shyiko/mysql-binlog-connector-java}
+- Github: [https://github.com/shyiko/mysql-binlog-connector-java](https://github.com/shyiko/mysql-binlog-connector-java)
 
 ## 一、核心类：BinaryLogClient
 
