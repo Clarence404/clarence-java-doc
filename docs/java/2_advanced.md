@@ -2,14 +2,14 @@
 
 ## 一、泛型（Generics）
 
-详见：<RouteLink to="/interview/0_java#十四、说说你对泛型的理解">Java总结-Java：十四、说说你对泛型的理解</RouteLink>
+详见：<RouteLink to="/interview/0_java#十四、说说你对泛型的理解">Java 总结-Java：十四、说说你对泛型的理解</RouteLink>
 
 ## 二、Lambda与函数式编程
 
 ### 1、Lambda 底层原理与 函数式接口
 
 详见：<RouteLink to="/interview/0_java#十五、说说-lambda-表达式的底层原理">
-Java总结-Java：十五、说说lambda表达式的底层原理</RouteLink>
+Java 总结-Java：十五、说说lambda表达式的底层原理</RouteLink>
 
 ### 2、流式 API（Stream API）与集合框架
 
@@ -19,7 +19,7 @@ Stream 支持丰富的链式操作，例如：**`map`、`filter`、`reduce`、`s
 
 #### ✅ 流的类型及其分类
 
-详见：<RouteLink to="/interview/0_java#十六、说说java的stream">Java总结-Java：说说Java的stream</RouteLink>
+详见：<RouteLink to="/interview/0_java#十六、说说java的stream">Java 总结-Java：说说Java的stream</RouteLink>
 
 #### ✅ 集合框架与 Stream 的常见结合用法
 
