@@ -326,4 +326,206 @@ graph TD
 
 ```
 
+## 五、使用方法
+
+### 1、简化处理方案
+
+```java
+package com.clarence.mdm.model.binlog;
+
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.github.shyiko.mysql.binlog.BinaryLogClient;
+import com.github.shyiko.mysql.binlog.event.*;
+import jakarta.annotation.PostConstruct;
+import jakarta.annotation.PreDestroy;
+import jakarta.annotation.Resource;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.jdbc.core.JdbcTemplate;
+
+import java.io.Serializable;
+import java.util.LinkedHashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
+
+@Slf4j
+@Configuration
+public class BinlogListenerConfig {
+
+    @Value("${binlog.host}")
+    private String host;
+
+    @Value("${binlog.port}")
+    private int port;
+
+    @Value("${binlog.username}")
+    private String username;
+
+    @Value("${binlog.password}")
+    private String password;
+
+    @Value("${binlog.server-id}")
+    private long serverId;
+
+    private BinaryLogClient client;
+
+    @Resource
+    private JdbcTemplate jdbcTemplate;
+
+    private final ObjectMapper objectMapper = new ObjectMapper();
+
+    private final Map<Long, TableMapEventData> tableMap = new ConcurrentHashMap<>();
+    private final Map<String, List<String>> tableColumnsCache = new ConcurrentHashMap<>();
+
+    @PostConstruct
+    public void start() {
+        client = new BinaryLogClient(host, port, username, password);
+        client.setServerId(serverId);
+
+        // 注册事件监听器
+        client.registerEventListener(this::handleLogEvent);
+
+        log.info("启动 Binlog 监听 ({}:{}) ...", host, port);
+
+        // 使用独立线程避免阻塞 Spring 启动
+        Thread thread = new Thread(() -> {
+            try {
+                client.connect();
+            } catch (Exception e) {
+                log.error("Binlog 连接失败", e);
+            }
+        }, "binlog-listener-thread");
+        thread.setDaemon(true);
+        thread.start();
+    }
+
+    /**
+     * 处理日志事件
+     *
+     * @param event 事件
+     */
+    private void handleLogEvent(Event event) {
+        EventData data = event.getData();
+        if (data == null) return;
+
+        // 先处理 TableMapEventData，缓存 tableId -> TableMapEventData
+        if (data instanceof TableMapEventData tableMapEvent) {
+            tableMap.put(tableMapEvent.getTableId(), tableMapEvent);
+            log.debug("缓存 TableMapEventData -> tableId={} db={} table={}",
+                    tableMapEvent.getTableId(),
+                    tableMapEvent.getDatabase(),
+                    tableMapEvent.getTable());
+            return; // 直接返回，不需要其他处理
+        }
+
+        try {
+            if (data instanceof WriteRowsEventData writeData) {
+                TableMapEventData tableInfo = tableMap.get(writeData.getTableId());
+                // tableMap 还没收到 TableMapEventData
+                if (tableInfo == null) return;
+                for (Serializable[] row : writeData.getRows()) {
+                    Map<String, Object> rowMap = rowToMap(tableInfo, row);
+                    String json = objectMapper.writeValueAsString(Map.of(
+                            "eventType", "INSERT",
+                            "database", tableInfo.getDatabase(),
+                            "table", tableInfo.getTable(),
+                            "row", rowMap
+                    ));
+                    log.info("Binlog write listener, publish JSON -> {}", json);
+                }
+            } else if (data instanceof UpdateRowsEventData updateData) {
+                TableMapEventData tableInfo = tableMap.get(updateData.getTableId());
+                if (tableInfo == null) return;
+                for (var row : updateData.getRows()) {
+                    Map<String, Object> beforeMap = rowToMap(tableInfo, row.getKey());
+                    Map<String, Object> afterMap = rowToMap(tableInfo, row.getValue());
+                    String json = objectMapper.writeValueAsString(Map.of(
+                            "eventType", "UPDATE",
+                            "database", tableInfo.getDatabase(),
+                            "table", tableInfo.getTable(),
+                            "before", beforeMap,
+                            "after", afterMap
+                    ));
+                    log.info("Binlog update listener, publish JSON -> {}", json);
+                }
+            } else if (data instanceof DeleteRowsEventData deleteData) {
+                TableMapEventData tableInfo = tableMap.get(deleteData.getTableId());
+                if (tableInfo == null) return;
+                for (Serializable[] row : deleteData.getRows()) {
+                    Map<String, Object> rowMap = rowToMap(tableInfo, row);
+                    String json = objectMapper.writeValueAsString(Map.of(
+                            "eventType", "DELETE",
+                            "database", tableInfo.getDatabase(),
+                            "table", tableInfo.getTable(),
+                            "row", rowMap
+                    ));
+                    log.info("Binlog delete listener, publish JSON -> {}", json);
+                }
+            } else if (data instanceof QueryEventData queryData) {
+                String sql = queryData.getSql().trim();
+                if (sql.equalsIgnoreCase("BEGIN") || sql.equalsIgnoreCase("COMMIT")) {
+                    log.info("[TRANSACTION] -> {}", sql);
+                } else {
+                    // 去掉客户端注释
+                    String pureSql = sql.replaceAll("^/\\*.*?\\*/\\s*", "");
+                    String upper = pureSql.toUpperCase();
+                    if (upper.startsWith("CREATE") || upper.startsWith("ALTER") || upper.startsWith("DROP")) {
+                        log.info("[DDL] Listener-> {}", pureSql);
+                    } else {
+                        log.info("[OTHER QUERY] Listener-> {}", pureSql);
+                    }
+                }
+            }
+        } catch (Exception e) {
+            log.error("处理 binlog 事件出错", e);
+        }
+    }
+
+    private Map<String, Object> rowToMap(TableMapEventData tableInfo, Serializable[] row) {
+        Map<String, Object> map = new LinkedHashMap<>();
+        if (tableInfo == null || row == null) return map;
+
+        // 获取列名
+        List<String> columns = tableColumnsCache.computeIfAbsent(
+                tableInfo.getDatabase() + "." + tableInfo.getTable(),
+                k -> queryColumnNames(tableInfo.getDatabase(), tableInfo.getTable())
+        );
+
+        for (int i = 0; i < row.length; i++) {
+            String colName = i < columns.size() ? columns.get(i) : "col" + i;
+            map.put(colName, row[i]);
+        }
+        return map;
+    }
+
+    /**
+     * 查询表的列名列表（按 ordinal_position 排序）
+     * @param dbName 数据库名
+     * @param tableName 表名
+     * @return 列名列表
+     */
+    public List<String> queryColumnNames(String dbName, String tableName) {
+        String sql = "SELECT COLUMN_NAME FROM information_schema.columns " +
+                "WHERE table_schema = ? AND table_name = ? " +
+                "ORDER BY ORDINAL_POSITION";
+        return jdbcTemplate.queryForList(sql, String.class, dbName, tableName);
+    }
+
+    @PreDestroy
+    public void stop() throws Exception {
+        if (client != null) {
+            client.disconnect();
+            log.info("Binlog 监听已停止");
+        }
+    }
+}
+
+```
+
+### 2、代码时序图
+
+![img.png](../assets/database/mbcj_usage.png)
+
 ## 未完待续...
