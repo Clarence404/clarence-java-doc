@@ -201,36 +201,241 @@ import java.util.Map;
  */
 public class LRUCache<K, V> extends LinkedHashMap<K, V> {
 
-  private final int capacity;
+    private final int capacity;
 
-  public LRUCache(int capacity) {
-    // true 表示按照访问顺序（access order）而不是插入顺序
-    super(capacity, 0.75F, true);
-    this.capacity = capacity;
-  }
+    public LRUCache(int capacity) {
+        // true 表示按照访问顺序（access order）而不是插入顺序
+        super(capacity, 0.75F, true);
+        this.capacity = capacity;
+    }
 
-  @Override
-  protected boolean removeEldestEntry(Map.Entry<K, V> eldest) {
-    // 当元素个数超过容量时，返回 true，自动移除最老的元素
-    return size() > capacity;
-  }
+    @Override
+    protected boolean removeEldestEntry(Map.Entry<K, V> eldest) {
+        // 当元素个数超过容量时，返回 true，自动移除最老的元素
+        return size() > capacity;
+    }
 
-  public static void main(String[] args) {
-    LRUCache<Integer, String> cache = new LRUCache<>(3);
+    public static void main(String[] args) {
+        LRUCache<Integer, String> cache = new LRUCache<>(3);
 
-    cache.put(1, "A");
-    cache.put(2, "B");
-    cache.put(3, "C");
-    System.out.println(cache); // {1=A, 2=B, 3=C}
+        cache.put(1, "A");
+        cache.put(2, "B");
+        cache.put(3, "C");
+        System.out.println(cache); // {1=A, 2=B, 3=C}
 
-    // 访问 key=1，会让 1 移到队尾
-    cache.get(1);
-    System.out.println(cache); // {2=B, 3=C, 1=A}
+        // 访问 key=1，会让 1 移到队尾
+        cache.get(1);
+        System.out.println(cache); // {2=B, 3=C, 1=A}
 
-    // 插入新元素，触发淘汰最久未使用的 key=2
-    cache.put(4, "D");
-    System.out.println(cache); // {3=C, 1=A, 4=D}
-  }
+        // 插入新元素，触发淘汰最久未使用的 key=2
+        cache.put(4, "D");
+        System.out.println(cache); // {3=C, 1=A, 4=D}
+    }
+}
+
+```
+
+- 次简单：HashMap + LinkedList
+
+```java
+package com.clarence.mdm.common.core.utils;
+
+import java.util.*;
+
+/**
+ * 使用 LinkedList + HashMap 实现 LRU 缓存<br>
+ * 时间复杂度：O(n)
+ *
+ * @author ChenHan
+ * @date 2025/10/10
+ */
+class SimpleLRUCache<K, V> {
+
+    private final int capacity;
+    private Map<K, V> map;
+    private LinkedList<K> order;
+
+    public SimpleLRUCache(int capacity) {
+        this.capacity = capacity;
+        map = new HashMap<>();
+        order = new LinkedList<>();
+    }
+
+    public V get(K key) {
+        if (!map.containsKey(key)) return null;
+        order.remove(key);   // O(n)
+        order.addLast(key);
+        return map.get(key);
+    }
+
+    public void put(K key, V value) {
+        if (map.containsKey(key)) order.remove(key);
+        else if (map.size() >= capacity) {
+            K oldest = order.removeFirst();
+            map.remove(oldest);
+        }
+        order.addLast(key);
+        map.put(key, value);
+    }
+
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder("{");
+        for (int i = 0; i < order.size(); i++) {
+            K key = order.get(i);
+            sb.append(key).append("=").append(map.get(key));
+            if (i != order.size() - 1) sb.append(", ");
+        }
+        sb.append("}");
+        return sb.toString();
+    }
+
+    public static void main(String[] args) {
+        SimpleLRUCache<Integer, String> cache = new SimpleLRUCache<>(3);
+
+        cache.put(1, "A");
+        cache.put(2, "B");
+        cache.put(3, "C");
+        System.out.println(cache); // {1=A, 2=B, 3=C}
+
+        // 访问 key=1，会让 1 移到队尾
+        cache.get(1);
+        System.out.println(cache); // {2=B, 3=C, 1=A}
+
+        // 插入新元素，触发淘汰最久未使用的 key=2
+        cache.put(4, "D");
+        System.out.println(cache); // {3=C, 1=A, 4=D}
+    }
+}
+
+```
+
+- 标准写法：HashMap + 双向链表
+
+```java
+import java.util.HashMap;
+
+public class LRUCache<K, V> {
+
+    // 双向链表节点
+    private class Node {
+        K key;
+        V value;
+        Node prev, next;
+
+        Node(K k, V v) {
+            key = k;
+            value = v;
+        }
+    }
+
+    private final int capacity;
+    private HashMap<K, Node> map;
+    private Node head, tail;
+
+    public LRUCache(int capacity) {
+        this.capacity = capacity;
+        this.map = new HashMap<>();
+    }
+
+    // 获取元素
+    public V get(K key) {
+        Node node = map.get(key);
+        if (node == null) return null;
+        moveToTail(node); // 访问后移动到尾部
+        return node.value;
+    }
+
+    // 插入或更新元素
+    public void put(K key, V value) {
+        Node node = map.get(key);
+        if (node != null) {
+            node.value = value;
+            moveToTail(node);
+        } else {
+            node = new Node(key, value);
+            map.put(key, node);
+            addToTail(node);
+            if (map.size() > capacity) {
+                map.remove(head.key);
+                removeHead();
+            }
+        }
+    }
+
+    // 将节点移动到尾部
+    private void moveToTail(Node node) {
+        if (node == tail) return;
+        removeNode(node);
+        addToTail(node);
+    }
+
+    // 添加节点到尾部
+    private void addToTail(Node node) {
+        if (tail != null) {
+            tail.next = node;
+            node.prev = tail;
+            tail = node;
+        } else {
+            head = tail = node;
+        }
+    }
+
+    // 删除链表中的节点
+    private void removeNode(Node node) {
+        if (node.prev != null) node.prev.next = node.next;
+        else head = node.next;
+
+        if (node.next != null) node.next.prev = node.prev;
+        else tail = node.prev;
+
+        node.prev = node.next = null;
+    }
+
+    // 删除头节点（最久未使用）
+    private void removeHead() {
+        if (head != null) {
+            Node next = head.next;
+            head.next = null;
+            if (next != null) next.prev = null;
+            head = next;
+            if (head == null) tail = null;
+        }
+    }
+
+    // 打印缓存状态
+    public void printCache() {
+        Node current = head;
+        System.out.print("{");
+        while (current != null) {
+            System.out.print(current.key + "=" + current.value);
+            current = current.next;
+            if (current != null) System.out.print(", ");
+        }
+        System.out.println("}");
+    }
+
+    // 测试
+    public static void main(String[] args) {
+        LRUCache<Integer, String> cache = new LRUCache<>(3);
+
+        cache.put(1, "A");
+        cache.put(2, "B");
+        cache.put(3, "C");
+        cache.printCache(); // {1=A, 2=B, 3=C}
+
+        cache.get(1);        // 访问 key=1
+        cache.printCache(); // {2=B, 3=C, 1=A}
+
+        cache.put(4, "D");   // 超过容量，淘汰 key=2
+        cache.printCache(); // {3=C, 1=A, 4=D}
+
+        cache.get(3);        // 访问 key=3
+        cache.printCache(); // {1=A, 4=D, 3=C}
+
+        cache.put(5, "E");   // 淘汰 key=1
+        cache.printCache(); // {4=D, 3=C, 5=E}
+    }
 }
 
 ```
