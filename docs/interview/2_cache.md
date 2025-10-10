@@ -189,6 +189,52 @@ key 堆积在内存里，导致 Redis 内存块耗尽了，咋整？
 
 ### 2、手写一个 LRU 算法
 
+- 最简单：LinkedHashMap实现
+
+```java
+import java.util.LinkedHashMap;
+import java.util.Map;
+
+/**
+ * 使用 LinkedHashMap 实现 LRU 缓存
+ * 时间复杂度：O(1)
+ */
+public class LRUCache<K, V> extends LinkedHashMap<K, V> {
+
+  private final int capacity;
+
+  public LRUCache(int capacity) {
+    // true 表示按照访问顺序（access order）而不是插入顺序
+    super(capacity, 0.75F, true);
+    this.capacity = capacity;
+  }
+
+  @Override
+  protected boolean removeEldestEntry(Map.Entry<K, V> eldest) {
+    // 当元素个数超过容量时，返回 true，自动移除最老的元素
+    return size() > capacity;
+  }
+
+  public static void main(String[] args) {
+    LRUCache<Integer, String> cache = new LRUCache<>(3);
+
+    cache.put(1, "A");
+    cache.put(2, "B");
+    cache.put(3, "C");
+    System.out.println(cache); // {1=A, 2=B, 3=C}
+
+    // 访问 key=1，会让 1 移到队尾
+    cache.get(1);
+    System.out.println(cache); // {2=B, 3=C, 1=A}
+
+    // 插入新元素，触发淘汰最久未使用的 key=2
+    cache.put(4, "D");
+    System.out.println(cache); // {3=C, 1=A, 4=D}
+  }
+}
+
+```
+
 ## 五、缓存穿透、缓存击穿、缓存雪崩和缓存刷新
 
 ### 1、缓存穿透（Cache Penetration）：
