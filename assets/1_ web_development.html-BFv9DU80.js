@@ -1,0 +1,7 @@
+import{_ as n,c as s,a,o as l}from"./app-BLlbI4Nb.js";const t={};function i(r,e){return l(),s("div",null,e[0]||(e[0]=[a(`<h1 id="web-development" tabindex="-1"><a class="header-anchor" href="#web-development"><span>Web Development</span></a></h1><div class="language-text line-numbers-mode" data-highlighter="prismjs" data-ext="text" data-title="text"><pre><code><span class="line">├──Web Development</span>
+<span class="line">│   ├── Spring MVC (Controllers, REST APIs)</span>
+<span class="line">│   ├── Exception Handling (Global Advice)</span>
+<span class="line">│   ├── Filters and Interceptors</span>
+<span class="line">│   ├── Request/Response Binding</span>
+<span class="line">│   └── Spring WebFlux (Reactive Web)</span>
+<span class="line"></span></code></pre><div class="line-numbers" aria-hidden="true" style="counter-reset:line-number 0;"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div>`,2)]))}const d=n(t,[["render",i],["__file","1_ web_development.html.vue"]]),p=JSON.parse('{"path":"/springboot/1_%20web_development.html","title":"Web Development","lang":"en-US","frontmatter":{},"headers":[],"git":{"updatedTime":1752226181000,"contributors":[{"name":"hello0709","username":"hello0709","email":"1154937362@qq.com","commits":1,"url":"https://github.com/hello0709"}]},"filePathRelative":"springboot/1_ web_development.md"}');export{d as comp,p as data};
