@@ -1,6 +1,8 @@
-# Cache-DB Consistency
+# 缓存一致性
 
-参考文章：[https://mp.weixin.qq.com/s/idAReeR2Fqe6O6_ayq6AkA?scene=1](https://mp.weixin.qq.com/s/idAReeR2Fqe6O6_ayq6AkA?scene=1)
+参考文章：
+- [https://mp.weixin.qq.com/s/idAReeR2Fqe6O6_ayq6AkA?scene=1](https://mp.weixin.qq.com/s/idAReeR2Fqe6O6_ayq6AkA?scene=1)
+- [https://cloud.tencent.com/developer/article/1932934](https://cloud.tencent.com/developer/article/1932934)
 
 ## 一、经典场景对比
 
@@ -62,4 +64,4 @@ flowchart TD
   - Read/Write Through 是缓存自动写入数据库（单条写）
   - Write Behind 是缓存自动写入数据库（批量写）
 
-### todo other difference
+### 2、todo other difference

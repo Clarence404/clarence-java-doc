@@ -182,4 +182,5 @@ Todo
 
 ## 十一、缓存一致性
 
-[https://cloud.tencent.com/developer/article/1932934](https://cloud.tencent.com/developer/article/1932934)
+- [https://cloud.tencent.com/developer/article/1932934](https://cloud.tencent.com/developer/article/1932934)
+- <RouteLink to="/cache/5_cache_consistency">缓存-Cache Consistency（缓存一致性） 专题</RouteLink>
