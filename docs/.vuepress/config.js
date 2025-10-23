@@ -7,7 +7,6 @@ import path from 'path';
 import {searchPlugin} from '@vuepress/plugin-search'
 import {markdownHintPlugin} from '@vuepress/plugin-markdown-hint'
 import {copyCodePlugin} from '@vuepress/plugin-copy-code'
-import { markdownChartPlugin } from '@vuepress/plugin-markdown-chart'
 
 function getSidebarFromDir(dirPath) {
     // 检查目录是否存在，不存在返回空数组
@@ -51,7 +50,7 @@ export default defineUserConfig({
     head: [
         [
             'link', // 设置 favicon.ico，注意图片放在 public 文件夹下
-            { rel: 'icon', href: 'images/logo.png' }
+            {rel: 'icon', href: 'images/logo.png'}
         ]
     ],
     base: '/clarence-java-doc/',
@@ -132,10 +131,6 @@ export default defineUserConfig({
         copyCodePlugin({
             // options
             showInMobile: true
-        }),
-        markdownChartPlugin({
-            // 启用 Mermaid
-            mermaid: true,
         }),
     ],
 });
