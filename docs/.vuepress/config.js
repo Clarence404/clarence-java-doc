@@ -7,6 +7,7 @@ import path from 'path';
 import {searchPlugin} from '@vuepress/plugin-search'
 import {markdownHintPlugin} from '@vuepress/plugin-markdown-hint'
 import {copyCodePlugin} from '@vuepress/plugin-copy-code'
+import { markdownChartPlugin } from '@vuepress/plugin-markdown-chart'
 
 function getSidebarFromDir(dirPath) {
     // 检查目录是否存在，不存在返回空数组
@@ -131,6 +132,10 @@ export default defineUserConfig({
         copyCodePlugin({
             // options
             showInMobile: true
+        }),
+        markdownChartPlugin({
+            // 启用 Mermaid
+            mermaid: true,
         }),
     ],
 });
