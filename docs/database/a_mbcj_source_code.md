@@ -1,4 +1,4 @@
-# Mysql-binlog-connect-java
+# MBCJ 源码分析
 
 - Github: [https://github.com/shyiko/mysql-binlog-connector-java](https://github.com/shyiko/mysql-binlog-connector-java)
 
