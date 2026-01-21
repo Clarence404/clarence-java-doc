@@ -1,4 +1,4 @@
-## MariaDB
+# MariaDB
 
 - 官网地址：[MariaDB](https://mariadb.com/)
 - Github：[MariaDB](https://github.com/MariaDB/server)
