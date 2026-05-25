@@ -1,0 +1,340 @@
+# VPS 与服务器选购指南
+
+> 整理 VPS 选购核心要素、中国优化线路详解，以及主流服务商横评对比。
+
+---
+
+## 一、VPS 基础概念
+
+VPS（Virtual Private Server，虚拟专用服务器）是通过虚拟化技术将一台物理服务器分割成多个相互隔离的虚拟机，每个 VPS 独享分配的 CPU、内存、磁盘和带宽资源。
+
+**选购核心要素：**
+
+| 要素       | 说明 |
+|----------|---|
+| 中国优化线路   | 决定国内访问速度的最关键因素 |
+| 机房位置     | 距离越近延迟越低，香港 / 日本 / 新加坡适合亚洲用户 |
+| 带宽与流量    | 注意是共享带宽还是独享带宽，月流量上限 |
+| CPU / 内存 | 按实际用途选，建站 1C1G 起步，跑服务 2C2G |
+| 虚拟化方案    | KVM 优于 OpenVZ，KVM 支持 BBR 等内核优化 |
+| 价格周期     | 注意续费价格，部分商家首年优惠续费翻倍 |
+
+---
+
+## 二、中国优化线路详解
+
+国内用户访问境外 VPS，数据包需要经过海底光缆或跨境专线。线路质量直接影响延迟和丢包率，尤其晚高峰（20:00 - 24:00）差距非常明显。
+
+### 2.1 中国电信线路
+
+| 线路 | AS 号 | 说明 |
+|---|---|---|
+| 电信 163 | AS4134 | 电信普通骨干网，绕路多，晚高峰拥堵，低价 VPS 多走此线路 |
+| CN2 GT | AS4809 | 电信精品网 Global Transit，去程或回程走 CN2，另一段走 163，中端线路 |
+| CN2 GIA | AS4809 | 电信最高端线路，去程 + 回程全程 CN2，独立不共享，延迟低且稳定，价格最贵 |
+
+::: tip CN2 GT vs CN2 GIA
+- **CN2 GT**：去程走 CN2，回程走普通 163，或反过来。高峰期回程可能拥堵。
+- **CN2 GIA**：去程 + 回程全程走 CN2 4809 网络，不与 163 共享资源，晚高峰依然稳定。
+- 判断方式：`traceroute` 路由中出现 `59.43.x.x` 即为走了 CN2 节点。
+:::
+
+### 2.2 中国联通线路
+
+| 线路 | AS 号 | 说明 |
+|---|---|---|
+| 联通 169 | AS4837 | 联通普通骨干网（CU4837），高峰期绕路拥堵，价格低 |
+| 联通精品网 | AS9929 | 联通 VIP 优质线路，直连低延迟，稳定性好，价格偏高 |
+
+::: info AS4837 说明
+CU4837 即联通 169 网，是联通最基础的出口线路。标注"联通 4837 回程"的 VPS 在晚高峰延迟可能飙升至 200ms+，不适合对延迟敏感的场景。AS9929 才是联通侧的优化选择。
+:::
+
+### 2.3 中国移动线路
+
+| 线路 | AS 号 | 说明 |
+|---|---|---|
+| 移动普通 | AS9808 | 移动骨干网，质量一般 |
+| 移动 CMI | AS58453 | China Mobile International，移动国际精品线路，直连，近年质量提升明显 |
+
+### 2.4 三网线路对比总结
+
+```
+优质程度（由高到低）：
+
+电信侧：CN2 GIA > CN2 GT > 163 (AS4134)
+联通侧：AS9929 > AS4837
+移动侧：CMI (AS58453) > AS9808
+```
+
+**三网优化线路**：部分高端机房（如香港 CMI + CN2 GIA + AS9929）三网均走优质线路，价格最高但体验最佳。
+
+---
+
+## 三、常见机房位置与延迟参考
+
+| 机房位置 | 电信延迟 | 联通延迟 | 移动延迟 | 特点 |
+|---|---|---|---|---|
+| 香港 | 30~50ms | 30~50ms | 20~40ms | 最近，价格贵，三网友好 |
+| 日本东京 | 60~100ms | 60~80ms | 50~80ms | 联通 / 移动表现好，电信绕路 |
+| 新加坡 | 60~100ms | 70~100ms | 60~90ms | 移动直连优秀 |
+| 美国洛杉矶 | 140~180ms | 130~160ms | 150~180ms | CN2 GIA 机房集中地 |
+| 美国圣何塞 | 140~170ms | 130~160ms | 150~180ms | 部分走 CN2 |
+
+---
+
+## 四、测试 IP、硬件评分与网络质量检测
+
+### 4.1 各服务商测试 IP 与 Looking Glass
+
+> 购买前可用以下测试 IP 进行 ping 测试，或通过 Looking Glass 测试从指定节点到目标地址的路由与速度。
+
+| 服务商 | 机房 | 线路 | 测试 IP | Looking Glass |
+|---|---|---|---|---|
+| 搬瓦工 | 洛杉矶 DC6 | CN2 GIA | 162.244.241.102 | [dc6.bwg.net/lg](https://dc6.bwg.net/lg/en.php) |
+| 搬瓦工 | 所有机房 | — | — | [bandwagonhost.net/test-ip](https://www.bandwagonhost.net/test-ip) |
+| DMIT | 香港 Tier 1 | CN2 GIA | 154.3.33.110 | [lg.dmit.sh](https://lg.dmit.sh/?server=7) |
+| DMIT | 香港 Pro | CN2 GIA + CMI + AS9929 | 103.117.100.16 | [lg.dmit.sh](https://lg.dmit.sh/?server=hkg-pro) |
+| DMIT | 洛杉矶 Pro | CN2 GIA + CMI | 154.17.2.12 | [lg.dmit.sh](https://lg.dmit.sh/?server=1) |
+| CubeCloud | 香港 | CN2 GIA + CMI | 103.107.8.88 | [lg.a.hk.cubecloud.net](http://lg.a.hk.cubecloud.net/) |
+| HostDare | 洛杉矶 | CN2 GIA | 202.91.32.37 | — |
+
+::: tip
+以上测试 IP 可能随时变更，建议以各商家官网 / Looking Glass 为准。Looking Glass 可测试从服务商节点出发的路由路径，结合国内 `traceroute` 双向判断线路质量。
+:::
+
+---
+
+### 4.2 融合怪（GoECS）— 综合测评首选
+
+**GoECS 就是融合怪**，同一个项目的两种叫法。由国人 [spiritLHLS](https://github.com/spiritLHLS) 开发，Go 版本为当前推荐版本，无环境依赖、跨平台，是中文 VPS 社区使用最广的综合测评脚本。
+
+| 版本 | 仓库 | 状态 |
+|---|---|---|
+| Go 版（推荐） | [oneclickvirt/ecs](https://github.com/oneclickvirt/ecs) | 活跃维护 |
+| Shell 原版 | [spiritLHLS/ecs](https://github.com/spiritLHLS/ecs) | 维护模式 |
+
+**测试内容（一次跑完）：**
+- 系统基础信息（CPU 型号、内存、磁盘、虚拟化类型）
+- CPU / 内存 / 磁盘 I/O 性能评分（sysbench、fio）
+- 国内三网多节点网速测试（电信 / 联通 / 移动）
+- 回程路由追踪（三网去程 + 回程，判断是否走 CN2 / CMI / AS9929）
+- 流媒体解锁检测（Netflix、Disney+ 等）
+- IP 质量检测
+
+```bash
+# 安装并运行（国际节点）
+export noninteractive=true && curl -L https://raw.githubusercontent.com/oneclickvirt/ecs/master/goecs.sh -o goecs.sh && chmod +x goecs.sh && ./goecs.sh install && goecs
+
+# 国内加速（走 CNB CDN）
+export noninteractive=true && export CN=true && curl -L https://cnb.cool/oneclickvirt/ecs/-/git/raw/main/goecs.sh -o goecs.sh && chmod +x goecs.sh && ./goecs.sh install && goecs
+```
+
+---
+
+### 4.3 其他测评工具
+
+**YABS — 硬件性能评分**
+
+[YABS](https://github.com/masonr/yet-another-bench-script) 专注硬件基准，用 fio 测磁盘、iperf3 测带宽、Geekbench 测 CPU，输出标准化评分，适合横向对比不同 VPS 的硬件质量。
+
+```bash
+curl -sL yabs.sh | bash
+```
+
+**bench.sh — 快速网速测试**
+
+经典脚本，作者 [teddysun](https://github.com/teddysun/across/blob/master/bench.sh)，侧重全球多节点下载速度，运行快，结果直观。
+
+```bash
+wget -qO- bench.sh | bash
+```
+
+**LemonBench — 综合测评**
+
+[LemonBench](https://github.com/LemonBench/LemonBench) 功能与融合怪类似，支持快速 / 完整两种模式。
+
+```bash
+# 快速模式（约 5 分钟）
+curl -fsL https://raw.githubusercontent.com/LemonBench/LemonBench/main/LemonBench.sh | bash -s -- --fast
+```
+
+---
+
+### 4.4 路由追踪工具
+
+**BestTrace — 可视化路由追踪（判断线路必备）**
+
+[BestTrace](https://www.ipip.net/product/client.html) 由 IPIP.NET 出品，可图形化显示每一跳归属运营商，**是验证 VPS 是否真走 CN2 / CMI / AS9929 的最直观工具**。
+
+- Windows / macOS / iOS / Android 均有客户端，输入目标 IP 即可可视化路由
+- Linux 命令行：
+
+```bash
+wget https://cdn.ipip.net/17mon/besttrace4linux.zip && unzip besttrace4linux.zip
+./besttrace 103.117.100.16   # 以 DMIT 香港 Pro 为例
+```
+
+**mtr — 实时路由 + 丢包诊断**
+
+```bash
+# 实时追踪，观察丢包率与延迟波动
+mtr --report --report-cycles 10 <测试IP>
+```
+
+**基础 ping / traceroute**
+
+```bash
+# ping（Linux / macOS）
+ping -c 10 <测试IP>
+
+# traceroute — 路由中出现 59.43.x.x 即为 CN2 节点
+traceroute <测试IP>
+```
+
+---
+
+### 4.5 工具选用速查
+
+| 场景 | 推荐工具 |
+|---|---|
+| 买到 VPS 后全面评估 | 融合怪（GoECS） |
+| 硬件性能打分 / 横向对比 | YABS |
+| 快速看网速 | bench.sh |
+| 验证是否真走 CN2 / CMI | BestTrace |
+| 诊断丢包 / 抖动 | mtr |
+| 购买前测试商家节点延迟 | ping + Looking Glass |
+
+---
+
+## 六、主流 VPS 服务商对比（中国优化线路）
+
+> 以下仅收录具备中国优化线路的服务商，普通线路商家（RackNerd、Vultr、CloudCone 等）不在此列。
+
+### 6.1 搬瓦工（BandwagonHost）
+
+- **官网（国际）**：[https://bandwagonhost.com](https://bandwagonhost.com)
+- **官网（国内镜像）**：[https://bwh81.net](https://bwh81.net)
+- **线路**：CN2 GT / CN2 GIA / CN2 GIA（香港）
+- **机房**：洛杉矶、香港、日本、荷兰等
+- **特点**：老牌商家，CN2 GIA 线路稳定，支持多机房切换（CN2 GIA-E 方案），售后有保障
+- **价格**：CN2 GIA 洛杉矶约 $49.99/年，香港方案更贵
+- **适合**：对稳定性要求高、预算充足的用户
+
+### 6.2 DMIT
+
+- **官网**：[https://www.dmit.io](https://www.dmit.io)
+- **线路**：CN2 GIA + CMI + AS9929（三网优化）
+- **机房**：香港、洛杉矶、东京
+- **特点**：中国优化线路专精商家，香港 Pro 方案三网直连，延迟极低；洛杉矶 CN2 GIA + CMI 双向优化；网络质量在同类商家中口碑最好
+- **价格**：香港方案约 $14.9/月起，洛杉矶 CN2 GIA 约 $29.9/月起
+- **适合**：追求极低延迟、三网均衡的用户
+
+### 6.3 CubeCloud（魔方云）
+
+- **官网**：[https://www.cubecloud.net](https://www.cubecloud.net)
+- **线路**：CN2 GIA + CMI（香港三网优化）
+- **机房**：香港、洛杉矶
+- **特点**：国人商家，中文支持友好，香港 CN2 GIA + CMI 三网优化，性价比较好；支持支付宝 / 微信支付
+- **价格**：香港入门方案约 ¥30~50/月
+- **适合**：国内用户、需要中文客服支持、预算适中
+
+### 6.4 HostDare
+
+- **官网**：[https://hostdare.com](https://hostdare.com)
+- **线路**：CN2 GIA（洛杉矶）
+- **机房**：洛杉矶
+- **特点**：价格比搬瓦工便宜，CN2 GIA 方案性价比高；稳定性略逊于搬瓦工和 DMIT，偶有超售问题
+- **价格**：CN2 GIA 方案约 $25~35/年
+- **适合**：预算有限但仍希望走 CN2 GIA 线路的用户
+
+---
+
+## 七、横向对比
+
+| 维度 | 搬瓦工 CN2 GIA | DMIT | CubeCloud | HostDare |
+|---|---|---|---|---|
+| 线路质量 | 极优 | 极优（三网） | 优 | 良 |
+| 香港节点 | ✅ 有（贵） | ✅ 三网直连 | ✅ 三网优化 | ❌ 无 |
+| 洛杉矶节点 | ✅ CN2 GIA | ✅ CN2 GIA+CMI | ✅ 有 | ✅ CN2 GIA |
+| 支持支付宝 | ❌ | ❌ | ✅ | ❌ |
+| 中文支持 | 一般 | 一般 | ✅ 好 | 一般 |
+| 价格 | 贵 | 贵 | 中等 | 便宜 |
+| 稳定性口碑 | 高 | 高 | 中高 | 中 |
+| 适合场景 | 生产环境 | 极低延迟需求 | 国内用户首选 | 预算受限 |
+
+---
+
+## 八、选购建议
+
+```
+追求极低延迟，三网均衡   →  DMIT 香港 Pro / 洛杉矶 CN2 GIA
+老牌稳定，长期使用      →  搬瓦工 CN2 GIA-E
+国人友好，支付方便      →  CubeCloud 香港
+预算有限但要 CN2 GIA   →  HostDare 洛杉矶
+```
+
+::: warning 注意
+部分商家宣传 "CN2" 实为 CN2 GT 甚至只是普通 163 线路，购买前建议通过 `traceroute` 实测路由，或查阅第三方测评报告（如 V2EX、NodeSeek 等社区）。
+:::
+
+---
+
+## 九、企业合规跨境网络方案
+
+::: danger 重要提示
+个人搭建未经授权的翻墙工具在中国大陆属违法行为。企业如需跨境访问，必须通过**工信部许可的合规渠道**，切勿使用个人 VPS 搭建翻墙服务用于企业生产环境。
+:::
+
+### 7.1 合规方案类型
+
+| 方案 | 说明 | 适合规模 |
+|---|---|---|
+| **IPLC 国际专线** | International Private Leased Circuit，运营商提供的点对点专用物理线路，带宽独享，延迟极低，合规性最强 | 大型企业 |
+| **MPLS VPN 专线** | 运营商（电信 / 联通 / 移动）提供的 MPLS 组网，多分支互联，稳定性高 | 中大型企业 |
+| **SD-WAN 跨境专线** | 软件定义广域网，基于运营商专线 + 智能路由，灵活扩展 | 中型企业 |
+| **云厂商跨境专线产品** | 阿里云 CEN 云企业网、腾讯云 CCN 云联网、AWS Direct Connect 等，通过云平台打通境内外网络 | 中小企业 |
+| **持牌跨境 VPN 服务** | 向工信部申请 IDC/ISP 许可，或使用已持牌服务商提供的企业级 VPN | 小型企业 / 团队 |
+
+### 7.2 主要运营商跨境专线产品
+
+| 运营商 | 产品名称 | 咨询入口 |
+|---|---|---|
+| 中国电信 | 国际 IPLC、天翼云跨境专线 | 拨打 10000 或联系属地大客户经理 |
+| 中国联通 | 沃云跨境专线、MPLS VPN | 拨打 10010 或联系政企客服 |
+| 中国移动 | 移动云跨境专线、全球 MPLS | 拨打 10086 或联系政企部门 |
+
+### 7.3 云厂商跨境网络产品
+
+| 云厂商 | 产品 | 说明 |
+|---|---|---|
+| 阿里云 | [云企业网 CEN](https://www.aliyun.com/product/cbn) | 境内 VPC 与境外 VPC 互通，走阿里骨干网，合规且稳定 |
+| 腾讯云 | [云联网 CCN](https://cloud.tencent.com/product/ccn) | 多地域 VPC 互联，支持跨境带宽购买 |
+| 华为云 | [云连接 CC](https://www.huaweicloud.com/product/cc.html) | 类似产品，适合华为云用户 |
+| AWS | Direct Connect | 企业本地数据中心直连 AWS，适合已上 AWS 的企业 |
+
+### 7.4 如何申请
+
+**方式一：直接联系运营商政企部门**
+1. 拨打运营商客服（10000 / 10010 / 10086），说明企业跨境网络需求
+2. 运营商派大客户经理上门评估需求、出方案报价
+3. 签订合同、完成企业资质审核后开通
+
+**方式二：通过云厂商控制台购买**
+1. 登录阿里云 / 腾讯云控制台
+2. 购买对应境外地域实例 + 跨境带宽包
+3. 配置 CEN / CCN 将境内与境外 VPC 打通
+4. 合规性由云厂商保障，无需单独申请许可证
+
+**方式三：采购持牌企业级 VPN 服务**
+- 选择持有工信部 ISP / VPN 许可证的服务商（如深信服、华为企业网络等）
+- 签订企业服务协议，获取合规授权文件备查
+
+### 7.5 费用参考
+
+| 方案 | 大致费用 |
+|---|---|
+| IPLC 国际专线 | 数千元 ~ 数万元/月，按带宽定价 |
+| 云厂商跨境带宽 | 约 ¥30~80/Mbps/月（按实际购买带宽） |
+| MPLS VPN | 按节点数和带宽定价，中型企业一般万元/月级别 |
+| 持牌企业 VPN | 按用户数/流量计费，小团队数千元/年起 |
