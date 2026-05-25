@@ -61,6 +61,7 @@ clarence-java-doc/
 ├── protocols/            # Communication protocols
 ├── iot/                  # IoT (Internet of Things) solutions
 ├── ai/                   # Artificial Intelligence basics
+├── server/               # VPS & server selection, CN2/CMI network routes, enterprise VPN
 └── README.md             # Project introduction (You are here)
 ```
 
