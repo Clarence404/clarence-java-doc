@@ -156,16 +156,22 @@ highlights:
 footer: MIT 协议 | 版权所有 © 2025-至今 Clarence
 ---
 
-<div style="display:flex; justify-content:center; align-items:center; gap:3rem; flex-wrap:wrap; padding: 2.5rem 1rem 1.5rem;">
-  <img src="/images/slogan.png" style="max-width:320px; width:75%; filter:drop-shadow(0 8px 24px rgba(168,85,247,0.2));" alt="Clarence Java Doc" />
-  <div style="text-align:left; max-width:360px;">
-    <p style="font-size:1rem; line-height:2.1; color:var(--vp-c-text-2, #555);">
-      📚 覆盖 <strong>22 个</strong>技术模块<br/>
-      🗂 <strong>160+</strong> 篇深度技术文章<br/>
-      🎯 GoF <strong>23 种</strong>设计模式全覆盖<br/>
-      💡 面向 Java 后端工程师<br/>
-      🔄 开发总结 + 工程实践持续更新
-    </p>
+<div style="display:flex; justify-content:center; gap:1.5rem; flex-wrap:wrap; padding: 2.5rem 1rem 1rem;">
+  <div style="text-align:center; padding:1.25rem 2rem; border-radius:14px; border:1px solid rgba(168,85,247,0.18); background:rgba(168,85,247,0.04); min-width:120px;">
+    <div style="font-size:2rem; font-weight:800; background:linear-gradient(135deg,#ff6b9d,#a855f7); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text; line-height:1.2;">22</div>
+    <div style="font-size:0.85rem; color:var(--vp-c-text-2,#666); margin-top:0.3rem;">技术模块</div>
+  </div>
+  <div style="text-align:center; padding:1.25rem 2rem; border-radius:14px; border:1px solid rgba(168,85,247,0.18); background:rgba(168,85,247,0.04); min-width:120px;">
+    <div style="font-size:2rem; font-weight:800; background:linear-gradient(135deg,#a855f7,#38bdf8); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text; line-height:1.2;">160+</div>
+    <div style="font-size:0.85rem; color:var(--vp-c-text-2,#666); margin-top:0.3rem;">深度文章</div>
+  </div>
+  <div style="text-align:center; padding:1.25rem 2rem; border-radius:14px; border:1px solid rgba(168,85,247,0.18); background:rgba(168,85,247,0.04); min-width:120px;">
+    <div style="font-size:2rem; font-weight:800; background:linear-gradient(135deg,#38bdf8,#a855f7); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text; line-height:1.2;">23</div>
+    <div style="font-size:0.85rem; color:var(--vp-c-text-2,#666); margin-top:0.3rem;">设计模式</div>
+  </div>
+  <div style="text-align:center; padding:1.25rem 2rem; border-radius:14px; border:1px solid rgba(168,85,247,0.18); background:rgba(168,85,247,0.04); min-width:120px;">
+    <div style="font-size:2rem; font-weight:800; background:linear-gradient(135deg,#ff6b9d,#38bdf8); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text; line-height:1.2;">持续</div>
+    <div style="font-size:0.85rem; color:var(--vp-c-text-2,#666); margin-top:0.3rem;">迭代更新</div>
   </div>
 </div>
 
