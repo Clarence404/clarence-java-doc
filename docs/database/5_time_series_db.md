@@ -147,7 +147,7 @@ curl -X POST "http://localhost:8087/api/v2/write?org=my-org&bucket=my-bucket&pre
 
 2.x 默认使用 Flux 语言查询数据，示例：
 
-```flux
+```sql
 from(bucket: "my-bucket")
   |> range(start: -1h)
   |> filter(fn: (r) => r._measurement == "sensor")
