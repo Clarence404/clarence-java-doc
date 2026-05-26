@@ -59,7 +59,6 @@ export default defineUserConfig({
             {text: '开发协议', link: '/protocols/0_protocols_base'},
             {text: 'IOT', link: '/iot/0_base'},
             {text: '人工智能', link: '/ai/0_ai'},
-            {text: '服务器', link: '/server/0_vps_intro'},
         ],
         sidebar: {
             '/interview/': getSidebarFromDir(path.resolve(__dirname, '../interview')),
