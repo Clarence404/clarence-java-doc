@@ -1,7 +1,7 @@
 # clarence-java-doc 知识库总览
 
 > Java 后端技术知识体系文档站，基于 VuePress 构建，覆盖从基础原理到系统架构的完整知识图谱。
-> 定位：面试备考 + 工程实践参考手册。
+> 定位：开发总结 + 工程实践参考手册。
 
 ---
 
@@ -9,7 +9,7 @@
 
 ```
 docs/
-├── interview/      面试专题（各方向高频题汇总）
+├── interview/      开发总结（各方向高频问题汇总）
 ├── java/           Java 8+ 语言特性
 ├── jvm/            JVM 原理与调优
 ├── algorithms/     算法与数据结构
@@ -30,7 +30,6 @@ docs/
 ├── iot/            物联网：基础 / 协议 / 开源平台
 ├── ai/             AI 集成：Spring AI / LangChain4j / RAG / Ollama
 ├── scenario/       业务场景：大数据
-└── server/         服务器：VPS 选购指南
 ```
 
 ---

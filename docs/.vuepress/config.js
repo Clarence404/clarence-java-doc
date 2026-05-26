@@ -40,6 +40,7 @@ export default defineUserConfig({
     port: 1000,
     title: 'Clarence Java Doc',
     description: '实践是检验真理的唯一标准',
+    // 处理vite 打包警告
     bundler: viteBundler({
         viteOptions: {
             build: {
