@@ -12,7 +12,7 @@
   },
   "devDependencies": {
     "@vuepress/bundler-vite": "2.0.0-rc.30",
-    "@vuepress/plugin-search": "^2.0.0-rc.69",
+    "@vuepress/plugin-slimsearch": "2.0.0-rc.130",
     "@vueuse/core": "^14.0.0",
     "sass": "^1.77.6",
     "vue": "^3.4.0",

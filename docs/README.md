@@ -4,7 +4,7 @@ title: 首页
 
 heroImage: /images/logo.png
 heroText: Clarence Java Doc
-tagline: Java 后端技术知识体系 · 面试备考 + 工程实践参考手册
+tagline: Java 后端技术知识体系 · 开发总结 + 工程实践参考手册
 heroFullScreen: true
 
 actions:
@@ -13,7 +13,7 @@ actions:
     type: primary
     icon: circle-question
   - text: 开始阅读
-    link: /java/b_feature
+    link: /java/5_feature
     type: default
     icon: book-open
 
@@ -24,15 +24,15 @@ highlights:
       - title: Java 特性
         icon: code
         details: Java 8 → 21 核心新特性，Stream / Lambda / Record / Virtual Thread
-        link: /java/b_feature
+        link: /java/5_feature
       - title: JVM
         icon: gears
         details: 内存结构 / 类加载 / GC 算法 / 参数调优 / 线上问题排查
-        link: /jvm/01_jvm_memory
+        link: /jvm/0_jvm_memory
       - title: 算法与数据结构
         icon: diagram-project
         details: 复杂度分析 + 13 种算法范式，LeetCode / 华为 OJ 分类题解
-        link: /algorithms/0_base_0_complexity
+        link: /algorithms/0_complexity
       - title: 设计模式
         icon: shapes
         details: GoF 23 种经典模式，结合 Spring / JDK 真实场景讲解
@@ -46,7 +46,7 @@ highlights:
       - title: Spring Framework
         icon: leaf
         details: IoC 容器 / AOP 原理 / Bean 生命周期 / 事务传播 / 循环依赖三级缓存
-        link: /spring/1_spring_framework
+        link: /spring/0_spring_framework
       - title: Spring Boot
         icon: rocket
         details: 自动配置原理 / Actuator / Flyway 数据库版本迁移
@@ -62,7 +62,7 @@ highlights:
       - title: 数据库
         icon: database
         details: MySQL 索引 / 事务 / MVCC / 分库分表，列式 / 时序 / 搜索引擎选型
-        link: /database/0_mysql_feature
+        link: /database/1_mysql_feature
       - title: 缓存
         icon: bolt
         details: Caffeine 本地缓存 / 两级缓存架构 / 缓存穿透击穿雪崩
@@ -70,7 +70,7 @@ highlights:
       - title: 消息队列
         icon: comments
         details: Kafka / RocketMQ / RabbitMQ 原理对比，消息可靠性保障方案
-        link: /messaging/1_mq
+        link: /messaging/0_mq
 
   - header: 分布式架构
     description: 高并发 · 高可用 · 微服务，架构进阶核心
@@ -92,7 +92,7 @@ highlights:
       - title: 微服务
         icon: cubes
         details: 服务拆分 / 注册发现 / API 网关 / 链路追踪 / 微服务模式
-        link: /microservices/1_base_concept
+        link: /microservices/0_base_concept
 
   - header: 进阶拓展
     description: 云原生 · IoT · AI，开拓技术视野
@@ -108,7 +108,7 @@ highlights:
       - title: 云原生
         icon: cloud
         details: Linux 运维 / Kubernetes / Helm，容器化最佳实践
-        link: /cloud-native/1_linux_0_centos
+        link: /cloud-native/1_linux_centos
       - title: IoT 物联网
         icon: microchip
         details: 物联网四层架构 / MQTT / OPC-UA / 开源平台 ThingsBoard
@@ -131,7 +131,7 @@ footer: MIT 协议 | 版权所有 © 2025-至今 Clarence
     <p style="font-size:1rem; line-height:1.9; color:var(--vp-c-text-2, #555);">
       📚 覆盖 <strong>22 个</strong>技术模块<br/>
       💡 面向 Java 后端工程师<br/>
-      🎯 面试备考 + 工程实践双轨并行<br/>
+      🎯 开发总结 + 工程实践双轨并行<br/>
       🔄 持续更新迭代
     </p>
   </div>
