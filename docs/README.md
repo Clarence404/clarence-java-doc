@@ -84,6 +84,10 @@ highlights:
         icon: network-wired
         details: BIO → NIO → IO 多路复用演进 / Reactor 模式实战 / WebSocket / SSE 长连接
         link: /netty/1_io_model
+      - title: 测试体系
+        icon: vial
+        details: JUnit 5 单元测试 / Mockito Mock / TestContainers 集成测试 / TDD 实践
+        link: /testing/0_testing_intro
 
   - header: 数据存储
     description: 关系型 · NoSQL · 消息中间件，数据全链路
@@ -148,6 +152,10 @@ highlights:
         icon: robot
         details: Spring AI / LangChain4j 框架 / RAG 检索增强生成 / Ollama 本地大模型部署
         link: /ai/0_ai
+      - title: DevOps
+        icon: gears
+        details: Git 工作流 / CI/CD 流水线 / Code Review / 团队开发规范
+        link: /devops/0_devops
       - title: 业务场景
         icon: briefcase
         details: 大数据业务场景方案 / 技术选型实战案例，从业务需求到架构落地全流程
@@ -158,7 +166,7 @@ footer: MIT 协议 | 版权所有 © 2025-至今 Clarence
 
 <div style="display:flex; justify-content:center; gap:1.5rem; flex-wrap:wrap; padding: 2.5rem 1rem 1rem;">
   <div style="text-align:center; padding:1.25rem 2rem; border-radius:14px; border:1px solid rgba(168,85,247,0.18); background:rgba(168,85,247,0.04); min-width:120px;">
-    <div style="font-size:2rem; font-weight:800; background:linear-gradient(135deg,#ff6b9d,#a855f7); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text; line-height:1.2;">22</div>
+    <div style="font-size:2rem; font-weight:800; background:linear-gradient(135deg,#ff6b9d,#a855f7); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text; line-height:1.2;">24</div>
     <div style="font-size:0.85rem; color:var(--vp-c-text-2,#666); margin-top:0.3rem;">技术模块</div>
   </div>
   <div style="text-align:center; padding:1.25rem 2rem; border-radius:14px; border:1px solid rgba(168,85,247,0.18); background:rgba(168,85,247,0.04); min-width:120px;">
@@ -179,10 +187,10 @@ footer: MIT 协议 | 版权所有 © 2025-至今 Clarence
 
 ```
 基础层    Java 特性  →  JVM  →  算法  →  设计模式
-框架层    Spring  →  Spring Boot  →  Netty
+框架层    Spring  →  Spring Boot  →  Netty  →  测试
 数据层    数据库  →  缓存  →  消息队列
 分布式层  分布式理论  →  高并发  →  高可用  →  微服务
-进阶层    系统架构  →  通信协议  →  云原生  →  IoT  →  AI
+进阶层    系统架构  →  通信协议  →  云原生  →  DevOps  →  IoT  →  AI
 面试冲刺  interview/ 各方向高频题汇总速查
 ```
 

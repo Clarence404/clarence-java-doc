@@ -17,6 +17,7 @@ docs/
 ├── spring/         Spring Framework / WebFlux / Security
 ├── spring-boot/    Spring Boot / Flyway
 ├── netty/          IO 模型 / Reactor / Netty / WebSocket / SSE
+├── testing/        测试体系：单元测试 / Mock / 集成测试 / TDD
 ├── distributed/    分布式理论 / 锁 / 事务 / 会话
 ├── high-con/       高并发：JUC / 线程池 / 系统设计
 ├── high-avail/     高可用：限流 / 熔断 / 降级
@@ -27,6 +28,7 @@ docs/
 ├── architecture/   系统架构 / DDD / 幂等 / 访问控制
 ├── protocols/      通信协议：网络 / IoT / 数据交换 / 安全
 ├── cloud-native/   云原生：Linux / Docker / Kubernetes / VPS
+├── devops/         DevOps：Git 工作流 / CI/CD / Code Review / 团队规范
 ├── iot/            物联网：基础 / 协议 / 开源平台
 ├── ai/             AI：框架 / RAG / Agent / MCP / API 接入 / 工具
 ├── scenario/       业务场景：大数据
@@ -45,6 +47,7 @@ docs/
 | 设计模式 | `docs/patterns/` | 23 种 GoF 模式 |
 | Spring | `docs/spring/` | IoC / AOP / WebFlux / Security |
 | Spring Boot | `docs/spring-boot/` | 自动配置 / Flyway 数据迁移 |
+| 测试体系 | `docs/testing/` | 单元测试 / Mock / 集成测试 / TDD |
 | Netty | `docs/netty/` | IO 模型 / Reactor / WebSocket / SSE |
 | 分布式 | `docs/distributed/` | CAP / Raft / 分布式锁 / 事务 |
 | 高并发 | `docs/high-con/` | JUC / 线程池 / 压测 / Profiler |
@@ -56,6 +59,7 @@ docs/
 | 系统架构 | `docs/architecture/` | 架构设计 / DDD / 幂等 / 对象存储 |
 | 通信协议 | `docs/protocols/` | TCP/UDP / HTTP / IoT 协议 / gRPC |
 | 云原生 | `docs/cloud-native/` | Linux 运维 / Docker / Kubernetes / Helm / VPS |
+| DevOps | `docs/devops/` | Git 工作流 / CI/CD / Code Review / 团队规范 |
 | IoT | `docs/iot/` | 物联网架构 / 协议 / 开源平台 |
 | AI | `docs/ai/` | Spring AI / LangChain4j / RAG / Agent / MCP / API 接入 / AI 工具 |
 | 业务场景 | `docs/scenario/` | 大数据场景方案 |
