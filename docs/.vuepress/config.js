@@ -57,13 +57,13 @@ export default defineUserConfig({
     theme: hopeTheme({
         logo: '/images/logo.png',
         navbar: [
-            {text: '面试总结', link: '/interview/0_java'},
+            {text: '开发总结', link: '/interview/0_java'},
             {text: 'Java', link: '/java/0_base'},
             {text: 'JVM', link: '/jvm/0_jvm_memory'},
             {text: '算法', link: '/algorithms/0_complexity'},
             {text: '设计模式', link: '/patterns/0_design_intro'},
             {text: 'Spring', link: '/spring/0_spring_framework'},
-            {text: 'Spring Boot', link: '/spring-boot/0_springboot'},
+            {text: 'Spring Boot', link: '/spring-boot/0_spring_boot'},
             {text: 'Netty', link: '/netty/0_stick_split'},
             {text: '数据库', link: '/database/0_mysql'},
             {text: '缓存', link: '/cache/0_redis'},
