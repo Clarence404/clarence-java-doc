@@ -106,3 +106,18 @@
     - 全链路监控（SkyWalking / Prometheus）
   
 :::
+
+---
+
+## 各组件深度章节
+
+| 方向 | 章节 |
+|------|------|
+| 服务注册与发现 | [服务注册与发现](./3_service_registry.md) |
+| API 网关 | [API 网关](./4_api_gateway.md) |
+| 服务间通信 | [服务间通信](./5_service_communication.md) |
+| 配置中心 | [配置中心](./6_config_center.md) |
+| 链路追踪 | [链路追踪](./7_tracing.md) |
+| 熔断限流 | [高可用](../high-avail/0_high_availability.md) |
+| 分布式事务 | [分布式事务](../distributed/3_transaction.md) |
+| 消息中间件 | [消息队列](../messaging/0_mq.md) |

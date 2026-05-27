@@ -7,6 +7,8 @@
 
 > 微服务概念起源：[Microservices](https://martinfowler.com/articles/microservices.html)
 
+> 通信方案详见：[服务间通信](./5_service_communication.md)
+
 ## 二、微服务之间的通讯方案
 
 ### 1、同步方案：HTTP/RPC

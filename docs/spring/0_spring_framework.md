@@ -1,6 +1,42 @@
 # Spring Framework
 
-::: warning Todo
+> 参考资料：
+> * 官方文档：[https://docs.spring.io/spring-framework/reference/](https://docs.spring.io/spring-framework/reference/)
+
+## 一、Spring 是什么
+
+Spring 是 Java 生态中最主流的企业级开发框架，核心目标是**简化 Java 开发**。通过 IoC（控制反转）和 AOP（面向切面编程）两大核心机制，解耦对象依赖、分离横切关注点。
+
+## 二、核心模块
+
+| 模块 | 说明 |
+|------|------|
+| spring-core | IoC 容器基础，BeanFactory |
+| spring-context | ApplicationContext，事件机制，国际化 |
+| spring-aop | AOP 代理实现 |
+| spring-webmvc | Web 层，DispatcherServlet |
+| spring-webflux | 响应式 Web 框架 |
+| spring-tx | 事务管理抽象 |
+| spring-jdbc | JDBC 封装，JdbcTemplate |
+| spring-test | 测试支持，MockMvc |
+
+## 三、Spring 与 Spring Boot 的关系
+
+- **Spring Framework** 是基础框架，提供 IoC / AOP / MVC 等核心能力
+- **Spring Boot** 是在 Spring Framework 之上的**自动配置层**，消除繁琐的 XML 配置
+- Spring Boot 不替代 Spring，而是让 Spring 更易用
+
+## 四、版本演进
+
+| 版本 | 亮点 |
+|------|------|
+| Spring 3.x | 全注解驱动，Java Config |
+| Spring 4.x | WebSocket / @Conditional 条件注解 |
+| Spring 5.x | 响应式编程 WebFlux，要求 JDK 8+ |
+| Spring 6.x | 要求 JDK 17+，Virtual Thread，GraalVM 原生镜像 |
+
+> [!warning]
+> 待补充
 以下只是基础大纲，后续需要持续增加内容
 :::
 
