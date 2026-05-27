@@ -79,7 +79,7 @@ highlights:
       - title: Spring Boot
         icon: rocket
         details: 自动配置原理深度解析 / Actuator 监控 / Flyway 数据库版本迁移最佳实践
-        link: /springboot/0_springboot
+        link: /spring-boot/0_spring_boot
       - title: Netty
         icon: network-wired
         details: BIO → NIO → IO 多路复用演进 / Reactor 模式实战 / WebSocket / SSE 长连接
