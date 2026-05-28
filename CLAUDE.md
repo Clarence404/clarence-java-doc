@@ -9,29 +9,29 @@
 
 ```
 docs/
+├── ai/             AI：框架 / RAG / Agent / MCP / API 接入 / 工具
+├── algorithms/     算法与数据结构
+├── architecture/   系统架构 / DDD / 幂等 / 访问控制
+├── cache/          缓存：Redis / Caffeine
+├── cloud-native/   云原生：Linux / Docker / Kubernetes / VPS
+├── database/       数据库：MySQL / 列存 / 分布式 / 时序 / 文档 / 搜索
+├── devops/         DevOps：Git 工作流 / CI/CD / Code Review / 团队规范
+├── distributed/    分布式理论 / 锁 / 事务 / 会话
+├── high-avail/     高可用：限流 / 熔断 / 降级
+├── high-con/       高并发：JUC / 线程池 / 系统设计
 ├── interview/      开发总结（各方向高频问题汇总）
+├── iot/            物联网：基础 / 协议 / 开源平台
 ├── java/           Java 8+ 语言特性
 ├── jvm/            JVM 原理与调优
-├── algorithms/     算法与数据结构
-├── patterns/       设计模式（23 种 GoF）
-├── spring/         Spring Framework / WebFlux / Security
-├── spring-boot/    Spring Boot / Flyway
-├── netty/          IO 模型 / Reactor / Netty / WebSocket / SSE
-├── testing/        测试体系：单元测试 / Mock / 集成测试 / TDD
-├── distributed/    分布式理论 / 锁 / 事务 / 会话
-├── high-con/       高并发：JUC / 线程池 / 系统设计
-├── high-avail/     高可用：限流 / 熔断 / 降级
 ├── messaging/      消息队列：Kafka / RocketMQ / RabbitMQ
 ├── microservices/  微服务：概念 / 拆分 / 组件 / 模式
-├── database/       数据库：MySQL / 列存 / 分布式 / 时序 / 文档 / 搜索
-├── cache/          缓存：Redis / Caffeine
-├── architecture/   系统架构 / DDD / 幂等 / 访问控制
+├── netty/          IO 模型 / Reactor / Netty / WebSocket / SSE
+├── patterns/       设计模式（23 种 GoF）
 ├── protocols/      通信协议：网络 / IoT / 数据交换 / 安全
-├── cloud-native/   云原生：Linux / Docker / Kubernetes / VPS
-├── devops/         DevOps：Git 工作流 / CI/CD / Code Review / 团队规范
-├── iot/            物联网：基础 / 协议 / 开源平台
-├── ai/             AI：框架 / RAG / Agent / MCP / API 接入 / 工具
 ├── scenario/       业务场景：大数据
+├── spring/         Spring Framework / WebFlux / Security
+├── spring-boot/    Spring Boot / Flyway
+└── testing/        测试体系：单元测试 / Mock / 集成测试 / TDD
 ```
 
 ---
@@ -56,13 +56,13 @@ docs/
 | 微服务 | `docs/microservices/` | 拆分 / 注册发现 / 网关 / 模式 |
 | 数据库 | `docs/database/` | MySQL / 分库分表 / 各类 NoSQL |
 | 缓存 | `docs/cache/` | Redis / Caffeine / 两级缓存 |
-| 系统架构 | `docs/architecture/` | 架构设计 / DDD / 幂等 / 对象存储（导航：架构设计） |
-| 业务场景 | `docs/scenario/` | 大数据场景方案（导航：架构设计） |
-| 云原生 | `docs/cloud-native/` | Linux 运维 / Docker / Kubernetes / Helm / VPS（导航：工程运维） |
-| DevOps | `docs/devops/` | Git 工作流 / CI/CD / Code Review / 团队规范（导航：工程运维） |
-| 通信协议 | `docs/protocols/` | TCP/UDP / HTTP / IoT 协议 / gRPC（导航：工程运维） |
-| IoT | `docs/iot/` | 物联网架构 / 协议 / 开源平台（导航：新兴技术） |
-| AI | `docs/ai/` | Spring AI / LangChain4j / RAG / Agent / MCP / API 接入 / AI 工具（导航：新兴技术） |
+| 系统架构 | `docs/architecture/` | 架构设计 / DDD / 幂等 / 对象存储 |
+| 业务场景 | `docs/scenario/` | 大数据场景方案 |
+| 云原生 | `docs/cloud-native/` | Linux 运维 / Docker / Kubernetes / Helm / VPS |
+| DevOps | `docs/devops/` | Git 工作流 / CI/CD / Code Review / 团队规范 |
+| 通信协议 | `docs/protocols/` | TCP/UDP / HTTP / IoT 协议 / gRPC |
+| IoT | `docs/iot/` | 物联网架构 / 协议 / 开源平台 |
+| AI | `docs/ai/` | Spring AI / LangChain4j / RAG / Agent / MCP / API 接入 / AI 工具 |
 
 ---
 

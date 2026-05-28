@@ -1,92 +1,110 @@
 # Clarence Java Doc
 
-**Personal Development Summary and Technology Notes**
+**Java Backend Technology Knowledge Base**
 
-This project is a personal technical documentation site built with [VuePress](https://vuepress.vuejs.org/), aiming to systematically organize and summarize my daily development experiences and technical knowledge.
+A personal technical documentation site built with [VuePress](https://vuepress.vuejs.org/) + [vuepress-theme-hope](https://theme-hope.vuejs.press/), systematically covering backend development, distributed systems, cloud-native, and emerging technologies.
 
-It mainly covers a wide range of backend development and system design topics, including but not limited to:
-- Java Core and Frameworks (Spring, Microservices)
-- Databases (MySQL, SQL Optimization)
-- Caching Systems (Redis, Caffeine, Guava Cache)
-- JVM Internals and Performance Tuning
-- High Concurrency and Distributed Systems
-- Design Patterns and Architectural Principles
-- Networking (Netty, Protocols)
-- Data Structures and Algorithms
-- IoT (Internet of Things) Solutions
-- Artificial Intelligence Basics
+🌐 **Live Site**: [clarence-java-doc on GitHub Pages](https://xxx.github.io/clarence-java-doc/)
 
 ---
 
-## Project Features
+## Coverage
 
-- 📚 Structured content organization with dynamic sidebar generation
-- 🔍 Full-text search support with VuePress search plugin
-- 📋 One-click code copy functionality for better reading and learning experience
-- ⚡️ Built with Vite bundler for faster development and build process
-- 🌐 Supports multi-category and large-scale knowledge management
+| Nav Group | Modules |
+|-----------|---------|
+| **开发总结** | Java / DB / Cache / JVM / Spring / MQ 高频题 |
+| **基础体系** | Java 8–21 / JVM / Algorithms / Design Patterns |
+| **框架生态** | Spring / Spring Boot / Netty / Testing |
+| **数据存储** | MySQL / Redis / Kafka / RocketMQ / RabbitMQ |
+| **分布式架构** | CAP / Raft / Distributed Lock / High Concurrency / High Availability / Microservices |
+| **架构设计** | System Architecture / DDD / Business Scenarios |
+| **工程运维** | Cloud Native / DevOps / Protocols |
+| **新兴技术** | IoT / AI (Spring AI / LangChain4j / RAG) |
 
 ---
 
-## Requirements
+## Project Structure
 
-> Node.js >= 18.20.5
-
----
-
-## Directory Structure
-
-```bash
+```
 clarence-java-doc/
-├── .vuepress/            # VuePress configuration (theme, plugins, sidebar generation)
-│   └── config.js         # Main configuration file
-├── interview/            # Development experience and technical interviews
-├── java/                 # Java basics and advanced topics
-├── database/             # MySQL and database-related content
-├── cache/                # Caching systems (Redis, Caffeine, Guava)
-├── jvm/                  # JVM internals and optimization
-├── spring/               # Spring framework ecosystem
-├── springboot/           # Spring Boot ecosystem
-├── microservices/        # Microservices architecture and practice
-├── messaging/            # Message queue systems (Kafka, RabbitMQ, etc.)
-├── high-con/             # High concurrency programming
-├── distributed/          # Distributed systems and principles
-├── high-avail/           # High availability strategies
-├── patterns/             # Design patterns
-├── scenario/             # Scenario-based problem solving
-├── netty/                # Netty and network programming
-├── cloud-native/         # Linux, Docker, containerization topics）
-├── algorithms/           # Algorithms and data structures
-├── architecture/         # System architecture and system design
-├── protocols/            # Communication protocols
-├── iot/                  # IoT (Internet of Things) solutions
-├── ai/                   # Artificial Intelligence basics
-├── server/               # VPS & server selection, CN2/CMI network routes, enterprise VPN
-└── README.md             # Project introduction (You are here)
+├── docs/
+│   ├── .vuepress/          # VuePress config, theme, SCSS styles
+│   │   ├── config.js       # Navbar, sidebar, plugins
+│   │   └── styles/         # Custom SCSS (hero gradient, card hover, etc.)
+│   ├── ai/                 # AI：frameworks / RAG / Agent / MCP / tools
+│   ├── algorithms/         # Algorithms & data structures
+│   ├── architecture/       # System architecture / DDD / idempotency
+│   ├── cache/              # Redis / Caffeine / two-level cache
+│   ├── cloud-native/       # Linux / Docker / Kubernetes / VPS
+│   ├── database/           # MySQL / NoSQL / time-series / search
+│   ├── devops/             # Git workflow / CI/CD / Code Review
+│   ├── distributed/        # CAP / Raft / lock / transaction / session
+│   ├── high-avail/         # Rate limiting / circuit breaker / degradation
+│   ├── high-con/           # JUC / thread pool / concurrency design
+│   ├── interview/          # High-frequency interview topics
+│   ├── iot/                # IoT architecture / MQTT / OPC-UA / ThingsBoard
+│   ├── java/               # Java 8–21 core features
+│   ├── jvm/                # Memory / GC / class loading / tuning
+│   ├── messaging/          # Kafka / RocketMQ / RabbitMQ
+│   ├── microservices/      # Service registry / API gateway / tracing / patterns
+│   ├── netty/              # IO model / Reactor / WebSocket / SSE
+│   ├── patterns/           # 23 GoF design patterns
+│   ├── protocols/          # TCP/IP / HTTP / gRPC / IoT protocols
+│   ├── scenario/           # Big data business scenarios
+│   ├── spring/             # Spring Framework / AOP / WebFlux / Security
+│   ├── spring-boot/        # Auto-config / Actuator / Flyway
+│   └── testing/            # JUnit 5 / Mockito / TestContainers / TDD
+├── .env                    # Local config (NAVBAR_STYLE=flat|dropdown)
+├── .github/
+│   └── workflows/
+│       └── deploy-docs.yml # GitHub Pages auto-deploy
+├── CLAUDE.md               # AI assistant context & project conventions
+└── package.json
 ```
 
 ---
 
 ## Getting Started
 
+**Requirements:** Node.js >= 18.20.5
+
 ```bash
 # Install dependencies
-npm install
+npm install --legacy-peer-deps
 
-# Run locally
+# Start dev server
 npm run docs:dev
 ```
 
-Then visit [http://localhost:1000/clarence-java-doc/](http://localhost:1000/clarence-java-doc/) in your browser.
+Visit [http://localhost:1000/clarence-java-doc/](http://localhost:1000/clarence-java-doc/)
 
 ---
 
-## Future Plans
+## Navbar Style Toggle
 
-- Continuously update and enrich the technical content
-- Add more hands-on project case studies
-- Explore advanced topics such as Cloud Native and Edge Computing
+Switch between flat and dropdown navigation by editing `.env`:
+
+```bash
+# .env
+NAVBAR_STYLE=dropdown   # grouped dropdown (default)
+NAVBAR_STYLE=flat       # all modules expanded flat
+```
+
+The CI/CD build always reads from `.env`, no extra config needed.
 
 ---
 
-> "Practice is the sole criterion for testing truth." — This blog serves as a continuous journey of learning, reflection, and growth.
+## Build & Deploy
+
+```bash
+# Production build
+npm run docs:build
+
+# Output: docs/.vuepress/dist/
+```
+
+Deployment is automated via GitHub Actions on every push to `main` → deploys to `gh-pages` branch.
+
+---
+
+> "Practice is the sole criterion for testing truth."
