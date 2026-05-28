@@ -8,6 +8,11 @@
 
 // ============================================================
 // 首页视觉增强  logo 渐变色：#ff6b9d → #a855f7 → #38bdf8
+// 注意：实际 DOM 类名通过 DevTools 核对
+//   Hero 容器 → .vp-hero-info-wrapper
+//   按钮      → .vp-hero-action.primary / .vp-hero-action.default
+//   标题      → .vp-hero-title
+//   图片      → .vp-hero-image img
 // ============================================================
 
 // ── Hero 标题渐变文字 ──────────────────────────────────────
@@ -19,12 +24,27 @@
   font-weight: 800 !important;
 }
 
-// ── Hero 背景：放射渐变光晕 ────────────────────────────────
-.vp-hero-mask {
-  background:
-    radial-gradient(ellipse 80% 60% at 50% 0%,   rgba(168, 85, 247, 0.12) 0%, transparent 70%),
-    radial-gradient(ellipse 60% 40% at 80% 100%, rgba(56, 189, 248, 0.08) 0%, transparent 60%),
-    radial-gradient(ellipse 50% 40% at 10% 80%,  rgba(255, 107, 157, 0.08) 0%, transparent 60%);
+// ── Hero 背景：动态渐变光晕（伪元素，不影响内容层级）────────
+// .vp-hero-info-wrapper 是实际存在的 Hero 容器（position: relative）
+// 用 ::before 叠加光晕，z-index: 0，内容区 vp-hero-info 是 z-index: 1
+.vp-hero-info-wrapper {
+  &::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    pointer-events: none;
+    background:
+      radial-gradient(ellipse 80% 60% at 50% 0%,   rgba(168, 85, 247, 0.22) 0%, transparent 70%),
+      radial-gradient(ellipse 60% 40% at 80% 100%, rgba(56, 189, 248, 0.16) 0%, transparent 60%),
+      radial-gradient(ellipse 50% 40% at 10% 80%,  rgba(255, 107, 157, 0.16) 0%, transparent 60%);
+    animation: heroGlowBreath 7s ease-in-out infinite;
+  }
+}
+
+@keyframes heroGlowBreath {
+  0%,  100% { opacity: 1;    }
+  50%        { opacity: 0.45; }
 }
 
 // ── Logo 悬浮动画 + 紫色光晕 ──────────────────────────────
@@ -44,8 +64,8 @@
   66%       { transform: translateY(-5px)  rotate(-1deg); }
 }
 
-// ── Action 主按钮渐变 ──────────────────────────────────────
-.vp-hero-action-button.primary {
+// ── Action 主按钮渐变（实际类名：vp-hero-action）──────────
+.vp-hero-action.primary {
   background: linear-gradient(135deg, #ff6b9d, #a855f7) !important;
   border: none !important;
   box-shadow: 0 6px 20px rgba(168, 85, 247, 0.4) !important;
@@ -58,7 +78,7 @@
 }
 
 // ── Action 次要按钮描边 ────────────────────────────────────
-.vp-hero-action-button.default {
+.vp-hero-action.default {
   border-color: rgba(168, 85, 247, 0.45) !important;
   color: #a855f7 !important;
   transition: background 0.2s ease, border-color 0.2s ease !important;
@@ -118,10 +138,10 @@
     }
   }
 
-  .vp-hero-mask {
+  .vp-hero-info-wrapper::before {
     background:
-      radial-gradient(ellipse 80% 60% at 50% 0%,   rgba(168, 85, 247, 0.22) 0%, transparent 70%),
-      radial-gradient(ellipse 60% 40% at 80% 100%, rgba(56, 189, 248, 0.14) 0%, transparent 60%),
-      radial-gradient(ellipse 50% 40% at 10% 80%,  rgba(255, 107, 157, 0.14) 0%, transparent 60%);
+      radial-gradient(ellipse 80% 60% at 50% 0%,   rgba(168, 85, 247, 0.35) 0%, transparent 70%),
+      radial-gradient(ellipse 60% 40% at 80% 100%, rgba(56, 189, 248, 0.26) 0%, transparent 60%),
+      radial-gradient(ellipse 50% 40% at 10% 80%,  rgba(255, 107, 157, 0.26) 0%, transparent 60%);
   }
 }
