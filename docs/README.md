@@ -127,8 +127,8 @@ highlights:
         details: 服务拆分原则 / 注册发现 / API 网关 / 全链路追踪 / Saga 等微服务治理模式
         link: /microservices/0_base_concept
 
-  - header: 进阶拓展
-    description: 云原生 · IoT · AI · 架构设计，开拓技术视野
+  - header: 架构设计
+    description: 系统设计方法论 · DDD · 业务场景落地
     bgImageStyle:
       background-color: rgba(236, 244, 255, 0.6)
     features:
@@ -136,14 +136,32 @@ highlights:
         icon: building-columns
         details: 技术选型方法论 / DDD 领域驱动设计 / 幂等设计 / 对象存储 / RBAC 访问控制
         link: /architecture/0_system_structure
-      - title: 通信协议
-        icon: tower-broadcast
-        details: TCP/IP / HTTP/2 / gRPC / WebSocket / IoT 协议 / TLS 安全协议全栈体系
-        link: /protocols/0_protocols_base
+      - title: 业务场景
+        icon: briefcase
+        details: 大数据业务场景方案 / 技术选型实战案例，从业务需求到架构落地全流程
+        link: /scenario/0_scene
+
+  - header: 工程运维
+    description: 云原生 · DevOps · 通信协议，基础设施全栈
+    features:
       - title: 云原生
         icon: cloud
         details: Linux 高频运维命令 / Docker 容器化 / Kubernetes 集群部署 / Helm Chart 实践
         link: /cloud-native/0_linux
+      - title: DevOps
+        icon: screwdriver-wrench
+        details: Git 工作流 / CI/CD 流水线 / Code Review / 团队开发规范
+        link: /devops/0_devops
+      - title: 通信协议
+        icon: tower-broadcast
+        details: TCP/IP / HTTP/2 / gRPC / WebSocket / IoT 协议 / TLS 安全协议全栈体系
+        link: /protocols/0_protocols_base
+
+  - header: 新兴技术
+    description: IoT 物联网 · 人工智能，拓展技术边界
+    bgImageStyle:
+      background-color: rgba(236, 244, 255, 0.6)
+    features:
       - title: IoT 物联网
         icon: microchip
         details: 物联网四层架构 / MQTT / OPC-UA 协议精讲 / ThingsBoard 开源平台源码实战
@@ -152,14 +170,6 @@ highlights:
         icon: robot
         details: Spring AI / LangChain4j 框架 / RAG 检索增强生成 / Ollama 本地大模型部署
         link: /ai/0_ai
-      - title: DevOps
-        icon: gears
-        details: Git 工作流 / CI/CD 流水线 / Code Review / 团队开发规范
-        link: /devops/0_devops
-      - title: 业务场景
-        icon: briefcase
-        details: 大数据业务场景方案 / 技术选型实战案例，从业务需求到架构落地全流程
-        link: /scenario/0_scene
 
 footer: MIT 协议 | 版权所有 © 2025-至今 Clarence
 ---
@@ -190,7 +200,9 @@ footer: MIT 协议 | 版权所有 © 2025-至今 Clarence
 框架层    Spring  →  Spring Boot  →  Netty  →  测试
 数据层    数据库  →  缓存  →  消息队列
 分布式层  分布式理论  →  高并发  →  高可用  →  微服务
-进阶层    系统架构  →  通信协议  →  云原生  →  DevOps  →  IoT  →  AI
+架构层    系统架构  →  业务场景
+运维层    云原生  →  DevOps  →  通信协议
+新兴层    IoT  →  AI
 面试冲刺  interview/ 各方向高频题汇总速查
 ```
 

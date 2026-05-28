@@ -56,13 +56,13 @@ docs/
 | 微服务 | `docs/microservices/` | 拆分 / 注册发现 / 网关 / 模式 |
 | 数据库 | `docs/database/` | MySQL / 分库分表 / 各类 NoSQL |
 | 缓存 | `docs/cache/` | Redis / Caffeine / 两级缓存 |
-| 系统架构 | `docs/architecture/` | 架构设计 / DDD / 幂等 / 对象存储 |
-| 通信协议 | `docs/protocols/` | TCP/UDP / HTTP / IoT 协议 / gRPC |
-| 云原生 | `docs/cloud-native/` | Linux 运维 / Docker / Kubernetes / Helm / VPS |
-| DevOps | `docs/devops/` | Git 工作流 / CI/CD / Code Review / 团队规范 |
-| IoT | `docs/iot/` | 物联网架构 / 协议 / 开源平台 |
-| AI | `docs/ai/` | Spring AI / LangChain4j / RAG / Agent / MCP / API 接入 / AI 工具 |
-| 业务场景 | `docs/scenario/` | 大数据场景方案 |
+| 系统架构 | `docs/architecture/` | 架构设计 / DDD / 幂等 / 对象存储（导航：架构设计） |
+| 业务场景 | `docs/scenario/` | 大数据场景方案（导航：架构设计） |
+| 云原生 | `docs/cloud-native/` | Linux 运维 / Docker / Kubernetes / Helm / VPS（导航：工程运维） |
+| DevOps | `docs/devops/` | Git 工作流 / CI/CD / Code Review / 团队规范（导航：工程运维） |
+| 通信协议 | `docs/protocols/` | TCP/UDP / HTTP / IoT 协议 / gRPC（导航：工程运维） |
+| IoT | `docs/iot/` | 物联网架构 / 协议 / 开源平台（导航：新兴技术） |
+| AI | `docs/ai/` | Spring AI / LangChain4j / RAG / Agent / MCP / API 接入 / AI 工具（导航：新兴技术） |
 
 ---
 
@@ -73,7 +73,9 @@ docs/
 框架层：  Spring → Spring Boot → Netty
 数据层：  数据库 → 缓存 → 消息队列
 分布式层：分布式理论 → 高并发 → 高可用 → 微服务
-进阶层：  系统架构 → 协议 → 云原生 → IoT → AI
+架构层：  系统架构 → 业务场景
+运维层：  云原生 → DevOps → 通信协议
+新兴层：  IoT → AI
 面试：    interview/ 各专题汇总复习
 ```
 

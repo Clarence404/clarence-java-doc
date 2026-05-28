@@ -75,15 +75,25 @@ const navbarDropdown = [
         ],
     },
     {
-        text: '进阶拓展',
+        text: '架构设计',
         children: [
             {text: '系统架构', link: '/architecture/0_system_structure'},
-            {text: '网络协议', link: '/protocols/0_protocols_base'},
+            {text: '业务场景', link: '/scenario/0_scene'},
+        ],
+    },
+    {
+        text: '工程运维',
+        children: [
             {text: '云原生',   link: '/cloud-native/0_linux'},
             {text: 'DevOps',  link: '/devops/0_devops'},
-            {text: 'IoT',     link: '/iot/0_base'},
-            {text: 'AI',      link: '/ai/0_ai'},
-            {text: '业务场景', link: '/scenario/0_scene'},
+            {text: '网络协议', link: '/protocols/0_protocols_base'},
+        ],
+    },
+    {
+        text: '新兴技术',
+        children: [
+            {text: 'IoT', link: '/iot/0_base'},
+            {text: 'AI',  link: '/ai/0_ai'},
         ],
     },
 ];
