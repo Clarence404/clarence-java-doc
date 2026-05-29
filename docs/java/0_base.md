@@ -230,7 +230,7 @@ private void resize() {
 
 > **提示**：JDK 1.8 的 `ConcurrentHashMap` 在高并发下表现更优，避免了分段锁带来的性能瓶颈。
 
-## 四、HashMap、LinkedHashMap、ConcurrentHashMap对比
+## 五、HashMap、LinkedHashMap、ConcurrentHashMap对比
 
 | **对比项**             | **HashMap**      | **LinkedHashMap** | **ConcurrentHashMap** |
 |---------------------|------------------|-------------------|-----------------------|
@@ -243,7 +243,7 @@ private void resize() {
 | **适用场景**            | 快速查找、无序存储、大量数据   | 需要按插入顺序遍历的场景      | 并发环境下的高效哈希映射          |
 | **主要应用**            | 缓存、映射查找、对象存储     | LRU 缓存、访问顺序存储     | 高并发场景，如缓存、线程池         |
 
-## 三、TreeMap分析
+## 六、TreeMap分析
 
 ### 1、源码分析
 
@@ -310,7 +310,7 @@ private void test() {
 | **适用场景**            | 需要排序、范围查询、导航结构      | 并发环境下的有序映射                |
 | **主要应用**            | 排名、日志存储、区间查找        | 线程安全的排序映射结构               |
 
-## 四、HashMap和HashTable对比
+## 七、HashMap和HashTable对比
 
 ### 1、经典对比
 
@@ -340,7 +340,7 @@ private void test() {
 
 :::
 
-## 五、线程的创建方式
+## 八、线程的创建方式
 
 ### 1、继承 Thread 类
 
@@ -464,7 +464,7 @@ public class FutureDemo {
 
 - <RouteLink to="/java/2_advanced.html#三、多线程与并发编程">多线程与并发编程</RouteLink>
 
-## 六、volatile 关键字
+## 九、volatile 关键字
 
 ### 1、线程可见性机制
 
@@ -538,7 +538,7 @@ public static Singleton getInstance() {
 | 禁止重排 | ✔        | ✔            | ✖         |
 | 性能成本 | 低        | 高            | 中         |
 
-## 七、线程的等待与唤醒机制
+## 十、线程的等待与唤醒机制
 
 在多线程编程中，线程的等待与唤醒是实现线程间协作、资源同步的重要手段。Java 中提供了多种机制来实现线程的阻塞与唤醒，
 包括基于 `Object`、`Thread`、`Lock` 以及 `LockSupport` 的方式。
@@ -633,7 +633,7 @@ private void test() {
 | `Condition`   | 是     | 是（Lock）         | 可控（条件变量）   | 精细控制并发     |
 | `LockSupport` | 否     | 否               | 精确（线程级）    | 高级并发工具实现   |
 
-## 八、线程池基础（Executors）
+## 十一、线程池基础（Executors）
 
 ### 1、Executors工具类
 
@@ -723,7 +723,7 @@ private void test() {
 
 综上，为了手动控制线程池，建议自己使用 <RouteLink to="/high-concurrency/1_thread_pool.html">ThreadPoolExecutor</RouteLink> 来创建线程池
 
-## 九、ThreadLocal
+## 十二、ThreadLocal
 
 ### 1、基础概念
 
@@ -788,7 +788,7 @@ Thread-1 modified value: 1
 
 - **避免竞争条件**：避免多个线程共享变量时引发的线程安全问题。
 
-## 十、TransmittableThreadLocal
+## 十三、TransmittableThreadLocal
 
 ### 1、基础概念
 

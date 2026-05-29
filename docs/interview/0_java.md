@@ -17,7 +17,7 @@ Java语言中一共提供了8种原始的数据类型（**byte，short，int，l
 | double  | 	8    | 64位IEEE754双精度范围    | 0.0        | 	Double    |
 | float   | 	4    | 	32位IEEE754单精度范围   | 	0.0F或0.0f | 	Float     |
 | char    | 	2    | 	Unicode [0,65535] | 	u0000     | 	Character |
-| boolean | 	1    | 	true和false        | 	flase     | 	Boolean   |
+| boolean | 	1    | 	true和false        | 	false     | 	Boolean   |
 
 ::: tip 抖音点赞 负数原因
 
@@ -33,7 +33,7 @@ Java语言中一共提供了8种原始的数据类型（**byte，short，int，l
 
 ## 二、String 类能被继承吗，为何不可变？
 
-### **1. String 类不能被继承**
+### 1、String 类不能被继承
 
 - **原因**: `String` 类被声明为 `final`，即：
   ```java
@@ -43,7 +43,7 @@ Java语言中一共提供了8种原始的数据类型（**byte，short，int，l
 
     - 这是为了确保 `String` 的不可变性和安全性，防止子类修改其行为。
 
-### **2. String 类的不可变性**
+### 2、String 类的不可变性
 
 `String` 类的不可变性是通过以下设计实现的：
 
@@ -150,11 +150,11 @@ public class ClassLoadOrder {
 
 ## 四、说说 Synchronized 和 ReentrantLock
 
-详情见: <RouteLink to="/java/2_advanced.md#java锁">Java高级特性-Java锁</RouteLink>
+详情见: <RouteLink to="/java/3_topic_lock">Java 专项-Lock 锁</RouteLink>
 
 ## 五、ConcurrentHashMap 为何放弃分段锁？
 
-详情见: <RouteLink to="/java/1_base.md#四、concurrenthashmap-为何放弃分段锁">Java基础：HashMap和CurrentHashMap</RouteLink>
+详情见: <RouteLink to="/java/0_base#四、concurrenthashmap-为何放弃分段锁">Java 基础：ConcurrentHashMap</RouteLink>
 
 ## 六、抽象类和接口的区别
 
@@ -884,9 +884,6 @@ public class Box {
 }
 ```
 
-当然可以！下面是优化后的内容，不仅更清晰地描述了 Lambda 表达式的底层原理，还补充了 **函数式接口 vs 匿名内部类**
-的对比，让整体知识更完整、易懂。
-
 ## 十五、说说 Lambda 表达式的底层原理
 
 ### 1、`@FunctionalInterface` 注解
@@ -924,7 +921,7 @@ public class LambdaTest {
 > Lambda 表达式 **不是匿名内部类**，它们底层实现机制不同：  
 > Lambda 是 Java 编译器配合 JVM 动态生成的一种“语法糖”，运行时由 JVM **动态创建函数对象**。
 
-#### **2.1、Lambda 表达式的处理流程**
+#### 2.1、Lambda 表达式的处理流程
 
 **编译阶段**：编译器会把 Lambda 表达式的代码块提取成一个私有的 **静态方法**，名字类似 `lambda$main$0`。
 
@@ -932,7 +929,7 @@ public class LambdaTest {
 
 **最终效果**：Lambda 表达式会变成一个调用静态方法的“函数对象”，并且只在运行时创建，不生成额外的 class 文件。
 
-#### **2.2、Lambda 示例拆解**
+#### 2.2、Lambda 示例拆解
 
 ```java
 Greeting greeting = name -> System.out.println("Hello, " + name);
@@ -1102,7 +1099,7 @@ private void test() {
 
 - **终止操作**（`reduce()`、`collect()`）会触发 **归约合并**。
 
-- **底层原理**：详细原理见：<RouteLink to="/currency/0_currency#fork-join-框架">Fork/Join框架</RouteLink>
+- **底层原理**：详细原理见：<RouteLink to="/high-con/0_concurrent#fork-join-框架">Fork/Join框架</RouteLink>
 
 ### **4、并行流 vs 顺序流**
 

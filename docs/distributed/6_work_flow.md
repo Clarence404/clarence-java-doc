@@ -4,6 +4,7 @@
 
 Flowable 的前身，由 Alfresco 团队发起。
 社区成熟、API 简单，适合快速构建审批流程。
+
 🔗 **GitHub:** [https://github.com/Activiti/Activiti](https://github.com/Activiti/Activiti)
 
 ---
@@ -12,6 +13,7 @@ Flowable 的前身，由 Alfresco 团队发起。
 
 轻量级的 BPMN 2.0 工作流引擎，适合与 Spring Boot 深度集成。
 支持任务、表单、网关、定时器、事件等完整流程控制。
+
 🔗 **GitHub:** [https://github.com/flowable/flowable-engine](https://github.com/flowable/flowable-engine)
 
 ---
@@ -20,6 +22,7 @@ Flowable 的前身，由 Alfresco 团队发起。
 
 企业级 BPM 平台，提供 Web 管理控制台、流程监控、任务分配等功能。
 支持 Java、REST、Kafka 等多种接入方式。
+
 🔗 **GitHub:** [https://github.com/camunda/camunda](https://github.com/camunda/camunda)
 
 ---
@@ -27,6 +30,7 @@ Flowable 的前身，由 Alfresco 团队发起。
 ## jBPM
 
 RedHat 主导的老牌工作流引擎，功能齐全但较重，适合大型系统。
+
 🔗 **GitHub:** [https://github.com/kiegroup/jbpm](https://github.com/kiegroup/jbpm)
 
 ---
