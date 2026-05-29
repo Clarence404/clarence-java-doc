@@ -32,6 +32,8 @@ const navbarFlat = [
     {text: '网络协议', link: '/protocols/0_protocols_base'},
     {text: '云原生',  link: '/cloud-native/0_linux'},
     {text: 'DevOps',  link: '/devops/0_devops'},
+    {text: '工程效率', link: '/engineering/0_engineering'},
+    {text: '安全',    link: '/security/0_security'},
     {text: 'IoT',     link: '/iot/0_base'},
     {text: 'AI',      link: '/ai/0_ai'},
     {text: '业务场景', link: '/scenario/0_scene'},
@@ -86,7 +88,14 @@ const navbarDropdown = [
         children: [
             {text: '云原生',   link: '/cloud-native/0_linux'},
             {text: 'DevOps',  link: '/devops/0_devops'},
+            {text: '工程效率', link: '/engineering/0_engineering'},
             {text: '网络协议', link: '/protocols/0_protocols_base'},
+        ],
+    },
+    {
+        text: '安全',
+        children: [
+            {text: '安全体系', link: '/security/0_security'},
         ],
     },
     {
@@ -175,6 +184,8 @@ export default defineUserConfig({
             '/ai/': getSidebarFromDir(path.resolve(__dirname, '../ai')),
             '/testing/': getSidebarFromDir(path.resolve(__dirname, '../testing')),
             '/devops/': getSidebarFromDir(path.resolve(__dirname, '../devops')),
+            '/engineering/': getSidebarFromDir(path.resolve(__dirname, '../engineering')),
+            '/security/': getSidebarFromDir(path.resolve(__dirname, '../security')),
         },
         markdown: {
             hint: true,
