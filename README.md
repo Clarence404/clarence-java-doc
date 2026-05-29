@@ -4,7 +4,7 @@
 
 A personal technical documentation site built with [VuePress](https://vuepress.vuejs.org/) + [vuepress-theme-hope](https://theme-hope.vuejs.press/), systematically covering backend development, distributed systems, cloud-native, and emerging technologies.
 
-🌐 **Live Site**: [clarence-java-doc on GitHub Pages](https://xxx.github.io/clarence-java-doc/)
+🌐 **Live Site**: [clarence-java-doc on GitHub Pages](https://clarence404.github.io/clarence-java-doc/)
 
 ---
 
