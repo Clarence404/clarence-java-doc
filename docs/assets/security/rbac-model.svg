@@ -1,4 +1,4 @@
-<svg viewBox="0 0 600 440" xmlns="http://www.w3.org/2000/svg" font-family="'Segoe UI',system-ui,sans-serif">
+<svg viewBox="0 0 600 449" xmlns="http://www.w3.org/2000/svg" font-family="'Segoe UI',system-ui,sans-serif">
   <defs>
     <style>
       :root {
@@ -17,15 +17,15 @@
       }
     </style>
     <marker id="arrowDash" markerWidth="7" markerHeight="7" refX="6" refY="3.5" orient="auto">
-      <path d="M0,0 L7,3.5 L0,7 Z" fill="var(--muted)"/>
+      <path d="M0 0 L7 3.5 L0 7 Z" fill="var(--muted)"/>
     </marker>
     <marker id="arrowSolid" markerWidth="7" markerHeight="7" refX="6" refY="3.5" orient="auto">
-      <path d="M0,0 L7,3.5 L0,7 Z" fill="var(--fg)"/>
+      <path d="M0 0 L7 3.5 L0 7 Z" fill="var(--fg)"/>
     </marker>
   </defs>
 
   <!-- Background -->
-  <rect width="600" height="440" fill="var(--bg)" rx="8"/>
+  <rect width="600" height="449" fill="var(--bg)" rx="8"/>
 
   <!-- Title -->
   <text x="300" y="30" text-anchor="middle" font-size="15" font-weight="700" fill="var(--fg)">RBAC 权限模型（用户 → 角色 → 权限）</text>
@@ -104,7 +104,7 @@
   <text x="474" y="370" text-anchor="middle" font-size="12" font-weight="600" fill="var(--g)">data:read</text>
 
   <!-- ========== Legend ========== -->
-  <rect x="20" y="414" width="560" height="14" rx="3" fill="none"/>
+  <rect x="20" y="414" width="560" height="23" rx="3" fill="none"/>
   <line x1="30" y1="421" x2="70" y2="421" stroke="var(--muted)" stroke-width="1.5" stroke-dasharray="5,3"/>
   <text x="76" y="425" font-size="10" fill="var(--muted)">多对多关系（用户与角色 / 角色与权限均可多对多分配）</text>
 </svg>

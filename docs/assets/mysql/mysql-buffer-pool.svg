@@ -51,11 +51,11 @@
   <text class="desc" x="670" y="258" text-anchor="end">按最早修改 LSN 排序，checkpoint 依此刷盘</text>
 
   <!-- 刷脏箭头 -->
-  <line x1="170" y1="292" x2="170" y2="328" stroke="var(--b)" stroke-width="1.5" marker-end="url(#arrow-bp)"/>
+  <line x1="170" y1="288" x2="170" y2="332" stroke="var(--b)" stroke-width="1.5" marker-end="url(#arrow-bp)"/>
   <text class="label" x="178" y="314">刷脏页</text>
 
   <!-- 读入箭头（向上） -->
-  <line x1="550" y1="330" x2="550" y2="294" stroke="var(--b)" stroke-width="1.5" marker-end="url(#arrow-bp)"/>
+  <line x1="550" y1="334" x2="550" y2="290" stroke="var(--b)" stroke-width="1.5" marker-end="url(#arrow-bp)"/>
   <text class="label" x="558" y="314">读入页</text>
 
   <!-- Double Write Buffer -->
@@ -64,7 +64,7 @@
   <text class="desc" x="170" y="380" text-anchor="middle">先顺序写共享区域，防部分页写失效</text>
 
   <!-- 落盘箭头 -->
-  <line x1="324" y1="364" x2="394" y2="364" stroke="var(--b)" stroke-width="1.5" marker-end="url(#arrow-bp)"/>
+  <line x1="320" y1="364" x2="398" y2="364" stroke="var(--b)" stroke-width="1.5" marker-end="url(#arrow-bp)"/>
   <text class="label" x="359" y="356" text-anchor="middle">数据页落盘</text>
 
   <!-- 磁盘 -->

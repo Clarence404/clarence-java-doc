@@ -32,7 +32,7 @@
   <text x="510" y="80"  text-anchor="middle" font-size="12" fill="var(--muted)">编解码 · 协议处理 · 业务分发</text>
 
   <!-- Arrow 1→2  y1=100 y2=126  body=26px ✓ -->
-  <line x1="330" y1="100" x2="330" y2="126" stroke="var(--muted)" stroke-width="1.5" marker-end="url(#arr)"/>
+  <line x1="330" y1="96" x2="330" y2="130" stroke="var(--muted)" stroke-width="1.5" marker-end="url(#arr)"/>
 
   <!-- Layer 2: Pipeline  y=132 h=60 bottom=192 -->
   <rect x="10" y="132" width="640" height="60" rx="6" fill="var(--b)" fill-opacity="0.12" stroke="var(--b)" stroke-width="1.5"/>
@@ -42,7 +42,7 @@
   <text x="510" y="176" text-anchor="middle" font-size="12" fill="var(--muted)">入站 Inbound · 出站 Outbound</text>
 
   <!-- Arrow 2→3  y1=196 y2=222  body=26px ✓ -->
-  <line x1="330" y1="196" x2="330" y2="222" stroke="var(--muted)" stroke-width="1.5" marker-end="url(#arr)"/>
+  <line x1="330" y1="192" x2="330" y2="226" stroke="var(--muted)" stroke-width="1.5" marker-end="url(#arr)"/>
 
   <!-- Layer 3: Transport  y=228 h=60 bottom=288 -->
   <rect x="10" y="228" width="640" height="60" rx="6" fill="var(--g)" fill-opacity="0.12" stroke="var(--g)" stroke-width="1.5"/>
@@ -52,7 +52,7 @@
   <text x="510" y="272" text-anchor="middle" font-size="12" fill="var(--muted)">Reactor 线程模型 · 内存管理</text>
 
   <!-- Arrow 3→4  y1=292 y2=318  body=26px ✓ -->
-  <line x1="330" y1="292" x2="330" y2="318" stroke="var(--muted)" stroke-width="1.5" marker-end="url(#arr)"/>
+  <line x1="330" y1="288" x2="330" y2="322" stroke="var(--muted)" stroke-width="1.5" marker-end="url(#arr)"/>
 
   <!-- Layer 4: Java NIO  y=324 h=60 bottom=384 -->
   <rect x="10" y="324" width="640" height="60" rx="6" fill="var(--y)" fill-opacity="0.12" stroke="var(--y)" stroke-width="1.5"/>

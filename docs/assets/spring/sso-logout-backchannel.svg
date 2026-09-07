@@ -31,7 +31,7 @@
   <rect x="260" y="44" width="200" height="48" rx="8" fill="var(--card)" stroke="var(--muted)" stroke-width="1.5"/>
   <text class="box-title" x="360" y="74" text-anchor="middle">用户在系统 A 点击登出</text>
 
-  <line x1="360" y1="96" x2="360" y2="130" stroke="var(--b)" stroke-width="1.5" marker-end="url(#arrow-slo)"/>
+  <line x1="360" y1="92" x2="360" y2="134" stroke="var(--b)" stroke-width="1.5" marker-end="url(#arrow-slo)"/>
 
   <!-- 认证中心 -->
   <rect x="210" y="136" width="300" height="60" rx="8" fill="var(--card)" stroke="var(--p)" stroke-width="1.5"/>
@@ -40,7 +40,7 @@
 
   <!-- 三条回调箭头 -->
   <line x1="270" y1="200" x2="146" y2="234" stroke="var(--b)" stroke-width="1.5" marker-end="url(#arrow-slo)"/>
-  <line x1="360" y1="200" x2="360" y2="234" stroke="var(--b)" stroke-width="1.5" marker-end="url(#arrow-slo)"/>
+  <line x1="360" y1="196" x2="360" y2="238" stroke="var(--b)" stroke-width="1.5" marker-end="url(#arrow-slo)"/>
   <line x1="450" y1="200" x2="574" y2="234" stroke="var(--b)" stroke-width="1.5" marker-end="url(#arrow-slo)"/>
   <text class="label" x="368" y="222">回调登出端点</text>
 

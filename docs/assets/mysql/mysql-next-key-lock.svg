@@ -1,4 +1,4 @@
-<svg viewBox="0 0 680 230" xmlns="http://www.w3.org/2000/svg" font-family="system-ui,sans-serif" font-size="12">
+<svg viewBox="0 0 680 245" xmlns="http://www.w3.org/2000/svg" font-family="system-ui,sans-serif" font-size="12">
   <style>
     :root {
       --fg:#1a1a2e; --muted:#6b7280; --bg:#f8f9fc; --card:#ffffff; --border:#e2e8f0;
@@ -35,36 +35,36 @@
 
   <!-- Next-Key Lock intervals -->
   <!-- (-∞, 10] -->
-  <rect x="60" y="105" width="126" height="26" rx="4" fill="var(--p)" fill-opacity="0.15" stroke="var(--p)" stroke-width="1.5"/>
+  <rect x="60" y="105" width="126" height="29" rx="4" fill="var(--p)" fill-opacity="0.15" stroke="var(--p)" stroke-width="1.5"/>
   <text x="123" y="122" text-anchor="middle" fill="var(--p)" font-weight="600" font-size="11">(-∞, 10]</text>
 
   <!-- (10, 20] -->
-  <rect x="186" y="105" width="160" height="26" rx="4" fill="var(--p)" fill-opacity="0.15" stroke="var(--p)" stroke-width="1.5"/>
+  <rect x="186" y="105" width="160" height="29" rx="4" fill="var(--p)" fill-opacity="0.15" stroke="var(--p)" stroke-width="1.5"/>
   <text x="266" y="122" text-anchor="middle" fill="var(--p)" font-weight="600" font-size="11">(10, 20]</text>
 
   <!-- (20, 30] -->
-  <rect x="346" y="105" width="160" height="26" rx="4" fill="var(--p)" fill-opacity="0.15" stroke="var(--p)" stroke-width="1.5"/>
+  <rect x="346" y="105" width="160" height="29" rx="4" fill="var(--p)" fill-opacity="0.15" stroke="var(--p)" stroke-width="1.5"/>
   <text x="426" y="122" text-anchor="middle" fill="var(--p)" font-weight="600" font-size="11">(20, 30]</text>
 
   <!-- (30, +∞) -->
-  <rect x="506" y="105" width="114" height="26" rx="4" fill="var(--p)" fill-opacity="0.15" stroke="var(--p)" stroke-width="1.5"/>
+  <rect x="506" y="105" width="114" height="29" rx="4" fill="var(--p)" fill-opacity="0.15" stroke="var(--p)" stroke-width="1.5"/>
   <text x="563" y="122" text-anchor="middle" fill="var(--p)" font-weight="600" font-size="11">(30, +∞)</text>
 
-  <text x="340" y="148" text-anchor="middle" fill="var(--muted)" font-size="11">↑ Next-Key Lock = Gap Lock + Record Lock（左开右闭）</text>
+  <text x="340" y="151" text-anchor="middle" fill="var(--muted)" font-size="11">↑ Next-Key Lock = Gap Lock + Record Lock（左开右闭）</text>
 
   <!-- Three lock types -->
-  <rect class="box" x="30" y="162" width="190" height="54" stroke="var(--b)"/>
-  <text x="125" y="178" text-anchor="middle" fill="var(--b)" font-weight="700" font-size="12">Record Lock（记录锁）</text>
-  <text x="125" y="194" text-anchor="middle" fill="var(--fg)" font-size="11">锁住单条索引记录</text>
-  <text x="125" y="208" text-anchor="middle" fill="var(--g)" font-size="10">等值命中 → Next-Key 退化为 Record</text>
+  <rect class="box" x="30" y="165" width="190" height="60" stroke="var(--b)"/>
+  <text x="125" y="181" text-anchor="middle" fill="var(--b)" font-weight="700" font-size="12">Record Lock（记录锁）</text>
+  <text x="125" y="197" text-anchor="middle" fill="var(--fg)" font-size="11">锁住单条索引记录</text>
+  <text x="125" y="211" text-anchor="middle" fill="var(--g)" font-size="10">等值命中 → Next-Key 退化为 Record</text>
 
-  <rect class="box" x="245" y="162" width="190" height="54" stroke="var(--y)"/>
-  <text x="340" y="178" text-anchor="middle" fill="var(--y)" font-weight="700" font-size="12">Gap Lock（间隙锁）</text>
-  <text x="340" y="194" text-anchor="middle" fill="var(--fg)" font-size="11">锁住两记录之间的间隙</text>
-  <text x="340" y="208" text-anchor="middle" fill="var(--g)" font-size="10">等值未命中 → 退化为 Gap Lock</text>
+  <rect class="box" x="245" y="165" width="190" height="60" stroke="var(--y)"/>
+  <text x="340" y="181" text-anchor="middle" fill="var(--y)" font-weight="700" font-size="12">Gap Lock（间隙锁）</text>
+  <text x="340" y="197" text-anchor="middle" fill="var(--fg)" font-size="11">锁住两记录之间的间隙</text>
+  <text x="340" y="211" text-anchor="middle" fill="var(--g)" font-size="10">等值未命中 → 退化为 Gap Lock</text>
 
-  <rect class="box" x="460" y="162" width="190" height="54" stroke="var(--p)"/>
-  <text x="555" y="178" text-anchor="middle" fill="var(--p)" font-weight="700" font-size="12">Next-Key Lock</text>
-  <text x="555" y="194" text-anchor="middle" fill="var(--fg)" font-size="11">Gap Lock + Record Lock</text>
-  <text x="555" y="208" text-anchor="middle" fill="var(--fg)" font-size="10">RR 级别默认形态，防幻读</text>
+  <rect class="box" x="460" y="165" width="190" height="60" stroke="var(--p)"/>
+  <text x="555" y="181" text-anchor="middle" fill="var(--p)" font-weight="700" font-size="12">Next-Key Lock</text>
+  <text x="555" y="197" text-anchor="middle" fill="var(--fg)" font-size="11">Gap Lock + Record Lock</text>
+  <text x="555" y="211" text-anchor="middle" fill="var(--fg)" font-size="10">RR 级别默认形态，防幻读</text>
 </svg>

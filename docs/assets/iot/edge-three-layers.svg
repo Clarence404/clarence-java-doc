@@ -34,7 +34,7 @@
   <text class="item" x="510" y="64" text-anchor="middle">设备管理平台 / OTA 升级 / 告警中心</text>
 
   <!-- 双向箭头 + 协议 -->
-  <line class="arr" x1="340" y1="90" x2="340" y2="130" stroke="var(--muted)"/>
+  <line class="arr" x1="340" y1="90" x2="340" y2="134" stroke="var(--muted)"/>
   <text class="proto" x="348" y="120">MQTT / HTTP / gRPC</text>
 
   <!-- 边缘层 -->
@@ -45,7 +45,7 @@
   <text class="item" x="340" y="206" text-anchor="middle">数据过滤聚合 · 断网续传缓存</text>
 
   <!-- 双向箭头 + 协议 -->
-  <line class="arr" x1="340" y1="232" x2="340" y2="272" stroke="var(--muted)"/>
+  <line class="arr" x1="340" y1="232" x2="340" y2="276" stroke="var(--muted)"/>
   <text class="proto" x="348" y="261">Modbus · OPC-UA · Zigbee</text>
 
   <!-- 设备端 -->

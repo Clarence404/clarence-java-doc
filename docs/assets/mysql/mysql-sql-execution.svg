@@ -33,7 +33,7 @@
   <text class="box-title" x="360" y="68" text-anchor="middle">客户端</text>
   <text class="desc" x="360" y="90" text-anchor="middle">JDBC 驱动 / mysql CLI / 连接池（HikariCP）</text>
 
-  <line x1="360" y1="108" x2="360" y2="144" stroke="var(--p)" stroke-width="1.5" marker-end="url(#arrow-exec)"/>
+  <line x1="360" y1="104" x2="360" y2="148" stroke="var(--p)" stroke-width="1.5" marker-end="url(#arrow-exec)"/>
 
   <!-- Server 层分组标识 -->
   <line x1="126" y1="150" x2="126" y2="528" stroke="var(--border)" stroke-width="2"/>
@@ -45,7 +45,7 @@
   <text class="desc" x="250" y="196" text-anchor="middle">身份认证 / 读取权限</text>
   <text class="desc" x="470" y="196" text-anchor="middle">连接管理 / wait_timeout</text>
 
-  <line x1="360" y1="214" x2="360" y2="250" stroke="var(--p)" stroke-width="1.5" marker-end="url(#arrow-exec)"/>
+  <line x1="360" y1="210" x2="360" y2="254" stroke="var(--p)" stroke-width="1.5" marker-end="url(#arrow-exec)"/>
   <text class="note" x="372" y="236">查询缓存已在 8.0 移除</text>
 
   <!-- 分析器 -->
@@ -54,7 +54,7 @@
   <text class="desc" x="250" y="302" text-anchor="middle">词法分析（识别 token）</text>
   <text class="desc" x="470" y="302" text-anchor="middle">语法分析（生成语法树）</text>
 
-  <line x1="360" y1="320" x2="360" y2="356" stroke="var(--p)" stroke-width="1.5" marker-end="url(#arrow-exec)"/>
+  <line x1="360" y1="316" x2="360" y2="360" stroke="var(--p)" stroke-width="1.5" marker-end="url(#arrow-exec)"/>
 
   <!-- 优化器 -->
   <rect x="140" y="362" width="440" height="60" rx="8" fill="var(--card)" stroke="var(--p)" stroke-width="1.5"/>
@@ -62,7 +62,7 @@
   <text class="desc" x="250" y="408" text-anchor="middle">基于成本选择索引</text>
   <text class="desc" x="470" y="408" text-anchor="middle">确定 JOIN 顺序 / 执行计划</text>
 
-  <line x1="360" y1="426" x2="360" y2="462" stroke="var(--p)" stroke-width="1.5" marker-end="url(#arrow-exec)"/>
+  <line x1="360" y1="422" x2="360" y2="466" stroke="var(--p)" stroke-width="1.5" marker-end="url(#arrow-exec)"/>
 
   <!-- 执行器 -->
   <rect x="140" y="468" width="440" height="60" rx="8" fill="var(--card)" stroke="var(--p)" stroke-width="1.5"/>
@@ -70,7 +70,7 @@
   <text class="desc" x="250" y="514" text-anchor="middle">校验表级权限</text>
   <text class="desc" x="470" y="514" text-anchor="middle">循环调用引擎接口取行</text>
 
-  <line x1="360" y1="532" x2="360" y2="568" stroke="var(--p)" stroke-width="1.5" marker-end="url(#arrow-exec)"/>
+  <line x1="360" y1="528" x2="360" y2="572" stroke="var(--p)" stroke-width="1.5" marker-end="url(#arrow-exec)"/>
   <text class="note" x="372" y="554">handler API</text>
 
   <!-- 引擎层分组标识 -->

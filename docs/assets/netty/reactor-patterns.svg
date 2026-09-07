@@ -56,7 +56,7 @@
   <text x="220" y="188" text-anchor="middle" class="box-sub">1 线程 / Accept</text>
 
   <!-- Arrow Row 2: x1=290, x2=360-6=354, y=178; body=64 ✓ -->
-  <line x1="290" y1="178" x2="354" y2="178"
+  <line x1="290" y1="178" x2="358" y2="178"
         stroke="var(--muted)" stroke-width="1.5" marker-end="url(#arr)"/>
 
   <!-- WorkerGroup (x=360, y=148, w=160, h=60, right=520, bottom=208) -->
@@ -79,7 +79,7 @@
   <text x="210" y="298" text-anchor="middle" class="box-sub">N 线程 / Accept</text>
 
   <!-- Arrow Row 3 first: x1=270, x2=300-6=294, y=288; body=24 ✓ -->
-  <line x1="270" y1="288" x2="294" y2="288"
+  <line x1="270" y1="288" x2="298" y2="288"
         stroke="var(--muted)" stroke-width="1.5" marker-end="url(#arr)"/>
 
   <!-- WorkerGroup (x=300, y=258, w=130, h=60, right=430, bottom=318); gap from BossGroup: 30 ✓ -->
@@ -89,7 +89,7 @@
   <text x="365" y="298" text-anchor="middle" class="box-sub">M 线程 / IO</text>
 
   <!-- Arrow Row 3 second: x1=430, x2=460-6=454, y=288; body=24 ✓ -->
-  <line x1="430" y1="288" x2="454" y2="288"
+  <line x1="430" y1="288" x2="458" y2="288"
         stroke="var(--muted)" stroke-width="1.5" marker-end="url(#arr)"/>
 
   <!-- 业务线程池 (x=460, y=258, w=140, h=60, right=600, bottom=318); gap from WorkerGroup: 30 ✓ -->

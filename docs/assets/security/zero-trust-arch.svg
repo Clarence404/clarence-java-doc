@@ -65,7 +65,7 @@
 
   <!-- ── Double arrow 1: Layer1(122) ↕ Layer2(162)
        y1=122+6=128  y2=162-6=156  length=28px ≥18px ✓ -->
-  <line x1="340" y1="128" x2="340" y2="156"
+  <line x1="340" y1="122" x2="340" y2="160"
         stroke="var(--fg)" stroke-width="1.5"
         marker-start="url(#arr-start)" marker-end="url(#arr-end)"/>
 
@@ -106,7 +106,7 @@
 
   <!-- ── Double arrow 2: Layer2(272) ↕ Layer3(312)
        y1=272+6=278  y2=312-6=306  length=28px ✓ -->
-  <line x1="340" y1="278" x2="340" y2="306"
+  <line x1="340" y1="272" x2="340" y2="310"
         stroke="var(--fg)" stroke-width="1.5"
         marker-start="url(#arr-start)" marker-end="url(#arr-end)"/>
 
@@ -131,7 +131,7 @@
 
   <!-- ── Double arrow 3: Layer3(402) ↕ Layer4(442)
        y1=402+6=408  y2=442-6=436  length=28px ✓ -->
-  <line x1="340" y1="408" x2="340" y2="436"
+  <line x1="340" y1="402" x2="340" y2="440"
         stroke="var(--fg)" stroke-width="1.5"
         marker-start="url(#arr-start)" marker-end="url(#arr-end)"/>
 

@@ -1,4 +1,4 @@
-<svg viewBox="0 0 680 280" xmlns="http://www.w3.org/2000/svg" font-family="system-ui,sans-serif">
+<svg viewBox="0 0 680 352" xmlns="http://www.w3.org/2000/svg" font-family="system-ui,sans-serif">
   <style>
     :root {
       --fg:#1a1a2e; --muted:#6b7280; --bg:#f8f9fc; --card:#ffffff; --border:#e2e8f0;
@@ -14,32 +14,34 @@
     }
     .layer { rx:8; ry:8; stroke-width:0; opacity:0.13; }
     .layer-border { rx:8; ry:8; fill:none; stroke-width:1.5; }
-    .tag { font-size:11px; font-weight:700; }
-    .title { font-size:14px; font-weight:700; }
-    .sub { font-size:11px; }
+    .tag  { font-size:12px; font-weight:700; }
+    .item { font-size:12px; fill:var(--fg); }
+    .role { font-size:11px; fill:var(--muted); }
   </style>
 
+  <text x="340" y="22" text-anchor="middle" font-weight="700" font-size="14" fill="var(--fg)">IoT 四层架构</text>
+
   <!-- 应用层 -->
-  <rect class="layer" x="10" y="10" width="660" height="58" fill="var(--p)"/>
-  <rect class="layer-border" x="10" y="10" width="660" height="58" stroke="var(--p)"/>
-  <text class="tag" x="30" y="34" fill="var(--p)">应用层</text>
-  <text class="title" x="30" y="52" fill="var(--fg)">智慧城市 · 工业监控 · 智能家居 · 车联网 · 智慧农业</text>
+  <rect class="layer" x="10" y="40" width="660" height="64" fill="var(--p)"/>
+  <rect class="layer-border" x="10" y="40" width="660" height="64" stroke="var(--p)"/>
+  <text class="tag" x="340" y="62" text-anchor="middle" fill="var(--p)">应用层 —— 面向业务场景</text>
+  <text class="item" x="340" y="86" text-anchor="middle">智慧城市 · 工业监控 · 智能家居 · 车联网 · 智慧农业</text>
 
   <!-- 平台层 -->
-  <rect class="layer" x="10" y="78" width="660" height="58" fill="var(--b)"/>
-  <rect class="layer-border" x="10" y="78" width="660" height="58" stroke="var(--b)"/>
-  <text class="tag" x="30" y="102" fill="var(--b)">平台层</text>
-  <text class="title" x="30" y="120" fill="var(--fg)">设备管理 · 规则引擎 · 数据分析 · OTA 升级 · 数字孪生</text>
+  <rect class="layer" x="10" y="116" width="660" height="64" fill="var(--b)"/>
+  <rect class="layer-border" x="10" y="116" width="660" height="64" stroke="var(--b)"/>
+  <text class="tag" x="340" y="138" text-anchor="middle" fill="var(--b)">平台层 —— 设备与数据中枢</text>
+  <text class="item" x="340" y="162" text-anchor="middle">设备管理 · 规则引擎 · 数据分析 · OTA 升级 · 数字孪生</text>
 
   <!-- 网络层 -->
-  <rect class="layer" x="10" y="146" width="660" height="58" fill="var(--g)"/>
-  <rect class="layer-border" x="10" y="146" width="660" height="58" stroke="var(--g)"/>
-  <text class="tag" x="30" y="170" fill="var(--g)">网络层</text>
-  <text class="title" x="30" y="188" fill="var(--fg)">MQTT · CoAP · NB-IoT · LoRa · Zigbee · BLE · Wi-Fi</text>
+  <rect class="layer" x="10" y="192" width="660" height="64" fill="var(--g)"/>
+  <rect class="layer-border" x="10" y="192" width="660" height="64" stroke="var(--g)"/>
+  <text class="tag" x="340" y="214" text-anchor="middle" fill="var(--g)">网络层 —— 连接与传输协议</text>
+  <text class="item" x="340" y="238" text-anchor="middle">MQTT · CoAP · NB-IoT · LoRa · Zigbee · BLE · Wi-Fi</text>
 
   <!-- 感知层 -->
-  <rect class="layer" x="10" y="214" width="660" height="58" fill="var(--y)"/>
-  <rect class="layer-border" x="10" y="214" width="660" height="58" stroke="var(--y)"/>
-  <text class="tag" x="30" y="238" fill="var(--y)">感知层</text>
-  <text class="title" x="30" y="256" fill="var(--fg)">传感器 · 摄像头 · RFID · 网关 · PLC · MCU / Arduino / ESP32</text>
+  <rect class="layer" x="10" y="268" width="660" height="64" fill="var(--y)"/>
+  <rect class="layer-border" x="10" y="268" width="660" height="64" stroke="var(--y)"/>
+  <text class="tag" x="340" y="290" text-anchor="middle" fill="var(--y)">感知层 —— 终端与采集设备</text>
+  <text class="item" x="340" y="314" text-anchor="middle">传感器 · 摄像头 · RFID · 网关 · PLC · MCU / Arduino / ESP32</text>
 </svg>

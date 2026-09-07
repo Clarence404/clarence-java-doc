@@ -1,4 +1,4 @@
-<svg viewBox="0 0 640 376" xmlns="http://www.w3.org/2000/svg" font-family="'PingFang SC','Microsoft YaHei',sans-serif" font-size="12">
+<svg viewBox="0 0 640 400" xmlns="http://www.w3.org/2000/svg" font-family="'PingFang SC','Microsoft YaHei',sans-serif" font-size="12">
   <style>
     :root {
       --fg:#1a1a2e; --muted:#6b7280; --bg:#f8f9fc; --card:#ffffff; --border:#e2e8f0;
@@ -33,7 +33,7 @@
       <path d="M0,0 L0,6 L8,3 z" fill="var(--g)"/>
     </marker>
   </defs>
-  <rect width="640" height="376" fill="var(--bg)" rx="8"/>
+  <rect width="640" height="400" fill="var(--bg)" rx="8"/>
 
   <!-- 入站协议标注 -->
   <text x="80"  y="22" text-anchor="middle" class="caption">HTTP</text>
@@ -41,37 +41,37 @@
   <text x="360" y="22" text-anchor="middle" class="caption">gRPC</text>
 
   <!-- 入站 Adapters -->
-  <rect x="30"  y="30" width="100" height="52" rx="6" class="adapter-in"/>
+  <rect x="30"  y="30" width="100" height="60" rx="6" class="adapter-in"/>
   <text x="80"  y="53" text-anchor="middle" class="label-in">REST</text>
   <text x="80"  y="69" text-anchor="middle" class="label-in">Adapter</text>
 
-  <rect x="170" y="30" width="100" height="52" rx="6" class="adapter-in"/>
+  <rect x="170" y="30" width="100" height="60" rx="6" class="adapter-in"/>
   <text x="220" y="53" text-anchor="middle" class="label-in">MQ</text>
   <text x="220" y="69" text-anchor="middle" class="label-in">Adapter</text>
 
-  <rect x="310" y="30" width="100" height="52" rx="6" class="adapter-in"/>
+  <rect x="310" y="30" width="100" height="60" rx="6" class="adapter-in"/>
   <text x="360" y="53" text-anchor="middle" class="label-in">gRPC</text>
   <text x="360" y="69" text-anchor="middle" class="label-in">Adapter</text>
 
   <!-- 入站 → Port 箭头 -->
-  <line x1="80"  y1="82" x2="80"  y2="130" class="arrow-in"/>
-  <line x1="220" y1="82" x2="220" y2="130" class="arrow-in"/>
-  <line x1="360" y1="82" x2="360" y2="130" class="arrow-in"/>
+  <line x1="80"  y1="90" x2="80"  y2="138" class="arrow-in"/>
+  <line x1="220" y1="90" x2="220" y2="154" class="arrow-in"/>
+  <line x1="360" y1="90" x2="360" y2="138" class="arrow-in"/>
   <!-- 汇聚到入站 Port -->
   <polyline points="80,130 220,148 360,130" stroke="var(--b)" stroke-width="1.5" fill="none" stroke-dasharray="4 3"/>
 
   <!-- 入站 Port -->
-  <rect x="130" y="148" width="180" height="36" rx="6" class="port-box"/>
-  <text x="220" y="171" text-anchor="middle" class="label-port">Inbound Port（接口/契约）</text>
+  <rect x="130" y="156" width="180" height="36" rx="6" class="port-box"/>
+  <text x="220" y="179" text-anchor="middle" class="label-port">Inbound Port（接口/契约）</text>
 
   <!-- Core -->
-  <rect x="100" y="196" width="240" height="60" rx="8" class="core-box"/>
-  <text x="220" y="222" text-anchor="middle" class="label-core">Core（业务核心）</text>
-  <text x="220" y="242" text-anchor="middle" fill="var(--muted)" font-size="11">不依赖任何框架，纯业务逻辑</text>
+  <rect x="100" y="204" width="240" height="60" rx="8" class="core-box"/>
+  <text x="220" y="230" text-anchor="middle" class="label-core">Core（业务核心）</text>
+  <text x="220" y="250" text-anchor="middle" fill="var(--muted)" font-size="11">不依赖任何框架，纯业务逻辑</text>
 
   <!-- 出站 Port -->
-  <rect x="130" y="268" width="180" height="36" rx="6" class="port-box"/>
-  <text x="220" y="291" text-anchor="middle" class="label-port">Outbound Port（接口/契约）</text>
+  <rect x="130" y="276" width="180" height="36" rx="6" class="port-box"/>
+  <text x="220" y="299" text-anchor="middle" class="label-port">Outbound Port（接口/契约）</text>
 
   <!-- 出站 Port → 出站 Adapters 箭头 -->
   <polyline points="130,286 80,304 80,312" stroke="var(--g)" stroke-width="1.5" fill="none" stroke-dasharray="4 3"/>
@@ -79,25 +79,25 @@
   <polyline points="310,286 360,304 360,312" stroke="var(--g)" stroke-width="1.5" fill="none" stroke-dasharray="4 3"/>
 
   <!-- 出站 Adapters -->
-  <rect x="30"  y="312" width="100" height="48" rx="6" class="adapter-out"/>
-  <text x="80"  y="330" text-anchor="middle" class="label-out">MySQL</text>
-  <text x="80"  y="344" text-anchor="middle" class="label-out">Adapter</text>
+  <rect x="30"  y="320" width="100" height="60" rx="6" class="adapter-out"/>
+  <text x="80"  y="338" text-anchor="middle" class="label-out">MySQL</text>
+  <text x="80"  y="352" text-anchor="middle" class="label-out">Adapter</text>
 
-  <rect x="170" y="312" width="100" height="48" rx="6" class="adapter-out"/>
-  <text x="220" y="330" text-anchor="middle" class="label-out">Redis</text>
-  <text x="220" y="344" text-anchor="middle" class="label-out">Adapter</text>
+  <rect x="170" y="320" width="100" height="60" rx="6" class="adapter-out"/>
+  <text x="220" y="338" text-anchor="middle" class="label-out">Redis</text>
+  <text x="220" y="352" text-anchor="middle" class="label-out">Adapter</text>
 
-  <rect x="310" y="312" width="100" height="48" rx="6" class="adapter-out"/>
-  <text x="360" y="330" text-anchor="middle" class="label-out">OSS</text>
-  <text x="360" y="344" text-anchor="middle" class="label-out">Adapter</text>
+  <rect x="310" y="320" width="100" height="60" rx="6" class="adapter-out"/>
+  <text x="360" y="338" text-anchor="middle" class="label-out">OSS</text>
+  <text x="360" y="352" text-anchor="middle" class="label-out">Adapter</text>
 
   <!-- 图例 -->
   <rect x="470" y="60"  width="14" height="14" rx="2" fill="var(--b)"  fill-opacity="0.4"/>
   <text x="490" y="72"  class="caption">入站适配器</text>
-  <rect x="470" y="82"  width="14" height="14" rx="2" fill="var(--g)"  fill-opacity="0.4"/>
-  <text x="490" y="94"  class="caption">出站适配器</text>
-  <rect x="470" y="104" width="14" height="14" rx="2" fill="var(--p)"  fill-opacity="0.4"/>
-  <text x="490" y="116" class="caption">业务核心</text>
-  <rect x="470" y="126" width="14" height="14" rx="2" fill="var(--y)"  fill-opacity="0.4"/>
-  <text x="490" y="138" class="caption">端口（契约）</text>
+  <rect x="470" y="90"  width="14" height="14" rx="2" fill="var(--g)"  fill-opacity="0.4"/>
+  <text x="490" y="102"  class="caption">出站适配器</text>
+  <rect x="470" y="112" width="14" height="14" rx="2" fill="var(--p)"  fill-opacity="0.4"/>
+  <text x="490" y="124" class="caption">业务核心</text>
+  <rect x="470" y="134" width="14" height="14" rx="2" fill="var(--y)"  fill-opacity="0.4"/>
+  <text x="490" y="146" class="caption">端口（契约）</text>
 </svg>

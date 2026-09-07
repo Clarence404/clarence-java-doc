@@ -1,4 +1,4 @@
-<svg viewBox="0 0 800 574" xmlns="http://www.w3.org/2000/svg">
+<svg viewBox="0 0 800 620" xmlns="http://www.w3.org/2000/svg">
   <style>
     :root {
       --fg:#1a1a2e; --muted:#6b7280; --bg:#f8f9fc; --card:#ffffff; --border:#e2e8f0;
@@ -26,7 +26,7 @@
     </marker>
   </defs>
 
-  <rect width="800" height="574" fill="var(--bg)"/>
+  <rect width="800" height="620" fill="var(--bg)"/>
 
   <!-- Title -->
   <text x="400" y="24" text-anchor="middle" font-family="sans-serif" font-size="14" font-weight="700" fill="var(--fg)">SSO 单点登录流程（基于 OIDC）</text>
@@ -49,10 +49,10 @@
   <text x="685" y="66" text-anchor="middle" font-family="sans-serif" font-size="12" font-weight="700" fill="var(--y)">App B</text>
 
   <!-- Lifelines x=115 305 495 685, y=84 to y=562 -->
-  <line x1="115" y1="84" x2="115" y2="562" stroke="var(--border)" stroke-width="1.5" stroke-dasharray="4 4"/>
-  <line x1="305" y1="84" x2="305" y2="562" stroke="var(--border)" stroke-width="1.5" stroke-dasharray="4 4"/>
-  <line x1="495" y1="84" x2="495" y2="562" stroke="var(--border)" stroke-width="1.5" stroke-dasharray="4 4"/>
-  <line x1="685" y1="84" x2="685" y2="562" stroke="var(--border)" stroke-width="1.5" stroke-dasharray="4 4"/>
+  <line x1="115" y1="84" x2="115" y2="586" stroke="var(--border)" stroke-width="1.5" stroke-dasharray="4 4"/>
+  <line x1="305" y1="84" x2="305" y2="586" stroke="var(--border)" stroke-width="1.5" stroke-dasharray="4 4"/>
+  <line x1="495" y1="84" x2="495" y2="586" stroke="var(--border)" stroke-width="1.5" stroke-dasharray="4 4"/>
+  <line x1="685" y1="84" x2="685" y2="586" stroke="var(--border)" stroke-width="1.5" stroke-dasharray="4 4"/>
 
   <!-- Step 1 y=110: Browser to App A -->
   <text x="210" y="103" text-anchor="middle" font-family="sans-serif" font-size="11" fill="var(--b)">① 访问 App A（未登录）</text>
@@ -63,41 +63,41 @@
   <line x1="305" y1="154" x2="495" y2="154" stroke="var(--b)" stroke-width="1.5" marker-end="url(#arrB)"/>
 
   <!-- Step 3 y=198: Note at IdP, user authenticates -->
-  <rect x="430" y="174" width="130" height="48" rx="4" fill="var(--g)" fill-opacity="0.12" stroke="var(--g)" stroke-width="1.5"/>
+  <rect x="430" y="174" width="130" height="60" rx="4" fill="var(--g)" fill-opacity="0.12" stroke="var(--g)" stroke-width="1.5"/>
   <text x="495" y="192" text-anchor="middle" font-family="sans-serif" font-size="11" font-weight="600" fill="var(--g)">③ 用户完成认证</text>
   <text x="495" y="208" text-anchor="middle" font-family="sans-serif" font-size="11" fill="var(--muted)">账号密码 / MFA</text>
 
   <!-- Step 4 y=242: IdP to App A, code callback -->
-  <text x="400" y="235" text-anchor="middle" font-family="sans-serif" font-size="11" fill="var(--g)">④ 回调 code</text>
-  <line x1="495" y1="242" x2="305" y2="242" stroke="var(--g)" stroke-width="1.5" marker-end="url(#arrG)"/>
+  <text x="400" y="247" text-anchor="middle" font-family="sans-serif" font-size="11" fill="var(--g)">④ 回调 code</text>
+  <line x1="495" y1="254" x2="305" y2="254" stroke="var(--g)" stroke-width="1.5" marker-end="url(#arrG)"/>
 
   <!-- Step 5 y=286: App A to IdP, code exchange -->
-  <text x="400" y="279" text-anchor="middle" font-family="sans-serif" font-size="11" fill="var(--b)">⑤ 用 code 换取 ID Token + Access Token</text>
-  <line x1="305" y1="286" x2="495" y2="286" stroke="var(--b)" stroke-width="1.5" marker-end="url(#arrB)"/>
+  <text x="400" y="291" text-anchor="middle" font-family="sans-serif" font-size="11" fill="var(--b)">⑤ 用 code 换取 ID Token + Access Token</text>
+  <line x1="305" y1="298" x2="495" y2="298" stroke="var(--b)" stroke-width="1.5" marker-end="url(#arrB)"/>
 
   <!-- Step 6 y=330: Note at App A, session created -->
-  <rect x="240" y="306" width="130" height="48" rx="4" fill="var(--g)" fill-opacity="0.12" stroke="var(--g)" stroke-width="1.5"/>
-  <text x="305" y="324" text-anchor="middle" font-family="sans-serif" font-size="11" font-weight="600" fill="var(--g)">⑥ 建立本地会话</text>
-  <text x="305" y="340" text-anchor="middle" font-family="sans-serif" font-size="11" fill="var(--muted)">用户登录成功</text>
+  <rect x="240" y="318" width="130" height="60" rx="4" fill="var(--g)" fill-opacity="0.12" stroke="var(--g)" stroke-width="1.5"/>
+  <text x="305" y="336" text-anchor="middle" font-family="sans-serif" font-size="11" font-weight="600" fill="var(--g)">⑥ 建立本地会话</text>
+  <text x="305" y="352" text-anchor="middle" font-family="sans-serif" font-size="11" fill="var(--muted)">用户登录成功</text>
 
   <!-- Divider -->
-  <line x1="30" y1="367" x2="770" y2="367" stroke="var(--muted)" stroke-width="1" stroke-dasharray="6 4"/>
-  <text x="400" y="362" text-anchor="middle" font-family="sans-serif" font-size="10" fill="var(--muted)">SSO 效果演示</text>
+  <line x1="30" y1="391" x2="770" y2="391" stroke="var(--muted)" stroke-width="1" stroke-dasharray="6 4"/>
+  <text x="400" y="386" text-anchor="middle" font-family="sans-serif" font-size="10" fill="var(--muted)">SSO 效果演示</text>
 
   <!-- Step 7 y=408: Browser to App B -->
-  <text x="400" y="401" text-anchor="middle" font-family="sans-serif" font-size="11" fill="var(--y)">⑦ 访问 App B（未登录）</text>
-  <line x1="115" y1="408" x2="685" y2="408" stroke="var(--y)" stroke-width="1.5" marker-end="url(#arrY)"/>
+  <text x="400" y="425" text-anchor="middle" font-family="sans-serif" font-size="11" fill="var(--y)">⑦ 访问 App B（未登录）</text>
+  <line x1="115" y1="432" x2="685" y2="432" stroke="var(--y)" stroke-width="1.5" marker-end="url(#arrY)"/>
 
   <!-- Step 8 y=452: App B to IdP, redirect with existing session -->
-  <text x="590" y="445" text-anchor="middle" font-family="sans-serif" font-size="11" fill="var(--y)">⑧ 重定向认证（IdP 已有会话）</text>
-  <line x1="685" y1="452" x2="495" y2="452" stroke="var(--y)" stroke-width="1.5" marker-end="url(#arrY)"/>
+  <text x="590" y="469" text-anchor="middle" font-family="sans-serif" font-size="11" fill="var(--y)">⑧ 重定向认证（IdP 已有会话）</text>
+  <line x1="685" y1="476" x2="495" y2="476" stroke="var(--y)" stroke-width="1.5" marker-end="url(#arrY)"/>
 
   <!-- Step 9 y=496: IdP to App B, token issued directly -->
-  <text x="590" y="489" text-anchor="middle" font-family="sans-serif" font-size="11" fill="var(--g)">⑨ 直接颁发 Token（无需再输密码）</text>
-  <line x1="495" y1="496" x2="685" y2="496" stroke="var(--g)" stroke-width="1.5" marker-end="url(#arrG)"/>
+  <text x="590" y="513" text-anchor="middle" font-family="sans-serif" font-size="11" fill="var(--g)">⑨ 直接颁发 Token（无需再输密码）</text>
+  <line x1="495" y1="520" x2="685" y2="520" stroke="var(--g)" stroke-width="1.5" marker-end="url(#arrG)"/>
 
   <!-- Step 10 y=540: Note at App B, SSO session created -->
-  <rect x="620" y="516" width="130" height="48" rx="4" fill="var(--g)" fill-opacity="0.12" stroke="var(--g)" stroke-width="1.5"/>
-  <text x="685" y="534" text-anchor="middle" font-family="sans-serif" font-size="11" font-weight="600" fill="var(--g)">⑩ 建立会话</text>
-  <text x="685" y="550" text-anchor="middle" font-family="sans-serif" font-size="11" fill="var(--muted)">SSO 登录成功</text>
+  <rect x="620" y="540" width="130" height="60" rx="4" fill="var(--g)" fill-opacity="0.12" stroke="var(--g)" stroke-width="1.5"/>
+  <text x="685" y="558" text-anchor="middle" font-family="sans-serif" font-size="11" font-weight="600" fill="var(--g)">⑩ 建立会话</text>
+  <text x="685" y="574" text-anchor="middle" font-family="sans-serif" font-size="11" fill="var(--muted)">SSO 登录成功</text>
 </svg>

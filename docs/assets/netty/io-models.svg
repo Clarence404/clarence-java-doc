@@ -43,9 +43,9 @@
 <text x="110" y="79" text-anchor="middle" font-size="12" fill="var(--fg)">Application（应用）</text>
 <rect x="10" y="215" width="200" height="40" rx="4" fill="var(--card)" stroke="var(--border)" stroke-width="1.5"/>
 <text x="110" y="239" text-anchor="middle" font-size="12" fill="var(--fg)">Kernel（内核）</text>
-<line x1="88" y1="99" x2="88" y2="209" stroke="var(--r)" stroke-width="1.5" marker-end="url(#arr-r)"/>
+<line x1="110" y1="95" x2="110" y2="213" stroke="var(--r)" stroke-width="1.5" marker-end="url(#arr-r)"/>
 <text x="76" y="155" text-anchor="end" font-size="10" fill="var(--r)">①阻塞等待</text>
-<line x1="132" y1="209" x2="132" y2="101" stroke="var(--b)" stroke-width="1.5" marker-end="url(#arr-b)"/>
+<line x1="110" y1="215" x2="110" y2="97" stroke="var(--b)" stroke-width="1.5" marker-end="url(#arr-b)"/>
 <text x="144" y="155" text-anchor="start" font-size="10" fill="var(--b)">②返回数据</text>
 
 <!-- ===== Column 2: NIO ===== -->
@@ -58,9 +58,9 @@
 <text x="293" y="135" text-anchor="end" font-size="10" fill="var(--muted)">①poll</text>
 <line x1="317" y1="209" x2="317" y2="101" stroke="var(--muted)" stroke-width="1.5" stroke-dasharray="5,3" marker-end="url(#arr-muted)"/>
 <text x="293" y="175" text-anchor="end" font-size="10" fill="var(--muted)">②未就绪</text>
-<line x1="347" y1="99" x2="347" y2="209" stroke="var(--g)" stroke-width="1.5" marker-end="url(#arr-g)"/>
+<line x1="330" y1="95" x2="330" y2="213" stroke="var(--g)" stroke-width="1.5" marker-end="url(#arr-g)"/>
 <text x="363" y="135" text-anchor="start" font-size="10" fill="var(--g)">③read</text>
-<line x1="359" y1="209" x2="359" y2="101" stroke="var(--b)" stroke-width="1.5" marker-end="url(#arr-b)"/>
+<line x1="330" y1="215" x2="330" y2="97" stroke="var(--b)" stroke-width="1.5" marker-end="url(#arr-b)"/>
 <text x="367" y="175" text-anchor="start" font-size="10" fill="var(--b)">④数据</text>
 
 <!-- ===== Column 3: AIO ===== -->
@@ -69,9 +69,9 @@
 <text x="550" y="79" text-anchor="middle" font-size="12" fill="var(--fg)">Application（应用）</text>
 <rect x="450" y="215" width="200" height="40" rx="4" fill="var(--card)" stroke="var(--border)" stroke-width="1.5"/>
 <text x="550" y="239" text-anchor="middle" font-size="12" fill="var(--fg)">Kernel（内核）</text>
-<line x1="528" y1="99" x2="528" y2="209" stroke="var(--p)" stroke-width="1.5" marker-end="url(#arr-p)"/>
+<line x1="550" y1="95" x2="550" y2="213" stroke="var(--p)" stroke-width="1.5" marker-end="url(#arr-p)"/>
 <text x="516" y="155" text-anchor="end" font-size="10" fill="var(--p)">①注册回调</text>
-<line x1="572" y1="209" x2="572" y2="101" stroke="var(--b)" stroke-width="1.5" marker-end="url(#arr-b)"/>
+<line x1="550" y1="215" x2="550" y2="97" stroke="var(--b)" stroke-width="1.5" marker-end="url(#arr-b)"/>
 <text x="584" y="155" text-anchor="start" font-size="10" fill="var(--b)">②内核通知</text>
 
 </svg>

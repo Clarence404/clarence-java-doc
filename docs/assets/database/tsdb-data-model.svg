@@ -33,10 +33,10 @@
   <text class="mono" x="360" y="74" text-anchor="middle">cpu,host=serverA,region=cn value=0.64 1700000000</text>
 
   <!-- 四条向下箭头 -->
-  <line x1="102" y1="96" x2="102" y2="134" stroke="var(--muted)" stroke-width="1.5" marker-end="url(#arrow-tsdb)"/>
-  <line x1="274" y1="96" x2="274" y2="134" stroke="var(--muted)" stroke-width="1.5" marker-end="url(#arrow-tsdb)"/>
-  <line x1="446" y1="96" x2="446" y2="134" stroke="var(--muted)" stroke-width="1.5" marker-end="url(#arrow-tsdb)"/>
-  <line x1="618" y1="96" x2="618" y2="134" stroke="var(--muted)" stroke-width="1.5" marker-end="url(#arrow-tsdb)"/>
+  <line x1="102" y1="92" x2="102" y2="138" stroke="var(--muted)" stroke-width="1.5" marker-end="url(#arrow-tsdb)"/>
+  <line x1="274" y1="92" x2="274" y2="138" stroke="var(--muted)" stroke-width="1.5" marker-end="url(#arrow-tsdb)"/>
+  <line x1="446" y1="92" x2="446" y2="138" stroke="var(--muted)" stroke-width="1.5" marker-end="url(#arrow-tsdb)"/>
+  <line x1="618" y1="92" x2="618" y2="138" stroke="var(--muted)" stroke-width="1.5" marker-end="url(#arrow-tsdb)"/>
 
   <!-- measurement -->
   <rect x="20" y="140" width="164" height="96" rx="8" fill="var(--card)" stroke="var(--b)" stroke-width="1.5"/>

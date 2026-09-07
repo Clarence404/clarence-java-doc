@@ -302,7 +302,7 @@ const aiSidebar = [
 const databaseSidebar = [
     {text: '数据库总览', link: '/database/0_overview'},
     {
-        text: 'MySQL 专题',
+        text: 'MySQL',
         link: '/database/1_mysql/0_overview',
         collapsible: true,
         collapsed: false,
@@ -327,7 +327,7 @@ const databaseSidebar = [
         ],
     },
     {
-        text: 'PG 专题',
+        text: 'PostgreSQL',
         link: '/database/2_postgresql/0_overview',
         collapsible: true,
         collapsed: true,
@@ -348,7 +348,7 @@ const databaseSidebar = [
         ],
     },
     {
-        text: '关系库生态',
+        text: '关系库',
         link: '/database/3_relational/0_other_rdbms',
         collapsible: true,
         collapsed: true,
@@ -359,7 +359,7 @@ const databaseSidebar = [
         ],
     },
     {
-        text: 'NoSQL 生态',
+        text: 'NoSQL',
         link: '/database/4_nosql/0_column_db',
         collapsible: true,
         collapsed: true,
@@ -384,13 +384,14 @@ const databaseSidebar = [
         ],
     },
     {
-        text: '源码及选型',
+        text: '参考延伸',
         link: '/database/6_reference/0_binlog_connector_source',
         collapsible: true,
         collapsed: true,
         children: [
-            {text: 'Mbcj 源码', link: '/database/6_reference/0_binlog_connector_source'},
-            {text: '数据库选型', link: '/database/6_reference/1_selection_guide'},
+            {text: 'Binlog 源码', link: '/database/6_reference/0_binlog_connector_source'},
+            {text: '选型指南', link: '/database/6_reference/1_selection_guide'},
+            {text: 'JDBC 驱动', link: '/database/6_reference/2_jdbc_driver'},
         ],
     },
     {text: '面试专题', link: '/database/99_interview'},

@@ -37,10 +37,10 @@
   <text class="desc" x="160" y="206" text-anchor="middle">无守护进程、无数据库</text>
 
   <!-- SSH 箭头 -->
-  <line x1="284" y1="90"  x2="454" y2="90"  stroke="var(--b)" stroke-width="1.5" marker-end="url(#arrow-ansible)"/>
+  <line x1="280" y1="90"  x2="458" y2="90"  stroke="var(--b)" stroke-width="1.5" marker-end="url(#arrow-ansible)"/>
   <text class="label" x="369" y="150" text-anchor="middle">SSH（无 Agent）</text>
-  <line x1="284" y1="158" x2="454" y2="158" stroke="var(--b)" stroke-width="1.5" marker-end="url(#arrow-ansible)"/>
-  <line x1="284" y1="226" x2="454" y2="226" stroke="var(--b)" stroke-width="1.5" marker-end="url(#arrow-ansible)"/>
+  <line x1="280" y1="158" x2="458" y2="158" stroke="var(--b)" stroke-width="1.5" marker-end="url(#arrow-ansible)"/>
+  <line x1="280" y1="226" x2="458" y2="226" stroke="var(--b)" stroke-width="1.5" marker-end="url(#arrow-ansible)"/>
 
   <!-- 被管节点 -->
   <rect x="460" y="60" width="220" height="60" rx="8" fill="var(--card)" stroke="var(--p)" stroke-width="1.5"/>

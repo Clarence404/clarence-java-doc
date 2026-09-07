@@ -39,37 +39,37 @@
   <text class="desc" x="75" y="82" text-anchor="middle">文件 / HTTP</text>
   <text class="desc" x="75" y="96" text-anchor="middle">JMS / AMQP</text>
 
-  <line class="arrow" x1="134" y1="79" x2="158" y2="79"/>
+  <line class="arrow" x1="130" y1="79" x2="162" y2="79"/>
 
   <rect class="card" x="164" y="46" width="110" height="66" rx="6" stroke="var(--g)"/>
   <text class="label-g" x="219" y="66" text-anchor="middle">Inbound</text>
   <text class="label-g" x="219" y="82" text-anchor="middle">Adapter</text>
   <text class="desc" x="219" y="96" text-anchor="middle">入站适配器</text>
 
-  <line class="arrow" x1="278" y1="79" x2="302" y2="79"/>
+  <line class="arrow" x1="274" y1="79" x2="306" y2="79"/>
 
   <rect class="card" x="308" y="46" width="110" height="66" rx="6" stroke="var(--b)"/>
   <text class="label-b" x="363" y="66" text-anchor="middle">Message</text>
   <text class="label-b" x="363" y="82" text-anchor="middle">Channel</text>
   <text class="desc" x="363" y="96" text-anchor="middle">解耦缓冲</text>
 
-  <line class="arrow" x1="422" y1="79" x2="446" y2="79"/>
+  <line class="arrow" x1="418" y1="79" x2="450" y2="79"/>
 
   <!-- Endpoints 组 -->
-  <rect class="layer" x="452" y="36" width="248" height="86" rx="8"/>
+  <rect class="layer" x="452" y="36" width="248" height="98" rx="8"/>
   <text class="label-p" x="576" y="56" text-anchor="middle">Endpoints（处理节点）</text>
-  <rect class="card" x="458" y="64" width="64" height="48" rx="4"/>
-  <text class="fg" x="490" y="82" text-anchor="middle">Filter</text>
-  <text class="desc" x="490" y="98" text-anchor="middle">过滤</text>
-  <rect class="card" x="530" y="64" width="68" height="48" rx="4"/>
-  <text class="fg" x="564" y="82" text-anchor="middle">Transform</text>
-  <text class="desc" x="564" y="98" text-anchor="middle">转换</text>
-  <rect class="card" x="606" y="64" width="88" height="48" rx="4"/>
-  <text class="fg" x="650" y="82" text-anchor="middle">Router/Splitter</text>
-  <text class="desc" x="650" y="98" text-anchor="middle">路由 / 拆分</text>
+  <rect class="card" x="458" y="64" width="64" height="62" rx="4"/>
+  <text class="fg" x="490" y="86" text-anchor="middle">Filter</text>
+  <text class="desc" x="490" y="108" text-anchor="middle">过滤</text>
+  <rect class="card" x="530" y="64" width="68" height="62" rx="4"/>
+  <text class="fg" x="564" y="86" text-anchor="middle">Transform</text>
+  <text class="desc" x="564" y="108" text-anchor="middle">转换</text>
+  <rect class="card" x="606" y="64" width="88" height="62" rx="4"/>
+  <text class="fg" x="650" y="86" text-anchor="middle">Router/Splitter</text>
+  <text class="desc" x="650" y="108" text-anchor="middle">路由 / 拆分</text>
 
   <!-- 折线：Endpoints → 第二个 Channel（单一路径，仅末端一个箭头） -->
-  <path class="arrow" d="M576,126 V146 H363 V166"/>
+  <path class="arrow" d="M576,138 V152 H363 V166"/>
 
   <!-- 第二行：出站流（从右向左） -->
   <rect class="card" x="308" y="172" width="110" height="66" rx="6" stroke="var(--b)"/>
@@ -77,14 +77,14 @@
   <text class="label-b" x="363" y="208" text-anchor="middle">Channel</text>
   <text class="desc" x="363" y="222" text-anchor="middle">处理结果</text>
 
-  <line class="arrow" x1="304" y1="205" x2="280" y2="205"/>
+  <line class="arrow" x1="308" y1="205" x2="276" y2="205"/>
 
   <rect class="card" x="164" y="172" width="110" height="66" rx="6" stroke="var(--y)"/>
   <text class="label-y" x="219" y="192" text-anchor="middle">Outbound</text>
   <text class="label-y" x="219" y="208" text-anchor="middle">Adapter</text>
   <text class="desc" x="219" y="222" text-anchor="middle">出站适配器</text>
 
-  <line class="arrow" x1="160" y1="205" x2="136" y2="205"/>
+  <line class="arrow" x1="164" y1="205" x2="132" y2="205"/>
 
   <rect class="card" x="20" y="172" width="110" height="66" rx="6" stroke="var(--y)"/>
   <text class="label-y" x="75" y="192" text-anchor="middle">目标系统</text>

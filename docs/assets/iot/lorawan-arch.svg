@@ -33,7 +33,7 @@
   <text class="sub" x="75" y="83" text-anchor="middle">传感器 / 智能水表</text>
 
   <!-- Arrow 1: gap 140~220 (80px) -->
-  <line class="arr" x1="140" y1="72" x2="214" y2="72" stroke="var(--muted)"/>
+  <line class="arr" x1="140" y1="72" x2="218" y2="72" stroke="var(--muted)"/>
   <text class="proto" x="177" y="85" text-anchor="middle">LoRa 无线</text>
 
   <!-- 网关 x=220~350 -->
@@ -42,7 +42,7 @@
   <text class="sub" x="285" y="83" text-anchor="middle">LoRa → TCP/IP 转换</text>
 
   <!-- Arrow 2: gap 350~430 (80px) -->
-  <line class="arr" x1="350" y1="72" x2="424" y2="72" stroke="var(--muted)"/>
+  <line class="arr" x1="350" y1="72" x2="428" y2="72" stroke="var(--muted)"/>
   <text class="proto" x="387" y="85" text-anchor="middle">4G / 以太网</text>
 
   <!-- 网络服务器 x=430~560 -->
@@ -51,7 +51,7 @@
   <text class="sub" x="495" y="83" text-anchor="middle">Network Server</text>
 
   <!-- Arrow 3: gap 560~640 (80px) -->
-  <line class="arr" x1="560" y1="72" x2="634" y2="72" stroke="var(--muted)"/>
+  <line class="arr" x1="560" y1="72" x2="638" y2="72" stroke="var(--muted)"/>
   <text class="proto" x="597" y="85" text-anchor="middle">MQTT / HTTP</text>
 
   <!-- 应用服务器 x=640~770 -->
