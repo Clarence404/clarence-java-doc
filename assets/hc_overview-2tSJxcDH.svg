@@ -1,0 +1,208 @@
+<svg viewBox="0 0 906 1376" xmlns="http://www.w3.org/2000/svg" font-family="'PingFang SC','Microsoft YaHei',system-ui,sans-serif">
+  <title>高并发系统设计全景图</title>
+  <desc>包含系统拆分、缓存、MQ、分库分表、读写分离和监控的完整高并发架构图</desc>
+
+  <style>
+    :root { --fg:#1a1a2e; --muted:#6b7280; --bg:#f8f9fc; --card:#ffffff; --border:#e2e8f0;
+            --p:#6366f1; --b:#0284c7; --g:#059669; --y:#d97706; --r:#dc2626; }
+    :root[data-theme="dark"] { --fg:#e5e7eb; --muted:#9ca3af; --bg:#1a1a2e; --card:#252540;
+            --border:#3a3a5c; --p:#818cf8; --b:#38bdf8; --g:#34d399; --y:#fbbf24; --r:#f87171; }
+    @media (prefers-color-scheme: dark) {
+      :root { --fg:#e5e7eb; --muted:#9ca3af; --bg:#1a1a2e; --card:#252540;
+              --border:#3a3a5c; --p:#818cf8; --b:#38bdf8; --g:#34d399; --y:#fbbf24; --r:#f87171; }
+    }
+    text { fill: var(--fg); }
+    .muted { fill: var(--muted); }
+    .card { fill: var(--card); stroke: var(--border); stroke-width: 1.5; }
+    .section-bg { fill: var(--bg); stroke: var(--border); stroke-width: 1.5; stroke-dasharray: 4 3; }
+    .arrow { stroke: var(--muted); stroke-width: 1.5; fill: none; marker-end: url(#arr); }
+    .arrow-blue { stroke: var(--b); stroke-width: 2; fill: none; marker-end: url(#arr-blue); }
+  </style>
+
+  <defs>
+    <marker id="arr" markerWidth="7" markerHeight="7" refX="5" refY="3.5" orient="auto">
+      <path d="M0 0 L7 3.5 L0 7 Z" fill="#9ca3af"/>
+    </marker>
+    <marker id="arr-blue" markerWidth="7" markerHeight="7" refX="5" refY="3.5" orient="auto">
+      <path d="M0 0 L7 3.5 L0 7 Z" fill="#0284c7"/>
+    </marker>
+    <marker id="arr-green" markerWidth="7" markerHeight="7" refX="5" refY="3.5" orient="auto">
+      <path d="M0 0 L7 3.5 L0 7 Z" fill="#059669"/>
+    </marker>
+  </defs>
+
+  <!-- 背景 -->
+  <rect width="906" height="1376" fill="var(--bg)"/>
+
+  <!-- ─── HEADER ─── -->
+  <rect x="20" y="10" width="866" height="102" rx="10" class="section-bg"/>
+  <text x="456" y="38" text-anchor="middle" font-size="20" font-weight="700" fill="var(--p)">高并发系统设计全景</text>
+  <text x="456" y="60" text-anchor="middle" font-size="13" class="muted">核心目标：高性能（低延迟）× 高可用（稳定性）× 高扩展（弹性）</text>
+  <rect x="55" y="72" width="206" height="32" rx="6" fill="var(--p)" opacity="0.15" stroke="var(--p)" stroke-width="1"/>
+  <text x="161" y="92" text-anchor="middle" font-size="13" fill="var(--p)">系统拆分 · 服务化</text>
+  <rect x="351" y="72" width="210" height="32" rx="6" fill="var(--b)" opacity="0.15" stroke="var(--b)" stroke-width="1"/>
+  <text x="456" y="92" text-anchor="middle" font-size="13" fill="var(--b)">缓存 + 异步 · 提速削峰</text>
+  <rect x="651" y="72" width="200" height="32" rx="6" fill="var(--g)" opacity="0.15" stroke="var(--g)" stroke-width="1"/>
+  <text x="751" y="92" text-anchor="middle" font-size="13" fill="var(--g)">分布式存储 · 弹性扩展</text>
+
+  <!-- ─── 接入层 ─── -->
+  <text x="456" y="136" text-anchor="middle" font-size="12" font-weight="700" class="muted">── 接入层 ──</text>
+  <rect x="386" y="144" width="140" height="60" rx="8" fill="var(--p)"/>
+  <text x="456" y="163" text-anchor="middle" font-size="13" font-weight="600" fill="white">用户请求</text>
+  <text x="456" y="180" text-anchor="middle" font-size="11" fill="white" opacity="0.85">Web / App / API</text>
+  <line x1="456" y1="204" x2="456" y2="228" class="arrow-blue"/>
+  <rect x="316" y="230" width="280" height="60" rx="8" class="card"/>
+  <rect x="316" y="230" width="8" height="60" rx="4" fill="var(--b)"/>
+  <text x="468" y="250" text-anchor="middle" font-size="13">负载均衡 / API Gateway</text>
+  <text x="468" y="266" text-anchor="middle" font-size="11" class="muted">Nginx · 限流 · 熔断 · 鉴权</text>
+
+  <!-- ─── 服务层 ─── -->
+  <text x="456" y="330" text-anchor="middle" font-size="12" font-weight="700" class="muted">── 服务层（微服务拆分）──</text>
+  <rect x="40" y="338" width="166" height="60" rx="8" class="card"/>
+  <rect x="40" y="338" width="166" height="6" rx="3" fill="var(--g)"/>
+  <text x="120" y="364" text-anchor="middle" font-size="13">用户服务</text>
+  <text x="120" y="382" text-anchor="middle" font-size="11" class="muted">Auth · Profile</text>
+  <rect x="226" y="338" width="160" height="60" rx="8" class="card"/>
+  <rect x="226" y="338" width="160" height="6" rx="3" fill="var(--g)"/>
+  <text x="306" y="364" text-anchor="middle" font-size="13">商品服务</text>
+  <text x="306" y="382" text-anchor="middle" font-size="11" class="muted">Catalog · Search</text>
+  <rect x="406" y="338" width="160" height="60" rx="8" class="card"/>
+  <rect x="406" y="338" width="160" height="6" rx="3" fill="var(--g)"/>
+  <text x="486" y="364" text-anchor="middle" font-size="13">订单服务</text>
+  <text x="486" y="382" text-anchor="middle" font-size="11" class="muted">Create · Query</text>
+  <rect x="586" y="338" width="160" height="60" rx="8" class="card"/>
+  <rect x="586" y="338" width="160" height="6" rx="3" fill="var(--g)"/>
+  <text x="666" y="364" text-anchor="middle" font-size="13">库存服务</text>
+  <text x="666" y="382" text-anchor="middle" font-size="11" class="muted">Lock · Deduct</text>
+  <rect x="766" y="338" width="100" height="60" rx="8" class="card"/>
+  <rect x="766" y="338" width="100" height="6" rx="3" fill="var(--g)"/>
+  <text x="816" y="364" text-anchor="middle" font-size="13">支付</text>
+  <text x="816" y="382" text-anchor="middle" font-size="11" class="muted">Pay</text>
+  <path d="M370 310 L120 332" class="arrow" opacity="0.4"/>
+  <path d="M400 310 L300 332" class="arrow" opacity="0.4"/>
+  <line x1="306" y1="310" x2="306" y2="336" class="arrow" opacity="0.4"/>
+  <path d="M500 310 L660 332" class="arrow" opacity="0.4"/>
+  <path d="M520 310 L810 332" class="arrow" opacity="0.4"/>
+
+  <!-- ─── 缓存层 ─── -->
+  <text x="456" y="432" text-anchor="middle" font-size="12" font-weight="700" class="muted">── 缓存层 ──</text>
+  <rect x="20" y="440" width="866" height="84" rx="10" fill="var(--y)" opacity="0.06" stroke="var(--y)" stroke-width="1.5" stroke-dasharray="5 3"/>
+  <rect x="40" y="452" width="246" height="60" rx="8" class="card"/>
+  <rect x="40" y="452" width="8" height="60" rx="4" fill="var(--y)"/>
+  <text x="174" y="474" text-anchor="middle" font-size="13">L1 — 本地缓存</text>
+  <text x="174" y="492" text-anchor="middle" font-size="11" class="muted">Caffeine · 微秒级 · 进程内</text>
+  <rect x="326" y="452" width="260" height="60" rx="8" class="card"/>
+  <rect x="326" y="452" width="8" height="60" rx="4" fill="var(--y)"/>
+  <text x="454" y="474" text-anchor="middle" font-size="13">L2 — 分布式缓存</text>
+  <text x="454" y="492" text-anchor="middle" font-size="11" class="muted">Redis Cluster · 毫秒级 · 共享</text>
+  <rect x="626" y="452" width="240" height="60" rx="8" class="card"/>
+  <rect x="626" y="452" width="8" height="60" rx="4" fill="var(--y)"/>
+  <text x="754" y="474" text-anchor="middle" font-size="13">CDN</text>
+  <text x="754" y="492" text-anchor="middle" font-size="11" class="muted">静态资源就近分发</text>
+  <line x1="306" y1="398" x2="286" y2="446" class="arrow" opacity="0.35"/>
+  <line x1="526" y1="398" x2="510" y2="446" class="arrow" opacity="0.35"/>
+
+  <!-- ─── MQ层 ─── -->
+  <text x="456" y="560" text-anchor="middle" font-size="12" font-weight="700" class="muted">── 异步消息层 ──</text>
+  <rect x="20" y="568" width="866" height="80" rx="10" fill="var(--r)" opacity="0.05" stroke="var(--r)" stroke-width="1.5" stroke-dasharray="5 3"/>
+  <rect x="271" y="578" width="370" height="60" rx="8" class="card"/>
+  <rect x="271" y="578" width="8" height="60" rx="4" fill="var(--r)"/>
+  <text x="454" y="600" text-anchor="middle" font-size="13">消息队列（MQ）</text>
+  <text x="454" y="618" text-anchor="middle" font-size="11" class="muted">Kafka / RocketMQ — 异步削峰解耦</text>
+  <text x="206" y="598" text-anchor="middle" font-size="11" class="muted">Producer →</text>
+  <text x="706" y="598" text-anchor="middle" font-size="11" class="muted">→ Consumer</text>
+  <line x1="486" y1="398" x2="486" y2="572" class="arrow" stroke-dasharray="4 3" opacity="0.35"/>
+  <line x1="666" y1="398" x2="566" y2="572" class="arrow" stroke-dasharray="4 3" opacity="0.35"/>
+
+  <!-- ─── 数据层 ─── -->
+  <text x="456" y="686" text-anchor="middle" font-size="12" font-weight="700" class="muted">── 数据层（分库分表 + 读写分离）──</text>
+  <rect x="166" y="696" width="240" height="222" rx="10" fill="var(--b)" opacity="0.08" stroke="var(--b)" stroke-width="1.5"/>
+  <text x="286" y="718" text-anchor="middle" font-size="14" font-weight="600" fill="var(--b)">主库（写）</text>
+  <rect x="191" y="726" width="190" height="84" rx="6" class="card"/>
+  <text x="286" y="741" text-anchor="middle" font-size="12">分库 A — 用户/支付</text>
+  <text x="286" y="756" text-anchor="middle" font-size="11" class="muted">user_db · pay_db</text>
+  <rect x="191" y="818" width="190" height="84" rx="6" class="card"/>
+  <text x="286" y="833" text-anchor="middle" font-size="12">分库 B — 订单/库存</text>
+  <text x="286" y="848" text-anchor="middle" font-size="11" class="muted">order_db · stock_db</text>
+  <rect x="456" y="696" width="230" height="222" rx="10" fill="var(--g)" opacity="0.08" stroke="var(--g)" stroke-width="1.5"/>
+  <text x="571" y="718" text-anchor="middle" font-size="14" font-weight="600" fill="var(--g)">从库（读）</text>
+  <rect x="472" y="726" width="98" height="60" rx="6" class="card"/>
+  <text x="521" y="741" text-anchor="middle" font-size="12">从库 1</text>
+  <text x="521" y="755" text-anchor="middle" font-size="11" class="muted">Read Only</text>
+  <rect x="578" y="726" width="98" height="60" rx="6" class="card"/>
+  <text x="627" y="741" text-anchor="middle" font-size="12">从库 2</text>
+  <text x="627" y="755" text-anchor="middle" font-size="11" class="muted">Read Only</text>
+  <rect x="472" y="818" width="204" height="60" rx="6" class="card"/>
+  <text x="574" y="833" text-anchor="middle" font-size="12">从库 N（水平扩展）</text>
+  <text x="574" y="848" text-anchor="middle" font-size="11" class="muted">按读压力动态增加</text>
+  <line x1="406" y1="807" x2="454" y2="807" class="arrow-blue"/>
+  <text x="431" y="755" text-anchor="middle" font-size="10" class="muted">主从</text>
+  <text x="431" y="816" text-anchor="middle" font-size="10" class="muted">复制</text>
+  <text x="100" y="761" text-anchor="middle" font-size="11" fill="var(--b)">写请求 →</text>
+  <line x1="140" y1="807" x2="164" y2="807" class="arrow-blue"/>
+  <line x1="746" y1="756" x2="678" y2="756" stroke="var(--g)" stroke-width="2" fill="none" marker-end="url(#arr-green)"/>
+  <text x="786" y="761" text-anchor="middle" font-size="11" fill="var(--g)">← 读请求</text>
+  <line x1="454" y1="638" x2="286" y2="690" class="arrow" stroke-dasharray="4 3" opacity="0.3"/>
+
+  <!-- ─── 水平分表 ─── -->
+  <text x="456" y="956" text-anchor="middle" font-size="12" font-weight="700" class="muted">── 水平分表（同一业务大表拆分）──</text>
+  <rect x="20" y="964" width="866" height="88" rx="10" fill="var(--p)" opacity="0.05" stroke="var(--p)" stroke-width="1.5" stroke-dasharray="4 3"/>
+  <rect x="50" y="976" width="146" height="60" rx="8" fill="var(--p)" opacity="0.15" stroke="var(--p)" stroke-width="1.5"/>
+  <text x="120" y="998" text-anchor="middle" font-size="13" fill="var(--p)">order</text>
+  <text x="120" y="1016" text-anchor="middle" font-size="11" class="muted">1 亿行大表</text>
+  <text x="226" y="1006" text-anchor="middle" font-size="22" fill="var(--p)">→</text>
+  <text x="273" y="970" text-anchor="middle" font-size="11" class="muted">userId % N</text>
+  <rect x="259" y="976" width="88" height="60" rx="6" class="card"/>
+  <text x="303" y="998" text-anchor="middle" font-size="12">order_0</text>
+  <text x="303" y="1014" text-anchor="middle" font-size="11" class="muted">shard 0</text>
+  <rect x="359" y="976" width="88" height="60" rx="6" class="card"/>
+  <text x="403" y="998" text-anchor="middle" font-size="12">order_1</text>
+  <text x="403" y="1014" text-anchor="middle" font-size="11" class="muted">shard 1</text>
+  <rect x="459" y="976" width="88" height="60" rx="6" class="card"/>
+  <text x="503" y="998" text-anchor="middle" font-size="12">order_2</text>
+  <text x="503" y="1014" text-anchor="middle" font-size="11" class="muted">shard 2</text>
+  <text x="579" y="1006" text-anchor="middle" font-size="18" class="muted">…</text>
+  <rect x="603" y="976" width="88" height="60" rx="6" class="card"/>
+  <text x="647" y="998" text-anchor="middle" font-size="12">order_N-1</text>
+  <text x="647" y="1014" text-anchor="middle" font-size="11" class="muted">shard N-1</text>
+  <rect x="716" y="976" width="160" height="60" rx="8" fill="var(--g)" opacity="0.12" stroke="var(--g)" stroke-width="1.2"/>
+  <text x="796" y="995" text-anchor="middle" font-size="11" fill="var(--g)">每个 shard 可再</text>
+  <text x="796" y="1011" text-anchor="middle" font-size="11" fill="var(--g)">主从复制扩读</text>
+
+  <!-- ─── 可观测性 ─── -->
+  <text x="456" y="1094" text-anchor="middle" font-size="12" font-weight="700" class="muted">── 可观测性（Observability）──</text>
+  <rect x="20" y="1102" width="866" height="84" rx="10" fill="var(--g)" opacity="0.05" stroke="var(--g)" stroke-width="1.5" stroke-dasharray="4 3"/>
+  <rect x="45" y="1114" width="191" height="60" rx="8" class="card"/>
+  <rect x="45" y="1114" width="191" height="6" rx="3" fill="var(--b)"/>
+  <text x="137" y="1136" text-anchor="middle" font-size="13">指标（Metrics）</text>
+  <text x="137" y="1154" text-anchor="middle" font-size="11" class="muted">Prometheus · Grafana</text>
+  <rect x="258" y="1114" width="185" height="60" rx="8" class="card"/>
+  <rect x="258" y="1114" width="185" height="6" rx="3" fill="var(--g)"/>
+  <text x="350" y="1136" text-anchor="middle" font-size="13">链路追踪（Trace）</text>
+  <text x="350" y="1154" text-anchor="middle" font-size="11" class="muted">SkyWalking · Jaeger</text>
+  <rect x="465" y="1114" width="185" height="60" rx="8" class="card"/>
+  <rect x="465" y="1114" width="185" height="6" rx="3" fill="var(--y)"/>
+  <text x="557" y="1136" text-anchor="middle" font-size="13">日志（Logging）</text>
+  <text x="557" y="1154" text-anchor="middle" font-size="11" class="muted">ELK · Loki</text>
+  <rect x="672" y="1114" width="195" height="60" rx="8" class="card"/>
+  <rect x="672" y="1114" width="195" height="6" rx="3" fill="var(--r)"/>
+  <text x="769" y="1136" text-anchor="middle" font-size="13">告警（Alerting）</text>
+  <text x="769" y="1154" text-anchor="middle" font-size="11" class="muted">AlertManager · PagerDuty</text>
+
+  <!-- ─── 关键指标 ─── -->
+  <rect x="20" y="1218" width="866" height="138" rx="10" class="section-bg"/>
+  <text x="456" y="1242" text-anchor="middle" font-size="17" font-weight="700">关键性能指标（压测目标）</text>
+  <rect x="48" y="1254" width="181" height="60" rx="8" class="card"/>
+  <text x="135" y="1276" text-anchor="middle" font-size="14" font-weight="600" fill="var(--p)">QPS / TPS</text>
+  <text x="135" y="1294" text-anchor="middle" font-size="11" class="muted">每秒请求 / 事务数</text>
+  <rect x="246" y="1254" width="175" height="60" rx="8" class="card"/>
+  <text x="333" y="1276" text-anchor="middle" font-size="14" font-weight="600" fill="var(--b)">P99 延迟</text>
+  <text x="333" y="1294" text-anchor="middle" font-size="11" class="muted">99 分位响应时间</text>
+  <rect x="438" y="1254" width="175" height="60" rx="8" class="card"/>
+  <text x="525" y="1276" text-anchor="middle" font-size="14" font-weight="600" fill="var(--g)">错误率</text>
+  <text x="525" y="1294" text-anchor="middle" font-size="11" class="muted">5xx / 超时 &lt; 0.1%</text>
+  <rect x="630" y="1254" width="235" height="60" rx="8" class="card"/>
+  <text x="747" y="1276" text-anchor="middle" font-size="14" font-weight="600" fill="var(--y)">资源使用率</text>
+  <text x="747" y="1294" text-anchor="middle" font-size="11" class="muted">CPU / 内存 / 连接池水位</text>
+  <text x="456" y="1341" text-anchor="middle" font-size="12" class="muted">高并发 = 系统拆分 + 缓存加速 + 异步削峰 + 分布式存储 + 可观测性</text>
+</svg>
