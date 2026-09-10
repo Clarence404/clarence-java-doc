@@ -329,7 +329,7 @@ const algorithmsSidebar = [
         ],
     },
     {
-        text: '解题套路',
+        text: '算法技巧',
         link: '/algorithms/3_patterns/0_dynamic_programming',
         collapsible: true,
         collapsed: false,
@@ -345,8 +345,8 @@ const algorithmsSidebar = [
         collapsible: true,
         collapsed: true,
         children: [
-            {text: 'LeetCode 高频题分类', link: '/algorithms/4_practice/0_leet_code'},
-            {text: '华为 OJ 题型与技巧',  link: '/algorithms/4_practice/1_huawei_oj'},
+            {text: 'LeetCode', link: '/algorithms/4_practice/0_leet_code'},
+            {text: 'HuaWei Code',  link: '/algorithms/4_practice/1_huawei_oj'},
         ],
     },
 ];
