@@ -313,6 +313,7 @@ const algorithmsSidebar = [
             {text: '树',          link: '/algorithms/1_data_structures/3_tree'},
             {text: '堆',          link: '/algorithms/1_data_structures/4_heap'},
             {text: '图',          link: '/algorithms/1_data_structures/5_graph'},
+            {text: '字典树 Trie', link: '/algorithms/1_data_structures/6_trie'},
         ],
     },
     {
@@ -334,9 +335,11 @@ const algorithmsSidebar = [
         collapsible: true,
         collapsed: false,
         children: [
-            {text: '动态规划', link: '/algorithms/3_patterns/0_dynamic_programming'},
-            {text: '双指针',   link: '/algorithms/3_patterns/1_two_pointers'},
-            {text: '滑动窗口', link: '/algorithms/3_patterns/2_sliding_window'},
+            {text: '动态规划',      link: '/algorithms/3_patterns/0_dynamic_programming'},
+            {text: '双指针',        link: '/algorithms/3_patterns/1_two_pointers'},
+            {text: '滑动窗口',      link: '/algorithms/3_patterns/2_sliding_window'},
+            {text: '前缀和 & 差分', link: '/algorithms/3_patterns/3_prefix_sum'},
+            {text: '位运算',        link: '/algorithms/3_patterns/4_bit_manipulation'},
         ],
     },
     {

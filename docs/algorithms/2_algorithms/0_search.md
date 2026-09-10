@@ -99,6 +99,8 @@ int binaryOnAnswer(int lo, int hi) {
 
 ## 三、深度优先搜索（DFS）
 
+> 本节聚焦 DFS/BFS 的**通用遍历模板**。图结构上的具体应用（拓扑排序、最短路径、并查集）详见 [图](../1_data_structures/5_graph.md)。
+
 ### 3.1 递归模板
 
 ```java
