@@ -299,6 +299,58 @@ const aiSidebar = [
     },
 ];
 
+const algorithmsSidebar = [
+    {text: '复杂度分析', link: '/algorithms/0_complexity'},
+    {
+        text: '数据结构',
+        link: '/algorithms/1_data_structures/0_array_list',
+        collapsible: true,
+        collapsed: false,
+        children: [
+            {text: '数组 & 链表', link: '/algorithms/1_data_structures/0_array_list'},
+            {text: '栈 & 队列',   link: '/algorithms/1_data_structures/1_stack_queue'},
+            {text: '哈希表',      link: '/algorithms/1_data_structures/2_hash_table'},
+            {text: '树',          link: '/algorithms/1_data_structures/3_tree'},
+            {text: '堆',          link: '/algorithms/1_data_structures/4_heap'},
+            {text: '图',          link: '/algorithms/1_data_structures/5_graph'},
+        ],
+    },
+    {
+        text: '基础算法',
+        link: '/algorithms/2_algorithms/0_search',
+        collapsible: true,
+        collapsed: false,
+        children: [
+            {text: '搜索算法', link: '/algorithms/2_algorithms/0_search'},
+            {text: '排序算法', link: '/algorithms/2_algorithms/1_sort'},
+            {text: '分治算法', link: '/algorithms/2_algorithms/2_divide_conquer'},
+            {text: '回溯算法', link: '/algorithms/2_algorithms/3_backtrack'},
+            {text: '贪心算法', link: '/algorithms/2_algorithms/4_greedy'},
+        ],
+    },
+    {
+        text: '解题套路',
+        link: '/algorithms/3_patterns/0_dynamic_programming',
+        collapsible: true,
+        collapsed: false,
+        children: [
+            {text: '动态规划', link: '/algorithms/3_patterns/0_dynamic_programming'},
+            {text: '双指针',   link: '/algorithms/3_patterns/1_two_pointers'},
+            {text: '滑动窗口', link: '/algorithms/3_patterns/2_sliding_window'},
+        ],
+    },
+    {
+        text: '刷题实战',
+        link: '/algorithms/4_practice/0_leet_code',
+        collapsible: true,
+        collapsed: true,
+        children: [
+            {text: 'LeetCode 高频题分类', link: '/algorithms/4_practice/0_leet_code'},
+            {text: '华为 OJ 题型与技巧',  link: '/algorithms/4_practice/1_huawei_oj'},
+        ],
+    },
+];
+
 const databaseSidebar = [
     {text: '数据库总览', link: '/database/0_overview'},
     {
@@ -441,7 +493,7 @@ export default defineUserConfig({
             '/scenario/': getSidebarFromDir(path.resolve(__dirname, '../scenario')),
             '/netty/': getSidebarFromDir(path.resolve(__dirname, '../netty')),
             '/cloud-native/': cloudNativeSidebar,
-            '/algorithms/': getSidebarFromDir(path.resolve(__dirname, '../algorithms')),
+            '/algorithms/': algorithmsSidebar,
             '/architecture/': getSidebarFromDir(path.resolve(__dirname, '../architecture')),
             '/protocols/': getSidebarFromDir(path.resolve(__dirname, '../protocols')),
             '/iot/': getSidebarFromDir(path.resolve(__dirname, '../iot')),
